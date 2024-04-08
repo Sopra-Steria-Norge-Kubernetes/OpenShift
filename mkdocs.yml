@@ -13,6 +13,10 @@ nav:
     - Introduction: OpenShift GitOps/gitops-introduction.md
     - CI/CD with Tekton Pipelines: OpenShift GitOps/continuous-integration-and-delivery-with-tekton-pipelines.md
     - Exposing an OpenShift Service: OpenShift GitOps/exposing-an-openshift-service.md
+  - Secret Managment:
+    - Creating and managing secrets: Secret Managment/creating-and-managing-openshift-secrets.md
+    - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
+    - Configure external secrets: Secret Managment/configuring-external-secrets.md
   - About: about/about.md
 
 markdown_extensions:
@@ -31,6 +35,9 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
 
   
 theme:
