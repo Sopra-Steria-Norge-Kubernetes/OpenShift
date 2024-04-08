@@ -101,7 +101,7 @@ Below is more detailed information about tenant features and variables under the
 The `namespace` feature contains information about Tenant namespaces and Tenant resources. In the table below, you can find a more detailed description of each variable in the `namespace` feature:
 
 
-| **Variable**                 | **Description**                                                                      | **Example**                                | **Type**   |
+| **Variable**             | **Description**                                                                      | **Example**                                | **Type**   |
 |:------------------------------|:---------------------------------------------------------------------------------------|:--------------------------------------------|:------------|
 | `name`                         | Base name of tenant.                                                                 | Poseidon1                                  | String     |
 | `description`                | A description annotation  under each tenant namespace                                 | " This is a test tenant used for testing" | String     |

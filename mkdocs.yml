@@ -34,6 +34,7 @@ markdown_extensions:
 theme:
   name: material
   logo: assets/Sopra_Steria_logo.svg.png
+  favicon: assets/favicon.png
   features:
     - navigation.instant
     - navigation.path
