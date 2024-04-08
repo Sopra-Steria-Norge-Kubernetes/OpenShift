@@ -85,6 +85,8 @@ To pull images from a container registry, the namespace needs an `imagePullSecre
     type: kubernetes.io/dockerconfigjson
     data:
     .dockerconfigjson: eyJhdXRocyI6eyJkZW1vLmF6dXJlY3IuaW8iOnsidXNlcm5hbWUiOiIzOTBmdWc5NC05M2o1LTNlcjYtOTI2My1kc2Y4OTJoYWtqZmUiLCJwYXNzd29yZCI6IlQ4ajhRfnFXcklhdndocHNIUmFSenMyYUpkSkphdnB1TGVKbHRkQkoifX19
+
+    # Decoded value: {"auths":{"demo.azurecr.io":{"username":"390fug94-93j5-3er6-9263-dsf892hakjfe","password":"T8j8Q~qWrIavwhpsHRaRzs2aJdJJavpuLeJltdBJ"}}}
     ```
 
 #### TLS certificate secrets
@@ -140,8 +142,8 @@ KeyVault-credentials is a regular generic secret, but to standardize we use a de
     name: keyvault-credentials
     namespace: demo-dev
     data:
-    ClientID: MzkwZnVnOTQtOTNqNS0zZXI2LTkyNjMtZHNmODkyaGFramZl               
-    ClientSecret: VDhqOFF+cVdySWF2d2hwc0hSYVJ6czJhSmRKSmF2cHVMZUpsdGRCSg==   
+    ClientID: MzkwZnVnOTQtOTNqNS0zZXI2LTkyNjMtZHNmODkyaGFramZl               # Decoded value: 390fug94-93j5-3er6-9263-dsf892hakjfe
+    ClientSecret: VDhqOFF+cVdySWF2d2hwc0hSYVJ6czJhSmRKSmF2cHVMZUpsdGRCSg==   # Decoded value: T8j8Q~qWrIavwhpsHRaRzs2aJdJJavpuLeJltdBJ
     type: Opaque
     ```
 
