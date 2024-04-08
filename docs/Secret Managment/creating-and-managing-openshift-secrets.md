@@ -29,7 +29,7 @@ OpenShift accommodates various secret types, each designed to meet specific appl
 
 Each section below provides a sample definition of different OpenShift secrets, explaining their structure and usage.
 
-#### 1. Generic Secret (Opaque)
+#### Generic Secret (Opaque)
 A generic OpenShift secret uses the type opaque. Here, you define as many key-value pairs as you would like. Below is a sample of the syntax:
 
 === "Secret"
@@ -56,11 +56,12 @@ A generic OpenShift secret uses the type opaque. Here, you define as many key-va
     password: cGFzc3dvcmQ=    # Decoded value: password
     ```
 
-#### 2. Container Registry Secret (Docker Config)
+#### Container Registry Secret (Docker Config)
 
 To pull images from a container registry, the namespace needs an `imagePullSecret`. This secret must be defined with the type `kubernetes.io/dockerconfigjson`. The key should be named `.dockerconfigjson`, and the value should follow this format: `{"auths":{"<repoURL>":{"username":"<ClientID>","password":"<ClientSecret>"}}}`.
 
-**Note**: Omitting the newline when encoding the value with base64 is crucial. Since this value includes the character `"`, use `'` when encoding the value with base64, e.g., `echo -n '<.dockerconfigjson>' | base64`.
+!!! Note
+    Omitting the newline when encoding the value with base64 is crucial. Since this value includes the character `"`, use `'` when encoding the value with base64, e.g., `echo -n '<.dockerconfigjson>' | base64`.
 
 === "Secret"
     ```yaml
@@ -84,11 +85,9 @@ To pull images from a container registry, the namespace needs an `imagePullSecre
     type: kubernetes.io/dockerconfigjson
     data:
     .dockerconfigjson: eyJhdXRocyI6eyJkZW1vLmF6dXJlY3IuaW8iOnsidXNlcm5hbWUiOiIzOTBmdWc5NC05M2o1LTNlcjYtOTI2My1kc2Y4OTJoYWtqZmUiLCJwYXNzd29yZCI6IlQ4ajhRfnFXcklhdndocHNIUmFSenMyYUpkSkphdnB1TGVKbHRkQkoifX19
-
-    # Decoded value: {"auths":{"demo.azurecr.io":{"username":"390fug94-93j5-3er6-9263-dsf892hakjfe","password":"T8j8Q~qWrIavwhpsHRaRzs2aJdJJavpuLeJltdBJ"}}}
     ```
 
-#### 3. TLS certificate secrets
+#### TLS certificate secrets
 SSL/TLS secrets in OpenShift are used for storing certificates and keys to enable secure communications over networks. 
 
 === "Secret"
@@ -117,7 +116,7 @@ SSL/TLS secrets in OpenShift are used for storing certificates and keys to enabl
     tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ==...
     ```
 
-#### 4. Keyvault-credentials (Azure KeyVault)
+#### Keyvault-credentials (Azure KeyVault)
 KeyVault-credentials is a regular generic secret, but to standardize we use a default setup. Below is a sample of the syntax:
 
 === "Secret"
@@ -141,12 +140,12 @@ KeyVault-credentials is a regular generic secret, but to standardize we use a de
     name: keyvault-credentials
     namespace: demo-dev
     data:
-    ClientID: MzkwZnVnOTQtOTNqNS0zZXI2LTkyNjMtZHNmODkyaGFramZl               # Decoded value: 390fug94-93j5-3er6-9263-dsf892hakjfe
-    ClientSecret: VDhqOFF+cVdySWF2d2hwc0hSYVJ6czJhSmRKSmF2cHVMZUpsdGRCSg==   # Decoded value: T8j8Q~qWrIavwhpsHRaRzs2aJdJJavpuLeJltdBJ
+    ClientID: MzkwZnVnOTQtOTNqNS0zZXI2LTkyNjMtZHNmODkyaGFramZl               
+    ClientSecret: VDhqOFF+cVdySWF2d2hwc0hSYVJ6czJhSmRKSmF2cHVMZUpsdGRCSg==   
     type: Opaque
     ```
 
-#### 5. Repository credentials (ArgoCD repository)
+#### Repository credentials (ArgoCD repository)
 To use a private repository as source repository for an ArgoCD application, it requires repository credentials. It is a generic secret, but for ArgoCD to notice it as a repository secret, it requires a specific label:
 
 === "Secret"
