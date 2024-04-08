@@ -6,9 +6,11 @@ nav:
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
     - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
-    - Order OpenShift tenant through AWX: OpenShift Tenants/Order-openshift-tenant-trough-AWX.md
     - Encrypt PAT and Github App variables: OpenShift Tenants/Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md
-    - Configure applications with tenant: OpenShift Tenants/Configuring-applications-within-the-tenant-concept.md
+  - OpenShift GitOps:
+    - Introduction: OpenShift GitOps/gitops-introduction.md
+    - CI/CD with Tekton Pipelines: OpenShift GitOps/continuous-integration-and-delivery-with-tekton-pipelines.md
+    - Exposing an OpenShift Service: OpenShift GitOps/exposing-an-openshift-service.md
   - About: about/about.md
 
 markdown_extensions:

@@ -102,17 +102,17 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
 
 
 | **Variable**                 | **Description**                                                                      | **Example**                                | **Type**   |
-|------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------|------------|
+|:------------------------------|:---------------------------------------------------------------------------------------|:--------------------------------------------|:------------|
 | `name`                         | Base name of tenant.                                                                 | Poseidon1                                  | String     |
 | `description`                | A description annotation  under each tenant namespace                                 | " This is a test tenant used for testing" | String     |
 | `displayName`                | Displayname given to each openshift namespace/project                                 | "poseidon1-application1"                   | String     |
 | `use_egress_firewall`         | To use egress firewall to limit egress traffic from tenant namespaces.                | true                                       | Boolean    |
 | `enable_tooling`              | Creates a tooling namespace which is needed for certain applications such as Grafana | true                                       | Boolean    |
 | `deploy_grafana`              | Deploys a grafana instance in the tooling namespace                                      | true                                       | Boolean    |
-| `limits.memory`               | Combined memory limit for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | string/int |
-| `limits.cpu`                 | Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | string/int |
-| `container_limitrange.memory` | Memory limit for each container for all tenant namespaces.  The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                            | 64Mi                                       | string/int |
-| `container_limitrange.cpu`     | CPU limit for each container for all tenant namespaces. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                  | 100m                                       | string/int |
+| `limits.memory`               | Combined memory limit for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | String/Int |
+| `limits.cpu`                 | Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int |
+| `container_limitrange.memory` | Memory limit for each container for all tenant namespaces.  The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                            | 64Mi                                       | String/Int |
+| `container_limitrange.cpu`     | CPU limit for each container for all tenant namespaces. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                  | 100m                                       | String/Int |
 
 ### Environment
 The `environment` feature contains a list of namespaces and namespace-specific variables.
@@ -120,7 +120,7 @@ In the table below, you can find a more detailed description of each variable in
 
 | **Variable**                 | **Description**                                                        | **Example**                | **Type** |
 |------------------------------|------------------------------------------------------------------------|----------------------------|----------|
-| `environments[].name`          | Name of environment                                                    | test                       | string   |
+| `environments[].name`          | Name of environment                                                    | test                       | String   |
 |  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     |
 | `environments[].externalIPs`    | A list of IP ranges that should be reached from the tenant environment | [0.0.0.0/0, 92.0.2.1/24]   | List     |
 
@@ -180,16 +180,16 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | Default              |                                                                                                                     |                                            |                           |
 | `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    |
 | `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    |
-| `encrypted_url`      | The URL of the git repository encrypted with sealedsecrets                                                          | See description below                      | Kubeseal encrypted string |
-| `encrypted_type`     | Type should always be "git" and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted string |
+| `encrypted_url`      | The URL of the git repository encrypted with sealedsecrets                                                          | See description below                      | Kubeseal encrypted String |
+| `encrypted_type`     | Type should always be "git" and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String |
 | PAT                  |                                                                                                                     |                                            |                           |
-| `encrypted_password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted string |
-| `encrypted_username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted string |
+| `encrypted_password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted String |
+| `encrypted_username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted String |
 | GitHub App           |                                                                                                                     |                                            |                           |
 | `enable_app`         | Whether or not to use GitHub App to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   |
-| `id`                 | The app id for your Github App encrypted with sealedsecrets                                                         | See description below                      | Kubeseal encrypted string |
-| `installation_id`    | The installation id for your GitHub App encrypted with sealedsecrets                                                | See description below                      | Kubeseal encrypted string |
-| `private_key`        | Private key for your GitHub App encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted string |
+| `id`                 | The app id for your Github App encrypted with sealedsecrets                                                         | See description below                      | Kubeseal encrypted String |
+| `installation_id`    | The installation id for your GitHub App encrypted with sealedsecrets                                                | See description below                      | Kubeseal encrypted String |
+| `private_key`        | Private key for your GitHub App encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String |
 
 
 
@@ -228,8 +228,8 @@ In the table below, there is a more detailed description of each variable in the
 | **Variable**                         | **Description**                                  | **Example**                | **Type**  |
 |--------------------------------------|--------------------------------------------------|----------------------------|-----------|
 | `azure_tenant_id`                    | The Azure Tenant ID that your organisation uses for storing its Azure Key Vaults  |d93d3d23-50e3-46db-b3ad-8c6c281b431e      | String    |
-| `keyvault_credentials.client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted string    |
-| `keyvault_credentials.client_secret`  | Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted string    |
+| `keyvault_credentials.client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    |
+| `keyvault_credentials.client_secret`  | Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    |
 
 
 ### Slack Alert Integration
@@ -243,7 +243,7 @@ Below is a detailed description of each variable in the `slack_alert_integration
 | `enable`                                | Toggle the Slack alert integration feature. Set to `True` to enable.                             | `False`                                  | Boolean                    |
 | `channel_name`                          | The Slack channel where alerts will be posted.                                                   | `developer-namespace`                            | String                     |
 | `alert_severity`                        | The severity level of alerts to be sent. Multiple severities can be specified, separated by `\|`. | `critical` or `critical\|warning\|info` | String                     |
-| `webhook_secret.encrypted_webhookURL`   | The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.                   | *Encrypted String*                       | Kubeseal encrypted string  |
+| `webhook_secret.encrypted_webhookURL`   | The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.                   | *Encrypted String*                       | Kubeseal encrypted String  |
 
 For more information about configuring the Slack alert integration, refer to the [Integrating Slack Notifications guide](/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/3%2DSecret-Management-on-OpenShift/3.4%2DIntegrating-Slack-Notifications).
 Ensure that the Slack webhook URL is encrypted using Kubeseal, providing a sealed secret which is Kubernetes' way of handling encrypted secrets.
