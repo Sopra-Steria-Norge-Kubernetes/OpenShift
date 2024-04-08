@@ -1,5 +1,7 @@
 site_name: OpenShift
-site_url: https://example.com/
+site_url: https://sopra-steria-norge-kubernetes.github.io/OpenShift/
+repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
+edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/
 nav: 
   - Get started: index.md
   - OpenShift Tenants: 
@@ -35,12 +37,17 @@ theme:
   name: material
   logo: assets/Sopra_Steria_logo.svg.png
   favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/eye
+
   features:
     - navigation.instant
     - navigation.path
     - content.code.copy
     - navigation.footer
-
+    - content.action.edit
+    
   font:
     code: Roboto Mono
     text: Roboto
