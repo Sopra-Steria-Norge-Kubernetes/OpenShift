@@ -10,13 +10,14 @@ externally-exposed: true
 
 ## Introduction
 External Secrets in OpenShift allow applications to access sensitive data stored outside the OpenShift cluster while still allowing Kubernetes resources to use them. External secrets address several limitations of OpenShift Secrets:
+
 * **Secure Encoding:** Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
 * **Secure Encoding**: Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
 * **Automated Rotation:** External solutions automate secret rotation, enhancing security without manual intervention.
 
 External Secrets work by setting up a connection to your external Key Management System (KMS) with a resource called a SecretStore. When a developer wants to extract a secret from the KMS, it creates an ExternalSecret resource in OpenShift. This Object will, through the SecretStore, extract the information in the KMS and create an encrypted OpenShift secret object in your cluster. The ExternalSecret resource can then be stored in Git to ensure Continuous Delivery (CD) for your applications. Below is a diagram to illustrate how the External Secrets work:
 
-![developer_external_secret.png](/.attachments/developer_external_secret-be0dc53e-a0de-4ca2-8add-e6b21675691a.png)
+![developer_external_secret.png](../img/Secret%20Managment/developer_external_secret.png)
 
 The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but external secrets supports various external secret providers. For more information about External Secrets see the [official guide](https://external-secrets.io/latest/). 
 
@@ -46,13 +47,12 @@ For instance, for a tenant named `tenant` with `test` and `dev` environments, se
 
 To deploy a secret store with the tenant form, include the following parameters in the file (same indent as namespace and environments):
 
-```yaml
+```yaml title="Setting up secret store"
 namespace:
   name: <tenant-name>
 .
 .
 .
-
 external_secrets:
   azure_tenant_id: <Azure-Tenant-ID>
   keyvault_credentials:
@@ -60,7 +60,7 @@ external_secrets:
     client_secret: <Client-Secret>
 ```
 
-Replace `<Azure-Tenant-ID>`, `<Client-ID>`, and `<Client-Secret>` with your actual values. The `<Client-ID>` and `<Client-Secret>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/3%2DSecret-Management-on-OpenShift/3.2%2DEncrypting-secrets-with-Kubeseal.md).
+Replace `<Azure-Tenant-ID>`, `<Client-ID>`, and `<Client-Secret>` with your actual values. The `<Client-ID>` and `<Client-Secret>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](encrypting-secret-with-kubeseal.md).
 
 
 #### Deploying a custom Secret Store
@@ -89,11 +89,10 @@ spec:
 
 Ensure to replace placeholders like `<tenant_name>`, `<env>`, `<Azure-Tenant-ID>`, and `<Azure_KeyVault_Vault_URL>` with your specific values. 
 
-## creating the External Secret
+## Creating the External Secret
 To create a secret from Azure Key Vault you need to create the custom resource external secret in OpenShift.  It interacts with the secret store to access secrets stored in Azure KeyVault and then creates an equivalent secret within OpenShift, making the sensitive data accessible to applications.
 
-Here's an example YAML configuration for defining an external secret:
-```yaml
+```yaml title="Defining an external secret"
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
@@ -112,13 +111,15 @@ spec:
     remoteRef:
       key: <key_ref_in_azure>
 ```
+
 Below is the explanation of the different variables:
-- **Name of External Secret (`<name_of_external_secret>`):** This is the unique identifier for the ExternalSecret object within OpenShift.
-- **Namespace (`<tenant_name>-<env>`):** Replace with the specific tenant and environment where the secret is to be deployed.
+
+- **Name of External Secret** (`<name_of_external_secret>`): This is the unique identifier for the ExternalSecret object within OpenShift.
+- **Namespace** (`<tenant_name>-<env>`): Replace with the specific tenant and environment where the secret is to be deployed.
 - **Refresh Interval:** This determines how often the external secret syncs with Azure KeyVault to ensure updated data accessibility.
-- **Secret Name in OCP (`<secret_name_in_ocp>`):** The designated name for the secret within OpenShift post-import.
-- **Key Definition in Secret (`<key_definition_in_secret>`):** This key is used within OpenShift for referencing the secret’s value.
-- **Key Reference in Azure (`<key_ref_in_azure>`):** The name of the secret as stored in Azure KeyVault.
+- **Secret Name in OCP** (`<secret_name_in_ocp>`): The designated name for the secret within OpenShift post-import.
+- **Key Definition in Secret** (`<key_definition_in_secret>`): This key is used within OpenShift for referencing the secret’s value.
+- **Key Reference in Azure** (`<key_ref_in_azure>`): The name of the secret as stored in Azure KeyVault.
 
 This ExternalSecret object connects to Azure KeyVault through the specified SecretStore, fetching the secret identified by `<key_ref_in_azure>`. It then creates or updates a secret named `<secret_name_in_ocp>` in OpenShift, storing the fetched value under `<key_definition_in_secret>`. 
 
@@ -206,6 +207,7 @@ type: Opaque
 #### Summary
 
 In this configuration:
+
 - The Azure secret named `azure-secret` has a value of `mysecret`.
 - The SecretStore object is configured to access this secret.
 - The ExternalSecret object fetches the secret from Azure and creates a corresponding secret in OpenShift named `openshift-secret`.
