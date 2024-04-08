@@ -80,4 +80,8 @@ extra_css:
   - stylesheets/extra.css
 
 copyright: Copyright &copy; 2024 - Team Poseidon
+extra:
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 
