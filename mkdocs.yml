@@ -1,0 +1,73 @@
+site_name: OpenShift
+site_url: https://example.com/
+nav: 
+  - Get started: index.md
+  - OpenShift Tenants: 
+    - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
+    - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
+    - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
+    - Order OpenShift tenant through AWX: OpenShift Tenants/Order-openshift-tenant-trough-AWX.md
+    - Encrypt PAT and Github App variables: OpenShift Tenants/Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md
+    - Configure applications with tenant: OpenShift Tenants/Configuring-applications-within-the-tenant-concept.md
+  - About: about/about.md
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+
+  
+theme:
+  name: material
+  logo: assets/Sopra_Steria_logo.svg.png
+  features:
+    - navigation.instant
+    - navigation.path
+    - content.code.copy
+    - navigation.footer
+
+  font:
+    code: Roboto Mono
+    text: Roboto
+
+  palette: 
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: white
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      primary: white
+      scheme: default 
+      toggle:
+        icon: fontawesome/solid/toggle-off
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: white
+      scheme: slate
+      toggle:
+        icon: fontawesome/solid/toggle-on
+        name: Switch to system preference
+
+extra_css:
+  - stylesheets/extra.css
+
+copyright: Copyright &copy; 2024 - Team Poseidon
+
