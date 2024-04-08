@@ -60,28 +60,29 @@ theme:
     text: Roboto
 
   palette: 
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
-      primary: white
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
+    primary: white
+    # # Palette toggle for automatic mode
+    # - media: "(prefers-color-scheme)"
+    #   primary: white
+    #   toggle:
+    #     icon: material/brightness-auto
+    #     name: Switch to light mode
 
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      primary: white
-      scheme: default 
-      toggle:
-        icon: fontawesome/solid/toggle-off
-        name: Switch to dark mode
+    # # Palette toggle for light mode
+    # - media: "(prefers-color-scheme: light)"
+    #   primary: white
+    #   scheme: default 
+    #   toggle:
+    #     icon: fontawesome/solid/toggle-off
+    #     name: Switch to dark mode
 
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      primary: white
-      scheme: slate
-      toggle:
-        icon: fontawesome/solid/toggle-on
-        name: Switch to system preference
+    # # Palette toggle for dark mode
+    # - media: "(prefers-color-scheme: dark)"
+    #   primary: white
+    #   scheme: slate
+    #   toggle:
+    #     icon: fontawesome/solid/toggle-on
+    #     name: Switch to system preference
 
 extra_css:
   - stylesheets/extra.css
