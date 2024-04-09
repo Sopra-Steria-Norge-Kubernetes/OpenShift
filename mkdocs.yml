@@ -4,9 +4,9 @@ repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/
 nav: 
   - Get started: index.md
-  - About Openshift: 
-    - What is OpenShift: About Openshift/What-is-Openshift.md
-    - Exploring features in OpenShift: About Openshift/Exploring-features-in-OpenShift.md
+  - About Container Platform as a Service: 
+    - What is Container Platform as a Service?: About Container-Platform-as-a-Service/What-is-Openshift.md
+    #- Exploring features in OpenShift: About Openshift/Exploring-features-in-OpenShift.md
   - OpenShift Tenants: 
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
@@ -20,9 +20,9 @@ nav:
     - Creating and managing secrets: Secret Managment/creating-and-managing-openshift-secrets.md
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
     - Configure external secrets: Secret Managment/configuring-external-secrets.md
-  - About: 
-    - About: about/about.md
-    - Hot to use mkdocs: about/how-to-use-mkdocs.md
+  #- About: 
+  #  - About: about/about.md
+  # - Hot to use mkdocs: about/how-to-use-mkdocs.md
 
 markdown_extensions:
   - attr_list
