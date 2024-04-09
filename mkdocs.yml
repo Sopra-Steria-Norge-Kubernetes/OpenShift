@@ -56,6 +56,9 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 
+plugins:
+  - glightbox
+
 theme:
   name: material
   logo: assets/Sopra_Steria_logo.svg.png
