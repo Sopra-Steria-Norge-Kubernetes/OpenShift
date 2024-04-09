@@ -4,6 +4,9 @@ repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/
 nav: 
   - Get started: index.md
+  - About Openshift: 
+    - What is OpenShift: About Openshift/What-is-Openshift.md
+    - Exploring features in OpenShift: About Openshift/Exploring-features-in-OpenShift.md
   - OpenShift Tenants: 
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
