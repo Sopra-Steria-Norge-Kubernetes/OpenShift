@@ -30,6 +30,8 @@ nav:
   - Network:
     - Introduction: Network/introduction.md
     - Connect application cross namespaces: Network/connect-openshift-application-cross-namespaces.md
+  - Storage:
+    - OpenShift Storage: Storage/openshift-storage.md
   - About: 
     - About: about/about.md
     - Hot to use MkDocs: about/how-to-use-mkdocs.md
