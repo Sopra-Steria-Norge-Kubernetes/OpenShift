@@ -21,7 +21,7 @@ MkDocs have a few special files and a file structure that needs to be followed. 
 
 All documentation files should be stored under the folder named `docs/` and within this file there should be a subfolder for each subject with approriate files.
 
-The file `mkdocs.yml` is the file where all the configuration is stored and written, and it it in this file you will be creating the the navigation bar links. This is described here; [How to create nav-links](#how-to-create-nav-links)
+The file `mkdocs.yml` is the file where all the configuration is stored and written, and it it in this file you will be creating the the navigation bar links. How this is done is explained in the secetions [Create file under existing subfolder](#create-file-under-existing-subfolder) and [Create file under new subfolder](#create-file-under-new-subfolder)
 
 ## Start writing documentation
 
