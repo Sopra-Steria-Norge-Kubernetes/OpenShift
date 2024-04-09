@@ -7,8 +7,6 @@ externally-exposed: false
 ## Introduction
 OpenShift is a powerful container application platform developed by Red Hat, designed to simplify the deployment, management, and scaling of containerized applications. Built upon Kubernetes, an open-source container orchestration platform, OpenShift extends Kubernetes' capabilities to offer a comprehensive platform for building, deploying, and managing applications across hybrid and multi-cloud environments.
 
-## Key Features
-
 ### Container Orchestration
 
 OpenShift leverages Kubernetes to effectively manage containers. It automates tasks such as deployment, scaling, and load balancing, making it easier for developers to focus on building applications rather than managing infrastructure.
