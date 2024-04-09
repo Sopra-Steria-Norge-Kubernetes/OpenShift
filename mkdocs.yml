@@ -12,8 +12,6 @@ nav:
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
     - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
     - Encrypt PAT and Github App variables: OpenShift Tenants/Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md
-  - New subject:
-    - New title: New subfolder/new-file.md
   - OpenShift GitOps:
     - Introduction: OpenShift GitOps/gitops-introduction.md
     - CI/CD with Tekton Pipelines: OpenShift GitOps/continuous-integration-and-delivery-with-tekton-pipelines.md
