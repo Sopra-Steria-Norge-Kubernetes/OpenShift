@@ -24,7 +24,7 @@ nav:
   - Observability:
     - Introduction: Observability/Introduction.md
     - Using OpenShift observability: Observability/using-openshift-observability.md
-    - Using network observability: Observability/using-network-observability.md
+    #- Using network observability: Observability/using-network-observability.md
     - Configure monitoring for a tenant: Observability/configuring-monitoring-for-a-tenant.md
     - Configure Grafana and Thanos: Observability/configure-grafana-and-thanos-query.md
   - Network:
@@ -32,6 +32,9 @@ nav:
     - Connect application cross namespaces: Network/connect-openshift-application-cross-namespaces.md
   - Storage:
     - OpenShift Storage: Storage/openshift-storage.md
+  - Security:
+    - Advanced Cluster Security (ACS): Security/advanced-cluster-security.md
+
 
 markdown_extensions:
   - attr_list
@@ -52,6 +55,9 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - glightbox
