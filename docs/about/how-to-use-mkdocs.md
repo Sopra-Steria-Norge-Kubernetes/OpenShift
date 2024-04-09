@@ -100,12 +100,11 @@ If you're writing documentation for a subject that **does not** have a subfolder
 
 In the configuration file `mkdocs.yml` you'll find the section `nav` containing all the navigation links visible on the site. In the `nav` section create a new top-level entry and add a new list entry as shown in the example below.
 
-```yaml hl_lines="10 11"
+```yaml hl_lines="9 10"
 ...
 nav: 
   - Get started: index.md
   - OpenShift Tenants:
-    - New title: OpenShift Tenants/new-file.md
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
     - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
