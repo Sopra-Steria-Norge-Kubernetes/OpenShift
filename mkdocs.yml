@@ -5,9 +5,9 @@ repo_name: Sopra Steria - OpenShift
 edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/
 nav: 
   - Get started: index.md
-  - About Openshift: 
-    - What is OpenShift: About Openshift/What-is-Openshift.md
-    - Exploring features in OpenShift: About Openshift/Exploring-features-in-OpenShift.md
+  - About Container Platform as a Service: 
+    - What is Container Platform as a Service?: About Container-Platform-as-a-Service/What-is-Openshift.md
+    #- Exploring features in OpenShift: About Openshift/Exploring-features-in-OpenShift.md
   - OpenShift Tenants: 
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
@@ -32,9 +32,6 @@ nav:
     - Connect application cross namespaces: Network/connect-openshift-application-cross-namespaces.md
   - Storage:
     - OpenShift Storage: Storage/openshift-storage.md
-  - About: 
-    - About: about/about.md
-    - Hot to use MkDocs: about/how-to-use-mkdocs.md
 
 markdown_extensions:
   - attr_list
