@@ -24,7 +24,7 @@ nav:
   - Observability:
     - Introduction: Observability/Introduction.md
     - Using OpenShift observability: Observability/using-openshift-observability.md
-    - Using network observability: Observability/using-network-observability.md
+    #- Using network observability: Observability/using-network-observability.md
     - Configure monitoring for a tenant: Observability/configuring-monitoring-for-a-tenant.md
     - Configure Grafana and Thanos: Observability/configure-grafana-and-thanos-query.md
   - Network:

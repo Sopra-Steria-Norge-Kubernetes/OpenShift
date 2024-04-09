@@ -14,7 +14,7 @@ This CI/CD pipeline serves as a template to showcase our streamlined development
 
 This is a general overview of the steps involved in the process. 
 
-![](pictures/CI_CD%20-%20Tekton%20(1).png)
+![here](../img/OpenShift%20GitOps/CI_CD%20-%20Tekton%20(1).png)
 
 This workflow is a high-level representation of a CI/CD process where code changes are automatically fetched, built, and deployed, demonstrating the concept of a pipeline that progresses from code to deployment in a series of automated steps.
 
@@ -33,26 +33,26 @@ The `Pipeline` described in this workflow is our public Sopra Steria/Team Poseid
 This is a overview and description of the different repositories used in the CI/CD workflow. As the whole workflow is a complex process it is necessary to explain where each component is located and how the different components and therefore repositories interact with each other. 
 
 1. **Public-2S-pipeline-repo**: This repository defines the different pipelines our customer can choose from to build and deploy their source code. The repository contains one pipeline called `build-and-push-python.yml` which build and deploys a python application, before updating the image-tag in the deployment. With time we intend to extend this repository to contain pipelines for multiple programming languages such as java, C# and so on.  
-	- https://github.com/TeamPoseidonOCP/openshift-pipelines.git
+	- [https://github.com/TeamPoseidonOCP/openshift-pipelines.git](https://github.com/TeamPoseidonOCP/openshift-pipelines.git)
 	  
 2. **Tenant-application-repo**: This repository is where the Helm-chart, Helm-values and the resources for the ArgoCD Application is defined. In this repository we define all the resources needed for the Continuous Integration part of the workflow, such as all the Tekton Pipeline resources.
-	- https://github.com/TeamPoseidonOCP/openshift-pipelines.git
+	- [https://github.com/TeamPoseidonOCP/openshift-pipelines.git](https://github.com/TeamPoseidonOCP/openshift-pipelines.git)
 	  
 3. **Deployment-repo** (customer): This repository is where the customer defines the values and enables a CI/CD workflow from Sopra Steria and from these values there will be create an Application in ArgoCD with a deployment that contains the source-code-application image.
-	* https://github.com/TeamPoseidonOCP/poseidon2_main_repo.git
+	* [https://github.com/TeamPoseidonOCP/poseidon2_main_repo.git](https://github.com/TeamPoseidonOCP/poseidon2_main_repo.git)
 	  
 4. **Source-code-repo** (customer): This is the source code of the customers application. The customer will have their application in this repository and a merge-request to the main branch in this repository will trigger the CI/CD-process. 
-	* https://SolidCloudv2@dev.azure.com/SolidCloudv2/TeamPoseidon/_git/source-to-image
+	* [https://SolidCloudv2@dev.azure.com/SolidCloudv2/TeamPoseidon/_git/source-to-image](https://SolidCloudv2@dev.azure.com/SolidCloudv2/TeamPoseidon/_git/source-to-image)
 	
 
-> [!NOTE]
-> In the parts that follow the repositories mentioned here will be referenced to the names described above. 
+!!! Note
+    In the parts that follow the repositories mentioned here will be referenced to the names described above. 
 
 
 ## In-depth overview
 This section of the documentation aims to describe the CI/CD process in detail, and will provide the reader with a in-depth overview over the workflow. It will ble divided into two main sections; Continuous Integration (*Tekton pipeline part*) and Continuous Delivery.
 
-![](pictures/CI_CD%20-%20Tekton.png)
+![](../img/OpenShift%20GitOps/CI_CD%20-%20Tekton.png)
 
 
 ### Continuous Integration with Tekton Pipelines
@@ -100,11 +100,11 @@ In this section will go through the process of setting the correct variables and
 	* [Tenant-application deployment](https://dev.azure.com/SolidCloudv2/SolidCloud/_wiki/wikis/SolidCloud.wiki/2350/Tenant-application)
 	* Have defined a container limit range in your tenant
 
->[!NOTE]
->The values set in the example below is just for this documentation purpose and should be replaced with the correct values for your configuration. 
+!!! Note
+    The values set in the example below is just for this documentation purpose and should be replaced with the correct values for your configuration. 
 
-### values.yaml
-```yaml
+### Values
+```yaml title="values.yaml"
 pipeline:
   enable_pipeline: true
   name: testing-pipeline
