@@ -22,7 +22,11 @@ nav:
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
     - Configure external secrets: Secret Managment/configuring-external-secrets.md
   - Observability:
-    - Introduction: test.md
+    - Introduction: Observability/Introduction.md
+    - Using OpenShift observability: Observability/using-openshift-observability.md
+    - Using network observability: Observability/using-network-observability.md
+    - Configure monitoring for a tenant: Observability/configuring-monitoring-for-a-tenant.md
+    - Configure Grafana and Thanos: Observability/configure-grafana-and-thanos-query.md
   - About: 
     - About: about/about.md
     - Hot to use MkDocs: about/how-to-use-mkdocs.md
