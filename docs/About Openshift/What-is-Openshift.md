@@ -33,4 +33,4 @@ OpenShift is available in several versions to cater to different deployment scen
 
 ## Conclusion
 
-OpenShift simplifies the process of deploying, managing, and scaling containerized applications. With its robust features, developer-friendly tools, and support for hybrid and multi-cloud environments, it is an ideal platform for organizations looking to modernize their application infrastructure.
+OpenShift simplifies the process of deploying, managing, and scaling containerized applications. With its robust features, developer-friendly tools, and support for hybrid and multi-cloud environments, it is an ideal platform for organizations looking to modernize their application infrastructure
