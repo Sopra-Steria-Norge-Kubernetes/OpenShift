@@ -12,6 +12,8 @@ nav:
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
     - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
     - Encrypt PAT and Github App variables: OpenShift Tenants/Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md
+  - New subject:
+    - New title: New subfolder/new-file.md
   - OpenShift GitOps:
     - Introduction: OpenShift GitOps/gitops-introduction.md
     - CI/CD with Tekton Pipelines: OpenShift GitOps/continuous-integration-and-delivery-with-tekton-pipelines.md
@@ -20,11 +22,14 @@ nav:
     - Creating and managing secrets: Secret Managment/creating-and-managing-openshift-secrets.md
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
     - Configure external secrets: Secret Managment/configuring-external-secrets.md
-  - About: about/about.md
+  - About: 
+    - About: about/about.md
+    - Hot to use mkdocs: about/how-to-use-mkdocs.md
 
 markdown_extensions:
   - attr_list
   - md_in_html
+  - abbr
   - tables
   - def_list
   - pymdownx.tasklist:
@@ -41,8 +46,6 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 
-
-  
 theme:
   name: material
   logo: assets/Sopra_Steria_logo.svg.png
