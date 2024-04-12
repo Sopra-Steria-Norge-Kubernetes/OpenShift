@@ -25,9 +25,9 @@ In this repository we will create a example tenant to showcase the different opt
 CaaS provides two primary methods for deploying an synchronising infrastructures:
 
 1. **Auto-defined ArgoCD applications:** A ArgoCD applicationSet automatically creates applications when resources are defined in the target path.
-     1. Target path: `<basepath>applications/<environments[].name>/*`
-2. **User-defined ArgoCD applications:** The user creates its own ArgoCD application definitions. Only recommended to use if more functionality needed than what is provided in the Auto-defined method. The ArgoCD application definition must be defined in the correct target path.
      1. Target path: `<basepath>applicationsets/<environments[].name>/*`
+2. **User-defined ArgoCD applications:** The user creates its own ArgoCD application definitions. Only recommended to use if more functionality needed than what is provided in the Auto-defined method. The ArgoCD application definition must be defined in the correct target path.
+     1. Target path: `<basepath>applications/<environments[].name>/*`
 
 ## Pre-requisites
 Before you can utilise the GitOps capabilties on OpenShift you need to setup your OpenShift Tenant correctly. In this repository, we will use a simple example tenant to enable the desired capabilties for both methods. the tenant definition is shown below. 
@@ -97,9 +97,58 @@ Applications can be deployed with kustomization files, helm templates, helm repo
 Kubernetes resources can be deployed to the cluster by simpling adding files with YAML definition of Kubernetes resources. Folder `applicationsets/dev/ex1-kubernetes-resources` illustrates an example of how this is done for a service resource. 
 
 #### 2) Kustomization file
-A Kustomization file can be used to define multiple Kubernetes resoucres. It will only deploy the Kubernetes resources listed in the kustomization file.
+A Kustomization file can be used to define multiple Kubernetes resoucres. It will only deploy the Kubernetes resources listed in the kustomization (`kustomization.yaml`) file like this:
 
-Folder `applicationsets/dev/ex2-kustomize` illustrates an example of how to use a Kustomization file. In addition, this example show how to use the base folder to add the same deployment to both the `dev` and `test` environment. 
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+```
+
+This will deploy `deployment.yaml` and `service.yaml` from the current folder. 
+
+With Kustomize you can use yaml-files from a common base, and you can patch enviroment spesific values. Here's an example where files from a base (`../../base/application`) is used and the number of replicas for the Deloyment `app-deployment` is patched to `3`:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base/application
+
+patches:
+- target:
+    kind: Deployment
+    name: app-deployment
+  patch: |
+    - op: replace
+      path: /spec/replicas
+      value: 3
+```
+
+Finally, you can leverage Git and its references to extract your base configuration into an external repository, allowing you to version control your configuration by utilizing branches and tags in Git.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- https://<git remo url>//base/application?ref={<branch>,<tag>,<commit id>}
+
+patches:
+- target:
+    kind: Deployment
+    name: app-deployment
+  patch: |
+    - op: replace
+      path: /spec/replicas
+      value: 3
+```
+
+Use [Kustomize](https://kustomize.io/) cli to test your configuration.
 
 #### 3) Helm 
 Helm is another effective tool for deploying and managing Kubernetes applications. It simplifies the process of defining, installing, and upgrading even the most complex Kubernetes applications. Here we will list different examples for deploying helm:
