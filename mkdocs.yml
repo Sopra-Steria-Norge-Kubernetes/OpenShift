@@ -6,8 +6,11 @@ edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/d
 nav: 
   - Get started: index.md
   - About Container Platform as a Service: 
-    - What is Container Platform as a Service?: About Container-Platform-as-a-Service/What-is-Openshift.md
-    #- Exploring features in OpenShift: About Openshift/Exploring-features-in-OpenShift.md
+    - Introduction: About Container-Platform-as-a-Service/introduction.md
+    - Service breakdown: About Container-Platform-as-a-Service/Service-breakdown.md
+    - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
+    - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
+    - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
   - OpenShift Tenants: 
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md

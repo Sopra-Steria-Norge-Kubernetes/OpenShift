@@ -101,8 +101,8 @@ Below is more detailed information about tenant features and variables under the
 The `namespace` feature contains information about Tenant namespaces and Tenant resources. In the table below, you can find a more detailed description of each variable in the `namespace` feature:
 
 
-| **Variable**             | **Description**                                                                      | **Example**                                | **Type**   |
-|:------------------------------|:---------------------------------------------------------------------------------------|:--------------------------------------------|:------------|
+| <div style="width:205px">**Variable**</div>           | **Description**                                                                      | **Example**                                | **Type**   |
+|:------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------|:------------|
 | `name`                         | Base name of tenant.                                                                 | Poseidon1                                  | String     |
 | `description`                | A description annotation  under each tenant namespace                                 | " This is a test tenant used for testing" | String     |
 | `displayName`                | Displayname given to each openshift namespace/project                                 | "poseidon1-application1"                   | String     |
@@ -118,7 +118,7 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
 The `environment` feature contains a list of namespaces and namespace-specific variables.
 In the table below, you can find a more detailed description of each variable in the `environment` feature:
 
-| **Variable**                 | **Description**                                                        | **Example**                | **Type** |
+|  <div style="width:205px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** |
 |------------------------------|------------------------------------------------------------------------|----------------------------|----------|
 | `environments[].name`          | Name of environment                                                    | test                       | String   |
 |  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     |
@@ -130,7 +130,7 @@ In the table below, you can find a more detailed description of each variable in
 The `networkpolicy` is a feature which controls how pods in an openshift cluster can communicate with each other. These policies define rules for network traffic, specifying what is allowed and denied. Each sub-component should have either a `true` or `false` value. The default value is set to `true` for each sub-component. 
 In the table below, you can find a more detailed description of each variable in the `networkpolicy` feature:
 
-| **Variable**                                  | **Description**                                           | **Example**                 | **Type**  |
+| <div style="width:255px">**Variable**</div>                                 | **Description**                                           | **Example**                 | **Type**  |
 |-----------------------------------------------|-----------------------------------------------------------|-----------------------------|-----------|
 | `allow_same_namespace`          | Allows or disallows network communication within the same namespace | true        | Boolean   |
 | `allow_from_openshift_monitoring` | Allows or disallows network communication to OpenShift monitoring | true         | Boolean   |
@@ -175,7 +175,7 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 - **PAT**: variables needed to connect with a GitHub PAT token
 - **GitHub app**: variables need to configure the GitHub app
 
-| **Variable**         | **Description**                                                                                                     | **Example**                                | **Type**                  |
+| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|
 | Default              |                                                                                                                     |                                            |                           |
 | `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    |
@@ -206,7 +206,7 @@ Encrypting and configuring ArgoCD-specific information is crucial for ensuring t
 The `backup` feature allows you to create backup schedules for the data inside your Tenants' namespaces. In the table below, there is a more detailed description of each variable in the `backup` feature:
 
 
-| **Variable**                     | **Description**                                           | **Example**                | **Type**  |
+| <div style="width:155px">**Variable**</div>                     | **Description**                                           | **Example**                | **Type**  |
 |----------------------------------|-----------------------------------------------------------|----------------------------|-----------|
 | `backuplabel`             | The label to set for backups. If this label is not set, a backup of your applications will not be taken. It needs to be on the format `Key: value` | "backupresource: true"| String   |
 | `take_backup`             | Used to specify whether backups should be taken or not in the Tenant.  | true     | Boolean   |
@@ -225,7 +225,7 @@ This feature is only supported for Azure Key Vault, but contact your OpenShift a
 In the table below, there is a more detailed description of each variable in the `backup` feature:
 
 
-| **Variable**                         | **Description**                                  | **Example**                | **Type**  |
+| <div style="width:255px">**Variable**</div>                         | **Description**                                  | **Example**                | **Type**  |
 |--------------------------------------|--------------------------------------------------|----------------------------|-----------|
 | `azure_tenant_id`                    | The Azure Tenant ID that your organisation uses for storing its Azure Key Vaults  |d93d3d23-50e3-46db-b3ad-8c6c281b431e      | String    |
 | `keyvault_credentials.client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    |
@@ -238,11 +238,11 @@ The `slack_alert_integration` feature allows tenants to configure Slack notifica
 
 Below is a detailed description of each variable in the `slack_alert_integration` feature:
 
-| **Variable**                            | **Description**                                                                                  | **Example**                              | **Type**                   |
+| <div style="width:260px">**Variable**</div>                            | **Description**                                                                                  | **Example**                              | **Type**                   |
 |-----------------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------|----------------------------|
 | `enable`                                | Toggle the Slack alert integration feature. Set to `True` to enable.                             | `False`                                  | Boolean                    |
 | `channel_name`                          | The Slack channel where alerts will be posted.                                                   | `developer-namespace`                            | String                     |
-| `alert_severity`                        | The severity level of alerts to be sent. Multiple severities can be specified, separated by `\|`. | `critical` or `critical\|warning\|info` | String                     |
+| `alert_severity`                        | The severity level of alerts to be sent. Multiple severities can be specified, separated by `|`. | `critical` or `critical|warning|info` | String                     |
 | `webhook_secret.encrypted_webhookURL`   | The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.                   | *Encrypted String*                       | Kubeseal encrypted String  |
 
 For more information about configuring the Slack alert integration, refer to the [Integrating Slack Notifications guide](/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/3%2DSecret-Management-on-OpenShift/3.4%2DIntegrating-Slack-Notifications).
