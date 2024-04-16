@@ -67,7 +67,7 @@ Fill out the yaml below.
       username: team.poseidon
     ```
 
-!!! Warning 
+!!! Note
     For the git url use the HTTPS url of the git repository.
 
 ### Encrypt the Secret with Kubeseal
