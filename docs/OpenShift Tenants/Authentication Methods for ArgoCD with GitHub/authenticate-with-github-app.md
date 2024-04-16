@@ -132,7 +132,7 @@ spec:
 ```
 
 ### Fill out the argo-specific section in your tenant definition
-Fill out the argo-specific section by copying the following fields under the `spec.encryptedData` in the Sealed secret to the tenant variable `argocd.main_git_repository` inside your tenant definition:
+Fill out the argo-specific section by copying the following fields in the Sealed secret to the tenant variable `argocd.main_git_repository` inside your tenant definition:
 
    * `true` --> `github_app.enable_app`
    * `type` --> `encrypted_type`

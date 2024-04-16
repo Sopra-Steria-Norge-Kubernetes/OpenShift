@@ -108,7 +108,7 @@ spec:
 
 ### Fill out the argo-specific section in your tenant definition
 
-Fill out the argo-specific section by copying the field `password` of the sealed secret to `argocd.main_git_repository.encrypted_password`. Likewise, copy these fields the same way: 
+Fill out the argo-specific section by copying the following fields in the Sealed secret to the tenant variable `argocd.main_git_repository` inside your tenant definition:
 
 * `url` --> `encrypted_url`
 * `type` --> `encrypted_type`
