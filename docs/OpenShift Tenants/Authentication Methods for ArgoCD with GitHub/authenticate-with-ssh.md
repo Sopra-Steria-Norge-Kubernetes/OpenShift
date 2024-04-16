@@ -2,7 +2,7 @@
 
 For the authentication methods, you must add the GitHub repository URL and the basepath for your applications:
 
-- `argocd.main_git_repository.repourl`: Plaintext HTTPS Git URL for repository where your applications are stored 
+- `argocd.main_git_repository.repourl`: SSH Git URL for repository where your applications are stored 
 -  `argocd.main_git_repository.basepath`: Basepath is where argoCD will look to find your application definions. ArgoCD will look in your git repository for path: `$basepath/$environment/applications/`
 
 ## Authenticate with SSH
