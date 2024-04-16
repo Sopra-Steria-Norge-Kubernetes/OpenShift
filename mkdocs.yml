@@ -15,7 +15,11 @@ nav:
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
     - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
-    - Encrypt PAT and Github App variables: OpenShift Tenants/Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md
+    - Install Kubeseal: OpenShift Tenants/install-kubeseal.md
+    - Authentication Methods for ArgoCD with GitHub: 
+      - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-personal-access-token.md
+      - Authenticate with GitHub App: OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-github-app.md
+      - Authenticate with SSH: OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-ssh.md
   - CI/CD:
     - Introduction: CI-CD/gitops-introduction.md
     - CI/CD with Tekton Pipelines: CI-CD/continuous-integration-and-delivery-with-tekton-pipelines.md
