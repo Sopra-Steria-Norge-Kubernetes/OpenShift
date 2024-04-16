@@ -15,7 +15,7 @@ For the authentication methods, you must add the GitHub repository URL and the b
     cd  ~/.ssh
     ```
 
-2. create the SSH key-pair and give it a name of your choice
+2. Create the SSH key-pair and give it a name of your choice
 
     ```bash
     ssh-keygen -t rsa -f <NAME>
@@ -25,7 +25,7 @@ For the authentication methods, you must add the GitHub repository URL and the b
 
 Log in to your GitHub profile that has access to the repository you want access to and follow the steps below:
 
-1. Go to **settings** --> **SSH and GPG keys**
+1. Go to **Settings** --> **SSH and GPG keys**
 2. Click on the **New SSH key** button on the top right corner
 3. Add the newly created public key starting with `ssh-rsa ...` and give it an informative name.
 
@@ -100,7 +100,7 @@ Fill out the yaml below.
 To seal the secret with `kubeseal`, you can use the following command:
 
 ```bash
-kubeseal --cert /path/to/pub.cert --scope namespace-wide -f secret.yaml -o yaml
+kubeseal --cert /path/to/pub.cert --scope namespace-wide -f secret.yaml -o yaml > sealed_secret.yaml
 ```
 Replace `/path/to/pub.cert` with the path to your public certificate. `secret.yaml` is the path to the Secret YAML file you created in the first step. The sealed secret will be outputted to `sealed_secret.yaml`.
 
