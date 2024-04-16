@@ -98,7 +98,7 @@ Fill out the yaml below.
 To seal the secret with `kubeseal`, you can use the following command:
 
 ```bash
-kubeseal --cert /path/to/pub.cert --scope namespace-wide -f secret.yaml -o yaml
+kubeseal --cert /path/to/pub.cert --scope namespace-wide -f secret.yaml -o yaml > seald_secret.yaml
 ```
 Replace `/path/to/pub.cert` with the path to your public certificate provided by Sopra Steria. `secret.yaml` is the path to the Secret YAML file you created in the first step. The sealed secret will be outputted to `sealed_secret.yaml`.
 
