@@ -144,7 +144,7 @@ Fill out the argo-specific section by copying the following fields in the Sealed
 Remember to also add the required variables `argocd.main_git_repository.repourl` and `argocd.main_git_repository.basepath` to the tenant definition.
 
 This should result in a argo-specific section looking like this:
-```yaml
+```yaml hl_lines="6 7 11 12 13 14"
 ...
 argocd: 
     main_git_repository:
