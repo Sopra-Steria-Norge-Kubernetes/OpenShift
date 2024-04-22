@@ -61,10 +61,13 @@ values: |
       encrypted_password: <PAT encrypted with sealedsecrets>
       encrypted_username: <Username used with PAT encrypted with sealedsecrets>
       github_app: 
-        enable_app: < Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
+        enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
         id: <The app id for your GitHub App encrypted with sealedsecrets>
         installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
         private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
+      ssh_key:
+        enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
+        private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
       
   backup:
     backuplabel: <Label name you want to use for backups>
@@ -190,14 +193,19 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `id`                 | The app id for your Github App encrypted with sealedsecrets                                                         | See description below                      | Kubeseal encrypted String |
 | `installation_id`    | The installation id for your GitHub App encrypted with sealedsecrets                                                | See description below                      | Kubeseal encrypted String |
 | `private_key`        | Private key for your GitHub App encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String |
-
+| SSH           |                                                                                                                     |                                            |                           |
+| `enable_ssh_key`         | Whether or not to use SSH to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   |
+| `private_key`        | Private key for your SSH-private-key encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String |
 
 
 #### Encrypt and configure the Argo-specific information
 
-Encrypting and configuring ArgoCD-specific information is crucial for ensuring the security and efficiency of your deployment. To assist with this, we have developed a detailed user guide. This guide provides step-by-step instructions and best practices for encrypting Personal Access Tokens (PAT) and GitHub App variables, which are essential for the secure operation of ArgoCD within your OpenShift environment. Please follow the steps in the guide provided below:
+Encrypting and configuring ArgoCD-specific information is crucial for ensuring the security and efficiency of your deployment. To assist with this, we have developed a detailed user guide. This guide provides step-by-step instructions and best practices for encrypting Personal Access Tokens (PAT), GitHub App variables and SSH-private-key, which are essential for the secure operation of ArgoCD within your OpenShift environment. Please follow the steps in the guide provided below:
  
-* [Encrypt PAT and GitHub App variables for ArgoCD](Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md). 
+* [Authenticate with Personal Access Token (PAT)](./Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-personal-access-token.md).
+* [Authenticate with a GitHub App](./Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-github-app.md).
+* [Authenticate with SSH](./Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-ssh.md).
+
 
 
 ### Backup
