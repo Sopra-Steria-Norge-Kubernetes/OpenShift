@@ -33,6 +33,8 @@ nav:
     #- Using network observability: Observability/using-network-observability.md
     - Configure monitoring for a tenant: Observability/configuring-monitoring-for-a-tenant.md
     - Configure Grafana and Thanos: Observability/configure-grafana-and-thanos-query.md
+  - Monitoring:
+    - Slack integration with OpenShift alerts: Monitoring/slack-integration-with-openshift-alerts.md
   - Network:
     - Introduction: Network/introduction.md
     - Connect application cross namespaces: Network/connect-openshift-application-cross-namespaces.md
