@@ -35,6 +35,7 @@ values: |
 
   environments:
     - name: <Name of environment 1 (e.g. dev)>
+      allow_to_internet: <True or false - Set to true if environment should be exposed to internet>
       externalURLs:
         - <URL's that should be reachable from the environment (e.g. google.com)>
       externalIPs:
@@ -121,9 +122,10 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
 The `environment` feature contains a list of namespaces and namespace-specific variables.
 In the table below, you can find a more detailed description of each variable in the `environment` feature:
 
-|  <div style="width:205px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** |
+|  <div style="width:240px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** |
 |------------------------------|------------------------------------------------------------------------|----------------------------|----------|
 | `environments[].name`          | Name of environment                                                    | test                       | String   |
+| `environments[].allow_to_internet`    | Set to `true` if environment should be exposed to internet. Default `false`. | `true`   | Boolean    |
 |  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     |
 | `environments[].externalIPs`    | A list of IP ranges that should be reached from the tenant environment | [0.0.0.0/0, 92.0.2.1/24]   | List     |
 
