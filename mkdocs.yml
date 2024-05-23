@@ -17,6 +17,7 @@ nav:
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
     - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
     - Install Kubeseal: OpenShift Tenants/install-kubeseal.md
+    - Auto-merging existing tenants: OpenShift Tenants/auto-merge-for-existing-tenants.md
     - Authentication Methods for ArgoCD with GitHub: 
       - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-personal-access-token.md
       - Authenticate with GitHub App: OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-github-app.md
