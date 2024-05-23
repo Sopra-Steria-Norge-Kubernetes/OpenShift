@@ -24,3 +24,20 @@ Any change outside these fields will result in a manual approval
 |                   | Schedules[]        | - Can add<br>- Can remove<br>- Can modify existing |                              |
 
 
+
+## Required Status Checks to Pass Before Merging
+To ensure that no changes outside of monitored fields are merged, specific status checks must pass before any changes can be merged. This process includes several key steps:
+
+**Validate tenant files:** 
+
+- Validates the syntax and performs a series of checks to ensure that the tenant order adheres to specified standards and requirements.
+
+**Check Auto-merge / check-files-in-pr:** 
+
+- This check verifies the presence of files in the pull request (PR) and uploads temporary files for comparison against existing files in the main branch.
+
+**Check Auto-merge / check-if-files-can-auto-merge:**
+
+- This step downloads the temporary files, performs a comparison, and validates the changes to ensure they can be safely auto-merged.
+
+These status checks are crucial in maintaining the quality and stability of our system by preventing unverified changes from being merged.
