@@ -18,4 +18,10 @@ Other components that development teams have access to through the tenant concep
 
 ![TenantOverview](../img/About Container-Platform-as-a-Service/TenantOverview.png)
 
+* **Simplified Multi-Tenancy:** Provides streamlined multi-tenancy within OpenShift.
+* **Access Control:** Simplifies RBAC configuration with a "least privilege" mindset, automatically maintaining up-to-date rules with zero manual effort.
+* **Self-Service:** Enables users to safely provision Kubernetes resources and objects for themselves and their teams. Team-owned namespaces and their resources count towards team quotas, simplifying resource allocation and sharing.
+* **ArgoCD Integration:** Integrates with ArgoCD for streamlined RBAC management.
+* **Cost and Resource Optimization:** Defines resource quotas at the tenant scope for efficient resource allocation.
+
 To read more about the tenant concept, refer to [this article](../OpenShift Tenants/Introduction-to-openshift-tenants.md).
