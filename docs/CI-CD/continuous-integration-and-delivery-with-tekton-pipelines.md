@@ -1,5 +1,5 @@
 ---
-Author: Simen Haga
+Author: Simen Haga, Marcus Notø
 Title: Continuous Integration and delivery with Tekton Pipelines
 Version: 0.1.0
 externally-exposed: false

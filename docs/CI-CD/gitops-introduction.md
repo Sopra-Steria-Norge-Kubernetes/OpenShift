@@ -68,17 +68,17 @@ Setting the variable `enable_auto_defined_apps` to true gives you the option to 
 !!! Info
     More information on how to connect ArgoCD to your repository can be found [here](doc/conecting_to_a_repo.md).
 
-# Getting started
+## Getting started
 With your tenant configuration successfully completed, the next crucial step is establishing the structure of your main Git repository. 
 
 This section will illustrate both the **auto-defined** and **user-defined** methods for managing applications with ArgoCD. We will use the `poseidon1_main_repository` folder as our example to walk you through the process. 
 
 Consider this folder as your repository blueprint, with the basepath set to an empty string, providing a clear and applicable framework for your GitOps setup. Let´s get started! 
 
-## Auto-defined ArgoCD applications
+### Auto-defined ArgoCD applications
 This approach is the recommended approach for working with ArgoCD. It gives an intuative and easy way of working with multiple ArgoCD applications without implementing a nameingstandard across tenants.
 
-### How it works in the background
+#### How it works in the background
 The ArgoCD applicationsets looks in the target path `poseidon1_main_repo/applicationsets/<environment_name>`, so every folder created in this path will create a application in ArgoCD. The name of the application will have the following name  `<tenant_name>-<environment_name>-apps-<folder_name>`. For instance if we create a folder called `applicationsets/dev/demo-kubernetes` it will be called `poseidon1-dev-apps-demo-kubernetes` in ArgoCD. 
 
 In addition to the environments a base folder is created in the repository to easier share definitions across environments. The structure of the applicationsets will look like this: 
@@ -90,13 +90,13 @@ In addition to the environments a base folder is created in the repository to ea
 │   └── test
 ```
 
-### Deployment Examples
+#### Deployment Examples
 Applications can be deployed with kustomization files, helm templates, helm repositories or plain kubernetes YAML definitions. The examples below show different methods for deploying resources to a cluster:
 
-#### 1) Using YAML definitions of Kubernetes resources
+##### 1) Using YAML definitions of Kubernetes resources
 Kubernetes resources can be deployed to the cluster by simpling adding files with YAML definition of Kubernetes resources. Folder `applicationsets/dev/ex1-kubernetes-resources` illustrates an example of how this is done for a service resource. 
 
-#### 2) Kustomization file
+##### 2) Kustomization file
 A Kustomization file can be used to define multiple Kubernetes resoucres. It will only deploy the Kubernetes resources listed in the kustomization (`kustomization.yaml`) file like this:
 
 ```yaml
@@ -150,7 +150,7 @@ patches:
 
 Use [Kustomize](https://kustomize.io/) cli to test your configuration.
 
-#### 3) Helm 
+##### 3) Helm 
 Helm is another effective tool for deploying and managing Kubernetes applications. It simplifies the process of defining, installing, and upgrading even the most complex Kubernetes applications. Here we will list different examples for deploying helm:
 
 1. Local Helm chart: If you want to define a helm chart locally folder `applicationsets/dev/ex3-helm-1` gives an example for how this can be done. Here a simple service and serviceaccount is defined under the folder `templates/` and the application is created by reading the `values.yaml` and `Chart.yaml` file.
@@ -158,7 +158,7 @@ Helm is another effective tool for deploying and managing Kubernetes application
 2. External Helm repository: If you want to use an external Helm repository folder `applicationsets/dev/ex3-helm-2` gives an example of how this can be done through a kustomization file. Kustomize uses a helmCharts field which has the ability to use the helm command line program in a subprocess to inflate a helm chart, generating YAML as part of (or as the entirety of) a kustomize base. 
     1. This only works for public repositories. If you want to use a private repository it is recommended to create an ArgoCD application with the [user-defined method](#user-defined-argocd-applications). 
    
-## User-defined ArgoCD applications
+### User-defined ArgoCD applications
 
 The user-defined method for creating ArgoCD applications is only recommended if the auto-defined methos don´t meet your applications requirements. The reason for this is that this method has some limitiations:
 
