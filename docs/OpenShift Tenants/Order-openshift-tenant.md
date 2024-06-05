@@ -36,6 +36,10 @@ values: |
     limits:
       memory: <Memory limits of all tenants>
       cpu: <Combined CPU limits of all namespaces in tenant>
+    container_limitrange:
+      enable: false
+      memory: <Memory limit for each container for all tenant namespaces>
+      cpu: <CPU limit for each container for all tenant namespaces>
 
   environments:
     - name: <Name of environment 1 (e.g. dev)>
