@@ -90,7 +90,6 @@ values: |
 
   slack_alert_integration:
     enable: False
-    channel_name: <The name of the slack channel to receive alerts>
     alert_severity: critical # If multiple; critical|warning|info
     webhook_secret:
       encrypted_webhookURL: <webhook to slack channel encrypted with sealedsecrets>
@@ -256,7 +255,6 @@ Below is a detailed description of each variable in the `slack_alert_integration
 | <div style="width:260px">**Variable**</div>                            | **Description**                                                                                  | **Example**                              | **Type**                   |
 |-----------------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------|----------------------------|
 | `enable`                                | Toggle the Slack alert integration feature. Set to `True` to enable.                             | `False`                                  | Boolean                    |
-| `channel_name`                          | The Slack channel where alerts will be posted.                                                   | `developer-namespace`                            | String                     |
 | `alert_severity`                        | The severity level of alerts to be sent. Multiple severities can be specified, separated by `|`. | `critical` or `critical|warning|info` | String                     |
 | `webhook_secret.encrypted_webhookURL`   | The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.                   | *Encrypted String*                       | Kubeseal encrypted String  |
 
