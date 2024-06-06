@@ -1,0 +1,2287 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sopra-steria-norge-kubernetes.github.io/OpenShift/OpenShift%20Tenants/Order-openshift-tenant/">
+      
+      
+        <link rel="prev" href="../Orderopenshift-tenant-quick-start-guide/">
+      
+      
+        <link rel="next" href="../install-kubeseal/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+    
+    
+      
+        <title>Order OpenShift tenant - OpenShift</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#order-openshift-tenant" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OpenShift" class="md-header__button md-logo" aria-label="OpenShift" data-md-component="logo">
+      
+  <img src="../../assets/Sopra_Steria_logo.svg.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OpenShift
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Order OpenShift tenant
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sopra Steria - OpenShift
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OpenShift" class="md-nav__button md-logo" aria-label="OpenShift" data-md-component="logo">
+      
+  <img src="../../assets/Sopra_Steria_logo.svg.png" alt="logo">
+
+    </a>
+    OpenShift
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Sopra Steria - OpenShift
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    About Container Platform as a Service
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            About Container Platform as a Service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About%20Container-Platform-as-a-Service/introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About%20Container-Platform-as-a-Service/Service-breakdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service breakdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About%20Container-Platform-as-a-Service/openshift-tenants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenShift tenants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About%20Container-Platform-as-a-Service/roles-and-responsibilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roles and responsibilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About%20Container-Platform-as-a-Service/managing-tenant-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing tenant configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About%20Container-Platform-as-a-Service/developing-container-platforma-as-a-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developing Container Platform as a Service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    OpenShift Tenants
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            OpenShift Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction-to-openshift-tenants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Orderopenshift-tenant-quick-start-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Order OpenShift tenant
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Order OpenShift tenant
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openshift-tenant-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenShift Tenant Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-explanation-of-each-tenant-feature-and-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Explanation of each Tenant feature and variable:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Explanation of each Tenant feature and variable:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argocd-gitops-desired-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArgoCD - GitOps Desired State
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ArgoCD - GitOps Desired State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-a-git-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to a Git repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-and-configure-the-argo-specific-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encrypt and configure the Argo-specific information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      External Secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slack-alert-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slack Alert Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install-kubeseal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install Kubeseal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto-merge-for-existing-tenants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auto-merging existing tenants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Authentication Methods for ArgoCD with GitHub
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Authentication Methods for ArgoCD with GitHub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-personal-access-token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authenticate with Personal Access Token (PAT)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-github-app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authenticate with GitHub App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authenticate with SSH
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CI/CD
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            CI/CD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CI-CD/gitops-introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CI-CD/continuous-integration-and-delivery-with-tekton-pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD with Tekton Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Secret Managment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Secret Managment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Secret%20Managment/creating-and-managing-openshift-secrets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating and managing secrets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Secret%20Managment/encrypting-secret-with-kubeseal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encrypt secrets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Secret%20Managment/configuring-external-secrets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure external secrets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Observability
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Observability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Observability/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Observability/using-openshift-observability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using OpenShift observability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Observability/configuring-monitoring-for-a-tenant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure monitoring for a tenant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Observability/configure-grafana-and-thanos-query/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Grafana and Thanos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Monitoring
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Monitoring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Monitoring/slack-integration-with-openshift-alerts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slack integration with OpenShift alerts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Network
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Network
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Network/introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Network/connect-openshift-application-cross-namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connect application cross namespaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Network/exposing-an-openshift-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exposing an OpenShift Service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/openshift-storage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenShift Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security/advanced-cluster-security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Cluster Security (ACS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openshift-tenant-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenShift Tenant Template
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-explanation-of-each-tenant-feature-and-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Explanation of each Tenant feature and variable:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Explanation of each Tenant feature and variable:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argocd-gitops-desired-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArgoCD - GitOps Desired State
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ArgoCD - GitOps Desired State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-a-git-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to a Git repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-and-configure-the-argo-specific-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encrypt and configure the Argo-specific information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      External Secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slack-alert-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slack Alert Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/OpenShift Tenants/Order-openshift-tenant.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="order-openshift-tenant">Order OpenShift tenant</h1>
+<p>This user guide describes the process of gathering and presenting the information that Sopra Steria needs to create a new OpenShift tenant. 
+An Openshift Tenant form is added to a collective Git repository and shared with Sopra Sterias OpenShift clusters. Different environments and resources are created in an OpenShift Cluster based on the content of the created tenant form.</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>Before getting started with this guide, ensure you have the following prerequisites:</p>
+<ul>
+<li>Create Azure AD groups and connect them and the Azure tenant with an application registration towards the Openshift Cluster. </li>
+<li>Have a Git repository with Personal Access Tokens (PAT) or a GitHub Application. </li>
+</ul>
+<h2 id="openshift-tenant-template">OpenShift Tenant Template</h2>
+<p>In this guide, we will fill out the following form:</p>
+<p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">appname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;Tenant Name&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="no">namespace:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="no">name: &lt;Tenant Name&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="no">description: &lt;Tenant Description&gt;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="no">displayName: &lt;Display name of the tenant&gt;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="no">use_egress_firewall: &lt;Use egress firewall to limit egress traffic from tenant namespaces&gt;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="no">enable_tooling: &lt;Creates a tooling namespace&gt;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="no">deploy_grafana: &lt;Deploy Grafana instance in tooling namespace&gt;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="no">labels:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="no">custom_labels:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="no">&lt;key&gt;: &lt;value&gt;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="no">&lt;key&gt;: &lt;value&gt;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="no">limits:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="no">memory: &lt;Memory limits of all tenants&gt;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">      </span><span class="no">cpu: &lt;Combined CPU limits of all namespaces in tenant&gt;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="no">container_limitrange:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="no">enable: false</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="no">memory: &lt;Memory limit for each container for all tenant namespaces&gt;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="no">cpu: &lt;CPU limit for each container for all tenant namespaces&gt;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="no">environments:</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="no">- name: &lt;Name of environment 1 (e.g. dev)&gt;</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="no">allow_to_internet: &lt;True or false - Set to true if environment should be exposed to internet&gt;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="no">externalURLs:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="no">- &lt;URL&#39;s that should be reachable from the environment (e.g. google.com)&gt;</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">      </span><span class="no">externalIPs:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="no">- &lt;IP adresses that should be reachable from environment in CIDR format (e.g. 10.218.0.0/24)&gt;</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="no">networkPolicy:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="no">allow_same_namespace: true</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="no">allow_from_openshift_monitoring: true</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="no">allow_from_openshift_ingress: true</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="no">allow_from_kube_apiserver_operator: true</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="no">rbac:</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="no">ad_group_write_access: &lt;Azure AD group with write access&gt;</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="no">ad_group_read_access: &lt;Azure AD group with read access&gt;</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="no">argocd: &lt;See dedicated section for ArgoCD below&gt;</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="no">enable_user_defined_apps: &lt;Enable creating applications with the user-defined method- app of apps (true/false)&gt;</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="no">enable_auto_defined_apps: &lt;Enable using automatic application creation with an ArgoCD applicationsets per environment&gt;</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="no">main_git_repository:</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">      </span><span class="no">repourl: </span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">      </span><span class="no">basepath:</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">      </span><span class="no">encrypted_url: &lt;The url of the git repository encrypted with sealedsecrets&gt;</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">      </span><span class="no">encrypted_type: &lt;Type should always be git, but must encrypted with sealedsecrets&gt;</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">      </span><span class="no">encrypted_password: &lt;PAT encrypted with sealedsecrets&gt;</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">      </span><span class="no">encrypted_username: &lt;Username used with PAT encrypted with sealedsecrets&gt;</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">      </span><span class="no">github_app: </span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">        </span><span class="no">enable_app: &lt;Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.&gt;</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">        </span><span class="no">id: &lt;The app id for your GitHub App encrypted with sealedsecrets&gt;</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">        </span><span class="no">installation_id: &lt;The installation id for your GitHub App encrypted with sealedsecrets.&gt;</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">        </span><span class="no">private_key: &lt;Private key for your GitHub App encrypted with sealedsecrets.&gt;</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">      </span><span class="no">ssh_key:</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">        </span><span class="no">enable_ssh_key: &lt;Enable SSH to authenticate ArgoCD with your Git Repository. Default false.&gt;</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">        </span><span class="no">private_key: &lt;Private key for your SSH-private-key encrypted with sealedsecrets.&gt;</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">  </span><span class="no">backup:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="no">backuplabel: &lt;Label name you want to use for backups&gt;</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="no">take_backup: &lt;Boolean if backup should be taken or not&gt;</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">    </span><span class="no">schedules: </span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">      </span><span class="no">- schedule: &lt;Schedule for backups to be taken in cron format (e.g. &quot;30 * * * *&quot;)&gt;</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">        </span><span class="no">name: &lt;Name of schedule&gt; </span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">        </span><span class="no">ttl: &lt;Time until a backup is deleted in format XXXhYYmZZs e.g. 24h0m0s &gt;</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">  </span><span class="no">external_secrets:</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="no">azure_tenant_id: &lt;Azure-Tenant-ID&gt;</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">    </span><span class="no">keyvault_credentials:</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">      </span><span class="no">client_id: &lt;Client-ID for Azure Key Vault (ServicePrinciple)&gt;</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">      </span><span class="no">client_secret: &lt;Client-Secret for Azure Key Vault (ServicePrinciple)&gt;</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">  </span><span class="no">slack_alert_integration:</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="no">enable: False</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">    </span><span class="no">alert_severity: critical # If multiple; critical|warning|info</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">    </span><span class="no">webhook_secret:</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">      </span><span class="no">encrypted_webhookURL: &lt;webhook to slack channel encrypted with sealedsecrets&gt;</span>
+</span></code></pre></div>
+The values file for your Tenant needs to be sent to Sopra Steria through your defined ordering process.</p>
+<h2 id="detailed-explanation-of-each-tenant-feature-and-variable">Detailed Explanation of each Tenant feature and variable:</h2>
+<p>Below is more detailed information about tenant features and variables under the <code>values</code> variable.</p>
+<h3 id="namespace">Namespace</h3>
+<p>The <code>namespace</code> feature contains information about Tenant namespaces and Tenant resources. In the table below, you can find a more detailed description of each variable in the <code>namespace</code> feature:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><div style="width:205px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th style="text-align: left;"><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td>Base name of tenant.</td>
+<td>Poseidon1</td>
+<td style="text-align: left;">String</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td>A description annotation  under each tenant namespace</td>
+<td>" This is a test tenant used for testing"</td>
+<td style="text-align: left;">String</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>displayName</code></td>
+<td>Displayname given to each openshift namespace/project</td>
+<td>"poseidon1-application1"</td>
+<td style="text-align: left;">String</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>use_egress_firewall</code></td>
+<td>To use egress firewall to limit egress traffic from tenant namespaces.</td>
+<td>true</td>
+<td style="text-align: left;">Boolean</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>enable_tooling</code></td>
+<td>Creates a tooling namespace which is needed for certain applications such as Grafana</td>
+<td>true</td>
+<td style="text-align: left;">Boolean</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>deploy_grafana</code></td>
+<td>Deploys a grafana instance in the tooling namespace</td>
+<td>true</td>
+<td style="text-align: left;">Boolean</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>labels.custom_labels</code></td>
+<td>Add custom labels to all namespaces in a tenant</td>
+<td>test_label: label</td>
+<td style="text-align: left;">key: value</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>limits.memory</code></td>
+<td>Combined memory limit for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.</td>
+<td>1Gi</td>
+<td style="text-align: left;">String/Int</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>limits.cpu</code></td>
+<td>Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.</td>
+<td>1</td>
+<td style="text-align: left;">String/Int</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>container_limitrange.memory</code></td>
+<td>Memory limit for each container for all tenant namespaces.  The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.</td>
+<td>64Mi</td>
+<td style="text-align: left;">String/Int</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>container_limitrange.cpu</code></td>
+<td>CPU limit for each container for all tenant namespaces. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.</td>
+<td>100m</td>
+<td style="text-align: left;">String/Int</td>
+</tr>
+</tbody>
+</table>
+<h3 id="environment">Environment</h3>
+<p>The <code>environment</code> feature contains a list of namespaces and namespace-specific variables.
+In the table below, you can find a more detailed description of each variable in the <code>environment</code> feature:</p>
+<table>
+<thead>
+<tr>
+<th><div style="width:240px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>environments[].name</code></td>
+<td>Name of environment</td>
+<td>test</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>environments[].allow_to_internet</code></td>
+<td>Set to <code>true</code> if environment should be exposed to internet. Default <code>false</code>.</td>
+<td><code>true</code></td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>environments[].externalURLs</code></td>
+<td>A list of URLs that should be reached from a tenant environment</td>
+<td>[ testurl.com, google.com]</td>
+<td>List</td>
+</tr>
+<tr>
+<td><code>environments[].externalIPs</code></td>
+<td>A list of IP ranges that should be reached from the tenant environment</td>
+<td>[0.0.0.0/0, 92.0.2.1/24]</td>
+<td>List</td>
+</tr>
+</tbody>
+</table>
+<h3 id="network-policy">Network Policy</h3>
+<p>The <code>networkpolicy</code> is a feature which controls how pods in an openshift cluster can communicate with each other. These policies define rules for network traffic, specifying what is allowed and denied. Each sub-component should have either a <code>true</code> or <code>false</code> value. The default value is set to <code>true</code> for each sub-component. 
+In the table below, you can find a more detailed description of each variable in the <code>networkpolicy</code> feature:</p>
+<table>
+<thead>
+<tr>
+<th><div style="width:255px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allow_same_namespace</code></td>
+<td>Allows or disallows network communication within the same namespace</td>
+<td>true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>allow_from_openshift_monitoring</code></td>
+<td>Allows or disallows network communication to OpenShift monitoring</td>
+<td>true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>allow_from_openshift_ingress</code></td>
+<td>Allows or disallows incoming network traffic from OpenShift Ingress controllers</td>
+<td>true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>allow_from_kube_apiserver_operator</code></td>
+<td>Allows or disallows communication to Kubernetes API Server Operator. Allowing communication from the operator ensures proper management and maintenance of the API server.</td>
+<td>false</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>allow_from_grafana_operator</code></td>
+<td>Allows or disallows communication to Grafana Operator</td>
+<td>true</td>
+<td>Boolean</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rbac">RBAC</h3>
+<p>The <code>rbac</code> feature defines Role-Based Access Control (RBAC) settings for your OpenShift tenant.  It includes the following variables:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Variable</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ad_group_write_access</code></td>
+<td>Azure AD group given admin access to the tenant</td>
+<td>AD-poseidon1-write</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>ad_group_read_access</code></td>
+<td>Azure AD group given read-only access to the tenant</td>
+<td>AD-poseidon1-read</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<h3 id="argocd-gitops-desired-state">ArgoCD - GitOps Desired State</h3>
+<p>The <code>argocd</code> feature contains elements to synchronise tenant applications and infrastructures with a Git repository to ensure Continuous Deployment (CD). This means that developers can define application and environment configurations in a Git repository, and ArgoCD ensures that the cluster matches the defined state, automatically deploying and updating applications as needed. 
+ArgoCD provides different ways of automatically deploying and synchronising infrastructure in a cluster. When connecting your Git Repository to your tenant, you have two options for creating applications: </p>
+<ol>
+<li>User-defined method: Create ArgoCD applications in your repository under the path <code>&lt;basepath&gt;applications/&lt;environments[].name&gt;.</code></li>
+<li>To enable this choice, you must set the field <code>argocd.enable_user_defined_apps</code> to true.</li>
+<li>Auto-defined method: Use an ArgoCD applicationSet to create your applications automatically under the path <code>&lt;basepath&gt;applicationsets/&lt;environments[].name&gt;</code>.  </li>
+<li>To enable this choice you have to set the  <code>argocd.enable_auto_defined_apps field</code> to true. This will create an ApplicationSet for each of the tenants' environments which will configure new applications when you hadd new folders in your repository.</li>
+</ol>
+<p>More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:</p>
+<ul>
+<li><a href="https://github.com/Sopra-Steria-Norge-Kubernetes/CaaS-GitOps">GitHub CaaS-GitOps</a> </li>
+</ul>
+<!--
+#Comment out this:
+* [Configuring Applications Within The Tenant Concept Guide](/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/1%2DOpenShift-Tenants/1.3%2DConfiguring-Applications-Within-The-Tenant-Concept).
+-->
+<h4 id="connecting-to-a-git-repository">Connecting to a Git repository</h4>
+<p>The <code>argocd</code> feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the <code>argocd</code> feature under the <code>main_git_repository</code>. The table is split into three categories: </p>
+<ul>
+<li><strong>Default</strong>: variables that both connection methods need</li>
+<li><strong>PAT</strong>: variables needed to connect with a GitHub PAT token</li>
+<li><strong>GitHub app</strong>: variables need to configure the GitHub app</li>
+<li><strong>SSH</strong>: variables need to configure through SSH</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><div style="width:140px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>repourl</code></td>
+<td>The URL of the git repository which ArgoCD will use as its "source of truth"</td>
+<td>https://github.com/customer-repo/openshift</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>basepath</code></td>
+<td>The basepath of the git repository where ArgoCD manifests are stored</td>
+<td>poseidon1/</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>encrypted_url</code></td>
+<td>The URL of the git repository encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td><code>encrypted_type</code></td>
+<td>Type should always be "git" and encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td>PAT</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>encrypted_password</code></td>
+<td>The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td><code>encrypted_username</code></td>
+<td>The username of the service account connecting to the git repository encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td>GitHub App</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>enable_app</code></td>
+<td>Whether or not to use GitHub App to authtenticate ArgoCD with your Git Repository. Default false.</td>
+<td>True / False</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>The app id for your Github App encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td><code>installation_id</code></td>
+<td>The installation id for your GitHub App encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td><code>private_key</code></td>
+<td>Private key for your GitHub App encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>enable_ssh_key</code></td>
+<td>Whether or not to use SSH to authtenticate ArgoCD with your Git Repository. Default false.</td>
+<td>True / False</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>private_key</code></td>
+<td>Private key for your SSH-private-key encrypted with sealedsecrets</td>
+<td>See description below</td>
+<td>Kubeseal encrypted String</td>
+</tr>
+</tbody>
+</table>
+<h4 id="encrypt-and-configure-the-argo-specific-information">Encrypt and configure the Argo-specific information</h4>
+<p>Encrypting and configuring ArgoCD-specific information is crucial for ensuring the security and efficiency of your deployment. To assist with this, we have developed a detailed user guide. This guide provides step-by-step instructions and best practices for encrypting Personal Access Tokens (PAT), GitHub App variables and SSH-private-key, which are essential for the secure operation of ArgoCD within your OpenShift environment. Please follow the steps in the guide provided below:</p>
+<ul>
+<li><a href="../Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-personal-access-token/">Authenticate with Personal Access Token (PAT)</a>.</li>
+<li><a href="../Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-github-app/">Authenticate with a GitHub App</a>.</li>
+<li><a href="../Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-ssh/">Authenticate with SSH</a>.</li>
+</ul>
+<h3 id="backup">Backup</h3>
+<p>The <code>backup</code> feature allows you to create backup schedules for the data inside your Tenants' namespaces. In the table below, there is a more detailed description of each variable in the <code>backup</code> feature:</p>
+<table>
+<thead>
+<tr>
+<th><div style="width:155px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backuplabel</code></td>
+<td>The label to set for backups. If this label is not set, a backup of your applications will not be taken. It needs to be on the format <code>Key: value</code></td>
+<td>"backupresource: true"</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>take_backup</code></td>
+<td>Used to specify whether backups should be taken or not in the Tenant.</td>
+<td>true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>schedules[]</code></td>
+<td>A list of backup schedules that will be implemented for the tenant</td>
+<td></td>
+<td>List</td>
+</tr>
+<tr>
+<td><code>schedules[].schedule</code></td>
+<td>The schedule at which backups should be taken in cron time format</td>
+<td>"0 0 * * *"</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>schedules[].name</code></td>
+<td>The name of the backup schedule. It is prefixed with the name of the tenant. If the tenant name is <code>poseidon1</code> and this variable is set to <code>daily</code>, the backup schedule will be called <code>poseidon1-daily</code></td>
+<td>"daily"</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>schedules[].ttl</code></td>
+<td>The time until the backup is deleted. It is in the format of <code>XXXhYYmZZs</code>, where <code>XXX</code> is the number of hours, <code>YY</code> is the number of minutes, and <code>ZZ</code> is the number of seconds. For example, <code>24h0m0s</code> would indicate that the backup should be deleted after 24 hours.</td>
+<td>"48h0m0s"</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<h3 id="external-secrets">External Secrets</h3>
+<p>The <code>external_secret</code> feature allows the tenant to use External Secrets in OpenShift, which allows applications to access sensitive data stored in a remote Key Management System (KMS). For more information about this feature, see the <a href="/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/3%2DSecret-Management-on-OpenShift/3.3%2DConfiguring-External-Secrets">Configuring External Secrets guide</a>.
+This feature is only supported for Azure Key Vault, but contact your OpenShift administrator for additional KMS support.</p>
+<p>In the table below, there is a more detailed description of each variable in the <code>backup</code> feature:</p>
+<table>
+<thead>
+<tr>
+<th><div style="width:255px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>azure_tenant_id</code></td>
+<td>The Azure Tenant ID that your organisation uses for storing its Azure Key Vaults</td>
+<td>d93d3d23-50e3-46db-b3ad-8c6c281b431e</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>keyvault_credentials.client_id</code></td>
+<td>Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret</td>
+<td></td>
+<td>Kubeseal encrypted String</td>
+</tr>
+<tr>
+<td><code>keyvault_credentials.client_secret</code></td>
+<td>Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret</td>
+<td></td>
+<td>Kubeseal encrypted String</td>
+</tr>
+</tbody>
+</table>
+<h3 id="slack-alert-integration">Slack Alert Integration</h3>
+<p>The <code>slack_alert_integration</code> feature allows tenants to configure Slack notifications for their OpenShift environment. This integration uses an encrypted Slack webhook URL stored as a secret to send notifications to a Slack channel when an alert of specified severity is triggered.</p>
+<p>Below is a detailed description of each variable in the <code>slack_alert_integration</code> feature:</p>
+<table>
+<thead>
+<tr>
+<th><div style="width:260px"><strong>Variable</strong></div></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable</code></td>
+<td>Toggle the Slack alert integration feature. Set to <code>True</code> to enable.</td>
+<td><code>False</code></td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td><code>alert_severity</code></td>
+<td>The severity level of alerts to be sent. Multiple severities can be specified, separated by <code>|</code>.</td>
+<td><code>critical</code> or <code>critical|warning|info</code></td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>webhook_secret.encrypted_webhookURL</code></td>
+<td>The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.</td>
+<td><em>Encrypted String</em></td>
+<td>Kubeseal encrypted String</td>
+</tr>
+</tbody>
+</table>
+<p>For more information about configuring the Slack alert integration, refer to the <a href="/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/3%2DSecret-Management-on-OpenShift/3.4%2DIntegrating-Slack-Notifications">Integrating Slack Notifications guide</a>.
+Ensure that the Slack webhook URL is encrypted using Kubeseal, providing a sealed secret which is Kubernetes' way of handling encrypted secrets.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Orderopenshift-tenant-quick-start-guide/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick start">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Quick start
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../install-kubeseal/" class="md-footer__link md-footer__link--next" aria-label="Next: Install Kubeseal">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Install Kubeseal
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - Team Poseidon
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.path", "content.code.copy", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
