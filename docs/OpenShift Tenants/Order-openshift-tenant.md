@@ -182,11 +182,12 @@ More information about how to set up a Git Repository for ArgoCD on OpenShift ca
 * [Configuring Applications Within The Tenant Concept Guide](/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/1%2DOpenShift-Tenants/1.3%2DConfiguring-Applications-Within-The-Tenant-Concept).
 -->
 #### Connecting to a Git repository
-The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT) or a GitHub App. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
+The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
 
 - **Default**: variables that both connection methods need
 - **PAT**: variables needed to connect with a GitHub PAT token
 - **GitHub app**: variables need to configure the GitHub app
+- **SSH**: variables need to configure through SSH
 
 | <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|
