@@ -25,6 +25,7 @@ nav:
   - CI/CD:
     - Introduction: CI-CD/gitops-introduction.md
     - CI/CD with Tekton Pipelines: CI-CD/continuous-integration-and-delivery-with-tekton-pipelines.md
+    - Custom auto-defined targetRevision: CI-CD/cutom-auto-defined-target-revision.md
   - Secret Managment:
     - Creating and managing secrets: Secret Managment/creating-and-managing-openshift-secrets.md
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
