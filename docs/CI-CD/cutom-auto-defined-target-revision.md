@@ -27,8 +27,8 @@ When `environments[].custom_auto_defined_targetRevision` is set to `true`, the a
 - **test**: `<FOLDER_NAME>-test`
     - Example: `app-one-name-test`
 
-- **preprod**: `<FOLDER_NAME>-preprod`
-    - Example: `app-two-name-preprod`
+- **dev**: `<FOLDER_NAME>-dev`
+    - Example: `app-two-name-dev`
 
 - **prod**: `HEAD`
     - In accordance with good GitOps practices, `main` should initially be `prod`. Therefore, we will use `HEAD` (latest commit in `main`) for `prod`.
@@ -41,8 +41,8 @@ An example configuration of a tenant might look like this:
 environments:
   - name: test
     custom_auto_defined_targetRevision: true
-  - name: preprod
-    custom_auto_defined_targetRevision: true
+  - name: dev
+    custom_auto_defined_targetRevision: false
 argocd:
   enable_user_defined_apps_legacy: true
   enable_user_defined_apps: false
@@ -50,6 +50,25 @@ argocd:
 ...
 ```
 
+### ArgoCD
+The changes will also be visible in ArgoCD as the application cards now have an update targetRevision which shows either the `<folder-name>-<environment>` or `HEAD`.
+
+
+<div class="grid cards" markdown>
+
+<figure markdown="span">
+  ![here](../img/CI-CD/targetRevision1.png){ width="400" }
+  <figcaption><i>custom_auto_defined_targetRevision: true</i></figcaption>
+</figure>
+
+<figure markdown="span">
+  ![here](../img/CI-CD/targetRevision2.png){ width="400" }
+  <figcaption><i>custom_auto_defined_targetRevision: false</i></figcaption>
+</figure>
+
+</div>
+
+
 
 ## Summary
-This solution ensures that applications can have distinct versions for different environments by using application folder names as the `targetRevision`. This provides better control over which versions run in `test`, `preprod`, and `prod` environments.
+This solution ensures that applications can have distinct versions for different environments by using application folder names as the `targetRevision`. This provides better control over which versions run in `test` and `prod` environments.
