@@ -14,7 +14,7 @@ This quick-start user guide describes the simple steps to provide the minimum in
 
 An Openshift Tenant form is added to a collective Git repository and shared with Sopra Sterias OpenShift clusters. Different environments and resources are created in an OpenShift Cluster based on the content of the created tenant form.
 
-A more in-depth description can be found here: [Order OpenShift Tenant - Full guide](Order-openshift-tenant.md)
+A more in-depth description can be found here: [OpenShift Tenant Template](OpenShift-tenant-template.md)
 
 ## Pre-requisites
 Before getting started with this guide, ensure you have the following prerequisites:
@@ -22,8 +22,12 @@ Before getting started with this guide, ensure you have the following prerequisi
 - You have planned your application name, resource requirements and the needed environments. 
 - Your company is onboarded with the Sopra Steria tenant concept and has your organisation's Entra ID registration towards the Openshift Cluster. 
 - Two groups in Entra ID, one for Read access and one for Write. 
-- Have a Git repository with Personal Access Tokens (PAT) or a GitHub Application. Detailed instructions for this is found here: [Encrypt PAT and GitHub App variables for ArgoCD](Encrypt-PAT-and-GitHub-App-variables-for-argo-CD.md)
+- Have a Git repository with Personal Access Tokens (PAT), a GitHub Application or SSH. Detailed instructions for this is found here:
+    - [PAT](../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-personal-access-token.md)
+    - [GitHub App](../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-github-app.md)
+    - [SSH](../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-ssh.md)
 - You have Kubeseal installed on your workstation and can provide encrypted values for the initial setup.
+    - [Install Kubeseal](../Tools/install-kubeseal.md)
 
 ## OpenShift Tenant Template
 
