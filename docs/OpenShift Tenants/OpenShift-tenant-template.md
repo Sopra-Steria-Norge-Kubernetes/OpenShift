@@ -92,3 +92,7 @@ values: |
       encrypted_webhookURL: <webhook to slack channel encrypted with sealedsecrets>
     
 ```
+
+To read more about all the Tenant Features available go to the section: 
+
+- [Tenant Features](../OpenShift%20Tenants/Tenant%20features/landingpage.md)
