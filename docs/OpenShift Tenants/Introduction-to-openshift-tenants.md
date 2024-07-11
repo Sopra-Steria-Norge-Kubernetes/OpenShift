@@ -26,4 +26,4 @@ Tenants are defined in the customers git. Changes in tenant configuration are su
 
 ## Next steps
 Now that you are familiar with the Tenant concept, the next step is to start developing on OpenShift. 
-If you haven't ordered a tenant from Sopra Steria, follow the user guide [Order OpenShift Tenant](Order-openshift-tenant.md) for more information on how this should be done.
+If you haven't ordered a tenant from Sopra Steria, follow the user guide [OpenShift Tenant Template](OpenShift-tenant-template.md) for more information on how this should be done.
