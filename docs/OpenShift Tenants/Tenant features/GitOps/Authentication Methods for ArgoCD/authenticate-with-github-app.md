@@ -23,7 +23,7 @@ Follow the steps below to create a GitHub App suited for ArgoCD:
 
 6. Click on app settings and extract the App ID, which will later be mapped to the tenant variable `github_app.id`
 
-   ![Github App Dashboard](../../img/Openshift%20Tenants/PAT_github-app-dashboard.png)
+   ![Github App Dashboard](../../../../img/Openshift%20Tenants/PAT_github-app-dashboard.png)
 
 ### Create a secret for Github App
 

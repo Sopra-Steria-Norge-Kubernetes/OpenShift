@@ -15,13 +15,22 @@ nav:
   - OpenShift Tenants: 
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
     - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
-    - Order OpenShift tenant: OpenShift Tenants/Order-openshift-tenant.md
-    - Install Kubeseal: OpenShift Tenants/install-kubeseal.md
-    - Auto-merging existing tenants: OpenShift Tenants/auto-merge-for-existing-tenants.md
-    - Authentication Methods for ArgoCD with GitHub: 
-      - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-personal-access-token.md
-      - Authenticate with GitHub App: OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-github-app.md
-      - Authenticate with SSH: OpenShift Tenants/Authentication Methods for ArgoCD with GitHub/authenticate-with-ssh.md
+    - OpenShift Tenant Template: OpenShift Tenants/OpenShift-tenant-template.md
+    - Tenant features:
+      - Namespace: OpenShift Tenants/Tenant features/namespace.md
+      - Environment: OpenShift Tenants/Tenant features/environments.md
+      - Network Policy: OpenShift Tenants/Tenant features/networkpolicy.md
+      - Role Based Access Control: OpenShift Tenants/Tenant features/rbac.md
+      - GitOps: 
+        - Argo CD: OpenShift Tenants/Tenant features/GitOps/argocd.md
+        - Auto-merging existing tenants: OpenShift Tenants/Tenant features/GitOps/auto-merge-for-existing-tenants.md
+        - Authentication Methods for ArgoCD: 
+          - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-personal-access-token.md
+          - Authenticate with GitHub App: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-github-app.md
+          - Authenticate with SSH: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-ssh.md
+      - Backup: OpenShift Tenants/Tenant features/backup.md
+      - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
+      - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
   - CI/CD:
     - Introduction: CI-CD/gitops-introduction.md
     - CI/CD with Tekton Pipelines: CI-CD/continuous-integration-and-delivery-with-tekton-pipelines.md
@@ -46,6 +55,8 @@ nav:
     - OpenShift Storage: Storage/openshift-storage.md
   - Security:
     - Advanced Cluster Security (ACS): Security/advanced-cluster-security.md
+  - Tools:
+    - Install Kubeseal: Tools/install-kubeseal.md
 
 
 markdown_extensions:
@@ -89,6 +100,7 @@ theme:
     - content.code.copy
     - navigation.footer
     - content.action.edit
+    - content.tooltips
     
   font:
     code: Roboto Mono

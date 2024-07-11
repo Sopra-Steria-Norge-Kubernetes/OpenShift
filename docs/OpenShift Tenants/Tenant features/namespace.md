@@ -1,0 +1,58 @@
+# Namespace
+
+## What is a Namespace?
+
+In OpenShift, `namespaces` provide a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace, but not across namespaces. Namespaces allow for better organization and management of resources, enabling different teams or projects to share a single cluster without interfering with each other.
+
+## How to order a Namespace
+
+The `namespace` feature contains information about Tenant namespaces and Tenant resources.To order a namespace using a Helm chart, include the following YAML configuration in your Helm values file:
+
+``` yaml
+...
+  namespace:
+    name: <Tenant Name>
+    description: <Tenant Description>
+    displayName: <Display name of the tenant>
+    use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
+    enable_tooling: <Creates a tooling namespace>
+    deploy_grafana: <Deploy Grafana instance in tooling namespace>
+    labels:
+      custom_labels:
+        <key>: <value>
+        <key>: <value>
+    limits:
+      memory: <Memory limits of all tenants>
+      cpu: <Combined CPU limits of all namespaces in tenant>
+    container_limitrange:
+      enable: false
+      memory: <Memory limit for each container for all tenant namespaces>
+      cpu: <CPU limit for each container for all tenant namespaces>
+...
+```
+
+By configuring these parameters, you can customize the namespace to meet your specific requirements, ensuring proper resource allocation and management for your tenant’s applications.
+
+To create a specific environment such as `<namespace>-test` within the namespace, ensure to configure the **Environment** section according to the instructions found [here](../Tenant%20features/environments.md).
+
+## In-depth description of parameters
+
+In the table below, you can find a more detailed description of each variable in the `namespace` feature:
+
+| <div style="width:205px">**Variable**</div>           | **Description**                                                                      | **Example**                                | **Type**   |
+|:------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------|:------------|
+| `name`                         | Base name of tenant.                                                                 | Poseidon1                                  | String     |
+| `description`                | A description annotation  under each tenant namespace                                 | " This is a test tenant used for testing" | String     |
+| `displayName`                | Displayname given to each openshift namespace/project                                 | "poseidon1-application1"                   | String     |
+| `use_egress_firewall`         | To use egress firewall to limit egress traffic from tenant namespaces.                | true                                       | Boolean    |
+| `enable_tooling`              | Creates a tooling namespace which is needed for certain applications such as Grafana | true                                       | Boolean    |
+| `deploy_grafana`              | Deploys a grafana instance in the tooling namespace                                      | true                                       | Boolean    |
+| `labels.custom_labels`              | Add custom labels to all namespaces in a tenant                                      | test_label: label                                       | key: value    |
+| `limits.memory`               | Combined memory limit for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | String/Int |
+| `limits.cpu`                 | Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int |
+| `container_limitrange.memory` | Memory limit for each container for all tenant namespaces.  The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                            | 64Mi                                       | String/Int |
+| `container_limitrange.cpu`     | CPU limit for each container for all tenant namespaces. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                  | 100m                                       | String/Int |
+
+
+## Further reading
+[Kubernetes Offical Documentation - Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)

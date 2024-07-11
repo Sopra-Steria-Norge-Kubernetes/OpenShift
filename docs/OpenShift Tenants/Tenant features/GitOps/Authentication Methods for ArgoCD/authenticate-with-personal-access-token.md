@@ -12,17 +12,17 @@ For the authentication methods, you must add the GitHub repository URL and the b
 PAT's are a token that's personal for you, and is a way to access your github account. This guide help you create a PAT with a minimum access for the intended purpose.
 
 Go to your profile settings, and then choose Developer settings:
-![Settings](../../img/Openshift%20Tenants/PAT-Settings.png)
+![Settings](../../../../img/Openshift%20Tenants/PAT-Settings.png)
 
-![Developer settings](../../img/Openshift%20Tenants/PAT-Developer_settings.png)
+![Developer settings](../../../../img/Openshift%20Tenants/PAT-Developer_settings.png)
 
 Under personal access token choose generate new token:
-![Generate new token](../../img/Openshift%20Tenants/PAT_generate_new_token.png)
+![Generate new token](../../../../img/Openshift%20Tenants/PAT_generate_new_token.png)
 
 Fill out the required fields and choose a sensible Expiration, select the correct repository and set the correct permissions. You only need read access for content and metadata:
-![Fill out values](../../img/Openshift%20Tenants/PAT-FillOutValues.png)
+![Fill out values](../../../../img/Openshift%20Tenants/PAT-FillOutValues.png)
 
-![Select permissions](../../img/Openshift%20Tenants/PAT_selecet_permissions.png)
+![Select permissions](../../../../img/Openshift%20Tenants/PAT_selecet_permissions.png)
 
 And then press **"Generate token"**. You now have a PAT to use for the next steps.
 
