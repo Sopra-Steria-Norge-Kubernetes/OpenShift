@@ -1,4 +1,4 @@
-# Slack Alert Integration with Helm Chart
+# Slack Alert Integration with OpenShift Alerts
 
 This user guide describes how to set up a Slack integration for OpenShift alerts and it also provides a design overview of the process. Follow the steps below to set up a Slack app and how to configure your tenant order to start receiving alerts to your desired Slack channel. 
 
