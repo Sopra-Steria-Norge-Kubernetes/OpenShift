@@ -26,3 +26,19 @@
   .md-content {
     padding: 30px
   }
+
+  .md-content a:link {
+    text-decoration: underline;
+  }
+
+  .md-header .md-search__form {
+    background-color: #fbfbfb;
+    border-style: solid;
+    border-color: rgb(142, 142, 142);
+    border-radius: 10px;
+  }
+
+ .md-header {
+  height: 75px;
+  padding: 11px;
+ }
