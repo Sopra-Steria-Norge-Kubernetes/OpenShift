@@ -4,8 +4,8 @@ repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 repo_name: Sopra Steria - OpenShift
 edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/
 nav: 
-  - Get started: index.md
-  - About Container Platform as a Service: 
+  #- Get started: index.md
+  - Container Platform as a Service: 
     - Introduction: About Container-Platform-as-a-Service/introduction.md
     - Service breakdown: About Container-Platform-as-a-Service/Service-breakdown.md
     - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
@@ -101,10 +101,11 @@ theme:
     - navigation.footer
     - content.action.edit
     - content.tooltips
+    - search.highlight
     
   font:
     code: Roboto Mono
-    text: Roboto
+    text: Tahoma Mono
 
   palette: 
     primary: white
