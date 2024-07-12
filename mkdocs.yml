@@ -102,7 +102,10 @@ theme:
     - content.action.edit
     - content.tooltips
     - search.highlight
-    
+    - navigation.top
+
+
+
   font:
     code: Roboto Mono
     text: Tahoma Mono
