@@ -37,6 +37,7 @@ values: |
   environments:
     - name: <Name of environment 1 (e.g. dev)>
       allow_to_internet: <True or false - Set to true if environment should be exposed to internet>
+      custom_auto_defined_targetRevision: <True or false - Set to true if targetRevision should be set by application folder name>
       externalURLs:
         - <URL's that should be reachable from the environment (e.g. google.com)>
       externalIPs:

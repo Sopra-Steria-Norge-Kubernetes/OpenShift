@@ -13,6 +13,7 @@ To configure an environment within a namespace, include the following YAML confi
   environments:
     - name: <Name of environment 1 (e.g. dev)>
       allow_to_internet: <True or false - Set to true if environment should be exposed to internet>
+      custom_auto_defined_targetRevision: <True or false - Set to true if targetRevision should be set by application folder name>
       externalURLs:
         - <URL's that should be reachable from the environment (e.g. google.com)>
       externalIPs:
@@ -26,9 +27,18 @@ By configuring these parameters, you can define multiple environments within a n
 
 In the table below, you can find a more detailed description of each variable in the `environment` feature:
 
-|  <div style="width:240px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** |
+|  <div style="width:255px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** |
 |------------------------------|------------------------------------------------------------------------|----------------------------|----------|
 | `environments[].name`          | Name of environment                                                    | test                       | String   |
 | `environments[].allow_to_internet`    | Set to `true` if environment should be exposed to internet. Default `false`. | `true`   | Boolean    |
+| `environments[].custom_auto_defined_targetRevision`    | Set to true if targetRevision should be set by application folder name. Default `false`. | `true`   | Boolean    |
 |  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     |
 | `environments[].externalIPs`    | A list of IP ranges that should be reached from the tenant environment | [0.0.0.0/0, 92.0.2.1/24]   | List     |
+
+
+### Custom targetRevision
+
+`custom_auto_defined_targetRevision` allows setting the targetRevision at the application level for different environments in OpenShift.
+Read more about this feature here: 
+  
+  - [Custom auto-defined targetRevision](../../CI-CD/cutom-auto-defined-target-revision.md)
