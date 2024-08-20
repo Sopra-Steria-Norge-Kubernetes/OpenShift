@@ -118,9 +118,9 @@ With the `values.yml` configured, deploy your Helm chart to apply the Slack aler
 Change the needed variables and apply the prometheus rule in your environment to send a alert to Slack. 
 
 !!! Note
-    Edit the `metadata.namespace` to a namespace in your cluster
+    Edit the `metadata.namespace` and `spec.groups.rules.labels.namespace` to a namespace in your cluster
 
-```yaml title="test-alert.yml" hl_lines="10"
+```yaml title="test-alert.yml" hl_lines="10 19"
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -139,6 +139,7 @@ spec:
       expr: vector(1) > 0 
       labels:
         severity: critical
+        namespace: <NAMESPACE>
       annotations:
         summary: "This is a test alert"
         description: "This alert is for testing purposes"
