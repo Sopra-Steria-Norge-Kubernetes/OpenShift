@@ -24,7 +24,7 @@ When adding a new external IP in Openshift there's some planning needed.
 
 ## User guide
 
-Use the a kubernetes Service object and add:
+Use a kubernetes Service object and add:
 
 - spec.loadBalancerIP 
 - metadata.annotations:
@@ -55,12 +55,12 @@ Create a service that looks like this:
 apiVersion: v1
 kind: Service
 metadata:
-  name: <service_name>
+  name: my-service
   annotations:
     metallb.universe.tf/address-pool: dmz-allocated-network
 spec:
   selector:
-    <label_key>: <label_value>
+    app: my-app
   ports:
     - port: 8080
       targetPort: 8080
