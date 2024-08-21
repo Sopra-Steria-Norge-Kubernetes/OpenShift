@@ -46,7 +46,7 @@ Change directory to where you want the repository stored locally and run the git
 After cloning the repository you'll need to install MkDocs and the theme we are using on our site. Run the command below
 
 ```bash
-pip install mkdocs && pip install mkdocs-material
+pip install mkdocs && pip install mkdocs-material && pip install mkdocs-glightbox
 ```
 
 MkDocs is now installed in your commandline and to verify you can run `mkdocs -V` to see the version of MkDocs you running.
