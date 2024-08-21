@@ -51,7 +51,7 @@ nav:
     - Introduction: Network/introduction.md
     - Connect application cross namespaces: Network/connect-openshift-application-cross-namespaces.md
     - Exposing an OpenShift Service: Network/exposing-an-openshift-service.md
-    - Ann an external IP with MetalLB: Network/External-IP-with-MetalLB.md
+    - Add an external IP with MetalLB: Network/External-IP-with-MetalLB.md
   - Storage:
     - OpenShift Storage: Storage/openshift-storage.md
   - Security:
