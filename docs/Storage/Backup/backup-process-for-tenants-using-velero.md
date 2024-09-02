@@ -1,6 +1,6 @@
 ## Introduction
 
-This document provides an overview of the backup and restore processes implemented within our OpenShift platform, specifically focusing on the utilization of Velero for backup management and MinIO as the external backup storage endpoint. 
+This document provides an overview of the backup and restore processes implemented within our OpenShift platform, specifically focusing on the utilization of Velero for backup management and the external backup storage endpoint. 
 
 In addition this document explains the backup setup, the types of backups we perform, how you can specify your backup scheduele, and our overall approach to keeping tenant data secure and recoverable.
 
@@ -8,7 +8,7 @@ In addition this document explains the backup setup, the types of backups we per
  
 ![image.png](../../img/Storage/backup1.png)
 
-This diagram shows the backup and restore process for Tenant A in an OpenShift cluster using Velero and MinIO as the external storage. Velero backs up the deployment and persistent volume (PV X) and sends the data to an S3-compatible storage managed by MinIO. 
+This diagram shows the backup and restore process for Tenant A in an OpenShift cluster using Velero and external S3 endpoint as the external storage. Velero backs up the deployment and persistent volume (PV X) and sends the data to an S3-compatible storage
 
 The backup data is stored externally for safety. If needed, Velero can restore this data from the S3 storage back into the OpenShift cluster. This setup helps protect tenant data and makes sure it can be recovered if something goes wrong.
 
@@ -50,13 +50,6 @@ If you need an overview of the backups taken for a specific namespace, you can f
 
 - [Hot to configure a backup scheduele for your tenant](../../OpenShift%20Tenants/Tenant%20features/backup.md)
 
-### Platform Resources
-
-The table below shows who is responsible for performing backups, selecting which platform resources need to be backed up, determining the backup frequency, and deciding how long the backups should be stored. It provides a clear view of the roles and responsibilities involved in managing the backup process for platform resources.
-
-| Resources to be included      | Backup name      | Scheduele | Time to live |
-| ----------------------------- | ---------------- | --------- | ------------- |
-|:material-check: Sopra Steria       |:material-check: Sopra Steria  |:material-check: Sopra Steria |:material-check: Sopra Steria |
 
 ### User Resources
 
