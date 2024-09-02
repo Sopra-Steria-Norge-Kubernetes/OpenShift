@@ -36,3 +36,9 @@ In the table below, there is a more detailed description of each variable in the
 | `schedules[].name`          | The name of the backup schedule. It is prefixed with the name of the tenant. If the tenant name is `poseidon1` and this variable is set to `daily`, the backup schedule will be called `poseidon1-daily`                         | "daily"            | String    |
 | `schedules[].ttl`       | The time until the backup is deleted. It is in the format of `XXXhYYmZZs`, where `XXX` is the number of hours, `YY` is the number of minutes, and `ZZ` is the number of seconds. For example, `24h0m0s` would indicate that the backup should be deleted after 24 hours.| "48h0m0s"                 | String    |
 
+## Further reading
+
+To learn more about our backup procedures and how the restore process works, please refer to the following resources.
+
+- [Backup Persistent Volumes using VolumeSnapshots](../../Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md)
+- [Backup process for tenants using Velero](../../Storage/Backup/backup-process-for-tenants-using-velero.md)
