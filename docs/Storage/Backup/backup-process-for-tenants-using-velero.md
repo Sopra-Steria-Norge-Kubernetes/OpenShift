@@ -16,7 +16,7 @@ The backup data is stored externally for safety. If needed, Velero can restore t
 
 We provide backup schedueles for the customer’s tenant as part of the tenant order process. Within the order, you can specify how frequently backups should be taken for a namespace, choose a name for the backup, and determine the *time to live* (`ttl`) for which the backup will be stored. Additionally, you have the flexibility to set up multiple backup schedules, allowing for daily, weekly, and monthly backups if needed.
 
-!!! Note
+!!! Info
     For each backup schedule, a complete backup is performed, covering all resources within the specified environment as well as all environments defined in the tenant order.
 
 ### Backup Object
@@ -83,10 +83,13 @@ Environments can be restored on demand. Please contact Sopra Steria through your
 
 - The name of the backup specified in the tenant order
 - Which namespace(s) you want to back up
-- Which schedule the backup is taken from
+- Which day you want to restore a backup from
 
 
 #### Disable ArgoCD Self-Healing
+
+!!! Info
+    This is not necessary in a DR-situation as we will apply GitOps after restore is complete. 
 
 Disable self-healing in ArgoCD to prevent it from recreating resources from GitOps. This can be done by setting selfHeal to false in the tenant order. 
 
