@@ -22,17 +22,22 @@ values: |
     use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
     enable_tooling: <Creates a tooling namespace>
     deploy_grafana: <Deploy Grafana instance in tooling namespace>
-    labels:
-      custom_labels:
-        <key>: <value>
-        <key>: <value>
     limits:
+      enable: true
       memory: <Memory limits of all tenants>
       cpu: <Combined CPU limits of all namespaces in tenant>
+    requests:
+      enable: false
+      memory: <Memory requests of all tenants>
+      cpu: <Combined CPU requests of all namespaces in tenant>
     container_limitrange:
       enable: false
       memory: <Memory limit for each container for all tenant namespaces>
       cpu: <CPU limit for each container for all tenant namespaces>
+    labels:
+      custom_labels:
+        <key>: <value>
+        <key>: <value>
 
   environments:
     - name: <Name of environment 1 (e.g. dev)>
