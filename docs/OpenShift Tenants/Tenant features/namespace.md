@@ -17,17 +17,22 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
     use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
     enable_tooling: <Creates a tooling namespace>
     deploy_grafana: <Deploy Grafana instance in tooling namespace>
-    labels:
-      custom_labels:
-        <key>: <value>
-        <key>: <value>
     limits:
+      enable: true
       memory: <Memory limits of all tenants>
       cpu: <Combined CPU limits of all namespaces in tenant>
+    requests:
+      enable: false
+      memory: <Memory requests of all tenants>
+      cpu: <Combined CPU requests of all namespaces in tenant>
     container_limitrange:
       enable: false
       memory: <Memory limit for each container for all tenant namespaces>
       cpu: <CPU limit for each container for all tenant namespaces>
+    labels:
+      custom_labels:
+        <key>: <value>
+        <key>: <value>
 ...
 ```
 
@@ -47,12 +52,13 @@ In the table below, you can find a more detailed description of each variable in
 | `use_egress_firewall`         | To use egress firewall to limit egress traffic from tenant namespaces.                | true                                       | Boolean    |
 | `enable_tooling`              | Creates a tooling namespace which is needed for certain applications such as Grafana | true                                       | Boolean    |
 | `deploy_grafana`              | Deploys a grafana instance in the tooling namespace                                      | true                                       | Boolean    |
-| `labels.custom_labels`              | Add custom labels to all namespaces in a tenant                                      | test_label: label                                       | key: value    |
 | `limits.memory`               | Combined memory limit for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | String/Int |
 | `limits.cpu`                 | Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int |
+| `requests.memory`               | Combined memory requests for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | String/Int |
+| `requests.cpu`                 | Combined cpu requests for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int |
 | `container_limitrange.memory` | Memory limit for each container for all tenant namespaces.  The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                            | 64Mi                                       | String/Int |
 | `container_limitrange.cpu`     | CPU limit for each container for all tenant namespaces. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                  | 100m                                       | String/Int |
-
+| `labels.custom_labels`              | Add custom labels to all namespaces in a tenant                                      | test_label: label                                       | key: value    |
 
 ## Further reading
 [Kubernetes Offical Documentation - Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
