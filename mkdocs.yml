@@ -59,6 +59,12 @@ nav:
       - Backup process for tenants using Velero: Storage/Backup/backup-process-for-tenants-using-velero.md
   - Security:
     - Advanced Cluster Security (ACS): Security/advanced-cluster-security.md
+  - OpenShift Serverless:
+    - OpenShift Serverless/Introduction.md
+    - OpenShift Serverless/Building-an-OpenShift-Serverless-Image.md
+    - Quick Guide:
+      - OpenShift Serverless/Quick-start-guide-with-tenant-chart.md
+      - OpenShift Serverless/quick-start-guide-without-tenant-chart.md
   - Tools:
     - Install Kubeseal: Tools/install-kubeseal.md
 
