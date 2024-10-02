@@ -33,7 +33,7 @@ nav:
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
   - OpenShift GitOps:
     - Introduction to GitOps: OpenShift GitOps/Introduction-GitOps.md
-    - OpenShift GitOps Best Practices: OpenShift GitOps/openshift-gitops-best-practices.md
+    - GitOps Best Practices: OpenShift GitOps/gitops-best-practices.md
     - GitOps Methods: OpenShift GitOps/itops-methods.md
     - Custom auto-defined targetRevision: OpenShift GitOps/cutom-auto-defined-target-revision.md
   - OpenShift Pipelines:
