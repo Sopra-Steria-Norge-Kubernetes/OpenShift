@@ -50,7 +50,7 @@ ArgoCD provides different ways of automatically deploying and synchronising infr
 
 More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
 
-* [CI/CD - Introduction](../../CI-CD/gitops-introduction.md) 
+* [OpenShift GitOps - Introduction](/docs/OpenShift%20GitOps/Introduction-GitOps.md) 
 
 ### Connecting to a Git repository
 The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
