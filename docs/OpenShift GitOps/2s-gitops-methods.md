@@ -1,5 +1,0 @@
-# header
-
-## Introduction
-
-## Getting started
