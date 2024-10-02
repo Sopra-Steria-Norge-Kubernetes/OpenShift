@@ -14,6 +14,8 @@ This document outlines the best practices for using ArgoCD within a GitOps workf
 
 !!! info
     The ArgoCD Application Controller is configured to auto-sync every **6 minutes**. 
+    
+    This interval is set to reduce CPU load, thereby improving the overall performance of the Application Controller.
 
 For detailed instructions on configuring ArgoCD for your tenant, refer to:
 

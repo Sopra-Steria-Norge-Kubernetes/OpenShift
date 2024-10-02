@@ -28,7 +28,7 @@ The GitOps process follows these steps:
 
 1. Define the tenant defintion with the wanted GitOps method. Push the configuration to your OCP Admin. Follow the setup given in the section [OpenShift Tenants - Quick Start](../OpenShift%20Tenants/Orderopenshift-tenant-quick-start-guide.md). 
 2. A developer must decide if they want to use the `user-defined` and/or the `auto-defined`  method for application-creation. More information about these methods can be found under [GitOps Setup](gitops-setup.md#gitops-methods).  
-3. Define Kubernetes resources in your "Tenants Main Git repository"(This is where your infrastructure code will be). Follow the examples given in [[GitOps Setup](gitops-setup.md#getting-started).
+3. Define Kubernetes resources in your *"Tenants Main Git repository"* (This is where your infrastructure code will be). Follow the examples given in [GitOps Setup](gitops-setup.md#getting-started).
 4. The ArgoCD resources will then sync resources from the Tenants Main Git repository. It is important to define the correct target path in the repository. 
 5. When the resources are synced from the main Tenant repository the resources will be created in the cluster with ArgoCD. 
 
@@ -37,4 +37,6 @@ The GitOps process follows these steps:
  
 
 ## Best Practices for OpenShift GitOps with ArgoCD
-ArgoCD is the preferred OpenShift GitOps tool supported by Red Hat. This tool can at first be difficult to use, but by following some best practices can be helpful. See the [OpenShift GitOps Best Practices ](openshift-gitops-best-practices.md) for more information.
+ArgoCD is the preferred OpenShift GitOps tool supported by Red Hat. This tool can at first be difficult to use, but by following some best practices can be helpful. 
+
+See the [OpenShift GitOps Best Practices ](openshift-gitops-best-practices.md) for more information.
