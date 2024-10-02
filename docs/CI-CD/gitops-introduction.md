@@ -1,6 +1,7 @@
-# CaaS-GitOps
+# OpenShift GitOps
 
 ## Overview
+
 Welcome to the CaaS-GitOps repository which gives an introduction to use OpenShift GitOps with the tenant concept. The repository is designed to showcase the use of ArgoCD to syncronise your tenant applications and infrastructures with a Git repository, ensuring Continuous Deployment (CD). Developers can define application and environment configurations in this Git repository, and ArgoCD will ensure that the OpenShift cluster matches the defined state, deploying and updating applications automatically.
 
 A developer must configure in their tenant definition to use `user-defined` and/or `auto-defined` application-creation. When this is set the developer must set up their repository to ligne with their choice of GitOps method. Below is a picture to illustra the process on a high-level:
