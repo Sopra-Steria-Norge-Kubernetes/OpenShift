@@ -32,7 +32,9 @@ nav:
       - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
   - CI/CD:
-    - Introduction: CI-CD/gitops-introduction.md
+    - Introduction to GitOps: CI-CD/Introduction-GitOps.md
+    - OpenShift GitOps Best Practices: CI-CD/openshift-gitops-best-practices.md
+    - GitOps Methods: CI-CD/gitops-methods.md
     - CI/CD with Tekton Pipelines: CI-CD/continuous-integration-and-delivery-with-tekton-pipelines.md
     - Custom auto-defined targetRevision: CI-CD/cutom-auto-defined-target-revision.md
   - Secret Managment:
