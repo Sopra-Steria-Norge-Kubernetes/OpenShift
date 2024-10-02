@@ -31,12 +31,13 @@ nav:
       - Backup: OpenShift Tenants/Tenant features/backup.md
       - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
-  - CI/CD:
-    - Introduction to GitOps: CI-CD/Introduction-GitOps.md
-    - OpenShift GitOps Best Practices: CI-CD/openshift-gitops-best-practices.md
-    - GitOps Methods: CI-CD/gitops-methods.md
-    - CI/CD with Tekton Pipelines: CI-CD/continuous-integration-and-delivery-with-tekton-pipelines.md
-    - Custom auto-defined targetRevision: CI-CD/cutom-auto-defined-target-revision.md
+  - OpenShift GitOps:
+    - Introduction to GitOps: OpenShift GitOps/Introduction-GitOps.md
+    - OpenShift GitOps Best Practices: OpenShift GitOps/openshift-gitops-best-practices.md
+    - GitOps Methods: OpenShift GitOps/itops-methods.md
+    - Custom auto-defined targetRevision: OpenShift GitOps/cutom-auto-defined-target-revision.md
+  - OpenShift Pipelines:
+     - OpenShift Pipelines with Tekton: OpenShift Pipelines/OpenShift-pipelines.md
   - Secret Managment:
     - Creating and managing secrets: Secret Managment/creating-and-managing-openshift-secrets.md
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
