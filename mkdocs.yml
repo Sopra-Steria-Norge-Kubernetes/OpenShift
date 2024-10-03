@@ -63,7 +63,7 @@ nav:
     - OpenShift Serverless/Introduction.md
     - OpenShift Serverless/Building-an-OpenShift-Serverless-Image.md
     - Quick Guide:
-      - OpenShift Serverless/Quick-start-guide-with-tenant-chart.md
+      - OpenShift Serverless/quick-start-guide-with-tenant-chart.md
       - OpenShift Serverless/quick-start-guide-without-tenant-chart.md
   - Tools:
     - Install Kubeseal: Tools/install-kubeseal.md
