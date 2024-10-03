@@ -61,6 +61,9 @@ values: |
   argocd: <See dedicated section for ArgoCD below>
     enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
     enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
+    syncPolicy:
+      selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
+      prune: <Remove resources that are not present in the Git repository during sync (true/false)>
     main_git_repository:
       repourl: 
       basepath:
