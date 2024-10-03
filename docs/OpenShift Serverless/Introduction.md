@@ -4,7 +4,12 @@
 
 OpenShift Serverless is a powerful extension of Red Hat OpenShift that allows developers to deploy and manage serverless workloads. Built on top of **Kubernetes** and **Knative**, it provides a way to build scalable, event-driven applications without the need to manage the underlying infrastructure.
 
+
+
+
 With OpenShift Serverless, you can focus solely on writing code, while the platform automatically scales your applications up or down based on incoming requests. It ensures efficient resource utilization and simplifies operations, making it ideal for cloud-native, microservices-based architectures, and event-driven workloads.
+
+![here](../img/openshift%20serverless/serverless-benefit.png)
 
 ### Key Components:
 - **Knative Serving**: Manages deployment, autoscaling, and networking for serverless applications.
@@ -38,3 +43,9 @@ Before deploying the application, several OpenShift resources need to be configu
 **3. Deploy the Knative Service**
 
 Once the image is in the container registry and the necessary resources are set up in OpenShift, the next step is to create and deploy the Knative service. After deployment, OpenShift Serverless will manage the scaling and availability of your application based on incoming traffic.
+
+
+## Further Reading
+-  [Building an OpenShift Serverless Image](Building-an-OpenShift-Serverless-Image.md)
+-  [Deploying a Knative Service with Tenant Helm Chart](quick-start-guide-with-tenant-chart.md)
+-  [Deploying a Knative Service without Tenant Helm Chart](quick-start-guide-without-tenant-chart.md)
