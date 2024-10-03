@@ -17,6 +17,9 @@ This seamless integration with GitOps practices ensures that our applications ar
   argocd: 
     enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
     enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
+    syncPolicy:
+      selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
+      prune: <Remove resources that are not present in the Git repository during sync (true/false)>
     main_git_repository:
       repourl: 
       basepath:
@@ -50,7 +53,7 @@ ArgoCD provides different ways of automatically deploying and synchronising infr
 
 More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
 
-* [CI/CD - Introduction](../../CI-CD/gitops-introduction.md) 
+* [OpenShift GitOps - Introduction](../../../OpenShift%20GitOps/Introduction-GitOps.md) 
 
 ### Connecting to a Git repository
 The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
@@ -62,6 +65,9 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 
 | <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|
+| SyncPolicy              |                                                                                                                     |                                            |                           |
+| `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    |
+| `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    |
 | Default              |                                                                                                                     |                                            |                           |
 | `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    |
 | `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    |

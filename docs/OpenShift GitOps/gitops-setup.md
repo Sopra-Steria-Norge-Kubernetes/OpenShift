@@ -1,33 +1,22 @@
-# CaaS-GitOps
-
-## Overview
-Welcome to the CaaS-GitOps repository which gives an introduction to use OpenShift GitOps with the tenant concept. The repository is designed to showcase the use of ArgoCD to syncronise your tenant applications and infrastructures with a Git repository, ensuring Continuous Deployment (CD). Developers can define application and environment configurations in this Git repository, and ArgoCD will ensure that the OpenShift cluster matches the defined state, deploying and updating applications automatically.
-
-A developer must configure in their tenant definition to use `user-defined` and/or `auto-defined` application-creation. When this is set the developer must set up their repository to ligne with their choice of GitOps method. Below is a picture to illustra the process on a high-level:
-![Alt text](../img/CI-CD/GitOps.png)
-
-### GitOps process
-The GitOps process follows these steps:
-
-1. Define the tenant defintion with the wanted GitOps method. Push the configuration to your OCP Admin. Follow the setup given in the section [OpenShift Tenants - Quick Start](../OpenShift%20Tenants/Orderopenshift-tenant-quick-start-guide.md).
-2. When the changes is merged by the OCP admin the changes will be implemented in the OpenShift cluster.
-3. Define Kubernetes resources in the Tenants Main Git repository. Follow the examples given in the section [Getting Started](#getting-started).
-4. The ArgoCD resources will then sync resources from the Tenants Main Git repository. It is important to define the correct target path in the repository. 
-5. When the resources are synced from the main Tenant repository the resources will be created in the cluster with ArgoCD. 
-
+# GitOps Setup
 
 ## Introduction
-In this repository we will create a example tenant to showcase the different option for enabling a GitOps for your tenant. 
+This page gives an introduction to how to setup OpenShift GitOps with your OpenShift Tenants and Git repository.
 
 !!! Note
     Before you start, make sure you have a basic understanding of GitOps, ArgoCD, and OpenShift. This guide assumes familiarity with these technologies.
 
+
+## GitOps Methods
 CaaS provides two primary methods for deploying an synchronising infrastructures:
 
 1. **Auto-defined ArgoCD applications:** A ArgoCD applicationSet automatically creates applications when resources are defined in the target path.
      1. Target path: `<basepath>applicationsets/<environments[].name>/*`
+     2. OpenShift Tenant variable: `argocd.enable_auto_defined_apps`
+   
 2. **User-defined ArgoCD applications:** The user creates its own ArgoCD application definitions. Only recommended to use if more functionality needed than what is provided in the Auto-defined method. The ArgoCD application definition must be defined in the correct target path.
      1. Target path: `<basepath>applications/<environments[].name>/*`
+     2. OpenShift Tenant variable: `argocd.enable_user_defined_apps`
 
 ## Pre-requisites
 Before you can utilise the GitOps capabilties on OpenShift you need to setup your OpenShift Tenant correctly. In this repository, we will use a simple example tenant to enable the desired capabilties for both methods. the tenant definition is shown below. 
@@ -63,20 +52,23 @@ values: |
       encrypted_password: <PAT always encrypted with sealedsecrets>
       encrypted_username: <Username used with PAT encrypted with sealedsecrets>
 ```
-Setting the variable `enable_auto_defined_apps` to true gives you the option to use the **Auto-defined ArgoCD applications** method for creating applications. Similary, setting the `enable_user_defined_apps`to true gives you the option to use the **User-defined ArgoCD applications** method for creating applications. 
+
+- Setting the variable `enable_auto_defined_apps` to true gives you the option to use the **Auto-defined ArgoCD applications** method for creating applications. 
+
+- Setting the `enable_user_defined_apps`to true gives you the option to use the **User-defined ArgoCD applications** method for creating applications. 
 
 !!! Info
-    More information on how to connect ArgoCD to your repository can be found [here](doc/conecting_to_a_repo.md).
+    More information on how to connect ArgoCD to your repository can be found [here](../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md#connecting-to-a-git-repository).
 
 ## Getting started
-With your tenant configuration successfully completed, the next crucial step is establishing the structure of your main Git repository. 
+With your tenant configuration successfully completed, the next crucial step is establishing the structure in your main Git repository. 
 
-This section will illustrate both the **auto-defined** and **user-defined** methods for managing applications with ArgoCD. We will use the `poseidon1_main_repository` folder as our example to walk you through the process. 
+This section will illustrate both the **auto-defined** and **user-defined** methods for managing applications with ArgoCD. We will use the `poseidon1_main_repository` folder as our example to walk you through the process. Check the example folder [here](https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/tree/main/code-examples/ArgoCD-Tenant-setup/poseidon1_main_repo).
 
 Consider this folder as your repository blueprint, with the basepath set to an empty string, providing a clear and applicable framework for your GitOps setup. Let´s get started! 
 
 ### Auto-defined ArgoCD applications
-This approach is the recommended approach for working with ArgoCD. It gives an intuative and easy way of working with multiple ArgoCD applications without implementing a nameingstandard across tenants.
+This approach is the recommended approach for working with ArgoCD. It gives an intuitive and easy way of working with multiple ArgoCD applications without implementing a nameingstandard across tenants.
 
 #### How it works in the background
 The ArgoCD applicationsets looks in the target path `poseidon1_main_repo/applicationsets/<environment_name>`, so every folder created in this path will create a application in ArgoCD. The name of the application will have the following name  `<tenant_name>-<environment_name>-apps-<folder_name>`. For instance if we create a folder called `applicationsets/dev/demo-kubernetes` it will be called `poseidon1-dev-apps-demo-kubernetes` in ArgoCD. 
@@ -97,7 +89,7 @@ Applications can be deployed with kustomization files, helm templates, helm repo
 Kubernetes resources can be deployed to the cluster by simpling adding files with YAML definition of Kubernetes resources. Folder `applicationsets/dev/ex1-kubernetes-resources` illustrates an example of how this is done for a service resource. 
 
 ##### 2) Kustomization file
-A Kustomization file can be used to define multiple Kubernetes resoucres. It will only deploy the Kubernetes resources listed in the kustomization (`kustomization.yaml`) file like this:
+The recommended way of provisioning infrastructure through ArgoCD is using a Kustomization file. A Kustomization file can be used to define multiple Kubernetes resoucres. It will only deploy the Kubernetes resources listed in the kustomization (`kustomization.yaml`) file like this:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -171,7 +163,10 @@ When can it be useful to use user-defined ArgoCD applications:
 * If you need to use a private helm repository
 * If you want more freedom with your ArgoCD application definitions. 
 
-The following file `poseidon1_main_repo/applications/dev/ex1-helm-app.yml` shows an example of how to deploy a application.
+The following file `poseidon1_main_repo/applications/dev/ex1-helm-app.yml` shows an example of how to deploy an application utilising a helm chart.
+
+## Further Reading
+Now that you understand better how to setup your CD pipeline on Openshift using ArgoCD, it can be useful to better understand how to use the tool. Check out [GitOps Best Practices](OpenShift GitOps Best Practices.md) for more information about how to use ArgoCD 
 
 
 
