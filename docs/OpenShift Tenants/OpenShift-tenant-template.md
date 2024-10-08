@@ -53,6 +53,8 @@ values: |
     allow_from_openshift_monitoring: true
     allow_from_openshift_ingress: true
     allow_from_kube_apiserver_operator: true
+    allow_from_grafana_operator: true
+    allow_from_ECK_operator: true
 
   rbac:
     ad_group_write_access: <Azure AD group with write access>
