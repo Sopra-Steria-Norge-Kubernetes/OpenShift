@@ -51,7 +51,7 @@ By default, containers in the tenant have the following resource limits:
 
 - **Memory**: 1 GiB
 
-These default limits can be modified by adjusting the parameters in namespace.container_limitrange.
+These default limits can be modified by adjusting the parameters in `namespace.container_limitrange` .
 Maximum Resource Limits:
 
 - **Maximum CPU per standard Worker Node**: 8 cores (excluding management overhead)
