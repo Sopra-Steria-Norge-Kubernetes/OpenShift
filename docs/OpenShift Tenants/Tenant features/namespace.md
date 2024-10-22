@@ -27,12 +27,12 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
       cpu: <Combined CPU requests of all namespaces in tenant>
     container_limitrange:
       enable: true
-       limits:
-          memory: <Default Memory limitfor containers in all tenant namspace>
-          cpu: <Default cpu limit for containers in all tenant namspaces>
-        requests:
-          memory: <Default Memory request for containers in all tenant namspace>  
-          cpu: <Default cpu request for containers in all tenant
+      limits:
+        memory: <Default Memory limitfor containers in all tenant namspace>
+        cpu: <Default cpu limit for containers in all tenant namspaces>
+      requests:
+        memory: <Default Memory request for containers in all tenant namspace>  
+        cpu: <Default cpu request for containers in all tenant
     labels:
       custom_labels:
         <key>: <value>
@@ -43,6 +43,9 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
 By configuring these parameters, you can customize the namespace to meet your specific requirements, ensuring proper resource allocation and management for your tenant’s applications.
 
 To create a specific environment such as `<namespace>-test` within the namespace, ensure to configure the **Environment** section according to the instructions found [here](../Tenant%20features/environments.md).
+
+## Default Container limits
+Containers in the tenant are capped at 250m CPU and 1Gi memory by default to prevent resource overuse. You can modify these limits by adjusting the parameters under namespace.container_limitrange. The maximum limit is defined by the worker node capacity of 8 CPU cores and 32 GiB memory, excluding management overhead. To increase this limit, you can provision larger worker nodes for your tenant.
 
 ## In-depth description of parameters
 
