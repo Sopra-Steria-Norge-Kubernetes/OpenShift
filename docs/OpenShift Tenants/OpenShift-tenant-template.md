@@ -31,9 +31,13 @@ values: |
       memory: <Memory requests of all tenants>
       cpu: <Combined CPU requests of all namespaces in tenant>
     container_limitrange:
-      enable: false
-      memory: <Memory limit for each container for all tenant namespaces>
-      cpu: <CPU limit for each container for all tenant namespaces>
+      enable: true
+       limits:
+        memory: <Default Memory limitfor containers in all tenant namspace>  
+        cpu: <Default cpu limit for containers in all tenant namspaces>
+      requests:
+        memory: <Default Memory request for containers in all tenant namspace>  
+        cpu: <Default cpu request for containers in all tenant
     labels:
       custom_labels:
         <key>: <value>

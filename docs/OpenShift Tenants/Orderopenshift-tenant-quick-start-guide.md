@@ -63,3 +63,6 @@ values: |
 ```
 
 The values file for your Tenant needs to be sent to Sopra Steria through your defined ordering process.
+
+## Default Container limits
+Containers in the tenant are capped at 250m CPU and 1Gi memory by default to prevent resource overuse. You can modify these limits by adjusting the parameters under namespace.container_limitrange. The maximum limit is defined by the worker node capacity of 8 CPU cores and 32 GiB memory, excluding management overhead. To increase this limit, you can provision larger worker nodes for your tenant.
