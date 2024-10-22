@@ -26,9 +26,13 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
       memory: <Memory requests of all tenants>
       cpu: <Combined CPU requests of all namespaces in tenant>
     container_limitrange:
-      enable: false
-      memory: <Memory limit for each container for all tenant namespaces>
-      cpu: <CPU limit for each container for all tenant namespaces>
+      enable: true
+       limits:
+          memory: <Default Memory limitfor containers in all tenant namspace>
+          cpu: <Default cpu limit for containers in all tenant namspaces>
+        requests:
+          memory: <Default Memory request for containers in all tenant namspace>  
+          cpu: <Default cpu request for containers in all tenant
     labels:
       custom_labels:
         <key>: <value>
@@ -56,8 +60,10 @@ In the table below, you can find a more detailed description of each variable in
 | `limits.cpu`                 | Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int |
 | `requests.memory`               | Combined memory requests for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | String/Int |
 | `requests.cpu`                 | Combined cpu requests for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int |
-| `container_limitrange.memory` | Memory limit for each container for all tenant namespaces.  The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                            | 64Mi                                       | String/Int |
-| `container_limitrange.cpu`     | CPU limit for each container for all tenant namespaces. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                  | 100m                                       | String/Int |
+| `container_limitrange.limits.memory` | Default memory limits for containers in all tenant namespaces. This can be overridden by specifying values in the container configuration. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                            | 64Mi                                       | String/Int |
+| `container_limitrange.limits.CPU`     | Default CPU limits for containers in all tenant namespaces. This can be overridden by specifying values in the container configuration. Fractional values are allowed. A Container that requests 0.5 CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                  | 100m                                       | String/Int |
+| `container_limitrange.requests.memory`     | Default memory request for containers in all tenant namespaces. This can be overridden by specifying values in the container configuration. Same values as for `container_limitrange.limits.memory` is allowed.                              |100m   | String/Int |   
+| `container_limitrange.requests.CPU`     |  Default CPU request for containers in all tenant namespaces. This can be overridden by specifying values in the container configuration. Same values as for `container_limitrange.limits.CPU` is allowed.                              |100m   | String/Int |   
 | `labels.custom_labels`              | Add custom labels to all namespaces in a tenant                                      | test_label: label                                       | key: value    |
 
 ## Further reading
