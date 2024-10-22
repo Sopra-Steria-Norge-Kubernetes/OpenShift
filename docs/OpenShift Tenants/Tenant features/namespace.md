@@ -46,12 +46,16 @@ To create a specific environment such as `<namespace>-test` within the namespace
 
 ## Default Container limits
 By default, containers in the tenant have the following resource limits:
+
 - **CPU**: 250m (0.25 cores)
+
 - **Memory**: 1 GiB
 
 These default limits can be modified by adjusting the parameters in namespace.container_limitrange.
 Maximum Resource Limits:
+
 - **Maximum CPU per standard Worker Node**: 8 cores (excluding management overhead)
+
 - **Maximum Memory per standard Worker Node**: 32 GiB (excluding management overhead)
 
 To increase these maximum limits, Sopra Steria can provision larger worker nodes for your tenant. 
