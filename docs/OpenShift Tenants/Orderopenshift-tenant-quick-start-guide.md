@@ -38,7 +38,8 @@ values: |
   namespace:
     name: <namespace to deploy kubernetes resources>
     description: <Give your namespace a description>
-    limits:
+    requests:
+      enable: true
       memory: <Specify memory limits for your application/project. e.g.: 2Gi>
       cpu: <Specify memory limits for your application/project. e.g.: 1>
 
