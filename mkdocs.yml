@@ -55,6 +55,7 @@ nav:
     - Connect application cross namespaces: Network/connect-openshift-application-cross-namespaces.md
     - Exposing an OpenShift Service: Network/exposing-an-openshift-service.md
     - Add an external IP with MetalLB: Network/External-IP-with-MetalLB.md
+    - How to use ExternalIP: Network/How-to-use-EgressIP.md
   - Storage:
     - OpenShift Storage: Storage/openshift-storage.md
     - Backup:
