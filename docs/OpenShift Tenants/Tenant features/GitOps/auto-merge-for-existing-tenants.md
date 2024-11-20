@@ -8,21 +8,24 @@ Auto-merging happens only when all status checks pass. This way, we ensure that 
 
 ## Allowed auto-merge fields
 
+Any change outside these fields will result in a manual approval.
 
-Any change outside these fields will result in a manual approval
-
-| **Category**      | **Field**              | **Allowed Actions**                    | **Restrictions**              |
-|-------------------|--------------------|----------------------------------------|-------------------------------|
-| labels[]          | <Key: value>       | - Can add<br>- Can remove<br>- Can modify existing |                              |
-| limits[]          | Cpu                | - Can decrease<br>- Can change unit (Gi - Mi) | Cannot increase<br>Cannot remove unit |
-|                   | Memory             | - Can decrease<br>- Can change unit (Gi - Mi) | Cannot increase<br>Cannot remove unit |
-| requests[]        | Cpu                | - Can decrease<br>- Can change unit (Gi - Mi) | Cannot increase<br>Cannot remove unit |
-|                   | Memory             | - Can decrease<br>- Can change unit (Gi - Mi) | Cannot increase<br>Cannot remove unit |
-| environments[]    | externalURLs[]     | - Can add<br>- Can remove<br>- Can modify existing |                              |
-|                   | externalIPs[]      | - Can add<br>- Can remove<br>- Can modify existing |                              |
-| backup[]          | take_backup        | - Can modify existing                   |                              |
-|                   | Schedules[]        | - Can add<br>- Can remove<br>- Can modify existing |                              |
-
+| **Category**      | **Field**                                   | **Allowed Actions**                     | **Restrictions**               |
+|-------------------|---------------------------------------------|-----------------------------------------|--------------------------------|
+| labels[]          | <Key: value>                               | Can add, remove and change              |                                |
+| limits[]          | Cpu                                         | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
+|                   | Memory                                      | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
+| requests[]        | Cpu                                         | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
+|                   | Memory                                      | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
+| environments[]    | externalURLs[]                             | Can add, remove and change              |                                |
+|                   | externalIPs[]                              | Can add, remove and change              |                                |
+|                   | name                                        | Can add new name                        | Cannot change or delete existing |
+|                   | custom_auto_defined_<br>targetRevision         | Can add, remove and change              |                                |
+| backup[]          | take_backup                                | Can change                              |                                |
+|                   | Schedules[]                                | Can add, remove and change              |                                |
+| argocd           | enable_auto_defined_apps<br>enable_user_defined_apps<br>enable_user_defined_apps_legacy                                | Can add, remove and change              |                                |
+| slack_alert_integration             | All values                                 | Can add, remove and change              |                                |
+| monitoring        | All values                                 | Can add, remove and change              |                                |
 
 
 ## Required Status Checks to Pass Before Merging
