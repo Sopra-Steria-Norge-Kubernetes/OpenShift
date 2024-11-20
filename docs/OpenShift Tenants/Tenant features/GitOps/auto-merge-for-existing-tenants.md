@@ -12,20 +12,20 @@ Any change outside these fields will result in a manual approval.
 
 | **Category**      | **Field**                                   | **Allowed Actions**                     | **Restrictions**               |
 |-------------------|---------------------------------------------|-----------------------------------------|--------------------------------|
-| labels[]          | <Key: value>                               | Can add, remove and change              |                                |
-| limits[]          | Cpu                                         | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
-|                   | Memory                                      | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
-| requests[]        | Cpu                                         | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
-|                   | Memory                                      | Can decrease and change unit (Gi - Mi)  | Cannot increase<br>Cannot remove unit |
-| environments[]    | externalURLs[]                             | Can add, remove and change              |                                |
-|                   | externalIPs[]                              | Can add, remove and change              |                                |
-|                   | name                                        | Can add new name                        | Cannot change or delete existing |
-|                   | custom_auto_defined_<br>targetRevision         | Can add, remove and change              |                                |
-| backup[]          | take_backup                                | Can change                              |                                |
-|                   | Schedules[]                                | Can add, remove and change              |                                |
-| argocd           | enable_auto_defined_apps<br>enable_user_defined_apps<br>enable_user_defined_apps_legacy                                | Can add, remove and change              |                                |
-| slack_alert_integration             | All values                                 | Can add, remove and change              |                                |
-| monitoring        | All values                                 | Can add, remove and change              |                                |
+| labels[]          | <Key: value>                               | Add<br>Remove<br>Change              |                                |
+| limits[]          | Cpu                                         | Decrease<br>Change unit<br>(Gi - Mi)  | Increase<br>Remove unit |
+|                   | Memory                                      | Decrease<br>Change unit<br>(Gi - Mi)  | Increase<br>Remove unit |
+| requests[]        | Cpu                                         | Decrease<br>Change unit<br>(Gi - Mi)  | Increase<br>Remove unit |
+|                   | Memory                                      | Decrease<br>Change unit<br>(Gi - Mi)  | Increase<br>Remove unit |
+| environments[]    | externalURLs[]                             | Add<br>Remove<br>Change               |                                |
+|                   | externalIPs[]                              | Add<br>Remove<br>Change               |                                |
+|                   | name                                        | Add                       | Change<br>Remove |
+|                   | custom_auto_defined_<br>targetRevision         | Add<br>Remove<br>Change               |                                |
+| backup[]          | take_backup                                | Change                              |                                |
+|                   | Schedules[]                                | Add<br>Remove<br>Change               |                                |
+| argocd           | enable_auto_defined_apps<br>enable_user_defined_apps<br>enable_user_defined_apps_legacy                                | Add<br>remove<br>change              |                                |
+| slack_alert_integration             | All values                                 | Add<br>Remove<br>Change               |                                |
+| monitoring        | All values                                 | Add<br>remove<br>Change               |                                |
 
 
 ## Required Status Checks to Pass Before Merging
