@@ -18,6 +18,7 @@ To configure an environment within a namespace, include the following YAML confi
         - <URL's that should be reachable from the environment (e.g. google.com)>
       externalIPs:
         - <IP adresses that should be reachable from environment in CIDR format (e.g. 10.218.0.0/24)>
+      egressip_selector: <Label that matches namespaceselector in EgressIP objects>
 ...
 ```
 
@@ -34,6 +35,7 @@ In the table below, you can find a more detailed description of each variable in
 | `environments[].custom_auto_defined_targetRevision`    | Set to true if targetRevision should be set by application folder name. Default `false`. | `true`   | Boolean    |
 |  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     |
 | `environments[].externalIPs`    | A list of IP ranges that should be reached from the tenant environment | [0.0.0.0/0, 92.0.2.1/24]   | List     |
+| `environments[].egressip_selector` | The label value for egressip-selector. Should match a EgressIP objects namespaceselector. | Dev | String |
 
 
 ### Custom targetRevision
