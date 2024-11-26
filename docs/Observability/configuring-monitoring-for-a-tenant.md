@@ -19,6 +19,10 @@ This user guide will provide you with further insights and detailed instructions
 ## Overview of Alerts
 We have created a set of alerts tailored to enhance your monitoring and alerting capabilities within your Prometheus environment. These alerts are designed to help you proactively identify issues and ensure the smooth operation of your systems and services. Below, we provide an overview of the various alert groups we've developed for you to use effectively. Each group is carefully crafted to address specific aspects of your infrastructure and applications, empowering you to take action swiftly when needed. Explore the following alert groups to gain deeper insights into your monitoring and make informed decisions.
 
+### Enable Default Monitoring
+
+- Enable or disable all the monitoring rules listed below. Default `true`.
+
 ### Container Alerts
 
 - This group of alerts focuses on monitoring Kubernetes containers. These alerts help you stay informed about container-related issues that may affect your applications.
@@ -65,11 +69,18 @@ We have created a set of alerts tailored to enhance your monitoring and alerting
 - This group of alerts focuses on monitoring Kubernetes StatefulSets. These alerts help you ensure the correct behavior of your StatefulSets.
 - `KubernetesStatefulsetReplicasMismatch`: This alert triggers when a Kubernetes StatefulSet's ready replicas do not match the total replicas.
 
+### Resource Quota Alerts
+
+- This group of alerts focuses on monitoring resource quota usage within namespaces. These alerts help ensure that resource limits are respected to maintain the stability of the cluster.
+- `MemoryUsageExceeded`: This alert triggers when memory usage in a namespace exceeds 80% of the defined hard limit for 15 minutes.
+- `CpuUsageExceeded`: This alert triggers when CPU usage in a namespace exceeds 80% of the defined hard limit for 15 minutes.
+
 ### How to disable group alarms
 To disable a group alert you need to set a group alert to false in your tenant configuration. 
 
 ```yaml
 monitoring:
+  enabledefaultmonitoring: true  # Set to false to diable all alerts
   containerAlertsEnabled: false  # Set to false to disable the ContainerAlerts group
   jobCronJobAlertsEnabled: true
   storageAlertsEnabled: true
@@ -77,7 +88,7 @@ monitoring:
   replicasSetsAlertsEnabled: true
   deploymentsAlertsEnabled: true
   statefulSetsAlertsEnabled: true
-
+  resourceQuotaAlertsEnabled: true
 ```
 
 ## Configure your own alerts
@@ -435,4 +446,32 @@ You have access to configuring your Alertmanager configuration specific to your 
     annotations:
       summary: 'Kubernetes StatefulSet update not rolled out (instance {{`{{ $labels.instance }})`}}'
       description: "StatefulSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.statefulset }}`}} update has not been rolled out.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+### Resource Quota Alerts
+
+=== "MemoryUsageExceeded"
+    ```yaml
+    alert: MemoryUsageExceeded
+    expr: (sum by (name)(openshift_clusterresourcequota_usage{type="used", resource="limits.memory", name="{{ $.Values.namespace.name }}"}) / sum by (name)(openshift_clusterresourcequota_usage{type="hard", resource="limits.memory", name="{{ $.Values.namespace.name }}"})) * 100 >= 80
+    for: 15m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
+      severity: warning
+    annotations:
+      summary: Memory usage for {{ $.Values.namespace.name }} exceeded 80%
+      description: Memory usage for {{ $.Values.namespace.name }} has reached or exceeded 80% of its hard limit.
+    ```
+
+=== "CpuUsageExceeded"
+    ```yaml
+    alert: CpuUsageExceeded
+    expr: (sum by (name)(openshift_clusterresourcequota_usage{type="used", resource="limits.cpu", name="{{$.Values.namespace.name }}"}) / sum by (name)(openshift_clusterresourcequota_usage{type="hard", resource="limits.cpu", name="{{ $.Values.namespace.name }}"})) * 100 >= 80
+    for: 15m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
+      severity: warning
+    annotations:
+      summary: ClusterResourceQuota CPU Usage Exceeded for instance = {{`{{ $labels.name }}`}}
+      description: Resource {{ $.Values.namespace.name }} is using more than 80% of its hard limit for CPU. VALUE = {{`{{ $value }}`}}, LABELS = {{`{{ $labels.name }}`}}
     ```
