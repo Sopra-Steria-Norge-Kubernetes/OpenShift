@@ -1,8 +1,8 @@
 ---
-Title: How to use ExternalIP
+Title: How to use EgressIP
 ---
 
-# How to use ExternalIP
+# How to use EgressIP
 
 ## Routine
 
