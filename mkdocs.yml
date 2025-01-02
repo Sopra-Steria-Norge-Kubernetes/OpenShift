@@ -31,6 +31,9 @@ nav:
       - Backup: OpenShift Tenants/Tenant features/backup.md
       - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
+      - Team: OpenShift Tenants/Tenant features/team.md
+    - Tenant team:
+      - Team-introduction: OpenShift Tenants/Tenant team/team-introduction.md 
   - OpenShift GitOps:
     - Introduction to GitOps on OpenShift: OpenShift GitOps/Introduction-GitOps.md
     - GitOps Setup: OpenShift GitOps/gitops-setup.md

@@ -15,6 +15,9 @@ Below is all the currently possible parameters available for your `values.yaml` 
 ``` yaml title="values.yaml"
 appname: <Tenant Name>
 values: |
+  team:
+    team_name: <team name>
+    grafana_datasource: true
   namespace:
     name: <Tenant Name>
     description: <Tenant Description>
