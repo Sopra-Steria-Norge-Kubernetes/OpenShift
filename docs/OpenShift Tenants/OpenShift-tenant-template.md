@@ -111,6 +111,107 @@ values: |
     
 ```
 
+Below is an example of all the currently possible parameters available for your `values.yaml` configuration file with ONLY the default values filled in:
+
+``` yaml title="values.yaml"
+appname: ""
+values: |
+  team:
+    team_name: ""
+    grafana_datasource: false
+  namespace:
+    name: ""
+    description: ""
+    displayName: ""
+    use_egress_firewall: true
+    enable_tooling: true
+    deploy_grafana: true
+    limits:
+      enable: true
+      memory: 1Gi
+      cpu: 1
+    requests:
+      enable: false
+      memory: 1Gi
+      cpu: 1
+    container_limitrange:
+      enable: true
+       limits:
+        memory: "1Gi"
+        cpu: "250m"
+      requests:
+        memory: ""  
+        cpu: ""
+    labels:
+      custom_labels:
+        <key>: <value>
+        <key>: <value>
+
+  environments:
+    - name: ""
+      allow_to_internet: false
+      custom_auto_defined_targetRevision: false
+      externalURLs:
+        - 
+      externalIPs:
+        - 
+
+  networkPolicy:
+    allow_same_namespace: true
+    allow_from_openshift_monitoring: true
+    allow_from_openshift_ingress: true
+    allow_from_kube_apiserver_operator: true
+    allow_from_grafana_operator: true
+    allow_from_ECK_operator: true
+
+  rbac:
+    ad_group_write_access: ""
+    ad_group_read_access: ""
+
+  argocd: 
+    enable_user_defined_apps: false
+    enable_auto_defined_apps: true
+    syncPolicy:
+      selfHeal: true
+      prune: true
+    main_git_repository:
+      repourl: ""
+      basepath: ""
+      encrypted_url: ""
+      encrypted_type: ""
+      encrypted_password: ""
+      encrypted_username: ""
+      github_app: ""
+        enable_app: false
+        id: ""
+        installation_id: 
+        private_key: ""
+      ssh_key:
+        enable_ssh_key: false
+        private_key: ""
+      
+  backup:
+    backuplabel: ""
+    take_backup: false
+    schedules: 
+      - schedule: ""
+        name: "" 
+        ttl: ""
+
+  external_secrets:
+    azure_tenant_id: ""
+    keyvault_credentials:
+      client_id: ""
+      client_secret: ""
+
+  slack_alert_integration:
+    enable: false
+    alert_severity: ""
+    webhook_secret:
+      encrypted_webhookURL: ""
+    
+```
+
 To read more about all the Tenant Features available go to the section: 
 
 - [Tenant Features](../OpenShift%20Tenants/Tenant%20features/landingpage.md)
