@@ -37,8 +37,8 @@ By setting these parameters, you can securely connect your OpenShift cluster to 
 In the table below, there is a more detailed description of each variable in the `backup` feature:
 
 
-| <div style="width:255px">**Variable**</div>                         | **Description**                                  | **Example**                | **Type**  |
-|--------------------------------------|--------------------------------------------------|----------------------------|-----------|
-| `azure_tenant_id`                    | The Azure Tenant ID that your organisation uses for storing its Azure Key Vaults  |d93d3d23-50e3-46db-b3ad-8c6c281b431e      | String    |
-| `keyvault_credentials.client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    |
-| `keyvault_credentials.client_secret`  | Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    |
+| <div style="width:255px">**Variable**</div>                         | **Description**                                  | **Example**                | **Type**  | **Default Value**  |
+|--------------------------------------|--------------------------------------------------|----------------------------|-----------|--------|
+| `azure_tenant_id`                    | The Azure Tenant ID that your organisation uses for storing its Azure Key Vaults  |d93d3d23-50e3-46db-b3ad-8c6c281b431e      | String    | "" |
+| `keyvault_credentials.client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    | "" |
+| `keyvault_credentials.client_secret`  | Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    | "" |

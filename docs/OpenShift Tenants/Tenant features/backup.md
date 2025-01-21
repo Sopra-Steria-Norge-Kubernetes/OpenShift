@@ -27,14 +27,14 @@ By setting these parameters, you can automate the process of taking regular back
 In the table below, there is a more detailed description of each variable in the `backup` feature:
 
 
-| <div style="width:155px">**Variable**</div>                     | **Description**                                           | **Example**                | **Type**  |
-|----------------------------------|-----------------------------------------------------------|----------------------------|-----------|
-| `backuplabel`             | The label to set for backups. If this label is not set, a backup of your applications will not be taken. It needs to be on the format `Key: value` | "backupresource: true"| String   |
-| `take_backup`             | Used to specify whether backups should be taken or not in the Tenant.  | true     | Boolean   |
-| `schedules[]`      | A list of backup schedules that will be implemented for the tenant |  | List    |
-| `schedules[].schedule`      | The schedule at which backups should be taken in cron time format | "0 0 * * *"             | String    |
-| `schedules[].name`          | The name of the backup schedule. It is prefixed with the name of the tenant. If the tenant name is `poseidon1` and this variable is set to `daily`, the backup schedule will be called `poseidon1-daily`                         | "daily"            | String    |
-| `schedules[].ttl`       | The time until the backup is deleted. It is in the format of `XXXhYYmZZs`, where `XXX` is the number of hours, `YY` is the number of minutes, and `ZZ` is the number of seconds. For example, `24h0m0s` would indicate that the backup should be deleted after 24 hours.| "48h0m0s"                 | String    |
+| <div style="width:155px">**Variable**</div>                     | **Description**                                           | **Example**                | **Type**  | **Default Value**  |
+|----------------------------------|-----------------------------------------------------------|----------------------------|-----------|---------|
+| `backuplabel`             | The label to set for backups. If this label is not set, a backup of your applications will not be taken. It needs to be on the format `Key: value` | "backupresource: true"| String   | "" |
+| `take_backup`             | Used to specify whether backups should be taken or not in the Tenant.  | true     | Boolean   | false |
+| `schedules[]`      | A list of backup schedules that will be implemented for the tenant |  | List    | "" |
+| `schedules[].schedule`      | The schedule at which backups should be taken in cron time format | "0 0 * * *"             | String    | "" |
+| `schedules[].name`          | The name of the backup schedule. It is prefixed with the name of the tenant. If the tenant name is `poseidon1` and this variable is set to `daily`, the backup schedule will be called `poseidon1-daily`                         | "daily"            | String    | "" |
+| `schedules[].ttl`       | The time until the backup is deleted. It is in the format of `XXXhYYmZZs`, where `XXX` is the number of hours, `YY` is the number of minutes, and `ZZ` is the number of seconds. For example, `24h0m0s` would indicate that the backup should be deleted after 24 hours.| "48h0m0s"                 | String    | "" |
 
 ## Further reading
 
