@@ -25,13 +25,13 @@ By setting these parameters, you can define the specific network rules that gove
 Each sub-component should have either a `true` or `false` value. The default value is set to `true` for each sub-component. 
 In the table below, you can find a more detailed description of each variable in the `networkpolicy` feature:
 
-| <div style="width:255px">**Variable**</div>                                 | **Description**                                           | **Example**                 | **Type**  |
-|-----------------------------------------------|-----------------------------------------------------------|-----------------------------|-----------|
-| `allow_same_namespace`          | Allows or disallows network communication within the same namespace | true        | Boolean   |
-| `allow_from_openshift_monitoring` | Allows or disallows network communication to OpenShift monitoring | true         | Boolean   |
-| `allow_from_openshift_ingress`  | Allows or disallows incoming network traffic from OpenShift Ingress controllers | true        | Boolean   |
-| `allow_from_kube_apiserver_operator` | Allows or disallows communication to Kubernetes API Server Operator. Allowing communication from the operator ensures proper management and maintenance of the API server. | false         | Boolean   |
-| `allow_from_grafana_operator`    | Allows or disallows communication to Grafana Operator      | true      | Boolean   |
+| <div style="width:255px">**Variable**</div>                                 | **Description**                                           | **Example**                 | **Type**  | **Default Value**
+|-----------------------------------------------|-----------------------------------------------------------|-----------------------------|-----------|------|
+| `allow_same_namespace`          | Allows or disallows network communication within the same namespace | true        | Boolean   | true |
+| `allow_from_openshift_monitoring` | Allows or disallows network communication to OpenShift monitoring | true         | Boolean   | true |
+| `allow_from_openshift_ingress`  | Allows or disallows incoming network traffic from OpenShift Ingress controllers | true        | Boolean   | true |
+| `allow_from_kube_apiserver_operator` | Allows or disallows communication to Kubernetes API Server Operator. Allowing communication from the operator ensures proper management and maintenance of the API server. | false         | Boolean   | true |
+| `allow_from_grafana_operator`    | Allows or disallows communication to Grafana Operator      | true      | Boolean   | true |
 
 
 ## Further reading

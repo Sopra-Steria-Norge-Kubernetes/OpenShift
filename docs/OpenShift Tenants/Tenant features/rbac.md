@@ -20,10 +20,10 @@ To configure RBAC settings for your OpenShift tenant using a Helm chart, include
 
 The `rbac` feature defines Role-Based Access Control (RBAC) settings for your OpenShift tenant.  It includes the following variables:
 
-| <div style="width:160px">**Variable**</div>                   | **Description**                                                  | **Example**                    | **Type**  |
-|-------------------------------|------------------------------------------------------------------|--------------------------------|-----------|
-| `ad_group_write_access`       | Azure AD group given admin access to the tenant                  | AD-poseidon1-write        | String    |
-| `ad_group_read_access`        | Azure AD group given read-only access to the tenant              | AD-poseidon1-read        | String    |
+| <div style="width:160px">**Variable**</div>                   | **Description**                                                  | **Example**                    | **Type**  | **Defualt Value**
+|-------------------------------|------------------------------------------------------------------|--------------------------------|-----------|-------|
+| `ad_group_write_access`       | Azure AD group given admin access to the tenant                  | AD-poseidon1-write        | String    | "" |
+| `ad_group_read_access`        | Azure AD group given read-only access to the tenant              | AD-poseidon1-read        | String    | "" |
 
 
 ## Further reading
