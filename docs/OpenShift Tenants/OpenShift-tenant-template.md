@@ -90,7 +90,18 @@ values: |
       ssh_key:
         enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
         private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
-      
+
+  gitops:
+    helm_registry:
+      enable_custom_helm_registries: false
+      enableOCI: "" # Global variable - decrypted value true for namespace gitops-developer - Encrypted and sat by cluster admins
+      type: "" # Global variable - decrypted helm for namespace gitops-developer - Encrypted and sat by cluster admins
+      helm_registries:
+      - repository_name: "" # Encrypted secretname
+        url: "" # Encrypted helm URL
+        password: "" # Encrypted password
+        username: "" # Encrypted username
+
   backup:
     backuplabel: <Label name you want to use for backups>
     take_backup: <Boolean if backup should be taken or not>
