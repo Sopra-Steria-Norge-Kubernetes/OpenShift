@@ -46,6 +46,43 @@ Configure pull permissions for the App Registration to the ACR:
 
 Now that we have configured an App Registration and an ACR with the needed permissions and noted down the different variables we need. We configure the sealed secret we need for the Argo CD integration.
 
+The values needed for the following step is as follows:
+
+- Application ID (Client ID)
+- Application Secret (Client Secret)
+- ACR Login server
+- ACR Name
+
+The first step for configuring the sealed secret is to base64 encode the previously noted down values. This can be done by using the following terminal command:
+
+```
+echo -n '<YOUR_VALUE>' | base64
+```
+
+After the base64 encoding, we need to create a generic secrets.yml in order to generate the sealed secret values. The following code shows how this can be done correctly:
+
+```yaml title="secrets.yml"
+apiVersion: v1
+kind: Secret
+metadata:
+  name: example
+  namespace: example
+type: Opaque
+Data:
+  name: <ACR_NAME_BASE64_ENCODED>
+  enableOCI: <BASE64_ENCODED> # base64 encoded value of 'True'
+  type: <BASE64_ENCODED> # base64 encoded value of 'helm'
+  password: <CLIENT_SECRET_BASE64_ENCODED>
+  username: <CLIENT_ID_BASE64_ENCODED>
+  url: <ACR_LOGIN_SERVER_BASE64_ENCODED>
+```
+
+Now that we have a generic secrets.yml we can generate our sealed secret values using kubeseal with the following kubeseal command:
+
+```
+kubeseal --cert certificates/aro-test-1/sealed_secret_public.crt --scope namespace-wide -f kubeseal/private-helm.yml -o yaml
+```
+
 In the tenant definition file we need to configure the gitops section. When empty, this is what section looks like:
 
 ``` yaml title="values.yaml"
@@ -55,8 +92,8 @@ In the tenant definition file we need to configure the gitops section. When empt
       enableOCI: "" # Global variable - decrypted value true for namespace gitops-developer - Encrypted and sat by cluster admins
       type: "" # Global variable - decrypted helm for namespace gitops-developer - Encrypted and sat by cluster admins
       helm_registries:
-      - repository_name: "" # Encrypted secretname
-        url: "" # Encrypted helm URL
-        password: "" # Encrypted password
-        username: "" # Encrypted username
+      - repository_name: "" # Sealed secret ACR Name
+        url: "" # Sealed secret ACR Login Server
+        password: "" # Sealed secret Client Secret
+        username: "" # Sealed secret Client ID
 ```

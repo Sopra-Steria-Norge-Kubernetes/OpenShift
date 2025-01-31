@@ -97,10 +97,10 @@ values: |
       enableOCI: "" # Global variable - decrypted value true for namespace gitops-developer - Encrypted and sat by cluster admins
       type: "" # Global variable - decrypted helm for namespace gitops-developer - Encrypted and sat by cluster admins
       helm_registries:
-      - repository_name: "" # Encrypted secretname
-        url: "" # Encrypted helm URL
-        password: "" # Encrypted password
-        username: "" # Encrypted username
+      - repository_name: "" # Sealed secret ACR Name
+        url: "" # Sealed secret ACR Login Server
+        password: "" # Sealed secret Client Secret
+        username: "" # Sealed secret Client ID
 
   backup:
     backuplabel: <Label name you want to use for backups>
