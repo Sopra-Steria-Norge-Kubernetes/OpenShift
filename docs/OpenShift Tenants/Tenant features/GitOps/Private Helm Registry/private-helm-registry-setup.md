@@ -10,8 +10,11 @@ How to configure an App Registration int the azure portal:
 
 1. In the Azure portal, select Microsoft Entra ID
 2. Select App registrations
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/app-reg-step-2.png)
 3. Select New registration
 4. For Supported account types, select Accounts in this organization directory only. Leave the other options as is
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/app-reg-step-4.png)
+
 5. Select Register
 
 In addition to configuring an App Registration we need to create a client secret for the App Registration, which can be done by following these steps:
@@ -19,6 +22,8 @@ In addition to configuring an App Registration we need to create a client secret
 1. In the App Registartion navigate to Manage -> Certificates & secrets
 2. Select 'New client secret'
 3. Choose an appropriate name and expiary date of the client secret
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/app-reg-client-secret.png)
+
 4. Select Add
 
 Before moving on note down the Application ID (client ID) and the client secret just created. These will be needed for steps in a later section.
@@ -30,7 +35,9 @@ The ACR configuration for this process is also very simple. If there is already 
 How to configure an Azure Container Registry in the azure portal:
 
 1. Select Create a resource -> Containers -> Container Registry
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-1.png)
 2. In the Basics tab, enter values for Resource group, Registry name, Location and SKU type
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-2.png)
 3. Accept default values for the remaining settings. Then select Review + create. After reviewing the settings, select Create
 
 In this setup we want tu use the App Registration to pull the private helm registry from the ACR. Therefore, we need to give the App Registration the sufficiant permissions to do so. This is configured through the ACR itself.
@@ -41,6 +48,8 @@ Configure pull permissions for the App Registration to the ACR:
 2. In the Role tab search for and select the ArcPull role. Then select Members
 3. In the Members tab, search for and select the App Registration. Then select Review and assign
 4. After reviewing the assignment, select Review and assign again
+
+Before moving on we need to note down the ACR Login Server and the ACR Name which will be needed when configuring the sealed secret later on.
 
 ## Configuring a Sealed Secret for integration with Argo CD
 
