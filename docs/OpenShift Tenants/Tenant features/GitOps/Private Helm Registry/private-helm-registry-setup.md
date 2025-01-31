@@ -14,7 +14,6 @@ How to configure an App Registration int the azure portal:
 3. Select New registration
 4. For Supported account types, select Accounts in this organization directory only. Leave the other options as is
 ![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/app-reg-step-4.png)
-
 5. Select Register
 
 In addition to configuring an App Registration we need to create a client secret for the App Registration, which can be done by following these steps:
