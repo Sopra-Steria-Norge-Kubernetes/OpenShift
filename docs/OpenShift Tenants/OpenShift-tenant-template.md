@@ -9,6 +9,8 @@ externally-exposed: true
 
 To order an OpenShift tenant, you need to submit a values file to Sopra Steria through the designated ordering process. Based on the content of the submitted tenant form, different environments and resources will be created within an OpenShift cluster.
 
+## OpenShift Tenant Template
+
 Below is all the currently possible parameters available for your `values.yaml` configuration file that you need to fill out with your specific tenant details:
 
 

@@ -28,14 +28,14 @@ By configuring these parameters, you can define multiple environments within a n
 
 In the table below, you can find a more detailed description of each variable in the `environment` feature:
 
-|  <div style="width:255px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** |
-|------------------------------|------------------------------------------------------------------------|----------------------------|----------|
-| `environments[].name`          | Name of environment                                                    | test                       | String   |
-| `environments[].allow_to_internet`    | Set to `true` if environment should be exposed to internet. Default `false`. | `true`   | Boolean    |
-| `environments[].custom_auto_defined_targetRevision`    | Set to true if targetRevision should be set by application folder name. Default `false`. | `true`   | Boolean    |
-|  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     |
-| `environments[].externalIPs`    | A list of IP ranges that should be reached from the tenant environment | [0.0.0.0/0, 92.0.2.1/24]   | List     |
-| `environments[].egressip_selector` | The label value for egressip-selector. Should match a EgressIP objects namespaceselector. | Dev | String |
+|  <div style="width:255px">**Variable**</div>                | **Description**                                                        | **Example**                | **Type** | **Default Value** |
+|------------------------------|------------------------------------------------------------------------|----------------------------|----------|----------|
+| `environments[].name`          | Name of environment                                                    | test                       | String   | "" |
+| `environments[].allow_to_internet`    | Set to `true` if environment should be exposed to internet. Default `false`. | `true`   | Boolean    | false |
+| `environments[].custom_auto_defined_targetRevision`    | Set to true if targetRevision should be set by application folder name. Default `false` | `true`   | Boolean    | false |
+|  `environments[].externalURLs` | A list of URLs that should be reached from a tenant environment | [ testurl.com, google.com] | List     | "" |
+| `environments[].externalIPs`    | A list of IP ranges that should be reached from the tenant environment | [0.0.0.0/0, 92.0.2.1/24]   | List     | "" |
+| `environments[].egressip_selector` | The label value for egressip-selector. Should match a EgressIP objects namespaceselector. | Dev | String | "" |
 
 
 ### Custom targetRevision

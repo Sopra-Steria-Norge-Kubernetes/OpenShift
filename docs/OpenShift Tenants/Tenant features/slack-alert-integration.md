@@ -33,10 +33,10 @@ This integration uses an encrypted Slack webhook URL stored as a secret to send 
 
 Below is a detailed description of each variable in the `slack_alert_integration` feature:
 
-| <div style="width:260px">**Variable**</div>                            | **Description**                                                                                  | **Example**                              | **Type**                   |
-|-----------------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------|----------------------------|
-| `enable`                                | Toggle the Slack alert integration feature. Set to `True` to enable.                             | `False`                                  | Boolean                    |
-| `alert_severity`                        | The severity level of alerts to be sent. Multiple severities can be specified, separated by `|`. | `critical` or `critical|warning|info` | String                     |
-| `webhook_secret.encrypted_webhookURL`   | The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.                   | *Encrypted String*                       | Kubeseal encrypted String  |
+| <div style="width:260px">**Variable**</div>                            | **Description**                                                                                  | **Example**                              | **Type**                   | **Default Value**  |
+|-----------------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------|----------------------------|----------|
+| `enable`                                | Toggle the Slack alert integration feature. Set to `True` to enable.                             | `False`                                  | Boolean                    | false |
+| `alert_severity`                        | The severity level of alerts to be sent. Multiple severities can be specified, separated by `|`. | `critical` or `critical|warning|info` | String                     | "" |
+| `webhook_secret.encrypted_webhookURL`   | The encrypted Slack webhook URL to be decrypted at runtime for sending alerts.                   | *Encrypted String*                       | Kubeseal encrypted String  | "" |
 
 
