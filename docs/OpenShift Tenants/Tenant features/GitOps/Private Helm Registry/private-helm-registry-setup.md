@@ -1,12 +1,12 @@
 # Setting Up a Private Helm Registry with Argo CD
 
-In order to create a private helm registry there is a few configuration steps that need to be done. In the azure environment it needs to be configured an App Registration and an Azure Container Registry (ACR). In addition to these azure resources, there is a need to configure a sealed secret using kubeseal which can will be used to integrated Argo CD to pull the private helm registry from the ACR through the App Registration. 
+In order to create a private helm registry there is a few configuration steps that need to be done. In the Azure environment it needs to be configured an App Registration and an Azure Container Registry (ACR). In addition to these Azure resources, there is a need to configure a sealed secret using kubeseal which can will be used to integrated Argo CD to pull the private helm registry from the ACR through the App Registration. 
 
 ## Configuring an App Registration
 
-The App Registartion configuration for this process is very simple. If there is already an App Registration present in the azure environment it is possile to use that one, however, if it´s wanted to configure a new App Registration for the specific purpose of this setup it would be sufficiant to create a default App Registration with no application permissions.
+The App Registartion configuration for this process is very simple. If there is already an App Registration present in the Azure environment it is possile to use that one, however, if it´s wanted to configure a new App Registration for the specific purpose of this setup it would be sufficiant to create a default App Registration with no application permissions.
 
-How to configure an App Registration int the azure portal:
+How to configure an App Registration int the Azure portal:
 
 1. In the Azure portal, select Microsoft Entra ID
 2. Select App registrations
@@ -29,9 +29,9 @@ Before moving on note down the Application ID (client ID) and the client secret 
 
 ## Configuring an Azure Container Registry
 
-The ACR configuration for this process is also very simple. If there is already an ACR present in the azure environment it is possile to use that one, however, if it´s wanted to it is possible to configure a new ACR for the specific purpose of this setup.
+The ACR configuration for this process is also very simple. If there is already an ACR present in the Azure environment it is possile to use that one, however, if it´s wanted to it is possible to configure a new ACR for the specific purpose of this setup.
 
-How to configure an Azure Container Registry in the azure portal:
+How to configure an Azure Container Registry in the Azure portal:
 
 1. Select Create a resource -> Containers -> Container Registry
 ![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-1.png)
