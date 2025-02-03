@@ -1,6 +1,6 @@
 # Setting Up a Private Helm Registry with Argo CD
 
-In order to create a private helm registry there is a few configuration steps that need to be done. In the Azure environment it needs to be configured an App Registration and an Azure Container Registry (ACR). In addition to these Azure resources, there is a need to configure a sealed secret using kubeseal which can will be used to integrated Argo CD to pull the private helm registry from the ACR through the App Registration. 
+To create a private helm registry there are a few configuration steps that need to be done. In the Azure environment we need to configure an App Registration and an Azure Container Registry (ACR). In addition to these Azure resources, we need to configure sealed secrets using kubeseal which will be used to integrate Argo CD, and make it able to pull helm templates from the private helm registry in an ACR through the App Registration.
 
 ## Configuring an App Registration
 

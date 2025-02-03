@@ -25,8 +25,8 @@ Any change outside these fields will result in a manual approval.
 |                   | Schedules[]                                | Add<br>Remove<br>Change               |                                |
 | argocd           | enable_auto_defined_apps<br>enable_user_defined_apps<br>enable_user_defined_apps_legacy                                | Add<br>remove<br>change              |                                |
 | slack_alert_integration             | All values                                 | Add<br>Remove<br>Change               |                                |
-| monitoring        | All values                                 | Add<br>remove<br>Change               |                                |
-
+| monitoring        | All values                                 | Add<br>Remove<br>Change               |                                |
+| gitops            | All values                                 | Add<br>Remove<br>Change               | Blank fields               |
 
 ## Required Status Checks to Pass Before Merging
 To ensure that no changes outside of monitored fields are merged, specific status checks must pass before any changes can be merged. This process includes several key steps:
