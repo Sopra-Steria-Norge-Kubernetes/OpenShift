@@ -94,8 +94,8 @@ values: |
   gitops:
     helm_registry:
       enable_custom_helm_registries: false
-      enableOCI: "" # Global variable - decrypted value true for namespace gitops-developer - Encrypted and sat by cluster admins
-      type: "" # Global variable - decrypted helm for namespace gitops-developer - Encrypted and sat by cluster admins
+      enableOCI: "" # Global variable - decrypted value 'True' for namespace gitops-developer - Encrypted and sat by cluster admins
+      type: "" # Global variable - decrypted 'helm' for namespace gitops-developer - Encrypted and sat by cluster admins
       helm_registries:
       - repository_name: "" # Sealed secret ACR Name
         url: "" # Sealed secret ACR Login Server
