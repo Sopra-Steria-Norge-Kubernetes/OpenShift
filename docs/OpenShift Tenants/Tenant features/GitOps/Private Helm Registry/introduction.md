@@ -37,7 +37,7 @@ Configure Private Helm Registry:
 
 For more detailed instructions on how to set up the Azure environment visit:
 
-[Private Helm Registry Azure Configuration](private-helm-registry-setup.md)
+[Private Helm Registry Azure Configuration](private-helm-registry-azure.md)
 
 ## OpenShift Tenant Configuration
 
