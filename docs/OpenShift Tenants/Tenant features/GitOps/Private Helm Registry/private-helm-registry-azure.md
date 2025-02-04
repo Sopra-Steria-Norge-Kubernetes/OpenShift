@@ -6,8 +6,8 @@ The following steps must be done to setup a Private Helm Registery in Azure with
 
 1. Configure Azure Container Registry
 2. Configure Authentication for Argo CD 
-   1. [Method 1 - Configuring ACR Access Token Authenticatio](#configuring-acr-access-token-authentication-method-1)
-   2. [Method 2 - Configuring App Registration Authentication](#configuring-app-registration-authentication-method-2)
+    1. [Method 1 - Configuring ACR Access Token Authenticatio](#configuring-acr-access-token-authentication-method-1)
+    2. [Method 2 - Configuring App Registration Authentication](#configuring-app-registration-authentication-method-2)
 
 
 ## Step 1 - Configuring an Azure Container Registry
