@@ -1,22 +1,22 @@
-# Private Helm Registry - OpenShift Tenant
+# Private Helm Registry Openshift Tenant Configuration
 
 ## Configuring a Sealed Secret for integration with Argo CD
 
 Now that we have configured the ACR access token or an App Registration with the appropriate permissions, an ACR aswell as noted down the required variables. We configure the sealed secret needed for the Argo CD integration.
 
-Before moving on to the next step we need to have the appropriate values noted down. **Note that the chosen method of authentication will dictate which values needed for the username and password.**
+Before moving on to the next step we need to have the appropriate values noted down. **Note that the chosen method of authentication will dictate the values needed for the username and password.**
 
 The following values are not dependant on the authentication method:
 
 - **url**: ACR Login server
 - **name**: ACR Name
 
-The following values are needed if **method 1** is chosen for authentication:
+The following values are required if **method 1** is chosen for authentication:
 
 - **username**: ACR username
 - **password**: access token
 
-The following values are needed if **method 2** is chosen for authentication:
+The following values are required if **method 2** is chosen for authentication:
 
 - **username:** Application ID (Client ID)
 - **password:** Application Secret (Client Secret)
