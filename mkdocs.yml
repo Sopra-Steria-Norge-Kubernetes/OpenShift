@@ -28,6 +28,10 @@ nav:
           - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-personal-access-token.md
           - Authenticate with GitHub App: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-github-app.md
           - Authenticate with SSH: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-ssh.md
+        - Private Helm Registry:
+          - Introduction: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/introduction.md
+          - Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
+          - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
       - Backup: OpenShift Tenants/Tenant features/backup.md
       - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
