@@ -1,12 +1,35 @@
 # Setting Up a Private Helm Registry with Argo CD
 
-To create a private helm registry there are a few configuration steps that need to be done. In the Azure environment we need to configure an App Registration and an Azure Container Registry (ACR). In addition to these Azure resources, we need to configure sealed secrets using kubeseal which will be used to integrate Argo CD, and make it able to pull helm templates from the private helm registry in an ACR through the App Registration.
+<!-- To create a private helm registry there are a few configuration steps that need to be done. In the Azure environment we need to configure an Azure Container Registry (ACR). To authenticate towards the ACR we have two methodes. The recommended method involves using an ACR access token and the ACR username for authentication. The second method would be to configure authentication through an App Registartion using the Application ID and an Application Secret. In addition to these Azure resources, we need to configure sealed secrets using kubeseal which will be used to integrate Argo CD. -->
 
-## Configuring an App Registration
+When configuring a private helm registry with Argo CD, there are two different methodes that can be used for authentication. The recommended approach would be using ACR access tokens:
 
-The App Registartion configuration for this process is very simple. If there is already an App Registration present in the Azure environment it is possile to use that one, however, if it´s wanted to configure a new App Registration for the specific purpose of this setup it would be sufficiant to create a default App Registration with no application permissions.
+- [ACR Access Token Authentication **(Method 1)**](#configuring-acr-access-token-authentication-method-1)
+- [App Registration Authentication **(Method 2)**](#configuring-app-registration-authentication-method-2)
 
-How to configure an App Registration int the Azure portal:
+## Configuring an Azure Container Registry
+
+Configuring Azure Container Registry:
+
+1. Select Create a resource -> Containers -> Container Registry
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-1.png)
+2. In the Basics tab, enter values for Resource group, Registry name, Location and SKU type
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-2.png)
+3. Accept default values for the remaining settings. Then select Review + create. After reviewing the settings, select Create
+
+Note down the ACR Login Server and the ACR Name.
+
+### Configuring ACR Access Token Authentication **(Method 1)**
+
+Configure ACR access token:
+
+1. In the ACR navigate to Access control Settings -> Access Keys
+2. Create a access token
+3. Note down the username and access token
+
+### Configuring App Registration Authentication **(Method 2)**
+
+Configure an App Registration:
 
 1. In the Azure portal, select Microsoft Entra ID
 2. Select App registrations
@@ -16,92 +39,21 @@ How to configure an App Registration int the Azure portal:
 ![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/app-reg-step-4.png)
 5. Select Register
 
-In addition to configuring an App Registration we need to create a client secret for the App Registration, which can be done by following these steps:
+Configure Client Secret for the App Registration:
 
 1. In the App Registartion navigate to Manage -> Certificates & secrets
 2. Select 'New client secret'
 3. Choose an appropriate name and expiary date of the client secret
 ![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/app-reg-client-secret.png)
-
 4. Select Add
 
-Before moving on note down the Application ID (client ID) and the client secret just created. These will be needed for steps in a later section.
-
-## Configuring an Azure Container Registry
-
-The ACR configuration for this process is also very simple. If there is already an ACR present in the Azure environment it is possile to use that one, however, if it´s wanted to it is possible to configure a new ACR for the specific purpose of this setup.
-
-How to configure an Azure Container Registry in the Azure portal:
-
-1. Select Create a resource -> Containers -> Container Registry
-![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-1.png)
-2. In the Basics tab, enter values for Resource group, Registry name, Location and SKU type
-![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/acr-step-2.png)
-3. Accept default values for the remaining settings. Then select Review + create. After reviewing the settings, select Create
-
-In this setup we want tu use the App Registration to pull the private helm registry from the ACR. Therefore, we need to give the App Registration the sufficiant permissions to do so. This is configured through the ACR itself.
-
-Configure pull permissions for the App Registration to the ACR:
+Configure ArcPull permissions for the App Registration:
 
 1. In the ACR navigate to Access control (IAM) -> Add -> Add role assignment
 2. In the Role tab search for and select the ArcPull role. Then select Members
 3. In the Members tab, search for and select the App Registration. Then select Review and assign
 4. After reviewing the assignment, select Review and assign again
 
-Before moving on we need to note down the ACR Login Server and the ACR Name which will be needed when configuring the sealed secret later on.
+Note down the Application ID (client ID) and the Application Secret (Client Secret).
 
-## Configuring a Sealed Secret for integration with Argo CD
-
-Now that we have configured an App Registration and an ACR with the needed permissions and noted down the different variables we need. We configure the sealed secret we need for the Argo CD integration.
-
-The values needed for the following step is as follows:
-
-- Application ID (Client ID)
-- Application Secret (Client Secret)
-- ACR Login server
-- ACR Name
-
-The first step for configuring the sealed secret is to base64 encode the previously noted down values. This can be done by using the following terminal command:
-
-```
-echo -n '<YOUR_VALUE>' | base64
-```
-
-After the base64 encoding, we need to create a generic secrets.yml in order to generate the sealed secret values. The following code shows how this can be done correctly:
-
-```yaml title="secrets.yml"
-apiVersion: v1
-kind: Secret
-metadata:
-  name: example
-  namespace: example
-type: Opaque
-Data:
-  name: <ACR_NAME_BASE64_ENCODED>
-  enableOCI: <BASE64_ENCODED> # base64 encoded value of 'True'
-  type: <BASE64_ENCODED> # base64 encoded value of 'helm'
-  password: <CLIENT_SECRET_BASE64_ENCODED>
-  username: <CLIENT_ID_BASE64_ENCODED>
-  url: <ACR_LOGIN_SERVER_BASE64_ENCODED>
-```
-
-Now that we have a generic secrets.yml we can generate our sealed secret values using kubeseal with the following kubeseal command:
-
-```
-kubeseal --cert certificates/aro-test-1/sealed_secret_public.crt --scope namespace-wide -f kubeseal/private-helm.yml -o yaml
-```
-
-In the tenant definition file we need to configure the gitops section. When empty, this is what section looks like:
-
-``` yaml title="values.yaml"
-  gitops:
-    helm_registry:
-      enable_custom_helm_registries: false
-      enableOCI: "" # Global variable - decrypted value true for namespace gitops-developer - Encrypted and sat by cluster admins
-      type: "" # Global variable - decrypted helm for namespace gitops-developer - Encrypted and sat by cluster admins
-      helm_registries:
-      - repository_name: "" # Sealed secret ACR Name
-        url: "" # Sealed secret ACR Login Server
-        password: "" # Sealed secret Client Secret
-        username: "" # Sealed secret Client ID
-```
+For the next step of configuring a sealed secret for integration with Argo CD: [Private Helm Registry OpenShift Tenant](private-helm-registry-openshift-tenant.md)
