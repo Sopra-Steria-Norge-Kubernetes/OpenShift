@@ -29,9 +29,9 @@ nav:
           - Authenticate with GitHub App: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-github-app.md
           - Authenticate with SSH: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-ssh.md
         - Private Helm Registry:
-          - Introduction to Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/introduction.md
-          - Private Helm Registry Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
-          - Private Helm Registry Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
+          - Introduction: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/introduction.md
+          - Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
+          - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
       - Backup: OpenShift Tenants/Tenant features/backup.md
       - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
