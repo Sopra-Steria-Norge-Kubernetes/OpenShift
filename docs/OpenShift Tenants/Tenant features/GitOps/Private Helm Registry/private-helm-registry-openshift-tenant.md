@@ -48,7 +48,7 @@ Data:
 Generate your sealed secret values using the following kubeseal command:
 
 ```
-kubeseal --cert <PATH_TO_CERTIFICATE> --scope namespace-wide -f <PATH_TO_SECRETS_FILE> -o yaml
+kubeseal --cert <PATH_TO_CERTIFICATE> --scope namespace-wide -f <PATH_TO_SECRETS_FILE> -n gitops-developers -o yaml
 ```
 
 In the tenant definition file configure the gitops section and insert your sealed secret values. When empty, this is what section looks like:

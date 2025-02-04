@@ -43,7 +43,7 @@ For more detailed instructions on how to set up the Azure environment visit:
     1. ``` echo -n '<RAW_VALUE>' | base64 ```
 2. Create a generic secret with and inject the encoded values
 3. Create a sealed secret with kubeseal
-    1. ``` kubeseal --cert <PATH_TO_CERTIFICATE> --scope namespace-wide -f <PATH_TO_SECRETS_FILE> -o yaml ```
+    1. ``` kubeseal --cert <PATH_TO_CERTIFICATE> --scope namespace-wide -f <PATH_TO_SECRETS_FILE> -n gitops-developers -o yaml ```
 4. Configure new section in tenant definition values.yaml for GitOps
 
 For more detailed instructions on how to set up the Openshift Tenant environment visit:
