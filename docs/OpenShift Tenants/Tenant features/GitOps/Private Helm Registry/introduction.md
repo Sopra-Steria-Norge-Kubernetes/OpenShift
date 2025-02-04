@@ -11,8 +11,6 @@ For connecting to a Private Helm Registery you have to do the following:
 2. Add the ACR credentials to the OpenShift Tenant (or Team overlay)
     1. The credentials to access the Private helm registery are stored as a sealed secret through Git. The secret is encrypted and only accessible by the developer GitOps controller (Argo CD).
 
-
-
 <!-- ## Private Helm Registry Configuration 
 To create a private helm registry there are a few configuration steps that need to be done. In the Azure environment we need to configure an App Registration and an Azure Container Registry (ACR). In addition to these Azure resources, we need to configure sealed secrets using kubeseal which will be used to integrate Argo CD, and make it able to pull helm templates from the private helm registry in an ACR through the App Registration.
 
