@@ -1,8 +1,10 @@
-# Private Helm Registry Openshift Tenant Configuration
+# OpenShift Tenant configuration for Private Helm Registry
+
+Configuring the OpenShift Tenant to use a private Helm Registry requires the following steps:
+1. Generate a sealedSecret with the required values
+2. Add the sealedSecrets to your OpenShift Tenant  
 
 ## Configuring a Sealed Secret for integration with Argo CD
-
-Now that we have configured the ACR access token or an App Registration with the appropriate permissions, an ACR aswell as noted down the required variables. We configure the sealed secret needed for the Argo CD integration.
 
 Before moving on to the next step we need to have the appropriate values noted down. **Note that the chosen method of authentication will dictate the values needed for the username and password.**
 
@@ -34,13 +36,13 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: example
-  namespace: example
+  namespace: gitops-developers
 type: Opaque
 Data:
   name: <ACR_NAME_BASE64_ENCODED>
   enableOCI: <BASE64_ENCODED> # base64 encoded value of 'True'
   type: <BASE64_ENCODED> # base64 encoded value of 'helm'
-  password: <ACR_ACCESS_TOKEN_ENCODED>
+  password: <ACR_ACCESS_TOKEN__BASE64_ENCODED>
   username: <ACR_USERNAME_BASE64_ENCODED>
   url: <ACR_LOGIN_SERVER_BASE64_ENCODED>
 ```
@@ -53,7 +55,7 @@ kubeseal --cert <PATH_TO_CERTIFICATE> --scope namespace-wide -f <PATH_TO_SECRETS
 
 In the tenant definition file configure the gitops section and insert your sealed secret values. When empty, this is what section looks like:
 
-``` yaml title="values.yaml"
+```yaml title="values.yaml"
   gitops:
     helm_registry:
       enable_custom_helm_registries: false
