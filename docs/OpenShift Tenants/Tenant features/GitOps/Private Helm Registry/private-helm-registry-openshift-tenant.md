@@ -1,6 +1,7 @@
 # OpenShift Tenant configuration for Private Helm Registry
 
 Configuring the OpenShift Tenant to use a private Helm Registry requires the following steps:
+
 1. Generate a sealedSecret with the required values
 2. Add the sealedSecrets to your OpenShift Tenant  
 
