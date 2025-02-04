@@ -3,10 +3,11 @@
 <!-- To create a private helm registry there are a few configuration steps that need to be done. In the Azure environment we need to configure an Azure Container Registry (ACR). To authenticate towards the ACR we have two methodes. The recommended method involves using an ACR access token and the ACR username for authentication. The second method would be to configure authentication through an App Registartion using the Application ID and an Application Secret. In addition to these Azure resources, we need to configure sealed secrets using kubeseal which will be used to integrate Argo CD. -->
 
 The following steps must be done to setup a Private Helm Registery in Azure with authentication for Argo CD:
+
 1. Configure Azure Container Registry
 2. Configure Authentication for Argo CD 
-    - [Method 1 - Configuring ACR Access Token Authenticatio](#configuring-acr-access-token-authentication-method-1)
-    - [Method 2 - Configuring App Registration Authentication](#configuring-app-registration-authentication-method-2)
+   1. [Method 1 - Configuring ACR Access Token Authenticatio](#configuring-acr-access-token-authentication-method-1)
+   2. [Method 2 - Configuring App Registration Authentication](#configuring-app-registration-authentication-method-2)
 
 
 ## Step 1 - Configuring an Azure Container Registry
