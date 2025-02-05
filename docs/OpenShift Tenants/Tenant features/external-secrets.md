@@ -36,10 +36,11 @@ secret_management:
 
 By setting these parameters, you can securely connect your OpenShift cluster to Azure Key Vault, managing secrets externally while providing the necessary credentials to access these secrets. This configuration ensures that sensitive information is handled securely and efficiently.
 
-**Read the full configuration guide here:**
+**Read the full configuration guides here:**
 
-- [Configuring External Secrets guide](../../Secret%20Managment/Configure%20External%20Secrets/configuration-external-secrets.md)
-
+- [**Introduction to Eternal Secrets**](../../Secret%20Managment/Configure%20External%20Secrets/info-external-secrets.md)
+- [**Configuring SecretStore with Azure Key Vault**](../../Secret%20Managment/Configure%20External%20Secrets/configuration-secretstore.md)
+- [**Create External Secrets with Azure Key Vault**](../../Secret%20Managment/Configure%20External%20Secrets/creating-external-secrets.md)
 
 ## In-depth description of parameters
 

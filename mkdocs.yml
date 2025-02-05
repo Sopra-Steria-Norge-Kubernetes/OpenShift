@@ -50,7 +50,8 @@ nav:
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
     - Configure external secrets:
       - Introduction: Secret Managment/Configure External Secrets/info-external-secrets.md
-      - Configure external secrets: Secret Managment/Configure External Secrets/configuration-external-secrets.md
+      - Configure secret store with Azure Key Vault: Secret Managment/Configure External Secrets/configuration-secretstore.md
+      - Creating external secrets with Azure Key Vault: Secret Managment/Configure External Secrets/creating-external-secrets.md
   - Observability:
     - Introduction: Observability/Introduction.md
     - Using OpenShift observability: Observability/using-openshift-observability.md

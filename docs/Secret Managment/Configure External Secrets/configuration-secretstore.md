@@ -1,37 +1,6 @@
----
-Author: Oskar Marthinussen, Marcus Notø
-Title: Configuring External Secrets
-Version: 1.0.0
-externally-exposed: true
---- 
+# Configuring Secret Store with Azure Key Vault for your tenant
 
-# Introduction External Secrets
-
-External Secrets in OpenShift allow applications to access sensitive data stored outside the OpenShift cluster while still allowing Kubernetes resources to use them. External secrets address several limitations of OpenShift Secrets:
-
-* **Secure Encoding:** Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
-* **Secure Encoding**: Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
-* **Automated Rotation:** External solutions automate secret rotation, enhancing security without manual intervention.
-
-External Secrets work by setting up a connection to your external Key Management System (KMS) with a resource called a SecretStore. When a developer wants to extract a secret from the KMS, it creates an ExternalSecret resource in OpenShift. This Object will, through the SecretStore, extract the information in the KMS and create an encrypted OpenShift secret object in your cluster. The ExternalSecret resource can then be stored in Git to ensure Continuous Delivery (CD) for your applications. Below is a diagram to illustrate how the External Secrets work:
-
-![developer_external_secret.png](../../img/Secret%20Managment/developer_external_secret.png)
-
-The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but external secrets supports various external secret providers. For more information about External Secrets see the [official guide](https://external-secrets.io/latest/).
-
-## Configure secret store with Azure Key Vault for your tenant
-
-For configuring a secret store with Azure Key Vault you have to do the following:
-
-- [**SecretStore Configuration**](configuration-secretstore.md) - Setup App Registartion and Azure Key Vault and give the App Registration the 'Key Vault Secrets User' role
-
-## Creating external secrets with Azure Key Vault
-
-- [**External Secret Creation**](creating-external-secrets.md) - Add the App Registration credentials and Azure Key Vault url to the OpenShift Tenant (or Team Overlay) and create your external secret
-
-<!-- ## Configuring External Secrets with Azure Key Vault for your tenant
-
-### Pre-requisites
+## Pre-requisites
 To get external secrets to work with Azure Key Vault you need have certain permissions and configure certain Azure resources:
 
 * **Azure Permissions**: An Azure account with permissions to manage secrets within Azure KeyVault. 
@@ -45,7 +14,7 @@ To get external secrets to work with Azure Key Vault you need have certain permi
 * **KeyVault Credentials Secret**: Create this secret in the namespace to store Azure KeyVault access credentials. 
 
 
-### Setting up Secret Store for your tenant
+## Setting up Secret Store for your tenant
 In OpenShift, the secret store resource defines the connection details for external secret storage platforms, such as Azure KeyVault. Azure KeyVault contains credentials, tenant ID, and the KeyVault URL, allowing OpenShift applications to fetch and use secrets from Azure securely.
 
 The recommended way of setting up the secret store is through the OpenShift Tenant.
@@ -53,7 +22,7 @@ The tenant form is configured to derive the KeyVault name from the namespace in 
 For instance, for a tenant named `tenant` with `test` and `dev` environments, secret stores will be established in each environment, connected to `tenant-test.vault.azure.net` and `tenant-dev.vault.azure.net`, respectively. This deployment approach guarantees that every environment within the tenant possesses its dedicated secret store, enhancing security and organization.
 
 
-To deploy a secret store with the tenant form, include the following parameters in the file (same indent as namespace and environments):
+- To deploy a secret store with the tenant form, include the following parameters in the file (same indent as namespace and environments):
 
 ```yaml title="Setting up secret store"
 namespace:
@@ -62,19 +31,40 @@ namespace:
 .
 .
 external_secrets:
-  azure_tenant_id: <Azure-Tenant-ID>
+  azure_tenant_id: <AZURE_TENANT_ID> # Tenant ID of your organizations Azure tenant
   keyvault_credentials:
-    client_id: <Client-ID>
-    client_secret: <Client-Secret>
+    client_id: <SealedSecret_CLIENT_ID> # Sealed Secret - App Registration Credentials
+    client_secret: <SealedSecret_CLIENT_SECRET> # Sealed Secret - App Registration Credentials
 ```
 
-Replace `<Azure-Tenant-ID>`, `<Client-ID>`, and `<Client-Secret>` with your actual values. The `<Client-ID>` and `<Client-Secret>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](encrypting-secret-with-kubeseal.md).
+- To deploy a cluster secret store within the tenant form, include the following parameters in the file (same indent as namespace and environments)
+
+```yaml title="Setting up cluster secret store"
+namespace:
+  name: <tenant-name>
+.
+.
+.
+secret_management:
+  external_secrets:
+    enable: false # boolean - true/false
+    tenant_id: <AZURE_TENANT_ID> # Tenant ID of your organizations Azure tenant
+    tenant_secretstores: 
+    - name: # Secret name
+      keyvault_url: <https://AZURE_KEY_VAULT_URL> # Url to Azure Key Vault
+      client_id: <SealedSecret_CLIENT_ID> # Sealed Secret - App Registration Credentials
+      client_secret: <SealedSecret_CLIENT_SECRET> # Sealed Secret - App Registration Credentials
+```
+
+Replace `<AZURE_TENANT_ID>`, `<SealedSecret_CLIENT_ID>`, and `<SealedSecret_CLIENT_SECRET>` with your actual values. The `<SealedSecret_CLIENT_ID>` and `<SealedSecret_CLIENT_SECRET>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](../encrypting-secret-with-kubeseal.md).
 
 
-#### Deploying a custom Secret Store
-If there is need to create a custom Secret Store this can be done by creating it your self. The secret store resource definition needs to be created and added to the `resources` section of your application's `kustomization.yml` file. This action will deploy the secret store directly to the application's environment. Below is a sample syntax for defining the secret store resource:
+### Deploying a custom Secret Store
+If there is need to create a custom Secret Store this can be done by creating it your self. The secret store resource definition needs to be created and added to the `resources` section of your application's `kustomization.yml` file. This action will deploy the secret store directly to the application's environment.
 
-```yaml
+- Below is a sample syntax for defining the secret store resource:
+
+```yaml title="secret store resource"
 apiVersion: external-secrets.io/v1alpha1
 kind: SecretStore
 metadata:
@@ -95,9 +85,35 @@ spec:
       vaultUrl: <Azure_KeyVault_Vault_URL>
 ```
 
-Ensure to replace placeholders like `<tenant_name>`, `<env>`, `<Azure-Tenant-ID>`, and `<Azure_KeyVault_Vault_URL>` with your specific values. 
+- Below is a sample syntax for defining the cluster secret store resource:
 
-## Creating the External Secret
+```yaml title="cluster secret store layout"
+apiVersion: external-secrets.io/v1alpha1
+kind: ClusterSecretStore
+metadata:
+  name: <tenant_name>-secret-store
+  namespace: <tenant_name>-<env>
+spec:
+  provider:
+    azurekv:
+      tenantId: <AZURE_TENANT_ID>
+      vaultUrl: <AZURE_KEY_VAULT_URL>
+      authSecretRef:
+        clientId:
+          name: keyvault-credentials
+          key: ClientID
+          namespace: <namespace>-tooling
+        clientSecret:
+          name: keyvault-credentials
+          key: ClientSecret
+          namespace: <namespace>-tooling
+```
+
+Ensure to replace placeholders like `<tenant_name>`, `<env>`, `<AZURE_TENANT_ID>`, `<AZURE_KEY_VAULT_URL>`, and `<namespace>` with your specific values. 
+
+Next step: [**Creating External Secrets**](creating-external-secrets.md)
+
+<!-- ## Creating the External Secret
 To create a secret from Azure Key Vault you need to create the custom resource external secret in OpenShift.  It interacts with the secret store to access secrets stored in Azure KeyVault and then creates an equivalent secret within OpenShift, making the sensitive data accessible to applications.
 
 ```yaml title="Defining an external secret"
@@ -109,7 +125,7 @@ metadata:
 spec:
   refreshInterval: 10s
   secretStoreRef:
-    kind: SecretStore
+    kind: ClusterSecretStore
     name: <tenant_name>-secret-store
   target:
     name: <secret_name_in_ocp>
