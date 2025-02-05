@@ -1,25 +1,4 @@
----
-Author: Oskar Marthinussen, Marcus Notø
-Title: Configuring External Secrets
-Version: 1.0.0
-externally-exposed: true
---- 
-
-
-# Configuring External Secrets
-
-## Introduction
-External Secrets in OpenShift allow applications to access sensitive data stored outside the OpenShift cluster while still allowing Kubernetes resources to use them. External secrets address several limitations of OpenShift Secrets:
-
-* **Secure Encoding:** Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
-* **Secure Encoding**: Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
-* **Automated Rotation:** External solutions automate secret rotation, enhancing security without manual intervention.
-
-External Secrets work by setting up a connection to your external Key Management System (KMS) with a resource called a SecretStore. When a developer wants to extract a secret from the KMS, it creates an ExternalSecret resource in OpenShift. This Object will, through the SecretStore, extract the information in the KMS and create an encrypted OpenShift secret object in your cluster. The ExternalSecret resource can then be stored in Git to ensure Continuous Delivery (CD) for your applications. Below is a diagram to illustrate how the External Secrets work:
-
-![developer_external_secret.png](../img/Secret%20Managment/developer_external_secret.png)
-
-The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but external secrets supports various external secret providers. For more information about External Secrets see the [official guide](https://external-secrets.io/latest/). 
+# Configure External Secrets
 
 ## Configuring External Secrets with Azure Key Vault for your tenant
 
@@ -53,14 +32,18 @@ namespace:
 .
 .
 .
-external_secrets:
-  azure_tenant_id: <Azure-Tenant-ID>
-  keyvault_credentials:
-    client_id: <Client-ID>
-    client_secret: <Client-Secret>
+secret_management:
+  external_secrets:
+    enable: false # boolean - true/false
+    tenant_id: <AZURE_TENANT_ID> # Tenant ID of your organizations Azure tenant
+    tenant_secretstores: 
+    - name: # Secret name
+      keyvault_url: <https://AZURE_KEY_VAULT_URL> # Url to Azure Key Vault
+      client_id: <SealedSecret_CLIENT_ID> # Sealed Secret - App Registration Credentials
+      client_secret: <SealedSecret_CLIENT_SECRET> # Sealed Secret - App Registration Credentials
 ```
 
-Replace `<Azure-Tenant-ID>`, `<Client-ID>`, and `<Client-Secret>` with your actual values. The `<Client-ID>` and `<Client-Secret>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](encrypting-secret-with-kubeseal.md).
+Replace `<AZURE_TENANT_ID>`, `<SealedSecret_CLIENT_ID>`, and `<SealedSecret_CLIENT_SECRET>` with your actual values. The `<SealedSecret_CLIENT_ID>` and `<SealedSecret_CLIENT_SECRET>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](encrypting-secret-with-kubeseal.md).
 
 
 #### Deploying a custom Secret Store
