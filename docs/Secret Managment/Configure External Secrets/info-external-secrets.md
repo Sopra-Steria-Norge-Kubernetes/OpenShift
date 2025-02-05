@@ -5,7 +5,6 @@ Version: 1.0.0
 externally-exposed: true
 --- 
 
-
 # External Secrets
 
 ## Introduction
