@@ -91,6 +91,6 @@ Encrypting and configuring ArgoCD-specific information is crucial for ensuring t
 
 This guide provides step-by-step instructions and best practices for encrypting Personal Access Tokens (PAT), GitHub App variables and SSH-private-key, which are essential for the secure operation of ArgoCD within your OpenShift environment. Please follow the steps in the guide provided below:
  
-* [Authenticate with Personal Access Token (PAT)](./Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-personal-access-token.md).
-* [Authenticate with a GitHub App](./Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-github-app.md).
-* [Authenticate with SSH](./Authentication%20Methods%20for%20ArgoCD%20with%20GitHub/authenticate-with-ssh.md).
+* [Authenticate with Personal Access Token (PAT)](Authentication%20Methods%20for%20ArgoCD/authenticate-with-personal-access-token.md).
+* [Authenticate with a GitHub App](Authentication%20Methods%20for%20ArgoCD/authenticate-with-github-app.md).
+* [Authenticate with SSH](Authentication%20Methods%20for%20ArgoCD/authenticate-with-ssh.md).

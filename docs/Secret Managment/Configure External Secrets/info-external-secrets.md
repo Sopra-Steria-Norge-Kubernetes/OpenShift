@@ -5,9 +5,8 @@ Version: 1.0.0
 externally-exposed: true
 --- 
 
-# External Secrets
+# Introduction External Secrets
 
-## Introduction
 External Secrets in OpenShift allow applications to access sensitive data stored outside the OpenShift cluster while still allowing Kubernetes resources to use them. External secrets address several limitations of OpenShift Secrets:
 
 * **Secure Encoding:** Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.

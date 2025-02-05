@@ -38,7 +38,7 @@ By setting these parameters, you can securely connect your OpenShift cluster to 
 
 **Read the full configuration guide here:**
 
-- [Configuring External Secrets guide](../../Secret%20Managment/Configure%20External%20Secrets/info-external-secrets.md)
+- [Configuring External Secrets guide](../../Secret%20Managment/Configure%20External%20Secrets/configuration-external-secrets.md)
 
 
 ## In-depth description of parameters
