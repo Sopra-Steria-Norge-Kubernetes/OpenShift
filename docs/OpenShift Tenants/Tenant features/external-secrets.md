@@ -87,9 +87,9 @@ By setting these parameters, you can securely connect your OpenShift cluster to 
 
 **Read the full configuration guides here:**
 
-- [**Introduction to Exernal Secrets**](../../Secret%20Managment/Configure%20External%20Secrets/info-external-secrets.md)
-- [**Deploying SecretStore with Azure Key Vault**](../../Secret%20Managment/Configure%20External%20Secrets/configuration-secretstore.md)
-- [**Create External Secrets with Azure Key Vault**](../../Secret%20Managment/Configure%20External%20Secrets/creating-external-secrets.md)
+- [**Introduction to Exernal Secrets**](../../Secret%20Managment/External%20Secrets/info-external-secrets.md)
+- [**Deploying SecretStore with Azure Key Vault**](../../Secret%20Managment/External%20Secrets/configuration-secretstore.md)
+- [**Create External Secrets with Azure Key Vault**](../../Secret%20Managment/External%20Secrets/creating-external-secrets.md)
 
 
 ## In-depth description of parameters
