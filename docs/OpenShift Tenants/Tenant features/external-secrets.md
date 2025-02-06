@@ -16,7 +16,7 @@ Using External Secrets with Azure Key Vault and Cluster Secret Stores in OpenShi
 
 Below is a diagram to illustrate how the external secrets and cluster secret store works:
 
-![developer_external_secret.png](../../img/Secret Managment/cluster-secret-store.drawio.png)
+![developer_external_secret.png](../../img/Secret Managment/cluster-secret-store-v3.drawio.png)
 
 ## Pre-requisites
 To get external secrets to work with Azure Key Vault you need have certain permissions and configure certain Azure resources:
@@ -56,7 +56,7 @@ secret_management:
       client_secret: <SealedSecret_CLIENT_SECRET> # Sealed Secret - App Registration Credentials
 ```
 
-Replace `<AZURE_TENANT_ID>`, `<SealedSecret_CLIENT_ID>`, and `<SealedSecret_CLIENT_SECRET>` with your actual values. The `<SealedSecret_CLIENT_ID>` and `<SealedSecret_CLIENT_SECRET>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](../encrypting-secret-with-kubeseal.md).
+Replace `<AZURE_TENANT_ID>`, `<SealedSecret_CLIENT_ID>`, and `<SealedSecret_CLIENT_SECRET>` with your actual values. The `<SealedSecret_CLIENT_ID>` and `<SealedSecret_CLIENT_SECRET>` have to be encrypted with `kubeseal`. This can be done by following this user guide: [Encrypting secrets with Kubeseal](../../Secret Managment/encrypting-secret-with-kubeseal.md).
 
 
 <!-- ## How to configure External Secrets
