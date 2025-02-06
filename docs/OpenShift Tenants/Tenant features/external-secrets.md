@@ -14,7 +14,7 @@ External Secrets in OpenShift allow you to securely store and manage sensitive i
 
 Choosing secret managment with external secrets involves using Azure Key Vault with Cluster Secret Stores in OpenShift. This provides a seamless, secure, and scalable way to manage secrets across multiple namespaces within a tenant. By leveraging external secrets and a centralized secret store, you eliminate the need for duplicating secrets, reduce administrative overhead, and enhance security by keeping sensitive data outside individual namespaces. This approach ensures consistency, simplifies access control, and improves compliance with enterprise security policies In addition to this, it also makes secret management more efficient for developers and platform teams. Below is a diagram to illustrate how the external secrets and cluster secret store works:
 
-![developer_external_secret.png](../../img/Secret Managment/cluster-secret-store.drawio.png)
+![developer_external_secret.png](../../img/Secret Managment/cluster-secret-store-v2.drawio.png)
 
 ## Pre-requisites
 To get external secrets to work with Azure Key Vault you need have certain permissions and configure certain Azure resources:
