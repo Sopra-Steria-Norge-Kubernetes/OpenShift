@@ -27,6 +27,8 @@ values: |
     use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
     enable_tooling: <Creates a tooling namespace>
     deploy_grafana: <Deploy Grafana instance in tooling namespace>
+    storage:
+      enable_custom_storageclass: <Enable option to have custom storageclasses>
     limits:
       enable: true
       memory: <Memory limits of all tenants>
