@@ -8,11 +8,13 @@
 
 ## What is Secret Managment with External Secrets?
 
-External Secrets in OpenShift allow you to securely store and manage sensitive information, such as API keys, passwords, and certificates, outside of your OpenShift cluster. This approach enhances security by integrating with external secret management services, ensuring that sensitive data is not exposed within the cluster configuration or codebase. By using external secrets, you can maintain better control and auditing of secret access and updates.
+External Secrets in OpenShift tenants securely manage sensitive data like API keys, passwords, and certificates by connecting your tenant to a KMS such as Azure Key Vault. This keeps secrets outside the cluster, reducing exposure in configurations or code. By leveraging external secret management services, you enhance security, access control, and auditing while maintaining better control over secret access and updates.
 
 ## Why Use Secret Managment with External Secrets?
 
-Choosing secret managment with external secrets involves using Azure Key Vault with Cluster Secret Stores in OpenShift. This provides a seamless, secure, and scalable way to manage secrets across multiple namespaces within a tenant. By leveraging external secrets and a centralized secret store, you eliminate the need for duplicating secrets, reduce administrative overhead, and enhance security by keeping sensitive data outside individual namespaces. This approach ensures consistency, simplifies access control, and improves compliance with enterprise security policies In addition to this, it also makes secret management more efficient for developers and platform teams. Below is a diagram to illustrate how the external secrets and cluster secret store works:
+Using External Secrets with Azure Key Vault and Cluster Secret Stores in OpenShift offers a secure, scalable, and efficient way to manage secrets across multiple namespaces within a tenant. This approach eliminates secret duplication, reduces administrative overhead, and enhances security by keeping sensitive data outside individual namespaces. It also ensures consistency, simplifies access control, and improves compliance with enterprise security policies.
+
+Below is a diagram to illustrate how the external secrets and cluster secret store works:
 
 ![developer_external_secret.png](../../img/Secret Managment/cluster-secret-store-v3.drawio.png)
 
@@ -30,14 +32,12 @@ To get external secrets to work with Azure Key Vault you need have certain permi
 * **KeyVault Credentials Secret**: Create this secret in the namespace to store Azure KeyVault access credentials. 
 
 
-## Setting up Secret Store for your tenant
-In OpenShift, the secret store resource defines the connection details for external secret storage platforms, such as Azure KeyVault. Azure KeyVault contains credentials, tenant ID, and the KeyVault URL, allowing OpenShift applications to fetch and use secrets from Azure securely.
+## Setting up ClusterSecretStore for your tenant
+In OpenShift, a **ClusterSecretStore** defines the connection details for external Key Management Systems (KMS) like Azure Key Vault. It stores credentials, the tenant ID, and the Key Vault URL, allowing OpenShift applications to securely fetch and use secrets from Azure.
 
-The recommended way of setting up the secret store is through the OpenShift Tenant.
-The tenant form is configured to derive the KeyVault name from the namespace in which it’s deployed. 
-For instance, for a tenant named `tenant` with `test` and `dev` environments, secret stores will be established in each environment, connected to `tenant-test.vault.azure.net` and `tenant-dev.vault.azure.net`, respectively. This deployment approach guarantees that every environment within the tenant possesses its dedicated secret store, enhancing security and organization.
+The ClusterSecretStore is deployed in your tenant’s tooling namespace and is accessible from all namespaces within the tenant, providing a centralized connection to your Key Vault.
 
-To deploy a cluster secret store within the tenant form, include the following parameters in the file (same indent as namespace and environments)
+To create a ClusterSecretStore through the tenant setup, you must configure the following parameters:
 
 ```yaml title="Setting up cluster secret store"
 namespace:
@@ -101,7 +101,8 @@ In the table below, there is a more detailed description of each variable in the
 |--------------------------------------|--------------------------------------------------|----------------------------|-----------|--------|
 | `enable`                    | When using secret managment change this value to enable: True                     | false     | Boolean  | false   |
 | `tenant_id`                    | The Azure Tenant ID that your organisation uses for storing its Azure Key Vaults  |d93d3d23-50e3-46db-b3ad-8c6c281b431e      | String    | "" |
-| `tenant_secretstores.name`  | name of the secret | my_secret | string    | "" |
-| `tenant_secretstores.url`  | The URL to the Azure Key Vault you want to use | | string    | "" |
-| `tenant_secretstores.client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    | "" |
-| `tenant_secretstores.client_secret`  | Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    | "" |
+| `tenant_secretstores`  | A list where GlobalSecretStores can be created to reach multiple KeyVaults | list    | "" |
+| `tenant_secretstores[].name`  | name of the secret | my_secret | string    | "" |
+| `tenant_secretstores[].url`  | The URL to the Azure Key Vault you want to use | | string    | "" |
+| `tenant_secretstores[].client_id`      | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    | "" |
+| `tenant_secretstores[].client_secret`  | Password for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret | | Kubeseal encrypted String    | "" |
