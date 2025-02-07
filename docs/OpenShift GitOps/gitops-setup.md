@@ -166,7 +166,7 @@ When can it be useful to use user-defined ArgoCD applications:
 The following file `poseidon1_main_repo/applications/dev/ex1-helm-app.yml` shows an example of how to deploy an application utilising a helm chart.
 
 ## Further Reading
-Now that you understand better how to setup your CD pipeline on Openshift using ArgoCD, it can be useful to better understand how to use the tool. Check out [GitOps Best Practices](OpenShift GitOps Best Practices.md) for more information about how to use ArgoCD 
+Now that you understand better how to setup your CD pipeline on Openshift using ArgoCD, it can be useful to better understand how to use the tool. Check out [GitOps Best Practices](gitops-best-practices.md) for more information about how to use ArgoCD 
 
 
 
