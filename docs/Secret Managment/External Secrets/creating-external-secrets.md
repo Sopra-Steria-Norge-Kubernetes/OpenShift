@@ -1,5 +1,5 @@
 # Creating the External Secret with Azure Key Vault
-To create a secret from Azure Key Vault you need to create the custom resource external secret in OpenShift.  It interacts with the secret store to access secrets stored in Azure KeyVault and then creates an equivalent secret within OpenShift, making the sensitive data accessible to applications.
+To create a secret from Azure Key Vault you need to create the custom external secret resource in OpenShift. This resource interacts with the secret store to access secrets stored in Azure KeyVault and then creates an equivalent secret within OpenShift, making the sensitive data accessible to applications.
 
 ```yaml title="Defining an external secret"
 apiVersion: external-secrets.io/v1beta1

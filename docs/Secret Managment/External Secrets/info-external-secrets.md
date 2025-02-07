@@ -24,8 +24,8 @@ The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but e
     
     Main differences:
 
-    - **ClusterSecretStore**: secret store will be available over multiple namespaces within your cluster
-    - **SecretStore**: secret store only availible within the given namespace.
+    - **ClusterSecretStore**: The secret store will be available cluster wide over multiple namespaces
+    - **SecretStore**: The secret store will only availible within the given namespace of the cluster
 
 ## Configure secret store with Azure Key Vault for your tenant
 

@@ -4,9 +4,9 @@
 
 Before deploying a custom secret store you need to fulfill these prerequsits: [**Prerequsits for Secret Store**](../../OpenShift%20Tenants/Tenant%20features/external-secrets.md)
 
-If there is need to create a custom Secret Store this can be done by creating it your self. The secret store resource definition needs to be created and added to the `resources` section of your application's `kustomization.yml` file. This action will deploy the secret store directly to the application's environment.
+If there is need to create a custom Secret Store this can be done by creating it yourself. The secret store resource definition needs to be created and added to the `resources` section of your application's `kustomization.yml` file. This action will deploy the secret store directly to the application's environment.
 
-- Below is a sample syntax for defining the secret store resource:
+- Below is a sample syntax for defining a SecretStore resource:
 
 ```yaml title="secret store resource layout"
 apiVersion: external-secrets.io/v1alpha1
@@ -29,7 +29,7 @@ spec:
       vaultUrl: <Azure_KeyVault_Vault_URL>
 ```
 
-- Below is a sample syntax for defining the cluster secret store resource (if you want to have your secret store available over multiple namespaces within your cluser):
+- Below is a sample syntax for defining a ClusterSecretStore resource (If you want to have your secret store available cluster wide over multiple namespaces):
 
 ```yaml title="cluster secret store resource layout"
 apiVersion: external-secrets.io/v1alpha1
