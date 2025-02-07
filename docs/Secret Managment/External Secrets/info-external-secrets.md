@@ -19,6 +19,14 @@ External Secrets work by setting up a connection to your external Key Management
 
 The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but external secrets supports various external secret providers. For more information about External Secrets see the [official guide](https://external-secrets.io/latest/).
 
+!!! Info
+    You can choose if you want to create a <ins>SecretStore</ins> or a <ins>ClusterSecretStore</ins>. 
+    
+    Main differences:
+
+    - **ClusterSecretStore**: secret store will be available over multiple namespaces within your cluster
+    - **SecretStore**: secret store only availible within the given namespace.
+
 ## Configure secret store with Azure Key Vault for your tenant
 
 For configuring a secret store with Azure Key Vault you have to do the following:

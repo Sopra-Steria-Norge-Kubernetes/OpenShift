@@ -29,7 +29,7 @@ spec:
       vaultUrl: <Azure_KeyVault_Vault_URL>
 ```
 
-- Below is a sample syntax for defining the cluster secret store resource:
+- Below is a sample syntax for defining the cluster secret store resource (if you want to have your secret store available over multiple namespaces within your cluser):
 
 ```yaml title="cluster secret store resource layout"
 apiVersion: external-secrets.io/v1alpha1
