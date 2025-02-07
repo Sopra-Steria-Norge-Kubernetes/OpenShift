@@ -112,12 +112,6 @@ values: |
         name: <Name of schedule> 
         ttl: <Time until a backup is deleted in format XXXhYYmZZs e.g. 24h0m0s >
 
-  external_secrets:
-    azure_tenant_id: <Azure-Tenant-ID>
-    keyvault_credentials:
-      client_id: <Client-ID for Azure Key Vault (ServicePrinciple)>
-      client_secret: <Client-Secret for Azure Key Vault (ServicePrinciple)>
-
   secret_management:
     external_secrets:
       enable: false # boolean - true/false
