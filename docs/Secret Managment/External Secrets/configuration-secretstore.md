@@ -1,5 +1,11 @@
 # Deploying Secret Store with Azure Key Vault for your tenant
 
+## Prerequisites
+
+- Configured an App Registration
+- App Registartion has the role 'Key Vault Secret User'
+- Configured an App Registartion Secret (Client Secret)
+
 ## Deploying a custom Secret Store
 
 Before deploying a custom secret store you need to fulfill these prerequsits: [**Prerequsits for Secret Store**](../../OpenShift%20Tenants/Tenant%20features/external-secrets.md)
