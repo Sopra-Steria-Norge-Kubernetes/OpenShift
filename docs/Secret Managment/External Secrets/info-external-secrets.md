@@ -5,10 +5,8 @@ Version: 1.0.0
 externally-exposed: true
 --- 
 
+# Introduction External Secrets
 
-# Configuring External Secrets
-
-## Introduction
 External Secrets in OpenShift allow applications to access sensitive data stored outside the OpenShift cluster while still allowing Kubernetes resources to use them. External secrets address several limitations of OpenShift Secrets:
 
 * **Secure Encoding:** Unlike OpenShift Secrets, external secrets are stored securely, making them Git-friendly. They require both system compromises for access.
@@ -17,11 +15,29 @@ External Secrets in OpenShift allow applications to access sensitive data stored
 
 External Secrets work by setting up a connection to your external Key Management System (KMS) with a resource called a SecretStore. When a developer wants to extract a secret from the KMS, it creates an ExternalSecret resource in OpenShift. This Object will, through the SecretStore, extract the information in the KMS and create an encrypted OpenShift secret object in your cluster. The ExternalSecret resource can then be stored in Git to ensure Continuous Delivery (CD) for your applications. Below is a diagram to illustrate how the External Secrets work:
 
-![developer_external_secret.png](../img/Secret%20Managment/developer_external_secret.png)
+![developer_external_secret.png](../../img/Secret%20Managment/developer_external_secret.png)
 
-The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but external secrets supports various external secret providers. For more information about External Secrets see the [official guide](https://external-secrets.io/latest/). 
+The rest of this guide will focuses on how to use Azure KeyVault as a KMS, but external secrets supports various external secret providers. For more information about External Secrets see the [official guide](https://external-secrets.io/latest/).
 
-## Configuring External Secrets with Azure Key Vault for your tenant
+!!! Info
+    You can choose if you want to create a <ins>SecretStore</ins> or a <ins>ClusterSecretStore</ins>. 
+    
+    Main differences:
+
+    - **ClusterSecretStore**: The secret store will be available cluster wide over multiple namespaces
+    - **SecretStore**: The secret store will only availible within the given namespace of the cluster
+
+## Configure secret store with Azure Key Vault for your tenant
+
+For configuring a secret store with Azure Key Vault you have to do the following:
+
+- [**SecretStore Configuration**](configuration-secretstore.md) - Setup App Registartion and Azure Key Vault and give the App Registration the 'Key Vault Secrets User' role
+
+## Creating external secrets with Azure Key Vault
+
+- [**External Secret Creation**](creating-external-secrets.md) - Add the App Registration credentials and Azure Key Vault url to the OpenShift Tenant (or Team Overlay) and create your external secret
+
+<!-- ## Configuring External Secrets with Azure Key Vault for your tenant
 
 ### Pre-requisites
 To get external secrets to work with Azure Key Vault you need have certain permissions and configure certain Azure resources:
@@ -210,4 +226,4 @@ In this configuration:
 
 - The Azure secret named `azure-secret` has a value of `mysecret`.
 - The SecretStore object is configured to access this secret.
-- The ExternalSecret object fetches the secret from Azure and creates a corresponding secret in OpenShift named `openshift-secret`.
+- The ExternalSecret object fetches the secret from Azure and creates a corresponding secret in OpenShift named `openshift-secret`. -->

@@ -33,7 +33,7 @@ nav:
           - Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
           - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
       - Backup: OpenShift Tenants/Tenant features/backup.md
-      - External Secret: OpenShift Tenants/Tenant features/external-secrets.md
+      - Secret Managment: OpenShift Tenants/Tenant features/external-secrets.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
       - Team: OpenShift Tenants/Tenant features/team.md
     - Tenant team:
@@ -48,7 +48,10 @@ nav:
   - Secret Managment:
     - Creating and managing secrets: Secret Managment/creating-and-managing-openshift-secrets.md
     - Encrypt secrets: Secret Managment/encrypting-secret-with-kubeseal.md
-    - Configure external secrets: Secret Managment/configuring-external-secrets.md
+    - External secrets:
+      - Introduction: Secret Managment/External Secrets/info-external-secrets.md
+      - Deploying secret store with Azure Key Vault: Secret Managment/External Secrets/configuration-secretstore.md
+      - Creating external secrets with Azure Key Vault: Secret Managment/External Secrets/creating-external-secrets.md
   - Observability:
     - Introduction: Observability/Introduction.md
     - Using OpenShift observability: Observability/using-openshift-observability.md

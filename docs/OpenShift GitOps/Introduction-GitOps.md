@@ -39,4 +39,4 @@ The GitOps process follows these steps:
 ## Best Practices for OpenShift GitOps with ArgoCD
 ArgoCD is the preferred OpenShift GitOps tool supported by Red Hat. This tool can at first be difficult to use, but by following some best practices can be helpful. 
 
-See the [OpenShift GitOps Best Practices ](openshift-gitops-best-practices.md) for more information.
+See the [OpenShift GitOps Best Practices ](gitops-best-practices.md) for more information.
