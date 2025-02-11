@@ -30,3 +30,5 @@ In the table below, you can find a more detailed description of each variable in
 | `enable`                         | When using image pull secret change this value to enable: True                                              | false                                  | boolean     | false |
 | `secrets.dockerconfigjson`                | Sealed Secret dockerconfigjson object containing credentials to acces remote image registry                                | AgA2Z8F5bN... (long encrypted string) | String     | "" |
 | `environment`                | Environment image pull secret will be deployed in                                 | "preprod"                   | String     | "" |
+
+For documentation on how you can use your image pull secret to use an image from your private registry in a deployment see the official documentation at: [**Kubernetes Documentation**](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-pod-that-uses-your-secret) 
