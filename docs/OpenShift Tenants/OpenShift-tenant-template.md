@@ -116,11 +116,17 @@ values: |
     external_secrets:
       enable: false # boolean - true/false
       tenant_id: <AZURE_TENANT_ID> # Tenant ID of your organizations Azure tenant
-      tenant_secretstores: 
+      tenant_secretstores:
       - name: # Secret name
         keyvault_url: <https://AZURE_KEY_VAULT_URL> # Url to Azure Key Vault
         client_id: <SealedSecret_CLIENT_ID> # Sealed Secret - App Registration Credentials
         client_secret: <SealedSecret_CLIENT_SECRET> # Sealed Secret - App Registration Credentials
+
+  image_pull_secret:
+    enable: false # boolean - true/false
+    secrets:
+    - dockerconfigjson: # SealedSecret dockerconfigjson object 
+      environment: # environment to place image_pull_secret
 
   slack_alert_integration:
     enable: False

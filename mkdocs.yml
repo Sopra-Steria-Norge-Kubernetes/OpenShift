@@ -34,6 +34,7 @@ nav:
           - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
       - Backup: OpenShift Tenants/Tenant features/backup.md
       - Secret Managment: OpenShift Tenants/Tenant features/external-secrets.md
+      - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
       - Team: OpenShift Tenants/Tenant features/team.md
     - Tenant team:
