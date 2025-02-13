@@ -32,6 +32,7 @@ nav:
           - Introduction: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/introduction.md
           - Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
           - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
+          - Using a Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-reg-usage.md
       - Backup: OpenShift Tenants/Tenant features/backup.md
       - Secret Managment: OpenShift Tenants/Tenant features/external-secrets.md
       - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
