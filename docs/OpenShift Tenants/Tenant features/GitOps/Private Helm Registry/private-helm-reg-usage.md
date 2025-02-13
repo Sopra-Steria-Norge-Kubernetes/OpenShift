@@ -7,7 +7,7 @@
 
 ## How to use a Private Helm Registry
 
-This is a guide to showcase one of the methodes that can be used to utilize your private helm registry for your deployments. In this example we will be using the following file structure:
+This is a guide to showcase one of the methodes that can be used to utilize your private helm registry for your deployments in your tenant through applicationsets. In this example we will be using the following file structure:
 
 ![private-helm-reg-deployment-tree.png](../../../../img/Private%20Helm%20Registry/private-helm-reg-deployment-tree.png)
 
@@ -25,6 +25,6 @@ Next up we need to define the resources we want to deploy. In this example we wi
 
 ![developer_external_secret.png](../../../../img/Private%20Helm%20Registry/private-helm-template-sa.png)
 
-To get our resources deployed we now need to define the content of our resources, and as mentioned we will do this through a values.yaml file. below you can se our values.yaml file:
+To get our resources deployed we now need to define the content of our resources before we push the code to version control, and as mentioned we will do this through a values.yaml file. below you can se our values.yaml file:
 
 ![developer_external_secret.png](../../../../img/Private%20Helm%20Registry/private-helm-values-yaml.png)
