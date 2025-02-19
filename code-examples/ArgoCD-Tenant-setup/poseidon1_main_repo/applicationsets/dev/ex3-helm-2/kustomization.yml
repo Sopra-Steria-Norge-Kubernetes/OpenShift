@@ -3,9 +3,9 @@ kind: Kustomization
 # Referencing a public repo outside the main repository
 
 helmCharts:
-  - name: helm-test
-    repo: https://teamposeidonocp.github.io/helm-test-repo/
-    version: 0.0.1
-    releaseName: helm-test
+  - name: helm-testing
+    repo: oci://poseidon1.azurecr.io
+    version: 1.0.1
+    releaseName: nginx-helm-test
     namespace: poseidon1-dev
     valuesFile: values.yaml

@@ -25,8 +25,8 @@ metadata:
 spec:
   project: poseidon1
   source:
-    chart: nginx-helm-chart
-    repoURL: poseidon1.azurecr.io
+    chart: nginx-helm-chart # CHART NAME
+    repoURL: poseidon1.azurecr.io # YOUR ACR URL HERE
     targetRevision: 1.0.1
     helm:
       releaseName: nginx-helm-chart
@@ -42,11 +42,11 @@ spec:
 
 ### Auto-Defined Method
 
-We will cover two options that can be used to deploy applicationsets when choosing the auto-defined method. These options will be presented as 'Demo-helm-1' and 'Demo-helm-2', where the main difference would be to use a 'Chart.yaml' or a 'kustomization.yml' to define the wanted helm registry.
+We will cover two options that can be used to deploy Private Helm charts with ArgoCD ApplicationSets when choosing the auto-defined method. These options will be presented as 'Example-1' and 'Example-2', where the main difference is referencing the Helm chart directly from its 'Chart.yaml' or through a 'kustomization.yml' file. 
 
-#### Demo-helm-1
+#### Example-1
 
-In this example we use a 'Chart.yaml' file to define the helm registry we want to use. To use this option you need the name of the helm registry we want to use, the OCI link to the remote private registry, and the version of the helm registry. Below is an example of a 'Chart.yaml' file for this use case:
+In this example, a Chart.yaml file defines the Helm registry. To use this, you need the registry name, OCI link, and version. Below is an example:
 
 ```yaml title="Chart.yaml"
 apiVersion: v2
@@ -59,26 +59,11 @@ dependencies:
 version: 1.0.0
 ```
 
-In addition to the 'Chart.yaml', we can define a 'values.yaml' containing the wanted configuration and modification of the different features inside our helm registry. Below is an example of a 'values.yaml' file for this use case
+In addition to Chart.yaml, a values.yaml file needs to be defined to specify configurations and set the values in the Helm chart. We are in fact building the Helm chart in this repository and referencing its Chart and values file. See the examples in the [code examples](https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/tree/main/code-examples/ArgoCD-Tenant-setup/poseidon1_main_repo/applicationsets/dev/ex3-helm-1) for more information. 
 
-```yaml title="values.yaml"
-service:
-  name: nginx-service
-  type: ClusterIP
-  port: 80
-  targetPort: 9000
-  selector:
-    app: nginx
+#### Example-2
 
-serviceAccount:
-  name: "nginx-service-account"
-  create: true
-  annotations: {}
-```
-
-#### Demo-helm-2
-
-In this example we use a 'kustomization.yml' file to define the helm registry we want to use. To use this option you need the name of the helm registry we want to use, the OCI link to the remote private registry, the version of the helm registry, and the values file we want to utilize. Below is an example of a 'kustomization.yml' file for this use case:
+This example uses a kustomization.yml file to define the Helm registry. You’ll need the registry name, OCI link, version, and values file. Below is an example:
 
 ```yaml title="kustomization.yml"
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -94,11 +79,5 @@ helmCharts:
     valuesFile: values.yaml
 ```
 
-In addition to the 'kustomization.yml', we define 'values.yaml' much like in the 'Demo-helm-1' example. However, in this case we choose only to specify the name of a service. When doing this the deployment will give the service the specified name and use the default helm chart values for the rest of the spesification. Below is an example of a 'values.yaml' file for this use case
+In addition to Chart.yaml, a values.yaml file needs to be defined to specify configurations and change the helm charts default values to fit your environment and needs. See the examples in the [code examples](https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/tree/main/code-examples/ArgoCD-Tenant-setup/poseidon1_main_repo/applicationsets/dev/ex3-helm-1) for more information. 
 
-```yaml title="values.yaml"
-service:
-  name: helm-demo2-service
-```
-
-<!-- ![private-helm-reg-deployment-tree.png](../../../../img/Private%20Helm%20Registry/private-helm-reg-deployment-tree.png) -->
