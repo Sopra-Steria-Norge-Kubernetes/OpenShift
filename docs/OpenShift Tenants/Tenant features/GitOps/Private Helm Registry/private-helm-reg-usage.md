@@ -44,7 +44,7 @@ spec:
 
 #### Example 2
 
-This example, we will do almost the same as in example 1. However, in this example we will utilize multiple values files which allows you to easily define or overwrite the default values. Below is an example: 
+This example, we will do almost the same as in example 1. However, in this example we will utilize multiple values files which allows you to easily define or overwrite the default or common values. Below is an example: 
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
