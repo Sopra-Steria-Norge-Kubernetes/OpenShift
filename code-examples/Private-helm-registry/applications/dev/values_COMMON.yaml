@@ -1,0 +1,7 @@
+serviceAccount:
+  name: sa-demo-helm-1
+  create: true
+  annotations: {}
+
+service:
+  name: second-file-test

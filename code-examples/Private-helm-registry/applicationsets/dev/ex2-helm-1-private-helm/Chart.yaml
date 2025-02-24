@@ -1,0 +1,8 @@
+apiVersion: v2
+name: helm-testing
+description: A Helm chart for testing
+dependencies:
+- name: nginx-helm-chart
+  version: 1.0.1
+  repository: oci://poseidon1.azurecr.io
+version: 1.0.0
