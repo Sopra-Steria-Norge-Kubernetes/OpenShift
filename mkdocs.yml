@@ -45,6 +45,7 @@ nav:
     - GitOps Setup: OpenShift GitOps/gitops-setup.md
     - OpenShift GitOps Best Practices: OpenShift GitOps/gitops-best-practices.md
     - Custom auto-defined targetRevision: OpenShift GitOps/cutom-auto-defined-target-revision.md
+    #- Multiple Values Files: OpenShift GitOps/multiple-values-files.md
   - OpenShift Pipelines:
      - OpenShift Pipelines with Tekton: OpenShift Pipelines/OpenShift-pipelines.md
   - Secret Managment:

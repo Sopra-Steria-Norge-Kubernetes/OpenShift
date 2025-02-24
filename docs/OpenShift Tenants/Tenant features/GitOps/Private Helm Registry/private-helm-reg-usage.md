@@ -14,7 +14,7 @@ There are different methodes availible to utilize a private helm registry with A
 
 ### User-Defined Method
 
-#### Example 1
+#### Example
 
 The user-defined method allows you to define Argo applications in a single file. This file contains all the nessesary information to create your app, such as name of the helm chart, url to the remote helm registry, and the version you want to utilize. In addition to this, you can modify and define specific fields in the helm chart outside of the default values. Below is an example of a user-defined argo application:
 
@@ -42,9 +42,15 @@ spec:
       allowEmpty: true
 ```
 
-#### Example 2
+#### Multiple Values Files
 
-This example, we will do almost the same as in example 1. However, in this example we will utilize multiple values files which allows you to easily define or overwrite the default or common values. Below is an example: 
+This example, we will do almost the same as in the example above. However, in this example we will utilize multiple values files which allows you to easily define or overwrite the default or common values. 
+
+Below is an example of how your file structure could look:
+
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/helm-app-multiple-values.png)
+
+Below is an example of the user-defined argo application:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
