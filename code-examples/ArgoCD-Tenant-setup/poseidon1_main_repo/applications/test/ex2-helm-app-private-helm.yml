@@ -1,0 +1,24 @@
+##
+## This example show how you can utilize a private helm registry in a user-defined argo application
+##
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-testing
+  namespace: gitops-developers # REMEMBER TO USE THE APPROPRIATE NAMESPACE HERE
+spec:
+  project: poseidon1
+  source:
+    chart: nginx-helm-chart # CHART NAME
+    repoURL: poseidon1.azurecr.io # YOUR ACR URL HERE
+    targetRevision: 1.0.1
+    helm:
+      releaseName: nginx-helm-chart
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: gitops-developers
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
