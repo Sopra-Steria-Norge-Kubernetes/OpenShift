@@ -22,19 +22,19 @@ The user-defined method allows you to define Argo applications in a single file.
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helm-testing
+  name: <tenant>-<applikasjon>-<miljø>
   namespace: gitops-developers # REMEMBER TO USE THE APPROPRIATE NAMESPACE HERE
 spec:
-  project: poseidon1
+  project: <virksomhet>-<tenant>
   source:
-    chart: nginx-helm-chart # CHART NAME
-    repoURL: poseidon1.azurecr.io # YOUR ACR URL HERE
-    targetRevision: 1.0.1
+    chart: <name_private_helm_chart> # CHART NAME
+    repoURL: <url_private_helm_registry> # YOUR ACR URL HERE
+    targetRevision: 1.0.1 # CHART VERSION
     helm:
-      releaseName: nginx-helm-chart
+      releaseName: <name_private_helm_chart> # CHART NAME
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: gitops-developers
+    namespace: <tenant>-<miljø>
   syncPolicy:
     automated:
       selfHeal: true
@@ -50,27 +50,27 @@ This example, we will do almost the same as in example 1. However, in this examp
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: helm-testing
+  name: <tenant>-<applikasjon>-<miljø>
   namespace: gitops-developers # REMEMBER TO USE THE APPROPRIATE NAMESPACE HERE
 spec:
-  project: poseidon1
+  project: <virksomhet>-<tenant> 
   sources:
     # value file repo
-    - repoURL: git@github.com:TeamPoseidonOCP/poseidon1_main_repo.git
+    - repoURL: <git-repo> # For SSH: git@github.com:<git-repo> --- For GitHub token: https://github.com/<git-repo>
       targetRevision: HEAD
       ref: valuesfile
     # private helm regsitry url
-    - repoURL: poseidon1.azurecr.io
-      targetRevision: 1.0.1
-      chart: nginx-helm-chart
+    - repoURL: <url_private_helm_registry> # YOUR ACR URL HERE
+      targetRevision: 1.0.1 # CHART VERSION
+      chart: <name_private_helm_chart> # CHART NAME
       helm:
-        releaseName: nginx-helm-chart
+        releaseName: <name_private_helm_chart> # CHART NAME
         valueFiles:
-          - $valuesfile/applications/dev/values2.yaml       # Default values for your environments
-          - $valuesfile/applications/dev/files/values2.yaml # Values you want to overwrite
+          - $valuesfile/path/to/values_COMMON.yaml       # Default values for your environments
+          - $valuesfile/path/to/values_ENVIRONMENT.yaml  # Values you want to overwrite
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: gitops-developers
+    namespace: <tenant>-<miljø>
   syncPolicy:
     automated:
       selfHeal: true
@@ -91,9 +91,9 @@ apiVersion: v2
 name: helm-testing
 description: A Helm chart for testing
 dependencies:
-- name: nginx-helm-chart
-  version: 1.0.1
-  repository: oci://poseidon1.azurecr.io
+- name: <name_private_helm_chart> # CHART NAME
+  version: 1.0.1 # CHART VERSION
+  repository: oci://<url_private_helm_registry> # OCI link to private helm registry
 version: 1.0.0
 ```
 
