@@ -52,7 +52,7 @@ Below is an example of how your file structure could look:
 
 Below is an example of the user-defined argo application:
 
-```yaml
+```yaml title="helm-app.yml"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
