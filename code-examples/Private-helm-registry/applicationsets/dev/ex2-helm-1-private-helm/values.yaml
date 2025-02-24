@@ -1,0 +1,12 @@
+service:
+  name: nginx-service-hello
+  type: ClusterIP
+  port: 80
+  targetPort: 9000
+  selector:
+    app: nginx
+
+serviceAccount:
+  name: "nginx-service-hello"
+  create: true
+  annotations: {}

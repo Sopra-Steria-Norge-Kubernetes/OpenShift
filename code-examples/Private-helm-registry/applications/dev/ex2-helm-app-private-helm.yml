@@ -1,0 +1,32 @@
+##
+## This example shows how you can utilize multiple values files, using a private helm registry in a user-defined argo application
+##
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-testing
+  namespace: gitops-developers # REMEMBER TO USE THE APPROPRIATE NAMESPACE HERE
+spec:
+  project: poseidon1
+  sources:
+    # value file repo
+    - repoURL: git@github.com:TeamPoseidonOCP/poseidon1_main_repo.git
+      targetRevision: HEAD
+      ref: valuesfile
+    # private helm regsitry url
+    - repoURL: poseidon1.azurecr.io
+      targetRevision: 1.0.1
+      chart: nginx-helm-chart
+      helm:
+        releaseName: nginx-helm-chart
+        valueFiles:
+          - $valuesfile/applications/dev/values2.yaml       # Default values for your environments
+          - $valuesfile/applications/dev/files/values2.yaml # Values you want to overwrite
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: gitops-developers
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
