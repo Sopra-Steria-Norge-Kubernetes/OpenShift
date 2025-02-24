@@ -48,7 +48,7 @@ This example, we will do almost the same as in the example above. However, in th
 
 Below is an example of how your file structure could look:
 
-![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/helm-app-multiple-values.png)
+![Basics Tab Configuration](../../../../img/Private%20Helm%20Registry/multiple-values-helm-app.png)
 
 Below is an example of the user-defined argo application:
 
@@ -72,8 +72,8 @@ spec:
       helm:
         releaseName: <name_private_helm_chart> # CHART NAME
         valueFiles:
-          - $valuesfile/applications/dev/values_COMMON.yaml       # Default values for your environments
-          - $valuesfile/applications/dev/files/values_ENVIRONMENT.yaml  # Values you want to overwrite
+          - $valuesfile/applications/common_values/values_COMMON.yaml       # Default values for your environments
+          - $valuesfile/applications/dev/application-1/values_ENVIRONMENT.yaml  # Values you want to overwrite
   destination:
     server: "https://kubernetes.default.svc"
     namespace: <tenant>-<miljø>
