@@ -73,7 +73,7 @@ spec:
         releaseName: <name_private_helm_chart> # CHART NAME
         valueFiles:
           - $valuesfile/applications/common_values/values_COMMON.yaml       # Default values for your environments
-          - $valuesfile/applications/dev/application-1/values_ENVIRONMENT.yaml  # Values you want to overwrite
+          - $valuesfile/applications/dev/environment_values-helm-app/values_ENVIRONMENT.yaml  # Values you want to overwrite
   destination:
     server: "https://kubernetes.default.svc"
     namespace: <tenant>-<miljø>
