@@ -19,8 +19,8 @@ spec:
   project: poseidon1
   sources:
     # value file repo
-    # when using SSH key authentication the repo-url should be: 'git@github.com:<repo>'
-    # when using PAT token authentication the repo-url should be: 'https://github.com/<repo>'
+    # when using SSH key authentication the repo-url should be: 'git@github.com:<repo_path>'
+    # when using PAT token authentication the repo-url should be: 'https://github.com/<repo_path>'
     - repoURL: git@github.com:TeamPoseidonOCP/poseidon1_main_repo.git
       targetRevision: HEAD
       ref: valuesfile
