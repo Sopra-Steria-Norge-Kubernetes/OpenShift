@@ -19,21 +19,13 @@ This user guide will provide you with further insights and detailed instructions
 ## Overview of Alerts
 We have created a set of alerts tailored to enhance your monitoring and alerting capabilities within your Prometheus environment. These alerts are designed to help you proactively identify issues and ensure the smooth operation of your systems and services. Below, we provide an overview of the various alert groups we've developed for you to use effectively. Each group is carefully crafted to address specific aspects of your infrastructure and applications, empowering you to take action swiftly when needed. Explore the following alert groups to gain deeper insights into your monitoring and make informed decisions.
 
-### Enable Default Monitoring
-
-- Enable or disable all the monitoring rules listed below. Default `true`.
-
-### Container Alerts
-
-- This group of alerts focuses on monitoring Kubernetes containers. These alerts help you stay informed about container-related issues that may affect your applications.
-- `KubernetesContainerOomKiller`: This alert triggers when a Kubernetes container is OOM-killed.
-
 ### Job & CronJob Alerts
 
 - This group of alerts focuses on monitoring Kubernetes jobs and cron jobs. These alerts help you keep track of job and cron job executions and potential issues.
 - `KubernetesJobFailed`: This alert triggers when a Kubernetes job fails to complete.
 - `KubernetesCronjobSuspended`: This alert triggers when a Kubernetes CronJob is suspended.
 - `KubernetesCronjobTooLong`: This alert triggers when a Kubernetes CronJob takes too long to complete.
+- `KubernetesJobSlowCompletion`: This alert triggers when Kubernetes Job has not completed all expected tasks (completions) within 12 hours.
 
 ### Storage Alerts
 
@@ -42,17 +34,6 @@ We have created a set of alerts tailored to enhance your monitoring and alerting
 - `KubernetesVolumeOutOfDiskSpace`: This alert triggers when a volume is almost full.
 - `KubernetesVolumeFullInFourDays`: This alert triggers when a volume is expected to fill up within four days.
 - `KubernetesPersistentvolumeError`: This alert triggers when a Persistent Volume is in a bad state.
-
-### Workload Alerts
-
-- This group of alerts focuses on monitoring Kubernetes workloads, including StatefulSets, Horizontal Pod Autoscalers (HPAs), and pods. These alerts help you maintain the health and performance of your workloads.
-- `KubernetesStatefulsetDown`: This alert triggers when a Kubernetes StatefulSet goes down.
-- `KubernetesHpaScaleInability`: This alert triggers when an HPA is unable to scale.
-- `KubernetesHpaMetricsUnavailability`: This alert triggers when an HPA is unable to collect metrics.
-- `KubernetesHpaScaleMaximum`: This alert triggers when an HPA reaches its maximum scaling limit.
-- `KubernetesHpaUnderutilized`: This alert triggers when an HPA is underutilized.
-- `KubernetesPodNotHealthy`: This alert triggers when a pod is not healthy.
-- `KubernetesPodCrashLooping`: This alert triggers when a pod is in a crash-loop.
 
 ### ReplicaSets Alerts
 
@@ -68,27 +49,47 @@ We have created a set of alerts tailored to enhance your monitoring and alerting
 
 - This group of alerts focuses on monitoring Kubernetes StatefulSets. These alerts help you ensure the correct behavior of your StatefulSets.
 - `KubernetesStatefulsetReplicasMismatch`: This alert triggers when a Kubernetes StatefulSet's ready replicas do not match the total replicas.
+- `KubernetesStatefulsetGenerationMismatch`: This alert triggers when a Kubernetes StatefulSet's observed generation does not match its metadata generation for more than 10 minutes.
+- `KubernetesStatefulsetUpdateNotRolledOut`: this alert trigger when a Kubernetes StatefulSet update has not been fully rolled out for more than 10 minutes.
+- `KubernetesStatefulsetDown`: This alert triggers when a Kubernetes StatefulSet goes down.
 
 ### Resource Quota Alerts
 
 - This group of alerts focuses on monitoring resource quota usage within namespaces. These alerts help ensure that resource limits are respected to maintain the stability of the cluster.
-- `MemoryUsageExceeded`: This alert triggers when memory usage in a namespace exceeds 80% of the defined hard limit for 15 minutes.
-- `CpuUsageExceeded`: This alert triggers when CPU usage in a namespace exceeds 80% of the defined hard limit for 15 minutes.
+- `MemoryUsageExceeded`: This alert triggers when memory usage in a namespace exceeds 95% of the defined hard limit for 15 minutes.
+- `CpuUsageExceeded`: This alert triggers when CPU usage in a namespace exceeds 95% of the defined hard limit for 15 minutes.
+- `MemoryRequestsExceeded`: This alert triggers when the actual memory usage in the namespace exceeds 95% of the defined hard requests for 15 minutes.
+- `CpuRequestsExceeded`: This alert triggers when the actual CPU usage in the namespace exceeds 95% of the defined hard requests for 15 minutes.
+
+
+### Pod Alerts
+
+- This group of alerts focuses on monitoring Kubernetes containers. These alerts help you stay informed about container-related issues that may affect your applications.
+- `KubernetesContainerOomKiller`: This alert triggers when a Kubernetes container is OOM-killed.
+- `KubernetesPodNotHealthy`: This alert triggers when a pod is not healthy.
+- `KubernetesPodCrashLooping`: This alert triggers when a pod is in a crash-loop.
+
+### HPA Alerts
+
+- This group of alerts focuses on monitoring Kubernetes workloads, including StatefulSets, Horizontal Pod Autoscalers (HPAs), and pods. These alerts help you maintain the health and performance of your workloads.
+- `KubernetesHpaScaleInability`: This alert triggers when an HPA is unable to scale.
+- `KubernetesHpaMetricsUnavailability`: This alert triggers when an HPA is unable to collect metrics.
+- `KubernetesHpaScaleMaximum`: This alert triggers when an HPA reaches its maximum scaling limit.
+- `KubernetesHpaUnderutilized`: This alert triggers when an HPA is underutilized.
 
 ### How to disable group alarms
 To disable a group alert you need to set a group alert to false in your tenant configuration. 
 
 ```yaml
 monitoring:
-  enabledefaultmonitoring: true  # Set to false to diable all alerts
-  containerAlertsEnabled: false  # Set to false to disable the ContainerAlerts group
-  jobCronJobAlertsEnabled: true
+  jobCronJobAlertsEnabled: false # Set to false to disable the JobCronJobAlerts group
   storageAlertsEnabled: true
-  workloadAlertsEnabled: true
   replicasSetsAlertsEnabled: true
   deploymentsAlertsEnabled: true
   statefulSetsAlertsEnabled: true
   resourceQuotaAlertsEnabled: true
+  podAlertsEnabled: true
+  hpaAlertsEnabled: true
 ```
 
 ## Configure your own alerts
@@ -158,35 +159,6 @@ You have access to configuring your Alertmanager configuration specific to your 
 
 ## Alert code examples
 
-### Container Alerts
-
-=== "KubernetesContainerOomKiller"
-    ```yaml
-    alert: KubernetesContainerOomKiller
-    expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring(reason) min_over_time    (kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
-    for: 0m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: warning
-    annotations:
-      summary: "Kubernetes Container oom killer (instance {{`{{ $labels.instance }})`}}"
-      description: "Container {{`{{ $labels.container }}`}} in pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been OOMKilled {{`{{ $value }}`}} times in the     last 10 minutes.\n VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-=== "KubernetesJobSlowCompletion"
-    ```yaml
-    alert: KubernetesJobSlowCompletion
-    expr: kube_job_spec_completions - kube_job_status_succeeded - kube_job_status_failed > 0
-    for: 12h
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: critical
-    annotations:
-      summary: "Kubernetes Job failed (instance {{`{{ $labels.instance }}`}})"
-      description: "Job {{`{{ $labels.namespace }}`}}/{{`{{ $labels.job_name }}`}} failed to complete\n  VALUE = {{`{{ $value }}`}}\n  LABELS = {{`{{ $labels }}`}}"
-    
-    ```
-
-
 ### Job & CronJob Alerts
 === "KubernetesJobFailed"
     ```yaml
@@ -226,6 +198,18 @@ You have access to configuring your Alertmanager configuration specific to your 
       description: "CronJob {{`{{ $labels.namespace }}`}}/{{`{{ $labels.cronjob }}`}} is taking more than 1h to complete.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{     $labels }}`}}"
     ```
 
+=== "KubernetesJobSlowCompletion"
+    ```yaml
+    alert: KubernetesJobSlowCompletion
+    expr: kube_job_spec_completions - kube_job_status_succeeded - kube_job_status_failed > 0
+    for: 12h
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: critical
+    annotations:
+      summary: "Kubernetes Job failed (instance {{`{{ $labels.instance }}`}})"
+      description: "Job {{`{{ $labels.namespace }}`}}/{{`{{ $labels.job_name }}`}} failed to complete\n  VALUE = {{`{{ $value }}`}}\n  LABELS = {{`{{ $labels }}`}}"
+    ```
 
 ### Storage Alerts
 
@@ -280,8 +264,77 @@ You have access to configuring your Alertmanager configuration specific to your 
       description: "Persistent volume {{`{{ $labels.persistentvolume }}`}} is in a bad state\n VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
     ```
 
+### ReplicaSets Alerts
 
-### Workload Alerts
+=== "KubernetesReplicasetReplicasMismatch"
+    ```yaml
+    alert: KubernetesReplicasetReplicasMismatch
+    expr: kube_replicaset_spec_replicas != kube_replicaset_status_ready_replicas
+    for: 10m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: warning
+    annotations:
+      summary: 'Kubernetes ReplicaSet replicas mismatch (instance {{`{{ $labels.instance }})`}}'
+      description: "ReplicaSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.replicaset }}`}} replicas mismatch\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+
+### Deployments Alerts
+
+=== "KubernetesDeploymentReplicasMismatch"
+    ```yaml
+    alert: KubernetesDeploymentReplicasMismatch
+    expr: kube_deployment_spec_replicas != kube_deployment_status_replicas_available
+    for: 10m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: warning
+    annotations:
+      summary: 'Kubernetes Deployment replicas mismatch (instance {{`{{ $labels.instance }})`}}'
+      description: "Deployment {{`{{ $labels.namespace }}`}}/{{`{{ $labels.deployment }}`}} replicas mismatch\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+### StatefulSets Alerts
+
+=== "KubernetesStatefulsetReplicasMismatch"
+    ```yaml
+    alert: KubernetesStatefulsetReplicasMismatch
+    expr: kube_statefulset_status_replicas_ready != kube_statefulset_status_replicas
+    for: 10m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: warning
+    annotations:
+      summary: 'Kubernetes StatefulSet replicas mismatch (instance {{`{{ $labels.instance }})`}}'
+      description: "StatefulSet does not match the expected number of replicas.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+=== "KubernetesStatefulsetGenerationMismatch"
+    ```yaml
+    alert: KubernetesStatefulsetGenerationMismatch
+    expr: kube_statefulset_status_observed_generation != kube_statefulset_metadata_generation
+    for: 10m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: critical
+    annotations:
+      summary: 'Kubernetes StatefulSet generation mismatch (instance {{`{{ $labels.instance }})`}}'
+      description: "StatefulSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.statefulset }}`}} has failed but has not been rolled back.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+=== "KubernetesStatefulsetUpdateNotRolledOut"
+    ```yaml
+    alert: KubernetesStatefulsetUpdateNotRolledOut
+    expr: max without (revision) (kube_statefulset_status_current_revision unless kube_statefulset_status_update_revision) * (kube_statefulset_replicas !=     kube_statefulset_status_replicas_updated)
+    for: 10m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: warning
+    annotations:
+      summary: 'Kubernetes StatefulSet update not rolled out (instance {{`{{ $labels.instance }})`}}'
+      description: "StatefulSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.statefulset }}`}} update has not been rolled out.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
 
 === "KubernetesStatefulsetDown"
     ```yaml
@@ -295,6 +348,103 @@ You have access to configuring your Alertmanager configuration specific to your 
       summary: 'Kubernetes StatefulSet down (instance {{`{{ $labels.instance }})`}}'
       description: "StatefulSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.statefulset }}`}} went down\n  VALUE = {{`{{ $value }}`}}\n  LABELS = {{`{{ $labels }}`}}"
     ```
+
+### Resource Quota Alerts
+
+=== "MemoryUsageExceeded"
+    ```yaml
+    alert: MemoryUsageExceeded
+    expr: (sum by (name)(openshift_clusterresourcequota_usage{type="used", resource="limits.memory", name="{{ $.Values.namespace.name }}"}) / sum by (name)(openshift_clusterresourcequota_usage{type="hard", resource="limits.memory", name="{{ $.Values.namespace.name }}"})) * 100 >= 95
+    for: 5m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
+      severity: warning
+    annotations:
+      summary: Memory usage for {{ $.Values.namespace.name }} exceeded 95%
+      description: Memory usage for {{ $.Values.namespace.name }} has reached or exceeded 80% of its hard limit.
+    ```
+
+=== "CpuUsageExceeded"
+    ```yaml
+    alert: CpuUsageExceeded
+    expr: (sum by (name)(openshift_clusterresourcequota_usage{type="used", resource="limits.cpu", name="{{$.Values.namespace.name }}"}) / sum by (name)(openshift_clusterresourcequota_usage{type="hard", resource="limits.cpu", name="{{ $.Values.namespace.name }}"})) * 100 >= 95
+    for: 5m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
+      severity: warning
+    annotations:
+      summary: ClusterResourceQuota CPU Usage Exceeded for instance = {{`{{ $labels.name }}`}}
+      description: Resource {{ $.Values.namespace.name }} is using more than 95% of its hard limit for CPU. VALUE = {{`{{ $value }}`}}, LABELS = {{`{{ $labels.name }}`}}
+    ```
+
+=== "MemoryRequestsExceeded"
+    ```yaml
+    alert: MemoryRequestsExceeded
+    expr: sum(sum(container_memory_working_set_bytes{job="kubelet", metrics_path="/metrics/cadvisor", cluster="", namespace=~"{{ $.Values.namespace.name }}.*", container!="", image!=""}) by (pod))/sum(openshift_clusterresourcequota_usage{resource="requests.memory", type="hard",name="{{ $.Values.namespace.name }}"}) * 100 >= 95
+    for: 5m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
+      severity: warning
+    annotations:
+      summary: Memory requests for {{ $.Values.namespace.name }} exceeded 95%
+      description: Memory requests for {{ $.Values.namespace.name }} has reached or exceeded 95% of its hard limit.
+    ```
+
+=== "CpuRequestsExceeded"
+    ```yaml
+    alert: CpuRequestsExceeded
+    expr: sum(sum by (namespace)(avg_over_time(pod:container_cpu_usage:sum{namespace=~"{{ $.Values.namespace.name }}.*"}[1h])))/sum(openshift_clusterresourcequota_usage{resource="requests.cpu", type="hard",name="{{ $.Values.namespace.name }}"}) * 100 >= 95
+    for: 5m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
+      severity: warning
+    annotations:
+      summary: ClusterResourceQuota CPU Requests Exceeded for instance = {{`{{ $labels.name }}`}}
+      description: Resource {{ $.Values.namespace.name }} is requesting more than 95% of its hard limit for CPU. VALUE = {{`{{ $value }}`}}, LABELS = {{`{{ $labels.name }}`}}
+    ```
+
+### Pod Alerts
+
+=== "KubernetesContainerOomKiller"
+    ```yaml
+    alert: KubernetesContainerOomKiller
+    expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring(reason) min_over_time    (kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+    for: 0m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: warning
+    annotations:
+      summary: "Kubernetes Container oom killer (instance {{`{{ $labels.instance }})`}}"
+      description: "Container {{`{{ $labels.container }}`}} in pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been OOMKilled {{`{{ $value }}`}} times in the     last 10 minutes.\n VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+=== "KubernetesPodNotHealthy"
+    ```yaml
+    alert: KubernetesPodNotHealthy
+    expr: sum by (namespace, pod)(kube_pod_status_phase{phase=~"Pending|Unknown|Failed"}) > 0
+    for: 15m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: critical
+    annotations:
+      summary: 'Kubernetes Pod not healthy (instance {{`{{ $labels.instance }})`}}'
+      description: "Pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been in a non-running state for longer than 15 minutes.\n  VALUE = {{`{{ $value }}`}}\n  LABELS = {{`{{ $labels }}`}}"
+    ```
+
+=== "KubernetesPodCrashLooping"
+    ```yaml
+    alert: KubernetesPodCrashLooping
+    expr: increase(kube_pod_container_status_restarts_total[1m]) > 3
+    for: 2m
+    labels:
+      namespace: {{ $.Values.namespace.name }}-{{ .name }}
+      severity: warning
+    annotations:
+      summary: 'Kubernetes pod crash looping (instance {{`{{ $labels.instance }})`}}'
+      description: "Pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} is crash looping\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
+    ```
+
+### HPA Alerts
 
 === "KubernetesHpaScaleInability"   
      ```yaml
@@ -346,132 +496,4 @@ You have access to configuring your Alertmanager configuration specific to your 
     annotations:
       summary: 'Kubernetes HPA underutilized (instance {{`{{ $labels.instance }})`}}'
       description: "HPA {{`{{ $labels.namespace }}`}}/{{`{{ $labels.horizontalpodautoscaler }}`}} has hit the maximum number of desired pods\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-=== "KubernetesPodNotHealthy"
-    ```yaml
-    alert: KubernetesPodNotHealthy
-    expr: sum by (namespace, pod)(kube_pod_status_phase{phase=~"Pending|Unknown|Failed"}) > 0
-    for: 15m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: critical
-    annotations:
-      summary: 'Kubernetes Pod not healthy (instance {{`{{ $labels.instance }})`}}'
-      description: "Pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} has been in a non-running state for longer than 15 minutes.\n  VALUE = {{`{{ $value }}`}}\n  LABELS = {{`{{ $labels }}`}}"
-    ```
-
-=== "KubernetesPodCrashLooping"
-    ```yaml
-    alert: KubernetesPodCrashLooping
-    expr: increase(kube_pod_container_status_restarts_total[1m]) > 3
-    for: 2m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: warning
-    annotations:
-      summary: 'Kubernetes pod crash looping (instance {{`{{ $labels.instance }})`}}'
-      description: "Pod {{`{{ $labels.namespace }}`}}/{{`{{ $labels.pod }}`}} is crash looping\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-
-### ReplicaSets Alerts
-
-=== "KubernetesReplicasetReplicasMismatch"
-    ```yaml
-    alert: KubernetesReplicasetReplicasMismatch
-    expr: kube_replicaset_spec_replicas != kube_replicaset_status_ready_replicas
-    for: 10m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: warning
-    annotations:
-      summary: 'Kubernetes ReplicaSet replicas mismatch (instance {{`{{ $labels.instance }})`}}'
-      description: "ReplicaSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.replicaset }}`}} replicas mismatch\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-
-### Deployments Alerts
-
-=== "KubernetesDeploymentReplicasMismatch"
-    ```yaml
-    alert: KubernetesDeploymentReplicasMismatch
-    expr: kube_deployment_spec_replicas != kube_deployment_status_replicas_available
-    for: 10m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: warning
-    annotations:
-      summary: 'Kubernetes Deployment replicas mismatch (instance {{`{{ $labels.instance }})`}}'
-      description: "Deployment {{`{{ $labels.namespace }}`}}/{{`{{ $labels.deployment }}`}} replicas mismatch\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-
-### StatefulSets Alerts
-
-=== "KubernetesStatefulsetReplicasMismatch"
-    ```yaml
-    alert: KubernetesStatefulsetReplicasMismatch
-    expr: kube_statefulset_status_replicas_ready != kube_statefulset_status_replicas
-    for: 10m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: warning
-    annotations:
-      summary: 'Kubernetes StatefulSet replicas mismatch (instance {{`{{ $labels.instance }})`}}'
-      description: "StatefulSet does not match the expected number of replicas.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-=== "KubernetesStatefulsetGenerationMismatch"
-    ```yaml
-    alert: KubernetesStatefulsetGenerationMismatch
-    expr: kube_statefulset_status_observed_generation != kube_statefulset_metadata_generation
-    for: 10m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: critical
-    annotations:
-      summary: 'Kubernetes StatefulSet generation mismatch (instance {{`{{ $labels.instance }})`}}'
-      description: "StatefulSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.statefulset }}`}} has failed but has not been rolled back.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-=== "KubernetesStatefulsetUpdateNotRolledOut"
-    ```yaml
-    alert: KubernetesStatefulsetUpdateNotRolledOut
-    expr: max without (revision) (kube_statefulset_status_current_revision unless kube_statefulset_status_update_revision) * (kube_statefulset_replicas !=     kube_statefulset_status_replicas_updated)
-    for: 10m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ .name }}
-      severity: warning
-    annotations:
-      summary: 'Kubernetes StatefulSet update not rolled out (instance {{`{{ $labels.instance }})`}}'
-      description: "StatefulSet {{`{{ $labels.namespace }}`}}/{{`{{ $labels.statefulset }}`}} update has not been rolled out.\n  VALUE = {{`{{ $value }}`}}\n LABELS = {{`{{ $labels }}`}}"
-    ```
-
-### Resource Quota Alerts
-
-=== "MemoryUsageExceeded"
-    ```yaml
-    alert: MemoryUsageExceeded
-    expr: (sum by (name)(openshift_clusterresourcequota_usage{type="used", resource="limits.memory", name="{{ $.Values.namespace.name }}"}) / sum by (name)(openshift_clusterresourcequota_usage{type="hard", resource="limits.memory", name="{{ $.Values.namespace.name }}"})) * 100 >= 80
-    for: 15m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
-      severity: warning
-    annotations:
-      summary: Memory usage for {{ $.Values.namespace.name }} exceeded 80%
-      description: Memory usage for {{ $.Values.namespace.name }} has reached or exceeded 80% of its hard limit.
-    ```
-
-=== "CpuUsageExceeded"
-    ```yaml
-    alert: CpuUsageExceeded
-    expr: (sum by (name)(openshift_clusterresourcequota_usage{type="used", resource="limits.cpu", name="{{$.Values.namespace.name }}"}) / sum by (name)(openshift_clusterresourcequota_usage{type="hard", resource="limits.cpu", name="{{ $.Values.namespace.name }}"})) * 100 >= 80
-    for: 15m
-    labels:
-      namespace: {{ $.Values.namespace.name }}-{{ (index $.Values.environments 0).name }}
-      severity: warning
-    annotations:
-      summary: ClusterResourceQuota CPU Usage Exceeded for instance = {{`{{ $labels.name }}`}}
-      description: Resource {{ $.Values.namespace.name }} is using more than 80% of its hard limit for CPU. VALUE = {{`{{ $value }}`}}, LABELS = {{`{{ $labels.name }}`}}
     ```
