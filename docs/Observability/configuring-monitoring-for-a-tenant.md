@@ -19,10 +19,6 @@ This user guide will provide you with further insights and detailed instructions
 ## Overview of Alerts
 We have created a set of alerts tailored to enhance your monitoring and alerting capabilities within your Prometheus environment. These alerts are designed to help you proactively identify issues and ensure the smooth operation of your systems and services. Below, we provide an overview of the various alert groups we've developed for you to use effectively. Each group is carefully crafted to address specific aspects of your infrastructure and applications, empowering you to take action swiftly when needed. Explore the following alert groups to gain deeper insights into your monitoring and make informed decisions.
 
-### Enable Default Monitoring
-
-- Enable or disable all the monitoring rules listed below. Default `true`.
-
 ### Job & CronJob Alerts
 
 - This group of alerts focuses on monitoring Kubernetes jobs and cron jobs. These alerts help you keep track of job and cron job executions and potential issues.
@@ -86,7 +82,6 @@ To disable a group alert you need to set a group alert to false in your tenant c
 
 ```yaml
 monitoring:
-  enabledefaultmonitoring: true  # Set to false to diable all alerts
   jobCronJobAlertsEnabled: false # Set to false to disable the JobCronJobAlerts group
   storageAlertsEnabled: true
   replicasSetsAlertsEnabled: true
