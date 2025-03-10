@@ -18,6 +18,7 @@ This seamless integration with GitOps practices ensures that our applications ar
     enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
     enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
     syncPolicy:
+      allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false)>
       selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
       prune: <Remove resources that are not present in the Git repository during sync (true/false)>
     main_git_repository:
@@ -66,6 +67,7 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
 | SyncPolicy              |                                                                                                                     |                                            |                           |
+| `allowEmpty`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
 | `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    | true |
 | `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
 | Default              |                                                                                                                     |                                            |                           |
