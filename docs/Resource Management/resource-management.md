@@ -15,7 +15,7 @@ OpenShift, built on Kubernetes, offers a robust platform for deploying and manag
 In OpenShift, each container within a pod can specify the amount of CPU and memory it requires (request) and the maximum amount it can consume (limit). 
 
 - **Resource Request**: The amount of CPU or memory that OpenShift reserves on the node for the given pod. The scheduler uses this value to determine on which node to place the pod.
-- **Resource Limit**: The maximum amount of CPU or memory that a container is allowed to use. If the container tries to exceed this limit, it may be throttled or terminated. ￼
+- **Resource Limit**: Defines the maximum amount of CPU or memory that a container is allowed to use. If a container exceeds its memory limit, it is terminated with an OOMKilled status. If a container surpasses its CPU limit, Kubernetes throttles the CPU usage, slowing down the process instead of terminating the container.
 
 Properly defining resource requests and limits helps maintain a balanced workload, preventing resource contention and ensuring fair allocation across applications.
 
