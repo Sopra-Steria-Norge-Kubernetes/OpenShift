@@ -55,6 +55,8 @@ nav:
       - Introduction: Secret Managment/External Secrets/info-external-secrets.md
       - Deploying secret store with Azure Key Vault: Secret Managment/External Secrets/configuration-secretstore.md
       - Creating external secrets with Azure Key Vault: Secret Managment/External Secrets/creating-external-secrets.md
+  - Resource Management:
+    - Resource Management: Resource Management/resource-management.md
   - Observability:
     - Introduction: Observability/Introduction.md
     - Using OpenShift observability: Observability/using-openshift-observability.md
