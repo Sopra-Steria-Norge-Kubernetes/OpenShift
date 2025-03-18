@@ -15,6 +15,7 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
     description: <Tenant Description>
     displayName: <Display name of the tenant>
     use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
+    enable_global_egress_IPs: <Use egress firewall IPs defined in a global values file>
     enable_tooling: <Creates a tooling namespace>
     deploy_grafana: <Deploy Grafana instance in tooling namespace>
     storage:
@@ -73,7 +74,7 @@ In the table below, you can find a more detailed description of each variable in
 | `description`                | A description annotation  under each tenant namespace                                 | " This is a test tenant used for testing" | String     | "" |
 | `displayName`                | Displayname given to each openshift namespace/project                                 | "poseidon1-application1"                   | String     | "" |
 | `use_egress_firewall`         | To use egress firewall to limit egress traffic from tenant namespaces.                | true                                       | Boolean    | true |
-| `enable_global_egress_IPs`    | 
+| `enable_global_egress_IPs`    | Use egress firewall IPs defined in a global values file                              | false                                       | Boolean    | false |
 | `enable_tooling`              | Creates a tooling namespace which is needed for certain applications such as Grafana | true                                       | Boolean    | true |
 | `deploy_grafana`              | Deploys a grafana instance in the tooling namespace                                      | true                                       | Boolean    | true |
 | `storage.enable_custom_storageclass`              | Enable option to have custom storageclasses                                      | true                                       | Boolean    | false |
