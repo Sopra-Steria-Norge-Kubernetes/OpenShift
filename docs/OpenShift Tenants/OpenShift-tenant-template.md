@@ -25,6 +25,7 @@ values: |
     description: <Tenant Description>
     displayName: <Display name of the tenant>
     use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
+    enable_global_egress_IPs: <Use egress firewall IPs defined in a global values file>
     enable_tooling: <Creates a tooling namespace>
     deploy_grafana: <Deploy Grafana instance in tooling namespace>
     storage:
