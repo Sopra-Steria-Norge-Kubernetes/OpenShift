@@ -42,7 +42,7 @@ apiVersion: external-secrets.io/v1alpha1
 kind: ClusterSecretStore
 metadata:
   name: <tenant_name>-secret-store
-  namespace: <tenant_name>-<env>
+  namespace: <tenant_name>-<first_env>
 spec:
   provider:
     azurekv:
@@ -52,14 +52,14 @@ spec:
         clientId:
           name: keyvault-credentials
           key: ClientID
-          namespace: <namespace>-tooling
+          namespace: <namespace>-<first_env>
         clientSecret:
           name: keyvault-credentials
           key: ClientSecret
-          namespace: <namespace>-tooling
+          namespace: <namespace>-<first_env> # <first_env> value should be the first element in the environments list in the tenant
 ```
 
-Ensure to replace placeholders like `<tenant_name>`, `<env>`, `<AZURE_TENANT_ID>`, `<AZURE_KEY_VAULT_URL>`, and `<namespace>` with your specific values. 
+Ensure to replace placeholders like `<tenant_name>`, `<env>`, `<AZURE_TENANT_ID>`, `<AZURE_KEY_VAULT_URL>`, `<namespace>`, and `<first_env>` with your specific values. 
 
 Next step: [**Creating External Secrets**](creating-external-secrets.md)
 
