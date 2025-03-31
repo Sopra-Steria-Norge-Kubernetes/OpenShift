@@ -35,7 +35,10 @@ To get external secrets to work with Azure Key Vault you need have certain permi
 ## Setting up ClusterSecretStore for your tenant
 In OpenShift, a **ClusterSecretStore** defines the connection details for external Key Management Systems (KMS) like Azure Key Vault. It stores credentials, the tenant ID, and the Key Vault URL, allowing OpenShift applications to securely fetch and use secrets from Azure.
 
-The ClusterSecretStore is deployed in your tenant’s tooling namespace and is accessible from all namespaces within the tenant, providing a centralized connection to your Key Vault.
+The ClusterSecretStore is deployed in the first defined namespace in your tenant and is accessible from all namespaces within the tenant, providing a centralized connection to your Key Vault.
+
+!!! Info
+    Since the ClusterSecretStore is created in the first namespace in your tenant, it is important that the SealedSecret with your ClientID and ClientSecret also is created using the same namespace.
 
 To create a ClusterSecretStore through the tenant setup, you must configure the following parameters:
 
