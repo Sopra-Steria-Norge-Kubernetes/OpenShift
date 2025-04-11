@@ -12,9 +12,7 @@ This is particularly useful for securing workloads by limiting what external ser
 
 ## How to use Egress Firewall
 
-<!-- EgressFirewall in OpenShift is a custom resource that applies namespace-scoped rules to control outbound traffic. It allows filtering based on destination CIDRs, ports, and protocols. EgressFirewall enhances security by blocking unauthorized external access, supports compliance by preventing data leaks and bypassing of monitoring systems, and enables traceability by routing traffic through static IPs using EgressIP. It offers fine-grained, namespace-level control without affecting the entire cluster, and fits seamlessly into GitOps workflows by being declarative, version-controlled, and automatable with tools like Argo CD. -->
-
-Egress firewall can be enabled in each tenant by enabling the `enable_egress_firewall` field under `namespace` in the tenant chart. By enabling this field an egress firewall for each environment in the tenant gets defined based on the following fields: `openshift_dhcp_range_main`, `openshift_dhcp_range_dr`, `external_URLs`, `external_IPs`, `enable_global_egress_IPs`, `udp_IPs`, `udpURLs` and `allow_to_internet`.
+Egress firewall can be enabled in each tenant by enabling the `enable_egress_firewall` field under `namespace` in the tenant chart. By enabling this field an egress firewall for each environment in the tenant gets defined based on the following fields: `openshift_dhcp_range_main`, `openshift_dhcp_range_dr`, `externalURLs`, `externalIPs`, `enable_global_egress_IPs`, `udp_IPs`, `udpURLs` and `allow_to_internet`.
 
 How to enable egress firewall:
 
@@ -36,4 +34,3 @@ If there are some firewall openings that persist over multiple tenants  and envi
     use_egress_firewall: true # Enables egress firewall
     enable_global_egress_IPs: true # If set to true - global egress firewall openings are included in the egress firewall of the environments in the tenant
 ```
-
