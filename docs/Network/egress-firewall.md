@@ -4,7 +4,7 @@
 
 ## Introduction
 
-The Egress Firewall in OpenShift allows you to control outbound traffic from Pods to external networks at the namespace level. It defines rules to explicitly allow or block egress connections to specific IPs, CIDRs, or ports.
+The Egress Firewall in OpenShift allows you to control outbound traffic from Pods to external networks at the namespace level. It defines rules to explicitly allow or block egress connections to specific IPs, CIDRs, or ports. This enables more fine-grained firewall configurations, where certain openings can be scoped to specific namespaces rather than being applied cluster-wide.
 
 This is particularly useful for securing workloads by limiting what external services they can access (e.g., blocking internet access or allowing only specific APIs).
 
