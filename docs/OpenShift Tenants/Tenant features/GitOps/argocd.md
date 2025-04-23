@@ -52,6 +52,37 @@ ArgoCD provides different ways of automatically deploying and synchronising infr
     
     - To enable this choice you have to set the  `argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for each of the tenants' environments which will configure new applications when you hadd new folders in your repository.
 
+### Connecting to a Git repository
+The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
+
+- **Default**: variables that both connection methods need
+- **PAT**: variables needed to connect with a GitHub PAT token
+- **GitHub app**: variables need to configure the GitHub app
+- **SSH**: variables need to configure through SSH
+
+| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
+|----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
+| SyncPolicy              |                                                                                                                     |                                            |                           |
+| `allowEmpty`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
+| `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    | true |
+| `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
+| Default              |                                                                                                                     |                                            |                           |
+| `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
+| `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    | "" |
+| `encrypted_url`      | The URL of the git repository encrypted with sealedsecrets                                                          | See description below                      | Kubeseal encrypted String | "" |
+| `encrypted_type`     | Type should always be "git" and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
+| PAT                  |                                                                                                                     |                                            |                           |
+| `encrypted_password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted String | "" |
+| `encrypted_username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted String | "" |
+| GitHub App           |                                                                                                                     |                                            |                           |
+| `enable_app`         | Whether or not to use GitHub App to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
+| `id`                 | The app id for your Github App encrypted with sealedsecrets                                                         | See description below                      | Kubeseal encrypted String | "" |
+| `installation_id`    | The installation id for your GitHub App encrypted with sealedsecrets                                                | See description below                      | Kubeseal encrypted String | "" |
+| `private_key`        | Private key for your GitHub App encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
+| SSH           |                                                                                                                     |                                            |                           |
+| `enable_ssh_key`         | Whether or not to use SSH to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
+| `private_key`        | Private key for your SSH-private-key encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
+
 ## How to configure Argo CD - Team Concept
 
 Below is the configuration for setting up ArgoCD using our team concept:
@@ -121,14 +152,11 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `allowEmpty`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
 | `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    | true |
 | `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
-| Default              |                                                                                                                     |                                            |                           |
+| Argo CD Configuration              |                                                                                                                     |                                            |                           |
 | `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
-| `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    | "" |
 | `encrypted_url`      | The URL of the git repository encrypted with sealedsecrets                                                          | See description below                      | Kubeseal encrypted String | "" |
 | `encrypted_type`     | Type should always be "git" and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
-| PAT                  |                                                                                                                     |                                            |                           |
-| `encrypted_password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted String | "" |
-| `encrypted_username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted String | "" |
+| 
 | GitHub App           |                                                                                                                     |                                            |                           |
 | `enable_app`         | Whether or not to use GitHub App to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
 | `id`                 | The app id for your Github App encrypted with sealedsecrets                                                         | See description below                      | Kubeseal encrypted String | "" |
@@ -137,8 +165,12 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | SSH           |                                                                                                                     |                                            |                           |
 | `enable_ssh_key`         | Whether or not to use SSH to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
 | `private_key`        | Private key for your SSH-private-key encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
+PAT                  |                                                                                                                     |                                            |                           |
+| `username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted String | "" |
+| `password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted String | "" |
 
-### Encrypt and configure the Argo-specific information
+
+## Encrypt and configure the Argo-specific information
 
 Encrypting and configuring ArgoCD-specific information is crucial for ensuring the security and efficiency of your deployment. To assist with this, we have developed a detailed user guide. 
 
