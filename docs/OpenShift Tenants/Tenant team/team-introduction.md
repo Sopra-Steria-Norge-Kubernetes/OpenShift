@@ -18,23 +18,23 @@ Within the team definitions yaml file you can configure the following:
 
 ```yaml
 team:
-  name: team-poseidon
-  description: "This is a team overlay for all team poseidon tenants"
+  name: <Name of team>
+  description: <Description of team>
 
 resource_management:
   requests:
-    cpu: "200m"
+    cpu: 200m
     memory: "500Mi"
   storage:
     enable_custom_storageclass: false
 
 rbac:  
-  team_admin: ""
+  team_admin: <AD Group for team admin>
 
 observability:
   grafana_instance: false
-  grafana_admin: ""
-  grafana_editor: changeme
+  grafana_admin: <AD Group for grafana admin>
+  grafana_editor: <AD Group for editors, can be left blank and everyone will be editor>
   sopra_grafana_admin: ""
 
 gitops:
@@ -122,7 +122,6 @@ The grafana instance must have an admin group. it does not require editor group.
 
 ```yaml
 gitops:
-  gitops_namespace: gitops-developers
   argocd:
     enable_user_defined_apps: false
     enable_auto_defined_apps: true
