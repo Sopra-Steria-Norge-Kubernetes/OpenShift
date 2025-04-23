@@ -8,9 +8,9 @@ By continuously monitoring your applications, ArgoCD automatically synchronizes 
 
 This seamless integration with GitOps practices ensures that our applications are always up-to-date and that any changes are managed through a robust version control system.
 
-## How to configure Argo CD
+## How to configure Argo CD - Tenant Concept
 
- Below is the configuration for setting up ArgoCD using our Helm chart:
+Below is the configuration for setting up ArgoCD using our tenant concept:
 
 ```yaml
 ...
@@ -51,6 +51,57 @@ ArgoCD provides different ways of automatically deploying and synchronising infr
 2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<basepath>applicationsets/<environments[].name>`.  
     
     - To enable this choice you have to set the  `argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for each of the tenants' environments which will configure new applications when you hadd new folders in your repository.
+
+## How to configure Argo CD - Team Concept
+
+Below is the configuration for setting up ArgoCD using our team concept:
+
+```yaml
+...  
+  gitops:
+    argocd:
+      enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
+      enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
+      team_repo_url: ""
+      path: ""
+      syncPolicy:
+        allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false)>
+        selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
+        prune: <Remove resources that are not present in the Git repository during sync (true/false)>
+      resource_name_first: true
+      custom_target_revision: false
+    team_git_repositories:
+    - repourl: "" 
+      encrypted_url: <The url of the git repository encrypted with sealedsecrets>
+      encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
+      credentials:
+        github_app: 
+          enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
+          id: <The app id for your GitHub App encrypted with sealedsecrets>
+          installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
+          private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
+        ssh_key:
+          enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
+          private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
+        pat:
+          enable_pat: <Enable username and PAT to authenticate ArgoCD with your Git Repository. Default false.>
+          username: <Username used with PAT encrypted with sealedsecrets>
+          password: <PAT encrypted with sealedsecrets>
+...    
+```
+
+## In-depth description of parameters
+
+The `gitops` feature in the team concept have the same functionality as in the tenant concept´s `argocd` feature.
+
+As in the tenant concept you also have the ability to enable the user-defined method and the auto-defined method.
+
+1. **User-defined method:** Create ArgoCD applications in your repository under the path `<basepath>/<path>`.
+    - To enable this choice, you must set the field `gitops.argocd.enable_user_defined_apps` to true.
+
+2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<basepath>/<path>`.  
+    
+    - To enable this choice you have to set the  `gitops.argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for the team namespace and will configure new applications when you add new folders in your team folder.
 
 More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
 

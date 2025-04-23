@@ -15,18 +15,70 @@ When team is created in openshift, a new namespace wit the team name will be cre
 
 Within the team definitions yaml file you can configure the following:
 
+
 ```yaml
 team:
-  name: <name of team>
+  name: team-poseidon
+  description: "This is a team overlay for all team poseidon tenants"
+
+resource_management:
+  requests:
+    cpu: "200m"
+    memory: "500Mi"
+  storage:
+    enable_custom_storageclass: false
 
 rbac:  
-  team_admin: <AD Group for team admin>
+  team_admin: ""
 
 observability:
   grafana_instance: false
-  grafana_admin: <AD Group for grafana admin>
-  grafana_editor: <AD Group for editors, can be left blank and everyone will be editor>
+  grafana_admin: ""
+  grafana_editor: changeme
+  sopra_grafana_admin: ""
+
+gitops:
+  gitops_namespace: gitops-developers
+  argocd:
+    enable_user_defined_apps: false
+    enable_auto_defined_apps: true
+    team_repo_url: ""
+    path: ""
+    syncPolicy:
+      allowEmpty: true
+      selfHeal: true
+      prune: true
+    resource_name_first: true
+    custom_target_revision: false
+  team_git_repositories:
+  - repourl: "" 
+    encrypted_type: ""
+    encrypted_url: ""
+    credentials:
+      github_app: 
+        enable_app: false
+        id: ""
+        installation_id: ""
+        private_key: ""
+      ssh_key:
+        enable_ssh_key: false
+        private_key: ""
+      pat:
+        enable_pat: false
+        username: ""
+        password: ""
+
+secret_management:
+  external_secrets:
+    enable: false
+    tenant_id: ""
+    team_secretstores: 
+    - name: ""
+      keyvault_url: ""
+      client_id: "" # namespace encrypted values
+      client_secret: "" # namespace encrypted values
 ```
+
 # Features
 
 ```yaml
@@ -36,9 +88,20 @@ team:
 The team name chosen in team definitions value yaml is used in the tenant definitions yaml for connect tenants to the team. it is important that name is exactly the same.
 
 ```yaml
+resource_management:
+  requests:
+    cpu: "200m"
+    memory: "500Mi"
+  storage:
+    enable_custom_storageclass: false
+```
+
+Resource managment is used to set the cpu and memory request quotas for the team namespace.
+
+```yaml
 rbac:  
   team_admin: <AD Group for team admin>
-````
+```
 rbac is used to give one specific group in openshift admin access over the team namespace. 
 
 ```yaml
@@ -56,3 +119,56 @@ observability:
 With observability you can enable a team grafana instance that uses the openshift credentials for login. This grafana instance will automaticly have datasources from all tenants managed by the team unless specificly disabled in the tenant definitions values yaml. grafana datasources from a tenant is default enabled. 
 
 The grafana instance must have an admin group. it does not require editor group. but can be specified if multiple access levels is wanted. 
+
+```yaml
+gitops:
+  gitops_namespace: gitops-developers
+  argocd:
+    enable_user_defined_apps: false
+    enable_auto_defined_apps: true
+    team_repo_url: ""
+    path: ""
+    syncPolicy:
+      allowEmpty: true
+      selfHeal: true
+      prune: true
+    resource_name_first: true
+    custom_target_revision: false
+  team_git_repositories:
+  - repourl: "" 
+    encrypted_type: ""
+    encrypted_url: ""
+    credentials:
+      github_app: 
+        enable_app: false
+        id: ""
+        installation_id: ""
+        private_key: ""
+      ssh_key:
+        enable_ssh_key: false
+        private_key: ""
+      pat:
+        enable_pat: false
+        username: ""
+        password: ""
+```
+
+The gitops feature is used to define the login credentials for Argo CD to use aswell as the repository Argo CD will use for the Argo CD applicationsets and applications.
+
+You can read more in depth about this feature by following this link: [ArgoCD](../Tenant%20features/GitOps/argocd.md)
+
+```yaml
+secret_management:
+  external_secrets:
+    enable: false
+    tenant_id: ""
+    team_secretstores: 
+    - name: ""
+      keyvault_url: ""
+      client_id: "" # namespace encrypted values
+      client_secret: "" # namespace encrypted values
+```
+
+The secret managment feature is used to create global ClusterSecretStores in the team namespace, which can be utilized by multiple tenants that are a member of the team where the ClusterSecretStore is defined.
+
+You can read more in depth about this feature by following this link: [Secret Managment](../Tenant%20features/external-secrets.md)
