@@ -45,10 +45,10 @@ The `argocd` feature contains elements to synchronise tenant applications and in
 
 ArgoCD provides different ways of automatically deploying and synchronising infrastructure in a cluster. When connecting your Git Repository to your tenant, you have two options for creating applications: 
 
-1. **User-defined method:** Create ArgoCD applications in your repository under the path `<basepath>applications/<environments[].name>.`
+1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/application/<miljø>/<alle argocd apps generert her>`.
     - To enable this choice, you must set the field `argocd.enable_user_defined_apps` to true.
 
-2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<basepath>applicationsets/<environments[].name>`.  
+2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/applicationset/<miljø>/<alle folders her blir generert>`.  
     
     - To enable this choice you have to set the  `argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for each of the tenants' environments which will configure new applications when you hadd new folders in your repository.
 
@@ -127,10 +127,10 @@ The `gitops` feature in the team concept have the same functionality as in the t
 
 As in the tenant concept you also have the ability to enable the user-defined method and the auto-defined method.
 
-1. **User-defined method:** Create ArgoCD applications in your repository under the path specified in the `gitops.argocd.path` field.
+1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/<alle argocd apps generert her>`.
     - To enable this choice, you must set the field `gitops.argocd.enable_user_defined_apps` to true.
 
-2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path specified in the `gitops.argocd.path` field.
+2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/<alle folders her blir generert>`.
     
     - To enable this choice you have to set the  `gitops.argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for the team namespace and will configure new applications when you add new folders in your team folder.
 
