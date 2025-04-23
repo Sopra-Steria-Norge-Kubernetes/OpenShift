@@ -23,7 +23,7 @@ Below is the configuration for setting up ArgoCD using our tenant concept:
       prune: <Remove resources that are not present in the Git repository during sync (true/false)>
     main_git_repository:
       repourl: 
-      basepath:
+      path:
       encrypted_url: <The url of the git repository encrypted with sealedsecrets>
       encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
       encrypted_password: <PAT encrypted with sealedsecrets>
