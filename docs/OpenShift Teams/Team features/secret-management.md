@@ -27,7 +27,7 @@ secret_management:
 | `enable`            | 	Enable secret management feature                               | True / False  | Boolean                    | false |
 | `tenant_id`            | Tenant ID for your Azure subscription                                        | d93d3d23-50e3-46db-b3ad-8c6c281b431e | String                    | "" |
 `team_secretstore`              |                                                                                                                     |                                            |          list[]                 |
-| `name`            | name of the ClusterSecretStore                               | my-secret | String                    | "" |
+| `name`            | name of the ClusterSecretStore that will be added behind the team name parameter                               | my-secret | String                    | "" |
 | `keyvault_url`            | The URL to the Azure Key Vault you want to use                               |  | String                    | "" |
 | `client_id`            | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret                               |           | Kubeseal encrypted String                    | "" |
 | `client_secret`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               |           | Kubeseal encrypted String                    | "" |
