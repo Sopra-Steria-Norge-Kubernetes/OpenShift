@@ -1,56 +1,63 @@
-# ArgoCD
+# GitOps - Argo CD Feature
 
-## What is ArgoCD?
+The gitops feature is used to define the login credentials for Argo CD to use aswell as the repository Argo CD will use for the Argo CD applicationsets and applications.
 
-To implement GitOps in our delivery pipeline, we use ArgoCD, a declarative, continuous delivery tool for Kubernetes and OpenShift. ArgoCD allows you to define the desired state of your applications in Git repositories and ensures that your OpenShift cluster matches this state. 
+You can read more in depth about this feature by following this link: [ArgoCD](../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
 
-By continuously monitoring your applications, ArgoCD automatically synchronizes the live state to the desired state specified in Git, providing automated deployments and tracking of application versions. 
+## How to configure Argo CD - Team Concept
 
-This seamless integration with GitOps practices ensures that our applications are always up-to-date and that any changes are managed through a robust version control system.
-
-## How to configure Argo CD - Tenant Concept
-
-Below is the configuration for setting up ArgoCD using our tenant concept:
+Below is the configuration for setting up ArgoCD using our team concept:
 
 ```yaml
-...
-  argocd: 
-    enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
-    enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
-    syncPolicy:
-      allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false)>
-      selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
-      prune: <Remove resources that are not present in the Git repository during sync (true/false)>
-    main_git_repository:
-      repourl: 
-      path:
+...  
+  gitops:
+    argocd:
+      enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
+      enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
+      team_repo_url: ""
+      path: ""
+      syncPolicy:
+        allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false)>
+        selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
+        prune: <Remove resources that are not present in the Git repository during sync (true/false)>
+      resource_name_first: true
+      custom_target_revision: false
+    team_git_repositories:
+    - repourl: "" 
       encrypted_url: <The url of the git repository encrypted with sealedsecrets>
       encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
-      encrypted_password: <PAT encrypted with sealedsecrets>
-      encrypted_username: <Username used with PAT encrypted with sealedsecrets>
-      github_app: 
-        enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
-        id: <The app id for your GitHub App encrypted with sealedsecrets>
-        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
-        private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
-      ssh_key:
-        enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
-        private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
+      credentials:
+        github_app: 
+          enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
+          id: <The app id for your GitHub App encrypted with sealedsecrets>
+          installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
+          private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
+        ssh_key:
+          enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
+          private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
+        pat:
+          enable_pat: <Enable username and PAT to authenticate ArgoCD with your Git Repository. Default false.>
+          username: <Username used with PAT encrypted with sealedsecrets>
+          password: <PAT encrypted with sealedsecrets>
 ...    
 ```
 
 ## In-depth description of parameters
 
-The `argocd` feature contains elements to synchronise tenant applications and infrastructures with a Git repository to ensure Continuous Deployment (CD). This means that developers can define application and environment configurations in a Git repository, and ArgoCD ensures that the cluster matches the defined state, automatically deploying and updating applications as needed. 
+The `gitops` feature in the team concept have the same functionality as in the tenant concept´s `argocd` feature.
 
-ArgoCD provides different ways of automatically deploying and synchronising infrastructure in a cluster. When connecting your Git Repository to your tenant, you have two options for creating applications: 
+As in the tenant concept you also have the ability to enable the user-defined method and the auto-defined method.
 
-1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/application/<miljø>/<alle argocd apps generert her>`.
-    - To enable this choice, you must set the field `argocd.enable_user_defined_apps` to true.
+1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/<alle argocd apps generert her>`.
+    - To enable this choice, you must set the field `gitops.argocd.enable_user_defined_apps` to true.
 
-2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/applicationset/<miljø>/<alle folders her blir generert>`.  
+2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/<alle folders her blir generert>`.
     
-    - To enable this choice you have to set the  `argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for each of the tenants' environments which will configure new applications when you hadd new folders in your repository.
+    - To enable this choice you have to set the  `gitops.argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for the team namespace and will configure new applications when you add new folders in your team folder.
+
+More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
+
+* [OpenShift GitOps - Introduction](../../OpenShift%20GitOps/Introduction-GitOps.md) 
 
 ### Connecting to a Git repository
 The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
@@ -66,14 +73,11 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `allowEmpty`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
 | `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    | true |
 | `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
-| Default              |                                                                                                                     |                                            |                           |
+| Argo CD Configuration              |                                                                                                                     |                                            |                           |
 | `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
-| `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    | "" |
 | `encrypted_url`      | The URL of the git repository encrypted with sealedsecrets                                                          | See description below                      | Kubeseal encrypted String | "" |
 | `encrypted_type`     | Type should always be "git" and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
-| PAT                  |                                                                                                                     |                                            |                           |
-| `encrypted_password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted String | "" |
-| `encrypted_username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted String | "" |
+| 
 | GitHub App           |                                                                                                                     |                                            |                           |
 | `enable_app`         | Whether or not to use GitHub App to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
 | `id`                 | The app id for your Github App encrypted with sealedsecrets                                                         | See description below                      | Kubeseal encrypted String | "" |
@@ -82,6 +86,10 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | SSH           |                                                                                                                     |                                            |                           |
 | `enable_ssh_key`         | Whether or not to use SSH to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
 | `private_key`        | Private key for your SSH-private-key encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
+PAT                  |                                                                                                                     |                                            |                           |
+| `username` | The username of the service account connecting to the git repository encrypted with sealedsecrets                   | See description below                      | Kubeseal encrypted String | "" |
+| `password` | The git Personal Access Token for the service account connecting to the git repository encrypted with sealedsecrets | See description below                      | Kubeseal encrypted String | "" |
+
 
 ## Encrypt and configure the Argo-specific information
 
@@ -89,6 +97,6 @@ Encrypting and configuring ArgoCD-specific information is crucial for ensuring t
 
 This guide provides step-by-step instructions and best practices for encrypting Personal Access Tokens (PAT), GitHub App variables and SSH-private-key, which are essential for the secure operation of ArgoCD within your OpenShift environment. Please follow the steps in the guide provided below:
  
-* [Authenticate with Personal Access Token (PAT)](Authentication%20Methods%20for%20ArgoCD/authenticate-with-personal-access-token.md).
-* [Authenticate with a GitHub App](Authentication%20Methods%20for%20ArgoCD/authenticate-with-github-app.md).
-* [Authenticate with SSH](Authentication%20Methods%20for%20ArgoCD/authenticate-with-ssh.md).
+* [Authenticate with Personal Access Token (PAT)](../../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-personal-access-token.md).
+* [Authenticate with a GitHub App](../../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-github-app.md).
+* [Authenticate with SSH](../../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-ssh.md).

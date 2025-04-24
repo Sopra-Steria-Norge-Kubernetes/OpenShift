@@ -39,7 +39,16 @@ nav:
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
       - Team: OpenShift Tenants/Tenant features/team.md
     - Tenant team:
-      - Team-introduction: OpenShift Tenants/Tenant team/team-introduction.md 
+      - Team-introduction: OpenShift Tenants/team-introduction.md
+  - OpenShift Teams:
+    - Team Introduction: OpenShift Teams/team-introduction.md
+    - Team Features:
+      - Team: OpenShift Teams/Team features/team.md
+      - Resource Management: OpenShift Teams/Team features/resource-management.md
+      - RBAC: OpenShift Teams/Team features/rbac.md
+      - Observability: OpenShift Teams/Team features/observability.md
+      - GitOps: OpenShift Teams/Team features/gitops.md
+      - Secret Management: OpenShift Teams/Team features/secret-management.md
   - OpenShift GitOps:
     - Introduction to GitOps on OpenShift: OpenShift GitOps/Introduction-GitOps.md
     - GitOps Setup: OpenShift GitOps/gitops-setup.md
