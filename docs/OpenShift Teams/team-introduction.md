@@ -4,17 +4,17 @@ Title: Order OpenShift tenant team
 Version: 1.0
 externally-exposed: true
 --- 
-# Team
+# Team Introduction
 
 ## What is a team in regards to tenants?
 
-Team overlay will let you group multiple tenants within one team and ease the administration of tenants that is managed by the same development team. it allows creation of a team grafana for observability.
-When team is created in openshift, a new namespace wit the team name will be created, in this namespace all common secrets and service accounts will be created. 
+Team overlay will let you group multiple tenants within one team and ease the administration of tenants that is managed by the same development team. it allows creation of a team grafana for observability. It also allows creating a ClusterSecretStore which facilitates the option to define a cluster-wide secret store which all tenants that are a member of the team can utilize. You can also configure Argo CD details, to configure login credentials and to create applicationsets and applications for Argo CD to manage.
+
+When team is created in openshift, a new namespace with the team name will be created, in this namespace all common secrets and service accounts will be created. 
 
 ## How to configure team
 
 Within the team definitions yaml file you can configure the following:
-
 
 ```yaml
 team:
