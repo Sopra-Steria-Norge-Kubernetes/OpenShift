@@ -1,8 +1,10 @@
 # Secret Management Feature
 
-The secret managment feature is used to create global ClusterSecretStores in the team namespace, which can be utilized by multiple tenants that are a member of the team where the ClusterSecretStore is defined.
+The secret managment feature in the team chart is used to create global ClusterSecretStores in the team namespace, which can be utilized by multiple tenants that are a member of the team where the ClusterSecretStore is defined.
 
-You can read more in depth about this feature by following this link: [Secret Managment](../../OpenShift%20Tenants/Tenant%20features/external-secrets.md)
+You can read more in depth about this feature by following this link: [Secret Managment with External Secrets](../../OpenShift%20Tenants/Tenant%20features/external-secrets.md)
+
+To create a ClusterSecretStore through the team setup, you must configure the following parameters:
 
 ```yaml
 secret_management:

@@ -38,9 +38,7 @@ nav:
       - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
       - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
       - Team: OpenShift Tenants/Tenant features/team.md
-    - Tenant team:
-      - Team-introduction: OpenShift Tenants/team-introduction.md
-  - OpenShift Teams:
+  - Developer Teams:
     - Team Introduction: OpenShift Teams/team-introduction.md
     - Team Features:
       - Team: OpenShift Teams/Team features/team.md
