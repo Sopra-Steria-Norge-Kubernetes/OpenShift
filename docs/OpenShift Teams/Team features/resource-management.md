@@ -1,4 +1,4 @@
-# Resource Management
+# Resource Management Feature
 
 Resource managment is used to set the cpu and memory request quotas for the team namespace. The request quotas set in this section determined the resources that will be reserved in the cluster for the specific namespace.
 
