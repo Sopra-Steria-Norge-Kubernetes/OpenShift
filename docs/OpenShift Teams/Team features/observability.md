@@ -9,10 +9,13 @@ observability:
   grafana_instance: false
   grafana_admin: <AD Group for grafana admin>
   grafana_editor: <AD Group for editors, can be left blank and everyone will be editor>
-  notification:
-    name: "teams-alert"
-    type: teams <Tested with slack or teams, will most likely work with any webhook based type> 
-    title: Grafana Alert
-    webhook_url: "" <Slack or teams workflow webhook, will most likely work with other webhooks aswell>
-    message: "An alert has been triggered in Grafana"
 ```
+
+## In-depth description of parameters
+
+| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
+|----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
+| Observability              |                                                                                                                     |                                            |                           |
+| `grafana_instance`            | 	                               | True / False  | Boolean                    | false |
+| `grafana_admin`            | 	AD Group for grafana admin                               | my-admin-group  | String                    | "" |
+| `grafana_editor`            |     AD Group for editors, can be left blank and everyone will be editor                                    | my-editor-group | String                    | "" |
