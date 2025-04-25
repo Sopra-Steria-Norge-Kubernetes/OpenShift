@@ -3,12 +3,12 @@
 Resource managment is used to set the cpu and memory request quotas for the team namespace. The request quotas set in this section determined the resources that will be reserved in the cluster for the team namespace.
 
 ```yaml
-resource_management:
+resource_management: <Defualt resources allowed in the team namespaces for running Grafana, External Secret and GitOps>
   requests:
-    cpu: "200m"
-    memory: "500Mi"
+    cpu: <Default value is set to 200m>
+    memory: <Default value is set to "500Mi">
   storage:
-    enable_custom_storageclass: false
+    enable_custom_storageclass: false 
 ```
 
 ## In-depth description of parameters

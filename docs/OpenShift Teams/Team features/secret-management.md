@@ -9,13 +9,13 @@ To create a ClusterSecretStore through the team setup, you must configure the fo
 ```yaml
 secret_management:
   external_secrets:
-    enable: false
-    tenant_id: ""
+    enable: <Enable external secret management for team. Default false.>
+    tenant_id: <AZURE_TENANT_ID - Tenant ID of your organizations Azure tenant>
     team_secretstores: 
-    - name: ""
-      keyvault_url: ""
-      client_id: "" # namespace encrypted values
-      client_secret: "" # namespace encrypted values
+    - name: <ClusterSecretStore name. Team name will be prefix and then this name. >
+      keyvault_url: <Url to Azure Key Vault - https://AZURE_KEY_VAULT_URL> 
+      client_id: <Sealed Secret App Registration Credentials - SealedSecret_CLIENT_ID> 
+      client_secret: <Sealed Secret - App Registration Credentials -SealedSecret_CLIENT_SECRET> 
 ```
 
 ## In-depth description of parameters

@@ -11,6 +11,10 @@ externally-exposed: true
 Team overlay will let you group multiple tenants within one team and ease the administration of tenants that is managed by the same development team. 
 When team is created in openshift, a new namespace with the team name will be created, in this namespace all common secrets and service accounts will be created. 
 
+Below is an illustration showcasing the correlation between teams and tenants:
+
+![developer_external_secret.png](../img/Developer%20Teams/team-tenant-corraltion.png)
+
 The following features are delivered by team overlay:
 
 - **Observability Dasboards** with Grafana for all team tenants
@@ -48,7 +52,6 @@ observability:
   grafana_editor: <AD Group for editors, can be left blank and everyone will be editor>
 
 gitops:
-  gitops_namespace: gitops-developers
   argocd:
     enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false). Defualt false>
     enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment(true/false). Defualt true >

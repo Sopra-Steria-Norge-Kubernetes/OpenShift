@@ -4,8 +4,8 @@ The team name chosen in team definitions value yaml is used in the tenant defini
 
 ```yaml
 team:
-  name: <name of team>
-  description: <description of team>
+  name: <Name of team>
+  description: <Description of team>
 ```
 
 ## In-depth description of parameters

@@ -9,37 +9,36 @@ You can read more in depth about this feature by following this link: [ArgoCD](.
 Below is the configuration for setting up ArgoCD using our team concept:
 
 ```yaml
-...  
-  gitops:
-    argocd:
-      enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false)>
-      enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment>
-      team_repo_url: ""
-      path: ""
-      syncPolicy:
-        allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false)>
-        selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false)>
-        prune: <Remove resources that are not present in the Git repository during sync (true/false)>
-      resource_name_first: true
-      custom_target_revision: false
-    team_git_repositories:
-    - repourl: "" 
-      encrypted_url: <The url of the git repository encrypted with sealedsecrets>
-      encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
-      credentials:
-        github_app: 
-          enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
-          id: <The app id for your GitHub App encrypted with sealedsecrets>
-          installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
-          private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
-        ssh_key:
-          enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
-          private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
-        pat:
-          enable_pat: <Enable username and PAT to authenticate ArgoCD with your Git Repository. Default false.>
-          username: <Username used with PAT encrypted with sealedsecrets>
-          password: <PAT encrypted with sealedsecrets>
-...    
+gitops:
+  gitops_namespace: gitops-developers
+  argocd:
+    enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false). Defualt false>
+    enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment(true/false). Defualt true >
+    team_repo_url:  <Git repository url that GitOps (ArgoCD) will use as its "source of truth" for the team namespace> 
+    path: <Path to the folder that contains infrastructure that the applicationsets will insert into the team namespace>
+    syncPolicy:
+      allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false). Default true>
+      selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false). Default true>
+      prune: <Remove resources that are not present in the Git repository during sync (true/false). Default true>
+    resource_name_first: <Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first. Default true>
+    custom_target_revision: <Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true. Default false>
+  team_git_repositories:
+  - repourl: <Git repository url that GitOps (ArgoCD) will use as its "source of truth"> 
+    encrypted_url: <The url of the git repository encrypted with sealedsecrets>
+    encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
+    credentials:
+      github_app: 
+        enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
+        id: <The app id for your GitHub App encrypted with sealedsecrets>
+        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
+        private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
+      ssh_key:
+        enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
+        private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
+      pat:
+        enable_pat: <Enable PAT to authenticate ArgoCD with your Git Repository. Default false.>
+        username: <Username used with PAT encrypted with sealedsecrets> 
+        password: <PAT encrypted with sealedsecrets>
 ```
 
 ## In-depth description of parameters
