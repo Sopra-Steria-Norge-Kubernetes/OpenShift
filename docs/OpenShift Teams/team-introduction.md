@@ -8,9 +8,20 @@ externally-exposed: true
 
 ## What is a team in regards to tenants?
 
-Team overlay will let you group multiple tenants within one team and ease the administration of tenants that is managed by the same development team. it allows creation of a team grafana for observability. It also allows creating a ClusterSecretStore which facilitates the option to define a cluster-wide secret store which all tenants that are a member of the team can utilize. You can also configure Argo CD details, to configure login credentials and to create applicationsets and applications for Argo CD to manage.
-
+Team overlay will let you group multiple tenants within one team and ease the administration of tenants that is managed by the same development team. 
 When team is created in openshift, a new namespace with the team name will be created, in this namespace all common secrets and service accounts will be created. 
+
+The following features are delivered by team overlay:
+
+- **Observability Dasboards** with Grafana for all team tenants
+  - Datasources for Grafana can be configured in Git. 
+- **Secret Management** for Tenants and GitOps repositories
+    - External secrets can be pulled into Tenants, managed by a ClusterSecretStore running in the team namespace. A ClusterSecretStore facilitates the option to define a cluster-wide secret store which all tenants that are a member of the team can utilize.
+- **GitOps credentials for ArgoCD in one place**.
+    - Credentials for source Git repositories for tenants can be configured in the team overlay through External Secrets or SealedSecrets. Every tenant that is a member of the team will have access to the same credentials. 
+
+
+
 
 ## How to configure team
 
@@ -21,61 +32,62 @@ team:
   name: <Name of team>
   description: <Description of team>
 
-resource_management:
+resource_management: <Defualt resources allowed in the team namespaces for running Grafana, External Secret and GitOps>
   requests:
-    cpu: 200m
-    memory: "500Mi"
+    cpu: <Default value is set to 200m>
+    memory: <Default value is set to "500Mi">
   storage:
-    enable_custom_storageclass: false
+    enable_custom_storageclass: false 
 
 rbac:  
   team_admin: <AD Group for team admin>
 
 observability:
-  grafana_instance: false
+  grafana_instance: <Enable grafana instance in team namespace (true/false). default false>  
   grafana_admin: <AD Group for grafana admin>
   grafana_editor: <AD Group for editors, can be left blank and everyone will be editor>
 
 gitops:
   gitops_namespace: gitops-developers
   argocd:
-    enable_user_defined_apps: false
-    enable_auto_defined_apps: true
-    team_repo_url: ""
-    path: ""
+    enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false). Defualt false>
+    enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment(true/false). Defualt true >
+    team_repo_url:  <Git repository url that GitOps (ArgoCD) will use as its "source of truth" for the team namespace> 
+    path: <Path to the folder that contains infrastructure that the applicationsets will insert into the team namespace>
     syncPolicy:
-      allowEmpty: true
-      selfHeal: true
-      prune: true
-    resource_name_first: true
-    custom_target_revision: false
+      allowEmpty: <Allows ArgoCD to sync an ApplicationSet even if it results in an empty application (true/false). Default true>
+      selfHeal: <Automatically repair out-of-sync resources to match the desired state in Git (true/false). Default true>
+      prune: <Remove resources that are not present in the Git repository during sync (true/false). Default true>
+    resource_name_first: <Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first. Default true>
+    custom_target_revision: <Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true. Default false>
   team_git_repositories:
-  - repourl: "" 
-    encrypted_type: ""
-    encrypted_url: ""
+  - repourl: <Git repository url that GitOps (ArgoCD) will use as its "source of truth"> 
+    encrypted_url: <The url of the git repository encrypted with sealedsecrets>
+    encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
     credentials:
       github_app: 
-        enable_app: false
-        id: ""
-        installation_id: ""
-        private_key: ""
+        enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
+        id: <The app id for your GitHub App encrypted with sealedsecrets>
+        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
+        private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
       ssh_key:
-        enable_ssh_key: false
-        private_key: ""
+        enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
+        private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
       pat:
-        enable_pat: false
-        username: ""
-        password: ""
+        enable_pat: <Enable PAT to authenticate ArgoCD with your Git Repository. Default false.>
+        username: <Username used with PAT encrypted with sealedsecrets> 
+        password: <PAT encrypted with sealedsecrets>
+
 
 secret_management:
   external_secrets:
-    enable: false
-    tenant_id: ""
+    enable: <Enable external secret management for team. Default false.>
+    tenant_id: <AZURE_TENANT_ID - Tenant ID of your organizations Azure tenant>
     team_secretstores: 
-    - name: ""
-      keyvault_url: ""
-      client_id: "" # namespace encrypted values
-      client_secret: "" # namespace encrypted values
+    - name: <ClusterSecretStore name. Team name will be prefix and then this name. >
+      keyvault_url: <Url to Azure Key Vault - https://AZURE_KEY_VAULT_URL> 
+      client_id: <Sealed Secret App Registration Credentials - SealedSecret_CLIENT_ID> 
+      client_secret: <Sealed Secret - App Registration Credentials -SealedSecret_CLIENT_SECRET> 
 ```
 
 <!-- Moved to each feature under `<Team Features>` -->
