@@ -35,7 +35,6 @@ observability:
   grafana_instance: false
   grafana_admin: <AD Group for grafana admin>
   grafana_editor: <AD Group for editors, can be left blank and everyone will be editor>
-  sopra_grafana_admin: ""
 
 gitops:
   gitops_namespace: gitops-developers
