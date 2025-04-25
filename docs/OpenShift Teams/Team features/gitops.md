@@ -10,7 +10,6 @@ Below is the configuration for setting up ArgoCD using our team concept:
 
 ```yaml
 gitops:
-  gitops_namespace: gitops-developers
   argocd:
     enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false). Defualt false>
     enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment(true/false). Defualt true >
