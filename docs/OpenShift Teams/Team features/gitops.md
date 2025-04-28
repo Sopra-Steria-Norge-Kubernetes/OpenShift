@@ -40,7 +40,7 @@ gitops:
         password: <PAT encrypted with sealedsecrets>
 ```
 
-## Example - ArgoCD Applicationset with PAT Credentials
+### Example - Configure ArgoCD with PAT Credentials
 
 Below is an example on how to implemet the gitops feature in the team chart using PAT credentials as the authentication method. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`.
 
