@@ -22,7 +22,7 @@ gitops:
     resource_name_first: <Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first. Default true>
     custom_target_revision: <Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true. Default false>
   team_git_repositories:
-  - repourl: <Git repository url that GitOps (ArgoCD) will use as its "source of truth"> 
+  - repourl: <The URL of the git repository which ArgoCD will create credentials for> 
     encrypted_url: <The url of the git repository encrypted with sealedsecrets>
     encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
     credentials:
