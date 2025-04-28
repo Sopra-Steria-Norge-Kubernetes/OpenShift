@@ -40,9 +40,9 @@ gitops:
         password: <PAT encrypted with sealedsecrets>
 ```
 
-### Example - Configure ArgoCD with PAT Credentials
+### Example - Configure ArgoCD with GitHub App Credentials
 
-Below is an example on how to implemet the gitops feature in the team chart using PAT credentials as the authentication method. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`.
+Below is an example on how to implemet the gitops feature in the team chart using GitHub App credentials as the authentication method. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`.
 
 ```yaml
 gitops:
@@ -52,14 +52,14 @@ gitops:
     path: "/path/to/applications"
   team_git_repositories:
   - repourl: https://github.com/customer-repo/openshift
-    encrypted_url: BIbi8473rege786JKHhgj8BhdksuV78Jl # SealedSecret
-    encrypted_type: IBKhwofi8979jBHJv78gUi8011IIuhfew98 # SealedSecret
+    encrypted_url: BIbi8473rege786JKHhgj8BhdksuV78Jl... # SealedSecret
+    encrypted_type: IBKhwofi8979jBHJv78gUi8011IIuhfew98... # SealedSecret
     credentials:
       github_app: 
         enable_app: true
-        id: ngwio847359JHUjigiIIG98796HJ7697gug898GiuG # SealedSecret
-        installation_id: biUYGVUVh786758GU78gUYGujad78hjJ # SealedSecret
-        private_key: dhvibibvwiIYFHUKBSBIOH&ABCGFVW895487u # SealedSecret
+        id: ngwio847359JHUjigiIIG98796HJ7697gug898GiuG... # SealedSecret
+        installation_id: biUYGVUVh786758GU78gUYGujad78hjJ... # SealedSecret
+        private_key: dhvibibvwiIYFHUKBSBIOH&ABCGFVW895487u... # SealedSecret
 ```
 
 ## In-depth description of parameters
