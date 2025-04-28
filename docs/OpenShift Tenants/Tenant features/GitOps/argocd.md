@@ -8,9 +8,9 @@ By continuously monitoring your applications, ArgoCD automatically synchronizes 
 
 This seamless integration with GitOps practices ensures that our applications are always up-to-date and that any changes are managed through a robust version control system.
 
-## How to configure Argo CD
+## How to configure Argo CD - Tenant Concept
 
- Below is the configuration for setting up ArgoCD using our Helm chart:
+Below is the configuration for setting up ArgoCD using our tenant concept:
 
 ```yaml
 ...
@@ -23,7 +23,7 @@ This seamless integration with GitOps practices ensures that our applications ar
       prune: <Remove resources that are not present in the Git repository during sync (true/false)>
     main_git_repository:
       repourl: 
-      basepath:
+      path:
       encrypted_url: <The url of the git repository encrypted with sealedsecrets>
       encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
       encrypted_password: <PAT encrypted with sealedsecrets>
@@ -45,16 +45,12 @@ The `argocd` feature contains elements to synchronise tenant applications and in
 
 ArgoCD provides different ways of automatically deploying and synchronising infrastructure in a cluster. When connecting your Git Repository to your tenant, you have two options for creating applications: 
 
-1. **User-defined method:** Create ArgoCD applications in your repository under the path `<basepath>applications/<environments[].name>.`
+1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/application/<miljø>/<alle argocd apps generert her>`.
     - To enable this choice, you must set the field `argocd.enable_user_defined_apps` to true.
 
-2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<basepath>applicationsets/<environments[].name>`.  
+2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/applicationset/<miljø>/<alle folders her blir generert>`.  
     
     - To enable this choice you have to set the  `argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for each of the tenants' environments which will configure new applications when you hadd new folders in your repository.
-
-More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
-
-* [OpenShift GitOps - Introduction](../../../OpenShift%20GitOps/Introduction-GitOps.md) 
 
 ### Connecting to a Git repository
 The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
@@ -87,7 +83,7 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `enable_ssh_key`         | Whether or not to use SSH to authtenticate ArgoCD with your Git Repository. Default false.                   | True / False                               | Boolean                   | false |
 | `private_key`        | Private key for your SSH-private-key encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
 
-### Encrypt and configure the Argo-specific information
+## Encrypt and configure the Argo-specific information
 
 Encrypting and configuring ArgoCD-specific information is crucial for ensuring the security and efficiency of your deployment. To assist with this, we have developed a detailed user guide. 
 

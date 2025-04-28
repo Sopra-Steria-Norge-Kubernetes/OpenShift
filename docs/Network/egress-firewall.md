@@ -8,7 +8,7 @@ The Egress Firewall in OpenShift allows you to control outbound traffic from Pod
 
 This is particularly useful for securing workloads by limiting what external services they can access (e.g., blocking internet access or allowing only specific APIs).
 
-![Basics Tab Configuration](../../img/Observability/egress-firewall.png)
+![Basics Tab Configuration](../img/Observability/egress-firewall.png)
 
 ## How to use Egress Firewall
 
