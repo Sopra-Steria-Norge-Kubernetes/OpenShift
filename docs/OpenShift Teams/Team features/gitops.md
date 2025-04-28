@@ -40,6 +40,28 @@ gitops:
         password: <PAT encrypted with sealedsecrets>
 ```
 
+## Example - ArgoCD Applicationset with PAT Credentials
+
+Below is an example on how to implemet the gitops feature in the team chart using PAT credentials as the authentication method. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`.
+
+```yaml
+gitops:
+  argocd:
+    enable_auto_defined_apps: true
+    team_repo_url: https://github.com/customer-repo/openshift
+    path: "/path/to/applications"
+  team_git_repositories:
+  - repourl: https://github.com/customer-repo/openshift
+    encrypted_url: BIbi8473rege786JKHhgj8BhdksuV78Jl # SealedSecret
+    encrypted_type: IBKhwofi8979jBHJv78gUi8011IIuhfew98 # SealedSecret
+    credentials:
+      github_app: 
+        enable_app: true
+        id: ngwio847359JHUjigiIIG98796HJ7697gug898GiuG # SealedSecret
+        installation_id: biUYGVUVh786758GU78gUYGujad78hjJ # SealedSecret
+        private_key: dhvibibvwiIYFHUKBSBIOH&ABCGFVW895487u # SealedSecret
+```
+
 ## In-depth description of parameters
 
 The `gitops` feature in the team concept have the same functionality as in the tenant concept´s `argocd` feature.
@@ -65,14 +87,19 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 - **GitHub app**: variables need to configure the GitHub app
 - **SSH**: variables need to configure through SSH
 
-| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
+| <div style="width:140px">**Variable**</div>            | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
 | SyncPolicy              |                                                                                                                     |                                            |                           |
 | `allowEmpty`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
 | `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    | true |
 | `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
 | Argo CD Configuration              |                                                                                                                     |                                            |                           |
-| `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
+| `team_repo_url`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                     | https://github.com/customer-repo/openshift | String                    | "" |
+| `path`      | The path specifying where Argo CD will search for applications/applicationsets                                                          | /path/to/applications                      | String | "" |
+| `resource_name_first`     | Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first.                                                        | True / False                      | Boolean | True |
+| `custom_target_revision`     | Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true                                                        | True / False                      | Boolean | False |
+|  Argo CD Credentials              |                                                                                                                     |                                            |                           |
+| `repourl`            | The URL of the git repository which ArgoCD will create credentials for                                     | https://github.com/customer-repo/openshift | String                    | "" |
 | `encrypted_url`      | The URL of the git repository encrypted with sealedsecrets                                                          | See description below                      | Kubeseal encrypted String | "" |
 | `encrypted_type`     | Type should always be "git" and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
 | 
