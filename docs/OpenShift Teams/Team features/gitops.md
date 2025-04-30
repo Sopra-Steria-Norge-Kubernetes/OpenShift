@@ -25,9 +25,9 @@ gitops:
     external_secret:
       secretstore: <Name of SecretStore that contains all credentials for different authentication methods>
       helm_registry:
-      - username: ""
-        password: ""
-        registry_url: ""
+      - username: <Name of Azure Secret in Azure Key Vault>
+        password: <Name of Azure Secret in Azure Key Vault>
+        registry_url: <ACR login server url>
       github_app:
       - id: <The app id for your GitHub App>
         installation_id: <The installation id for your GitHub App>
@@ -42,9 +42,9 @@ gitops:
         repo_url: <The url of the git repository>
     sealed_secret:
       helm_registry:
-      - username: ""
-        password: ""
-        registry_url: ""
+      - username: <ACR username encrypted with sealedsecret>
+        password: <ACR access token encrypted with sealedsecret>
+        registry_url: <ACR login server url encrypted with sealedsecret>
       github_app: 
       - id: <The app id for your GitHub App encrypted with sealedsecrets>
         installation_id: <The installation id for your GitHub App encrypted with sealedsecrets>
