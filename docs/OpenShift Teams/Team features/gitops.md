@@ -167,7 +167,6 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `resource_name_first`     | Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first.                                                        | True / False                      | Boolean | True |
 | `custom_target_revision`     | Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true                                                        | True / False                      | Boolean | False |
 |  Argo CD Authentication             |                                                                                                                            |                                            |                           |
-| `type`     | SealedSecret specific - Type should either be "git" or "helm" depending the authentication section and encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |   
 | Helm Registries           |                                                                                                                     |                                            |        
 | `username`                 | ACR username - Azure Key Vault secret name or encrypted with sealedsecrets                                                      | See description below                      | String / Kubeseal Encrypted String | "" |
 | `password`                 | ACR password - Azure Key Vault secret name or encrypted with sealedsecrets                                              | See description below                      | String / Kubeseal Encrypted String | "" |
@@ -184,7 +183,8 @@ PAT                  |                                                          
 | `username` | The username of the service account connecting to the git repository - Azure Key Vault secret name or encrypted with sealedsecrets                  | See description below                      | String / Kubeseal encrypted String | "" |
 | `password` | The git Personal Access Token for the service account connecting to the git repository - Azure Key Vault secret name or encrypted with sealedsecrets | See description below                      | String / Kubeseal encrypted String | "" |
 | `repo_url`         | The url of the git repository - Clear text or sealedsecret depending on the method                  |               ""                 | String / Kubeseal Encrypted String                  | "" |
-
+SealedSecret Method Specific parameters                  |                                                                                                                     |                                            |                           |
+| `type`     | Type should either be "git" or "helm" depending the authentication section - Encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |   
 
 ## Encrypt and configure the Argo-specific information
 
