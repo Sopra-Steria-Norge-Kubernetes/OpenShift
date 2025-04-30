@@ -21,28 +21,58 @@ gitops:
       prune: <Remove resources that are not present in the Git repository during sync (true/false). Default true>
     resource_name_first: <Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first. Default true>
     custom_target_revision: <Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true. Default false>
-  team_git_repositories:
-  - repourl: <The URL of the git repository which ArgoCD will create credentials for> 
-    encrypted_url: <The url of the git repository encrypted with sealedsecrets>
-    encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
-    credentials:
-      github_app: 
-        enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
-        id: <The app id for your GitHub App encrypted with sealedsecrets>
-        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
-        private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
+  authentication:
+    external_secret:
+      secretstore: <Name of SecretStore that contains all credentials for different authentication methods>
+      helm_registry:
+      - username: ""
+        password: ""
+        registry_url: ""
+      github_app:
+      - id: <The app id for your GitHub App>
+        installation_id: <The installation id for your GitHub App>
+        private_key: <Name of Azure Secret in Azure Key Vault>
+        repo_url: <The url of the git repository>
       ssh_key:
-        enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
-        private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
+      - private_key: <Name of Azure Secret in Azure Key Vault>
+        repo_url: <The url of the git repository>
       pat:
-        enable_pat: <Enable PAT to authenticate ArgoCD with your Git Repository. Default false.>
-        username: <Username used with PAT encrypted with sealedsecrets> 
+      - username: <Name of Azure Secret in Azure Key Vault>
+        password: <Name of Azure Secret in Azure Key Vault>
+        repo_url: <The url of the git repository>
+    sealed_secret:
+      helm_registry:
+      - username: ""
+        password: ""
+        registry_url: ""
+      github_app: 
+      - id: <The app id for your GitHub App encrypted with sealedsecrets>
+        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets>
+        private_key: <Private key for your GitHub App encrypted with sealedsecrets>
+        type: <Type should always be git, but must encrypted with sealedsecrets>
+        repo_url: <The url of the git repository encrypted with sealedsecrets>
+      ssh_key:
+      - private_key: <Private key for your SSH-private-key encrypted with sealedsecrets>
+        type: <Type should always be git, but must encrypted with sealedsecrets>
+        repo_url: <The url of the git repository encrypted with sealedsecrets>
+      pat:
+      - username: <Username used with PAT encrypted with sealedsecrets>
         password: <PAT encrypted with sealedsecrets>
+        type: <Type should always be git, but must encrypted with sealedsecrets>
+        repo_url: <The url of the git repository encrypted with sealedsecrets>
 ```
 
-### Example - Configure ArgoCD with GitHub App Credentials
+### Example - Configure ArgoCD Applicationset with GitHub App Credentials
 
-Below is an example on how to implemet the gitops feature in the team chart using GitHub App credentials as the authentication method. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`.
+Below we will go through an example on how to implemet the gitops feature in the team chart using GitHub App credentials as the authentication method for Argo CD. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`. We will show how this can be done by using either external secrets or sealedsecrets.
+
+!!! Info
+    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Azure Key Vault.
+
+    How to set up a ClusterSecretStore: [Secret Managment](./secret-management.md)
+
+
+Below is an example of how the `gitops.argocd` section for defining applicationset details can look like:
 
 ```yaml
 gitops:
@@ -50,17 +80,55 @@ gitops:
     enable_auto_defined_apps: true
     team_repo_url: https://github.com/customer-repo/openshift
     path: "/path/to/applications"
-  team_git_repositories:
-  - repourl: https://github.com/customer-repo/openshift
-    encrypted_url: BIbi8473rege786JKHhgj8BhdksuV78Jl... # SealedSecret
-    encrypted_type: IBKhwofi8979jBHJv78gUi8011IIuhfew98... # SealedSecret
-    credentials:
+
+```
+
+Below is an example creating an external secret as an authentication method for Argo CD with a GitHub APP:
+
+```yaml
+gitops:
+  authentication:
+    external_secret:
+      secretstore: gitops
+      github_app:
+      - id: 374237872
+        installation_id: 8947359869
+        private_key: GithubAppPrivateKey
+        repo_url: https://github.com/customer-repo/openshift
+```
+
+Below is an example using kubeseal to create a sealedsecret as an authentication method for Argo CD with a GitHub APP:
+
+```yaml
+gitops:
+  authentication:
+    sealed_secret:
       github_app: 
-        enable_app: true
-        id: ngwio847359JHUjigiIIG98796HJ7697gug898GiuG... # SealedSecret
+      - id: ngwio847359JHUjigiIIG98796HJ7697gug898GiuG... # SealedSecret
         installation_id: biUYGVUVh786758GU78gUYGujad78hjJ... # SealedSecret
         private_key: dhvibibvwiIYFHUKBSBIOH&ABCGFVW895487u... # SealedSecret
+        type: IBKhwofi8979jBHJv78gUi8011IIuhfew98... # SealedSecret
+        repo_url: BIbi8473rege786JKHhgj8BhdksuV78Jl... # SealedSecret
 ```
+
+Below is a combined example of how to configuration ArgoCD Applicationset with GitHub App Credentials using external secrets:
+
+```yaml
+gitops:
+  argocd:
+    enable_auto_defined_apps: true
+    team_repo_url: https://github.com/customer-repo/openshift
+    path: "/path/to/applications"
+  authentication:
+    external_secret:
+      secretstore: gitops
+      github_app:
+      - id: 374237872
+        installation_id: 8947359869
+        private_key: GithubAppPrivateKey
+        repo_url: https://github.com/customer-repo/openshift
+```
+
 
 ## In-depth description of parameters
 
