@@ -2,7 +2,7 @@
 
 On this page you can find information related to the `gitops.authentication` feature in the team concept. This page contains an example of how to implement the credentials Argo CD will utilize to authenticate towards a repository
 
-### Example - Configure ArgoCD Applicationset with GitHub App Credentials
+## How to Configure authentication credentials
 
 Below we will go through an example on how to implemet the `gitops.authentication` feature in the team chart using GitHub App credentials as the authentication method. We will show how this can be done by using either external secrets or sealedsecrets.
 
@@ -84,10 +84,10 @@ gitops:
         repo_url: <The url of the git repository encrypted with sealedsecrets>
 ```
 
-### Connecting to a Git repository
-The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `argocd` feature under the `main_git_repository`. The table is split into three categories: 
+## Connecting to a Git repository
+The `argocd` feature can connect to a Git repository through a Personal Access Token (PAT), a GitHub App or SSH. The table below shows a more detailed description of each variable in the `gitops.argocd` feature under `authentication`. The table is split into four categories: 
 
-- **Default**: variables that both connection methods need
+- **helm_registry**: variables needed to connect with a remote helm registry
 - **PAT**: variables needed to connect with a GitHub PAT token
 - **GitHub app**: variables need to configure the GitHub app
 - **SSH**: variables need to configure through SSH

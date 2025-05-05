@@ -2,7 +2,7 @@
 
 On this page you can find information related to the `gitops.argocd` feature in the team concept. This page contains an example of how to implement the Argo CD applications & Applicationsets
 
-### Example - Configure ArgoCD Applicationset with GitHub App Credentials
+### How to Configure ArgoCD Applicationset
 
 Below we will go through an example on how to implemet the gitops argocd feature in the team chart. The example utilizes the default values for `SyncPolicies`, `resource_name_first`, and `custom_target_revision`.
 
