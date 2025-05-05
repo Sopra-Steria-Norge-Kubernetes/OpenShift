@@ -19,7 +19,10 @@ nav:
       - Resource Management: OpenShift Teams/Team features/resource-management.md
       - RBAC: OpenShift Teams/Team features/rbac.md
       - Observability: OpenShift Teams/Team features/observability.md
-      - GitOps: OpenShift Teams/Team features/gitops.md
+      - Gitops:
+        - GitOps Introduction: OpenShift Teams/Team features/gitops/gitops-introduction.md
+        - GitOps - Argo CD: OpenShift Teams/Team features/gitops/gitops-argocd.md
+        - GitOps - Authentication: OpenShift Teams/Team features/gitops/gitops-authentication.md
       - Secret Management: OpenShift Teams/Team features/secret-management.md
   - OpenShift Tenants: 
     - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
