@@ -46,10 +46,10 @@ The `gitops` feature in the team concept have the same functionality as in the t
 
 As in the tenant concept you also have the ability to enable the user-defined method and the auto-defined method.
 
-1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/<alle argocd apps generert her>`.
+1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/<all argocd apps here will be generated>`.
     - To enable this choice, you must set the field `gitops.argocd.enable_user_defined_apps` to true.
 
-2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/<alle folders her blir generert>`.
+2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/<all folders here will be generated>`.
     
     - To enable this choice you have to set the  `gitops.argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for the team namespace and will configure new applications when you add new folders in your team folder.
 

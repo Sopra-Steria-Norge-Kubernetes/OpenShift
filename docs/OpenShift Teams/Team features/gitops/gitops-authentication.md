@@ -7,7 +7,7 @@ On this page you can find information related to the `gitops.authentication` fea
 Below we will go through an example on how to implemet the `gitops.authentication` feature in the team chart using GitHub App credentials as the authentication method. We will show how this can be done by using either external secrets or sealedsecrets.
 
 !!! warning
-    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Azure Key Vault.
+    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Key Vault provider.
 
     How to set up a ClusterSecretStore: [Secret Managment](../secret-management.md)
 
