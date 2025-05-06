@@ -63,24 +63,45 @@ gitops:
       prune: <Remove resources that are not present in the Git repository during sync (true/false). Default true>
     resource_name_first: <Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first. Default true>
     custom_target_revision: <Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true. Default false>
-  team_git_repositories:
-  - repourl: <Git repository url that GitOps (ArgoCD) will use as its "source of truth"> 
-    encrypted_url: <The url of the git repository encrypted with sealedsecrets>
-    encrypted_type: <Type should always be git, but must encrypted with sealedsecrets>
-    credentials:
-      github_app: 
-        enable_app: <Enable GitHub App to authenticate ArgoCD with your Git Repository. Default false.>
-        id: <The app id for your GitHub App encrypted with sealedsecrets>
-        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets.>
-        private_key: <Private key for your GitHub App encrypted with sealedsecrets.>
+  authentication:
+    external_secret:
+      secretstore: <Name of SecretStore that contains all credentials for different authentication methods>
+      helm_registry:
+      - username: <Name of Azure Secret in Azure Key Vault>
+        password: <Name of Azure Secret in Azure Key Vault>
+        registry_url: <ACR login server url>
+      github_app:
+      - id: <The app id for your GitHub App>
+        installation_id: <The installation id for your GitHub App>
+        private_key: <Name of Azure Secret in Azure Key Vault>
+        repo_url: <The url of the git repository>
       ssh_key:
-        enable_ssh_key: <Enable SSH to authenticate ArgoCD with your Git Repository. Default false.>
-        private_key: <Private key for your SSH-private-key encrypted with sealedsecrets.>
+      - private_key: <Name of Azure Secret in Azure Key Vault>
+        repo_url: <The url of the git repository>
       pat:
-        enable_pat: <Enable PAT to authenticate ArgoCD with your Git Repository. Default false.>
-        username: <Username used with PAT encrypted with sealedsecrets> 
+      - username: <Name of Azure Secret in Azure Key Vault>
+        password: <Name of Azure Secret in Azure Key Vault>
+        repo_url: <The url of the git repository>
+    sealed_secret:
+      helm_registry:
+      - username: <ACR username encrypted with sealedsecret>
+        password: <ACR access token encrypted with sealedsecret>
+        registry_url: <ACR login server url encrypted with sealedsecret>
+      github_app: 
+      - id: <The app id for your GitHub App encrypted with sealedsecrets>
+        installation_id: <The installation id for your GitHub App encrypted with sealedsecrets>
+        private_key: <Private key for your GitHub App encrypted with sealedsecrets>
+        type: <Type should always be git, but must encrypted with sealedsecrets>
+        repo_url: <The url of the git repository encrypted with sealedsecrets>
+      ssh_key:
+      - private_key: <Private key for your SSH-private-key encrypted with sealedsecrets>
+        type: <Type should always be git, but must encrypted with sealedsecrets>
+        repo_url: <The url of the git repository encrypted with sealedsecrets>
+      pat:
+      - username: <Username used with PAT encrypted with sealedsecrets>
         password: <PAT encrypted with sealedsecrets>
-
+        type: <Type should always be git, but must encrypted with sealedsecrets>
+        repo_url: <The url of the git repository encrypted with sealedsecrets>
 
 secret_management:
   external_secrets:
