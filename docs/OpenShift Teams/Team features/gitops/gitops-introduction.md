@@ -1,6 +1,6 @@
 # GitOps Introduction - Team Concept
 
-The gitops feature is used to define the login credentials for Argo CD to use aswell as the repository and path Argo CD will use for the Argo CD applicationsets and applications.
+The `gitops` feature contains two main sections: `argocd` & `authentication`. The `authentication` section i used to define the authentication credential utilized by Argo CD. The `argocd` section is used to define the repository Argo CD will connect to and the path where Argo CD will search for applications & applicationsets 
 
 You can read more in depth about this feature by following this link: [ArgoCD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
 
