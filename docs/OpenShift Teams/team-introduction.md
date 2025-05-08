@@ -64,7 +64,7 @@ gitops:
     resource_name_first: <Nameingstandard for ArgoCD applications created by applicationSets. If true the name of the resource (folder) will come first if false then the name of the team will come first. Default true>
     custom_target_revision: <Allows setting the targetRevision at the application level for different environments in OpenShift. The generator picks up component names and creates targetRevision values based on the application folder name instead of using HEAD if set to true. Default false>
   authentication:
-    external_secret:
+    external_secrets:
       secretstore: <Name of SecretStore that contains all credentials for different authentication methods>
       helm_registry:
       - username: <Name of Azure Secret in Azure Key Vault>
@@ -82,7 +82,7 @@ gitops:
       - username: <Name of Azure Secret in Azure Key Vault>
         password: <Name of Azure Secret in Azure Key Vault>
         repo_url: <The url of the git repository>
-    sealed_secret:
+    sealed_secrets:
       helm_registry:
       - username: <ACR username encrypted with sealedsecret>
         password: <ACR access token encrypted with sealedsecret>
@@ -105,10 +105,9 @@ gitops:
 
 secret_management:
   external_secrets:
-    enable: <Enable external secret management for team. Default false.>
-    tenant_id: <AZURE_TENANT_ID - Tenant ID of your organizations Azure tenant>
-    team_secretstores: 
-    - name: <ClusterSecretStore name. Team name will be prefix and then this name. >
+    cluster_secret_stores: 
+    - name: <ClusterSecretStore name. Team name will be prefix and then this name>
+      tenant_id: <AZURE_TENANT_ID - Tenant ID of your organizations Azure tenant>
       keyvault_url: <Url to Azure Key Vault - https://AZURE_KEY_VAULT_URL> 
       client_id: <Sealed Secret App Registration Credentials - SealedSecret_CLIENT_ID> 
       client_secret: <Sealed Secret - App Registration Credentials -SealedSecret_CLIENT_SECRET> 

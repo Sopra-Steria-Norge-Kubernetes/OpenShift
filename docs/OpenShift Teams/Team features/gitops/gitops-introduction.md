@@ -10,6 +10,11 @@ On this page we will go through a simple example to get started with the gitops 
 
 To get started with using the team concept´s GitOps feature you need to have your repository url and your login credentials availible. This can be in the form of a GitHub App, SSH private key or PAT token. 
 
+!!! warning
+    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Key Vault provider.
+
+    How to set up a ClusterSecretStore: [Secret Managment](../secret-management.md)
+
 Below is a simple example of how you can configuration ArgoCD Applicationset with GitHub App Credentials using external secrets:
 
 ```yaml
@@ -36,7 +41,6 @@ Below is all the possible configuration fields avalible to modify in the gitops 
 gitops:
   argocd:
     enable_user_defined_apps: <Enable creating applications with the user-defined method- app of apps (true/false). Defualt false>
-    enable_auto_defined_apps: <Enable using automatic application creation with an ArgoCD applicationsets per environment(true/false). Defualt true >
     team_repo_url:  <Git repository url that GitOps (ArgoCD) will use as its "source of truth" for the team namespace> 
     path: <Path to the folder that contains infrastructure that the applicationsets will insert into the team namespace>
     syncPolicy:

@@ -16,7 +16,7 @@ Below is an example creating an external secret as an authentication method for 
 ```yaml
 gitops:
   authentication:
-    external_secret:
+    external_secrets:
       secretstore: gitops
       github_app:
       - id: 374237872
@@ -30,7 +30,7 @@ Below is an example using kubeseal to create a sealedsecret as an authentication
 ```yaml
 gitops:
   authentication:
-    sealed_secret:
+    sealed_secrets:
       github_app: 
       - id: ngwio847359JHUjigiIIG98796HJ7697gug898GiuG... # SealedSecret
         installation_id: biUYGVUVh786758GU78gUYGujad78hjJ... # SealedSecret
@@ -44,7 +44,7 @@ Below is all possible fields to configure for the `gitops.authentication` featur
 ```yaml
 gitops:
   authentication:
-    external_secret:
+    external_secrets:
       secretstore: <Name of SecretStore that contains all credentials for different authentication methods>
       helm_registry:
       - username: <Name of Azure Secret in Azure Key Vault>
@@ -62,7 +62,7 @@ gitops:
       - username: <Name of Azure Secret in Azure Key Vault>
         password: <Name of Azure Secret in Azure Key Vault>
         repo_url: <The url of the git repository>
-    sealed_secret:
+    sealed_secrets:
       helm_registry:
       - username: <ACR username encrypted with sealedsecret>
         password: <ACR access token encrypted with sealedsecret>
@@ -95,7 +95,7 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | <div style="width:140px">**Variable**</div>            | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
 |  Argo CD Authentication             |                                                                                                                            |                                            |                           |
-| Helm Registries           |                                                                                                                     |                                            |        list[]
+| Helm Registry           |                                                                                                                     |                                            |        list[]
 | `username`                 | ACR username - Azure Key Vault secret name or encrypted with sealedsecrets                                                      | See description below                      | String / Kubeseal Encrypted String | "" |
 | `password`                 | ACR password - Azure Key Vault secret name or encrypted with sealedsecrets                                              | See description below                      | String / Kubeseal Encrypted String | "" |
 | `registry_url`             | The url of the helm registry - Clear text or sealedsecret depending on the method                  |               ""                 | String / Kubeseal Encrypted String                  | "" |
@@ -111,5 +111,5 @@ PAT                  |                                                          
 | `username` | The username of the service account connecting to the git repository - Azure Key Vault secret name or encrypted with sealedsecrets                  | See description below                      | String / Kubeseal encrypted String | "" |
 | `password` | The git Personal Access Token for the service account connecting to the git repository - Azure Key Vault secret name or encrypted with sealedsecrets | See description below                      | String / Kubeseal encrypted String | "" |
 | `repo_url`         | The url of the git repository - Clear text or sealedsecret depending on the method                  |               ""                 | String / Kubeseal Encrypted String                  | "" |
-SealedSecret Method Specific parameters                  |                                                                                                                     |                                            |                           |
+SealedSecrets Method Specific parameters                  |                                                                                                                     |                                            |                           |
 | `type`     | Type should either be "git" or "helm" depending the authentication section - Encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |  
