@@ -5,7 +5,9 @@ The secret managment feature in the team chart is used to create global ClusterS
 You can read more in depth about this feature by following this link: [Secret Managment with External Secrets](../../OpenShift%20Tenants/Tenant%20features/external-secrets.md)
 
 !!! note
-    When creating a ClusterSecretStore the name of the resource will consist of the team name and the `name` field in the secret_management configuration. The result will be: `team.name`-`secret_management.external_secrets.team_secretstores.name`.
+    When creating a ClusterSecretStore the name of the resource will consist of the name of your team and the `name` field configured in the secret_management feature. The result will be: 
+    
+    ```<Team-name>-<ClusterSecretStore-name>```
 
     It is important to remember the name of the ClusterSecretStore as you need to refer to the ClusterSecretStore resource when creating an external secret.
 
@@ -14,7 +16,7 @@ To create a ClusterSecretStore through the team setup, you must configure the fo
 ```yaml
 secret_management:
   external_secrets:
-    team_secretstores: 
+    cluster_secret_stores: 
     - name: <ClusterSecretStore name. Team name will be prefix and then this name>
       tenant_id: <AZURE_TENANT_ID - Tenant ID of your organizations Azure tenant>
       keyvault_url: <Url to Azure Key Vault - https://AZURE_KEY_VAULT_URL> 
