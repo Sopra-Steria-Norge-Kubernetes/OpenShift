@@ -43,4 +43,4 @@ In the table below, you can find a more detailed description of each variable in
 `custom_auto_defined_targetRevision` allows setting the targetRevision at the application level for different environments in OpenShift.
 Read more about this feature here: 
   
-  - [Custom auto-defined targetRevision](../../OpenShift%20GitOps/cutom-auto-defined-target-revision.md)
+  - [Custom auto-defined targetRevision](../../Additional%20Documentation/OpenShift%20GitOps/cutom-auto-defined-target-revision.md)

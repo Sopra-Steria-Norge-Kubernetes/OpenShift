@@ -1,38 +1,60 @@
-# Secret Management Feature
+# Secret Management in an OpenShift Team
 
-The secret managment feature in the team chart is used to create global ClusterSecretStores in the team namespace, which can be utilized by multiple tenants that are a member of the team where the ClusterSecretStore is defined.
+The secret management feature in the team chart is used to create global `ClusterSecretStores` within the team namespace. These stores can be utilized by all tenants assigned to the team.
 
-You can read more in depth about this feature by following this link: [Secret Managment with External Secrets](../../OpenShift%20Tenants/Tenant%20features/external-secrets.md)
+You can read more in depth about this feature by following this link: [Secret Managment with External Secrets](../../Additional%20Documentation/Secret%20Managment/External%20Secrets/Introduction.md)
 
-!!! note
-    When creating a ClusterSecretStore the name of the resource will consist of the name of your team and the `name` field configured in the secret_management feature. The result will be: 
-    
-    ```<Team-name>-<ClusterSecretStore-name>```
 
-    It is important to remember the name of the ClusterSecretStore as you need to refer to the ClusterSecretStore resource when creating an external secret.
 
-To create a ClusterSecretStore through the team setup, you must configure the following parameters:
+## Setting up ClusterSecretStore
+To create a `ClusterSecretStore` using the team chart, configure the following parameters:
 
-```yaml
-secret_management:
-  external_secrets:
-    cluster_secret_stores: 
-    - name: <ClusterSecretStore name. Team name will be prefix and then this name>
-      tenant_id: <AZURE_TENANT_ID - Tenant ID of your organizations Azure tenant>
-      keyvault_url: <Url to Azure Key Vault - https://AZURE_KEY_VAULT_URL> 
-      client_id: <Sealed Secret App Registration Credentials - SealedSecret_CLIENT_ID> 
-      client_secret: <Sealed Secret - App Registration Credentials -SealedSecret_CLIENT_SECRET> 
-```
+=== "Configuration Template"
+    ```yaml
+    secret_management:
+      external_secrets:
+        cluster_secret_store: 
+        - name: <cluster_secret_store_name>
+          tenant_id: <azure_tenant_id> 
+          keyvault_url: <keyvault_url> 
+          client_id: <encrypted_client_id>          # Encrypted with SealedSecret 
+          client_secret: <encrypted_client_secret>  # Encrypted with SealedSecret
+    ```
+=== "Example"
+    ```yaml
+    secret_management:
+      external_secrets:
+        cluster_secret_stores: 
+        - name: cluster-secret-store
+          tenant_id: 8f3c5b3a-12d4-4e9f-9b92-7f04d2c44abc
+          keyvault_url: https://team-poseidon.vault.azure.net/
+          client_id: AgAlMkJ1FkdAaFFebrbwMsadZTdlz3BgP2dtsI3FZJmIl3McPD[...]
+          client_secret: AgB4MfXJu6oX4I3F+5JG1hSFHCnTtq9IdgdfhaL1Aw0HbX[...]
+    ```
 
-## In-depth description of parameters
+!!! Notes
+    `name` is used as a suffix to generate the final name of the `ClusterSecretStore`, which follows the format `<team_name>-<name>`, for example: `team-poseidon-cluster-secret-store`.
 
-| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
-|----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
-| Secret Management              |                                                                                                                     |                                            |                           |
-`external_secrets`              |                                                                                                                     |                                            |                           | 
-`team_secretstore`              |                                                                                                                     |                                            |          list[]                 |
-| `name`            | name of the ClusterSecretStore that will be added behind the team name parameter                               | my-secret | String                    | "" |
-| `tenant_id`            | Tenant ID for your Azure subscription                                        | d93d3d23-50e3-46db-b3ad-8c6c281b431e | String                    | "" |
-| `keyvault_url`            | The URL to the Azure Key Vault you want to use                               |  | String                    | "" |
-| `client_id`            | Username for Azure Key Vault (ServicePrinciple), which is encrypted as a sealed secret                               |           | Kubeseal encrypted String                    | "" |
-| `client_secret`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               |           | Kubeseal encrypted String                    | "" |
+## Encrypting Key Vault Credentials
+
+To allow OpenShift to authenticate with Azure Key Vault, the credentials from the App Registration must be encrypted before being stored in the Git repository. This is done using `SealedSecrets`, which ensures that only the `SealedSecrets controller` running in the OpenShift cluster can decrypt the values.
+
+You can encrypt the credentials using the `scripts/encrypt_client_credentials.sh` script in your tenant repository, or follow [this guide](../../Additional%20Documentation/Secret%20Managment/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md) to perform the encryption manually.
+
+Additional details on `SealedSecrets` can be found [here](../../Additional%20Documentation/Secret%20Managment/Sealed%20Secrets/Introduction.md).
+
+## In-depth Description of parameters
+
+The table below provides detailed descriptions of each variable available in the `secret_management.external_secrets` configuration.
+
+### ClusterSecretStore parameters
+
+| <div style="width:300px">**Variable**</div>                                 | <div style="width:200px">**Descriptopn**</div>                                                                 | <div style="width:300px">**Example**</div>                                 | **Type**                 | **Default Value** |
+|---------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------|--------------------------|-------------------|
+| `cluster_secret_stores`                     | A list of ClusterSecretStore entries used to connect to one or more Azure Key Vaults shared across environments | –                                           | list                     | `[]`              |
+| `cluster_secret_stores[].name`              | Suffix used to generate the full `ClusterSecretStore` name in the format `<tenant_name>-<name>` | `gitops`                                               | string                   | `""`              |
+| `cluster_secret_stores[].tenant_id`         | Azure Tenant ID used to access the Key Vault                                    | `d93d3d23-50e3-46db-b3ad-8c6c281b431e`      | string                   | `""`              |
+| `cluster_secret_stores[].keyvault_url`      | URL of the Azure Key Vault instance                                             | `https://poseidon1.vault.azure.net/`        | string                   | `""`              |
+| `cluster_secret_stores[].client_id`         | Azure App Registration Client ID, encrypted using SealedSecrets                | `AgAlMkJ1FkdAaFFebrbwMsadZTdlz3BgP2dtsI3FZJmIl3McPD[...]`                                           | sealed string            | `""`              |
+| `cluster_secret_stores[].client_secret`     | Azure App Registration Client Secret, encrypted using SealedSecrets           | `AgB4MfXJu6oX4I3F+5JG1hSFHCnTtq9IdgdfhaL1Awsdfs0HbX[...]`                                           | sealed string            | `""`              |
+
