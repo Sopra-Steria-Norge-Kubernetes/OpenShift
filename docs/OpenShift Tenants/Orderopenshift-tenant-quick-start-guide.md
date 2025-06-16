@@ -27,7 +27,7 @@ Before getting started with this guide, ensure you have the following prerequisi
     - [GitHub App](../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-github-app.md)
     - [SSH](../OpenShift%20Tenants/Tenant%20features/GitOps/Authentication%20Methods%20for%20ArgoCD/authenticate-with-ssh.md)
 - You have Kubeseal installed on your workstation and can provide encrypted values for the initial setup.
-    - [Install Kubeseal](../Tools/install-kubeseal.md)
+    - [Install Kubeseal](../Additional%20Documentation/Tools/install-kubeseal.md)
 
 ## OpenShift Tenant Template
 
