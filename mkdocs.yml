@@ -89,6 +89,8 @@ nav:
         - Introduction: Additional Documentation/Secret Managment/External Secrets/Introduction.md
         - Creating external secrets: Additional Documentation/Secret Managment/External Secrets/creating-external-secrets.md
         - Deploying secret store: Additional Documentation/Secret Managment/External Secrets/configuration-secretstore.md
+      - Cluster External Secrets:
+        - Configuration: Additional Documentation/Secret Managment/Cluster External Secrets/Introduction.md
       - Sealed Secrets:
         - Introduction: Additional Documentation/Secret Managment/Sealed Secrets/Introduction.md
         - Encrypt secrets with SealedSecrets: Additional Documentation/Secret Managment/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
