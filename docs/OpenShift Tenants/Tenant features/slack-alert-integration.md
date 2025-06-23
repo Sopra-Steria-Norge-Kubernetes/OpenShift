@@ -2,21 +2,25 @@
 
 ## What is Slack Alert Integration?
 
-Slack Alert Integration in OpenShift enables real-time monitoring and alerting by sending notifications to Slack channels. This integration allows teams to receive alerts based on the severity of issues occurring within the Openshift cluste. 
+Slack Alert Integration in OpenShift enables real-time monitoring and alerting by sending notifications to Slack channels. This allows teams to respond quickly to incidents and improve collaboration by receiving alerts based on severity levels.
 
-By configuring Slack alert integration, you ensure that critical events are communicated immediately to the relevant teams, improving incident response times and collaboration.
+## Recommended implementation: Use External Secrets
 
-## How to configure Slack Alert Integration
+The preferred method for configuring Slack webhook secrets is now through the External Secrets integration. This method allows the webhook URL to be securely retrieved from Azure Key Vault using a `ClusterSecretStore`, avoiding the need to manage and encrypt secrets manually.
 
-To configure Slack alert integration for your OpenShift tenant using our Helm chart, include the following YAML configuration in your Helm values file:
+We recommend adopting the External Secrets method to simplify secret management and improve security.
+
+## Configure Slack Alert Integration with SealedSecret
+
+If you still need to use SealedSecrets, you can configure Slack alert integration by including the following in your Helm values file:
 
 ``` yaml
 ...
   slack_alert_integration:
     enable: False
-    alert_severity: critical # If multiple; critical|warning|info
+    alert_severity: critical # Supports multiple values separated by '|': critical|warning|info
     webhook_secret:
-      encrypted_webhookURL: <webhook to slack channel encrypted with sealedsecrets>
+      encrypted_webhookURL: <slack_webhook_url_sealed_secret>
 ... 
 ```
 

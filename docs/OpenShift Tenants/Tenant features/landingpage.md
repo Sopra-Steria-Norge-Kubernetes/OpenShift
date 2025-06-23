@@ -6,5 +6,8 @@
 - [Role Based Access Control](rbac.md)
 - [GitOps](GitOps/argocd.md)
 - [Backup](backup.md)
+- [Secret Management](secret-management.md)
+- [Image Pull Secret](image-pull-secret.md)
 - [External Secret](external-secrets.md)
 - [Slack Alert Integration](slack-alert-integration.md)
+- [Team](team.md)

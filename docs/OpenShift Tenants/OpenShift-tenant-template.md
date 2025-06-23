@@ -55,6 +55,7 @@ values: |
     - name: <Name of environment 1 (e.g. dev)>
       allow_to_internet: <True or false - Set to true if environment should be exposed to internet>
       custom_auto_defined_targetRevision: <True or false - Set to true if targetRevision should be set by application folder name>
+      egressip_selector: <EgressIP for the given namespace>
       externalURLs:
         - <URL's that should be reachable from the environment (e.g. google.com)>
       externalIPs:
@@ -67,6 +68,7 @@ values: |
     allow_from_kube_apiserver_operator: true
     allow_from_grafana_operator: true
     allow_from_ECK_operator: true
+    allow_from_cloudnative_pg_operator: true
 
   rbac:
     ad_group_write_access: <Azure AD group with write access>
@@ -116,19 +118,44 @@ values: |
 
   secret_management:
     external_secrets:
-      enable: false # boolean - true/false
-      tenant_id: <AZURE_TENANT_ID> # Tenant ID of your organizations Azure tenant
-      tenant_secretstores:
-      - name: # Secret name
-        keyvault_url: <https://AZURE_KEY_VAULT_URL> # Url to Azure Key Vault
-        client_id: <SealedSecret_CLIENT_ID> # Sealed Secret - App Registration Credentials
-        client_secret: <SealedSecret_CLIENT_SECRET> # Sealed Secret - App Registration Credentials
+      cluster_secret_stores: 
+      - name: <Suffix used to generate the full ClusterSecretStore name in the format <tenant_name>-<name>>
+        environment: <Namespace where the SealedSecret with Azure credentials will be stored>
+        tenant_id: <Azure Tenant ID>
+        keyvault_url: <Keyvault URL>
+        client_id: <Azure App Reg ClientID>
+        client_secret: <Azure App Reg ClientSecret>
+      secret_stores:
+      - name: <Unique name for the SecretStore >
+        environment: <Namespace where the SecretStore will be deployed>
+        tenant_id: <Azure Tenant ID>
+        keyvault_url: <Keyvault URL>
+        client_id: <Azure App Reg ClientID>
+        client_secret: <Name of the secret in Azure Key Vault that contains the actual Client Secret>
+        cluster_secret_store_ref: <ClusterSecretStore where Client Secret is defined>
+      secrets:
+        image_pull_secret:
+          pull_secret: <Name of the secret in Azure Key Vault that contains image pull secret>
+          cluster_secret_store_ref: <ClusterSecretStore where image pull secret is defined>
+        slack_webhook_url:
+          webhook_url: <Name of the secret in Azure Key Vault that contains slack webhook URL secret>
+          cluster_secret_store_ref: <ClusterSecretStore where slack webhook URL is defined>
 
   image_pull_secret:
     enable: false # boolean - true/false
     secrets:
     - dockerconfigjson: # SealedSecret dockerconfigjson object 
       environment: # environment to place image_pull_secret
+
+  monitoring:
+    jobCronJobAlertsEnabled: true
+    storageAlertsEnabled: true
+    replicasSetsAlertsEnabled: true
+    deploymentsAlertsEnabled: true
+    statefulSetsAlertsEnabled: true
+    resourceQuotaAlertsEnabled: true
+    podAlertsEnabled: true
+    hpaAlertsEnabled: true
 
   slack_alert_integration:
     enable: False

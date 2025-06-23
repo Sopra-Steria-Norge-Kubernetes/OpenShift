@@ -8,6 +8,13 @@ OpenShift tenants support configuring one or more `ClusterSecretStore` and `Secr
 Both types of stores integrate with external Key Management Services (KMS), such as Azure Key Vault, to fetch and manage secrets within OpenShift.
 You can read more about how External Secrets work in [this section](../../Additional%20Documentation/Secret%20Managment/External%20Secrets/Introduction.md).
 
+In addition to reading secrets, tenants can now use `ClusterSecretStore` to automatically create common secrets through predefined templates. This includes: 
+
+* **Image Pull Secret** — used to authenticate container image pulls from private registries  
+* **Slack Webhook URL** — used to send messages or alerts to Slack channels  
+
+These secrets are generated using values stored in the configured Key Vault and made available to workloads within the tenant’s namespaces.
+
 !!! Info
     OpenShift tenants are configured to use Azure Key Vault as the Key Management System (KMS). Contact your OpenShift administrator if you require support for a different KMS.
 
@@ -97,6 +104,39 @@ Below is an example configuration for adding a `SecretStore` to your tenant:
     * The environment field specifies the target namespace in which the `SecretStore` and corresponding OpenShift secret will be created.
     * The `cluster_secret_store_ref` links to a previously defined `ClusterSecretStore`, which holds the encrypted credentials. It is recommended to define this in the team concept.
     * The `client_id` is provided in plain text, while `client_secret` refers to the name of the secret in Azure Key Vault. The External Secrets Operator uses this name to retrieve the value and inject it into the OpenShift Secret.
+## Managing Common Secrets with Predefined Templates
+
+OpenShift tenants can now define commonly used secrets more easily through a simplified configuration. This includes:
+
+* **Image Pull Secret** – used to authenticate against private container registries
+* **Slack Webhook URL** – used to post messages from OpenShift applications to Slack channels
+
+These secrets are automatically created by the External Secrets Operator using values fetched from an Azure Key Vault via a configured ClusterSecretStore.
+
+=== "Configuration Template"
+    ```Yaml
+    secret_management:
+      external_secrets:
+        secrets:
+          image_pull_secret:
+            pull_secret: <name_of_secret_in_keyvault>
+            cluster_secret_store_ref: <name_of_cluster_secret_store>
+          slack_webhook_url:
+            webhook_url: <name_of_secret_in_keyvault>
+            cluster_secret_store_ref: <name_of_cluster_secret_store>
+    ```
+=== "Example"
+    ```Yaml
+    secret_management:
+      external_secrets:
+        secrets:
+          image_pull_secret:
+            pull_secret: poseidon1-docker-pull-secret
+            cluster_secret_store_ref: team-poseidon-gitops
+          slack_webhook_url:
+            webhook_url: poseidon1-slack-webhook-url
+            cluster_secret_store_ref: team-poseidon-gitops
+    ```
 
 
 ## In-depth Description of parameters
@@ -105,24 +145,33 @@ The table below provides detailed descriptions of each variable available in the
 
 ### ClusterSecretStore parameters
 
-| <div style="width:300px">**Variable**</div>                                 | <div style="width:200px">**Descriptopn**</div>                                                                 | <div style="width:300px">**Example**</div>                                 | **Type**                 | **Default Value** |
-|---------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------|--------------------------|-------------------|
-| `cluster_secret_stores`                     | A list of ClusterSecretStore entries used to connect to one or more Azure Key Vaults shared across environments | –                                           | list                     | `[]`              |
-| `cluster_secret_stores[].name`              | Suffix used to generate the full `ClusterSecretStore` name in the format `<tenant_name>-<name>` | `gitops`                                               | string                   | `""`              |
-| `cluster_secret_stores[].environment`       | Namespace where the SealedSecret with Azure credentials will be stored          | `poseidon1-dev`                         | string                   | `""`              |
-| `cluster_secret_stores[].tenant_id`         | Azure Tenant ID used to access the Key Vault                                    | `d93d3d23-50e3-46db-b3ad-8c6c281b431e`      | string                   | `""`              |
-| `cluster_secret_stores[].keyvault_url`      | URL of the Azure Key Vault instance                                             | `https://poseidon1.vault.azure.net/`        | string                   | `""`              |
-| `cluster_secret_stores[].client_id`         | Azure App Registration Client ID, encrypted using SealedSecrets                | `AgAlMkJ1FkdAaFFebrbwMsadZTdlz3BgP2dtsI3FZJmIl3McPD[...]`                                           | sealed string            | `""`              |
-| `cluster_secret_stores[].client_secret`     | Azure App Registration Client Secret, encrypted using SealedSecrets           | `AgB4MfXJu6oX4I3F+5JG1hSFHCnTtq9IdgdfhaL1Awsdfs0HbX[...]`                                           | sealed string            | `""`              |
+| <div style="width:300px">**Variable**</div> | <div style="width:200px">**Descriptopn**</div>                                                                  | <div style="width:300px">**Example**</div>                | **Type**                 | **Default Value** |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|--------------------------|-------------------|
+| `cluster_secret_stores`                     | A list of ClusterSecretStore entries used to connect to one or more Azure Key Vaults shared across environments | –                                                         | list                     | `[]`              |
+| `cluster_secret_stores[].name`              | Suffix used to generate the full `ClusterSecretStore` name in the format `<tenant_name>-<name>`                 | `gitops`                                                  | string                   | `""`              |
+| `cluster_secret_stores[].environment`       | Namespace where the SealedSecret with Azure credentials will be stored                                          | `poseidon1-dev`                                           | string                   | `""`              |
+| `cluster_secret_stores[].tenant_id`         | Azure Tenant ID used to access the Key Vault                                                                    | `d93d3d23-50e3-46db-b3ad-8c6c281b431e`                    | string                   | `""`              |
+| `cluster_secret_stores[].keyvault_url`      | URL of the Azure Key Vault instance                                                                             | `https://poseidon1.vault.azure.net/`                      | string                   | `""`              |
+| `cluster_secret_stores[].client_id`         | Azure App Registration Client ID, encrypted using SealedSecrets                                                 | `AgAlMkJ1FkdAaFFebrbwMsadZTdlz3BgP2dtsI3FZJmIl3McPD[...]` | sealed string            | `""`              |
+| `cluster_secret_stores[].client_secret`     | Azure App Registration Client Secret, encrypted using SealedSecrets                                             | `AgB4MfXJu6oX4I3F+5JG1hSFHCnTtq9IdgdfhaL1Awsdfs0HbX[...]` | sealed string            | `""`              |
 
 ### SecretStore parameters
-| <div style="width:300px">**Variable**</div>                                 | <div style="width:200px">**Descriptopn**</div>                                                                 | <div style="width:300px">**Example**</div>                                 | **Type**                 | **Default Value** |
-|---------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------|--------------------------|-------------------|
-| `secret_stores`                             | A list of SecretStore entries used to fetch secrets from Azure Key Vault scoped to a single environment | –                         | list                     | `[]`              |
-| `secret_stores[].name`                      | Unique name for the SecretStore configuration                                   | `poseidon1-dev-secret-store`                       | string                   | `""`              |
-| `secret_stores[].environment`               | Namespace where the resulting OpenShift secrets will be created                 | `poseidon1-dev`                             | string                   | `""`              |
-| `secret_stores[].tenant_id`                 | Azure Tenant ID used to access the Key Vault                                    | `d93d3d23-50e3-46db-b3ad-8c6c281b431e`      | string                   | `""`              |
-| `secret_stores[].keyvault_url`              | URL of the Azure Key Vault instance                                             | `https://poseidon1.vault.azure.net/`        | string                   | `""`              |
-| `secret_stores[].client_id`                 | Azure App Registration Client ID in plain text                                  | `a7b1f2c3-d4e5-678f-90ab-1cd2345ef678`      | string                   | `""`              |
-| `secret_stores[].client_secret`             | Name of the secret in Azure Key Vault that contains the actual Client Secret    | `poseidon1-client-secret`                   | string                   | `""`              |
-| `secret_stores[].cluster_secret_store_ref`  | Name of the ClusterSecretStore used for authentication                          | `team-poseidon-gitops`                                    | string                   | `""`              |
+| <div style="width:300px">**Variable**</div> | <div style="width:200px">**Descriptopn**</div>                                                          | <div style="width:300px">**Example**</div>  | **Type**                 | **Default Value** |
+|---------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------|--------------------------|-------------------|
+| `secret_stores`                             | A list of SecretStore entries used to fetch secrets from Azure Key Vault scoped to a single environment | –                                           | list                     | `[]`              |
+| `secret_stores[].name`                      | Unique name for the SecretStore configuration                                                           | `poseidon1-dev-secret-store`                | string                   | `""`              |
+| `secret_stores[].environment`               | Namespace where the resulting OpenShift secrets will be created                                         | `poseidon1-dev`                             | string                   | `""`              |
+| `secret_stores[].tenant_id`                 | Azure Tenant ID used to access the Key Vault                                                            | `d93d3d23-50e3-46db-b3ad-8c6c281b431e`      | string                   | `""`              |
+| `secret_stores[].keyvault_url`              | URL of the Azure Key Vault instance                                                                     | `https://poseidon1.vault.azure.net/`        | string                   | `""`              |
+| `secret_stores[].client_id`                 | Azure App Registration Client ID in plain text                                                          | `a7b1f2c3-d4e5-678f-90ab-1cd2345ef678`      | string                   | `""`              |
+| `secret_stores[].client_secret`             | Name of the secret in Azure Key Vault that contains the actual Client Secret                            | `poseidon1-client-secret`                   | string                   | `""`              |
+| `secret_stores[].cluster_secret_store_ref`  | Name of the ClusterSecretStore used for authentication                                                  | `team-poseidon-gitops`                      | string                   | `""`              |
+
+### Predefined Secrets Parameters
+
+| <div style="width:300px">**Variable**</div>                           | <div style="width:200px">**Description**</div>                                                                  | <div style="width:300px">**Example**</div>        | **Type**     | **Default Value** |
+|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------|--------------|-------------------|
+| `secrets.image_pull_secret.pull_secret`                               | Name of the secret in Azure Key Vault that contains the Docker config JSON                                      | `poseidon1-pull-secret`                           | string       | `""`              |
+| `secrets.image_pull_secret.cluster_secret_store_ref`                  | Reference to the ClusterSecretStore used to access the value in Azure Key Vault                                 | `team-poseidon-gitops`                            | string       | `""`              |
+| `secrets.slack_webhook_url.webhook_url`                               | Name of the secret in Azure Key Vault that contains the Slack webhook URL                                       | `poseidon1-slack-url`                             | string       | `""`              |
+| `secrets.slack_webhook_url.cluster_secret_store_ref`                  | Reference to the ClusterSecretStore used to access the value in Azure Key Vault                                 | `team-poseidon-gitops`                            | string       | `""`              |
