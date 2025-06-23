@@ -87,10 +87,9 @@ nav:
       - Creating and managing secrets: Additional Documentation/Secret Managment/creating-and-managing-openshift-secrets.md
       - External Secrets:
         - Introduction: Additional Documentation/Secret Managment/External Secrets/Introduction.md
+        - Creating secret store: Additional Documentation/Secret Managment/External Secrets/configuration-secretstore.md
         - Creating external secrets: Additional Documentation/Secret Managment/External Secrets/creating-external-secrets.md
-        - Deploying secret store: Additional Documentation/Secret Managment/External Secrets/configuration-secretstore.md
-      - Cluster External Secrets:
-        - Configuration: Additional Documentation/Secret Managment/Cluster External Secrets/Introduction.md
+        - Creating Cluster External Secret: Additional Documentation/Secret Managment/External Secrets/cluster-external-secrets.md
       - Sealed Secrets:
         - Introduction: Additional Documentation/Secret Managment/Sealed Secrets/Introduction.md
         - Encrypt secrets with SealedSecrets: Additional Documentation/Secret Managment/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
