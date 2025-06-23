@@ -4,7 +4,7 @@
 
 Slack Alert Integration in OpenShift enables real-time monitoring and alerting by sending notifications to Slack channels. This allows teams to respond quickly to incidents and improve collaboration by receiving alerts based on severity levels.
 
-## Recommended Approach: Use External Secrets
+## Recommended implementation: Use External Secrets
 
 The preferred method for configuring Slack webhook secrets is now through the External Secrets integration. This method allows the webhook URL to be securely retrieved from Azure Key Vault using a `ClusterSecretStore`, avoiding the need to manage and encrypt secrets manually.
 
