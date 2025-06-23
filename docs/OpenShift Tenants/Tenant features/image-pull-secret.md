@@ -2,24 +2,28 @@
 
 ## What is a Image Pull Secret?
 
-In OpenShift, an `image pull secret` is a Kubernetes secret used to authenticate and pull container images from a private container registry. It stores credentials (username, password, or token) that allow OpenShift to securely access images from remote registries like Azure Container Registry (ACR), Docker Hub, AWS Elastic Container Registry (ECR), Google Container Registry (GCR), and others
+In OpenShift, an image pull secret is a Kubernetes secret used to authenticate and pull container images from a private container registry. It stores credentials (username, password, or token) that allow OpenShift to securely access images from registries such as Azure Container Registry (ACR), Docker Hub, AWS ECR, and Google Container Registry (GCR).
 
-## How to Configure an Image Pull Secret
+## Recommended implementation: Use External Secrets
 
-The `image_pull_secret` feature contains the information OpenShift needs to securly access a remote registry in the form of a Sealed Secret dockercofigjson object. It also contains the namespace environment which defines where the image pull secret is to be created. To configure a image pull secret using a Helm chart, include the following YAML configuration in your Helm values file:
+The preferred method for managing image pull secrets is now through the [External Secrets integration](secret-management.md). This method allows secrets to be securely and automatically synced from Azure Key Vault into OpenShift using `ClusterSecretStore` configurations, reducing the need to manually manage SealedSecrets.
 
+We recommend using the External Secrets method unless you have a specific requirement for `SealedSecrets`.
+
+## Configure Image Pull Secret with SealedSecret
+
+If you still wish to use SealedSecrets, you can configure an image pull secret by including the following configuration in your Helm values file:
 
 ```yaml
 ...
   image_pull_secret:
     enable: false # boolean - true/false
     secrets:
-    - dockerconfigjson: <dockerconfigjson_SEALED_SECRET> # SealedSecret dockerconfigjson object 
-      environment: <environment> # environment to place image_pull_secret
+    - dockerconfigjson: <dockerconfigjson_sealed_secret> # SealedSecret dockerconfigjson object 
+      environment: <environment> # Namespace where the image pull secret will be created
 ...
 ```
 
-By configuring these parameters, you can customize the image pull secret to securly access your specific image registry form your wanted namespace environment. To see how to configure a namespace environment visit: [Tenant Feature - Namespace](./namespace.md)
 
 ## In-depth description of parameters
 
