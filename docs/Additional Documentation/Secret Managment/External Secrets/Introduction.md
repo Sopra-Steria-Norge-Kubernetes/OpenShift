@@ -35,13 +35,10 @@ In OpenShift, External Secrets allow applications to use secrets stored in exter
 * **Automated Rotation:** Many supported providers offer automatic secret rotation, reducing the need for manual updates and improving security posture.
 
 ## How it works
-1. A SecretStore resource defines the connection to the external KMS (e.g. Azure Key Vault).
-2. A developer creates an ExternalSecret resource in OpenShift, referencing the SecretStore.
+1. A `SecretStore` resource defines the connection to the external KMS (e.g. Azure Key Vault).
+2. A developer creates an ExternalSecret resource in OpenShift, referencing the `SecretStore`.
 3. The ExternalSecret fetches the desired secret from the external provider and creates a Kubernetes Secret within the namespace.
-4. The ExternalSecret resource itself can be stored in Git, enabling secure, version-controlled secret management as part of your GitOps pipeline.
-
-The diagram below illustrates this process:
-![developer_external_secret.png](../../../img/Secret%20Managment/developer_external_secret.png)
+4. The `ExternalSecret` resource itself can be stored in Git, enabling secure, version-controlled secret management as part of your GitOps pipeline.
 
 !!! info
     You can choose between creating a <ins>SecretStore</ins> or a <ins>ClusterSecretStore</ins>:
