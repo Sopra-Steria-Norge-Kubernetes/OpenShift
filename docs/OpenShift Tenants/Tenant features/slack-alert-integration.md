@@ -6,7 +6,7 @@ Slack Alert Integration in OpenShift enables real-time monitoring and alerting b
 
 ## Recommended implementation: Use External Secrets
 
-The preferred method for configuring Slack webhook secrets is now through the External Secrets integration. This method allows the webhook URL to be securely retrieved from Azure Key Vault using a `ClusterSecretStore`, avoiding the need to manage and encrypt secrets manually.
+The preferred method for configuring Slack webhook secrets is now through the [External Secrets integration](secret-management.md). This method allows the webhook URL to be securely retrieved from Azure Key Vault using a `ClusterSecretStore`, avoiding the need to manage and encrypt secrets manually.
 
 We recommend adopting the External Secrets method to simplify secret management and improve security.
 
