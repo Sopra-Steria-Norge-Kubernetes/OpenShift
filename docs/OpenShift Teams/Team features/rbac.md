@@ -16,7 +16,7 @@ rbac:
 | <div style="width:160px">**Variable**</div>               | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
 | `rbac`              |                                                                                                                     |                                            |                           |
-| `team_edit`                       | AD Group for team edit access                                | "team-2s-edit"                      | String                          | "" |
+| `team_edit`                       | AD Group for team edit access                                 | "team-2s-edit"                     | String                          | "" |
 | `team_view`                       | AD Group for team view access                                 | "team-2s-view"                     | String                          | "" |
 | `team_monitoring_edit`            | AD Group for grafana admin access                             | "team-2s-monitoring-edit"          | String                          | "" |
 | `team_monitoring_view`            | AD Group for grafana view access                              | "team-2s-monitoring-view"          | String                          | "" |
