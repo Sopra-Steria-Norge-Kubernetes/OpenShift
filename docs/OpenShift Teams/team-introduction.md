@@ -44,7 +44,7 @@ resource_management: <Defualt resources allowed in the team namespaces for runni
     enable_custom_storageclass: false 
 
 rbac:  
-  team_edit: <AD Group for team admin access>
+  team_edit: <AD Group for team edit access>
   team_view: <AD Group for team view access>
   team_monitoring_edit: <AD Group for grafana admin access>
   team_monitoring_view: <AD Group for grafana view access>
