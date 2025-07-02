@@ -1,6 +1,6 @@
 # RBAC Feature
 
-RBAC is used to provide wanted access to specific groups in openshift that spans over the team namespace and tenant namespaces of the team. 
+RBAC is used to grant specific Azure Entra ID groups access to OpenShift roles across the team namespace and all associated tenant namespaces.
 
 ```yaml
 rbac:  
