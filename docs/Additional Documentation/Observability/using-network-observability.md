@@ -27,7 +27,7 @@ The Network Observability Operator is a critical component for developers lookin
 
 The Network Observability dashboard is your command center for monitoring network traffic. It provides a comprehensive view of traffic flows, topology, and detailed metrics.
 
-![Overview.png](../img/Observability/network1.png)
+![Overview.png](../../img/Observability/network1.png)
 *Figure 1: Dashboard Overview*
 
 Features include:
@@ -39,7 +39,7 @@ Features include:
 
 The 'Traffic Flows' panel offers a granular look at the individual network packets and bytes transmitted over the network. Use this to identify the top contributors to network traffic and pinpoint any unusual activity.
 
-![Traffic flows.png](../img/Observability/network2.png)
+![Traffic flows.png](../../img/Observability/network2.png)
 *Figure 2: Analyzing Traffic Flows*
 
 Here you can find:
@@ -52,7 +52,7 @@ Here you can find:
 
 The Topology view provides a dynamic graphical representation of network traffic, allowing you to see how traffic is flowing between nodes and services within your cluster.
 
-![netobserv-2.png](../img/Observability/network3.png)
+![netobserv-2.png](../../img/Observability/network3.png)
 *Figure 3: Topology View*
 
 Highlights:

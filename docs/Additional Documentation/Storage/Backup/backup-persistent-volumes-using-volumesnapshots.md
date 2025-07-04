@@ -16,7 +16,7 @@ Container Platform as a Service allows developers to take point-in-time snapshot
 ![image.png](../../../img/Storage/storage2.png)
 
 3. Proceed with default settings, and click "Create"
-![image.png](../..../img/Storage/storage3.png)
+![image.png](../../../img/Storage/storage3.png)
 
 4. Navigate to Storage -> VolumeSnapshots to find your recently created snapshot.
 ![image.png](../../../img/Storage/storage4.png)
