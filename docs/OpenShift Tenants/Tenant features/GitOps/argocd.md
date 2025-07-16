@@ -4,8 +4,6 @@
 
 To implement GitOps in our delivery pipeline, we use ArgoCD, a declarative, continuous delivery tool for Kubernetes and OpenShift. ArgoCD allows you to define the desired state of your applications in Git repositories and ensures that your OpenShift cluster matches this state. 
 
-By continuously monitoring your applications, ArgoCD automatically synchronizes the live state to the desired state specified in Git, providing automated deployments and tracking of application versions. 
-
 This seamless integration with GitOps practices ensures that our applications are always up-to-date and that any changes are managed through a robust version control system.
 
 ## How to configure Argo CD - Tenant Concept
@@ -40,8 +38,6 @@ Below is the configuration for setting up ArgoCD using our tenant concept:
 ```
 
 ## In-depth description of parameters
-
-The `argocd` feature contains elements to synchronise tenant applications and infrastructures with a Git repository to ensure Continuous Deployment (CD). This means that developers can define application and environment configurations in a Git repository, and ArgoCD ensures that the cluster matches the defined state, automatically deploying and updating applications as needed. 
 
 ArgoCD provides different ways of automatically deploying and synchronising infrastructure in a cluster. When connecting your Git Repository to your tenant, you have two options for creating applications: 
 
@@ -84,8 +80,6 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `private_key`        | Private key for your SSH-private-key encrypted with sealedsecrets                                                        | See description below                      | Kubeseal encrypted String | "" |
 
 ## Encrypt and configure the Argo-specific information
-
-Encrypting and configuring ArgoCD-specific information is crucial for ensuring the security and efficiency of your deployment. To assist with this, we have developed a detailed user guide. 
 
 This guide provides step-by-step instructions and best practices for encrypting Personal Access Tokens (PAT), GitHub App variables and SSH-private-key, which are essential for the secure operation of ArgoCD within your OpenShift environment. Please follow the steps in the guide provided below:
  

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-To make things easier for our developers, we've created an auto-merge workflow to approve and merge tenant changes that don't need manual checks. This helps speed up the process and lets developers focus more on important work instead of getting stuck in routine tasks. 
+We've created an auto-merge workflow to approve and merge tenant changes that don't need manual checks. This helps speed up the process and lets developers focus more on important work instead of getting stuck in routine tasks. 
 
 Auto-merging happens only when all status checks pass. This way, we ensure that only well-tested and verified changes go through, keeping the system stable and reliable. Auto-merging is restricted to directories where Sopra Steria has **CODEOWNER rights**, specifically in the `/wave-*/` directories. This restriction is enforced by GitHub's branch protection rules, ensuring that only changes meeting all criteria and passing all checks are automatically merged. This approach guarantees that our automated system maintains the high standards we expect for our codebase.
 
@@ -43,4 +43,4 @@ To ensure that no changes outside of monitored fields are merged, specific statu
 
 - This step downloads the temporary files, performs a comparison, and validates the changes to ensure they can be safely auto-merged.
 
-These status checks are crucial in maintaining the quality and stability of our system by preventing unverified changes from being merged.
+
