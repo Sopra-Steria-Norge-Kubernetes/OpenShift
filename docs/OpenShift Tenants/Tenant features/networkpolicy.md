@@ -2,7 +2,7 @@
 
 ## What is a Network Policy?
 
-In OpenShift, network policies are specifications that define how pods within a namespace are allowed to communicate with each other and with other network endpoints. Network policies enable you to control the traffic flow at the IP address or port level, thereby enhancing security and isolating different parts of your application.
+In OpenShift, network policies are specifications that define how pods within a namespace are allowed to communicate with each other and with other network endpoints. Network policies enable you to control the traffic flow at the IP address or port level, enhancing security and isolating different parts of your application.
 
 ## How to configure a Network Policy
 
@@ -17,8 +17,6 @@ We offer a few Network Policies from our Helm Chart. To configure a network poli
     allow_from_kube_apiserver_operator: true
 ...
 ```
-
-By setting these parameters, you can define the specific network rules that govern how traffic is allowed or denied between pods, ensuring secure and controlled communication within your OpenShift cluster.
 
 ## In-depth description of parameters
 

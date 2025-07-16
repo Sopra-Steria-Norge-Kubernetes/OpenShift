@@ -22,8 +22,6 @@ To configure an environment within a namespace, include the following YAML confi
 ...
 ```
 
-By configuring these parameters, you can define multiple environments within a namespace, each tailored to the specific requirements of different stages in your development and deployment lifecycle.
-
 ## In-depth description of parameters
 
 In the table below, you can find a more detailed description of each variable in the `environment` feature:

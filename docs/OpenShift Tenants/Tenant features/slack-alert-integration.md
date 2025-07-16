@@ -2,7 +2,7 @@
 
 ## What is Slack Alert Integration?
 
-Slack Alert Integration in OpenShift enables real-time monitoring and alerting by sending notifications to Slack channels. This allows teams to respond quickly to incidents and improve collaboration by receiving alerts based on severity levels.
+Slack Alert Integration in OpenShift enables real-time monitoring and alerting by sending notifications to Slack channels. This allows teams to respond quickly to incidents. 
 
 ## Recommended implementation: Use External Secrets
 
@@ -24,7 +24,7 @@ If you still need to use SealedSecrets, you can configure Slack alert integratio
 ... 
 ```
 
-By setting these parameters, you can enable and customize the integration to send alerts to your Slack channels, specifying the severity levels and providing the encrypted webhook URL. This setup ensures that important alerts are securely and efficiently communicated to your team.
+By setting these parameters, you can enable and customize the integration to send alerts to your Slack channels.
 
 For more information about configuring the Slack alert integration, read the following guide: 
 
