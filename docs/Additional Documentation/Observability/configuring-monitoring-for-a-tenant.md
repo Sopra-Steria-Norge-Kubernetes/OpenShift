@@ -12,12 +12,13 @@ externally-exposed: true
 * An OpenShift tenant created by Sopra Steria
 
 ## Introduction
-Prometheus alerts are a vital part of maintaining the health and reliability of your systems and services. By defining alerting rules, you can tailor your monitoring to specific requirements and respond swiftly to issues as they arise. Understanding the alerting workflow and leveraging the Alert Manager for notifications will help you build a robust and efficient alerting system with Prometheus.
+Prometheus alerts help ensure the health and reliability of your systems by allowing you to define rules and respond quickly to issues. By understanding the alerting workflow and using Alertmanager for notifications, you can build an effective alerting setup in OpenShift.
 
 This user guide will provide you with further insights and detailed instructions on managing and creating alerts in Openshift.
 
 ## Overview of Alerts
-We have created a set of alerts tailored to enhance your monitoring and alerting capabilities within your Prometheus environment. These alerts are designed to help you proactively identify issues and ensure the smooth operation of your systems and services. Below, we provide an overview of the various alert groups we've developed for you to use effectively. Each group is carefully crafted to address specific aspects of your infrastructure and applications, empowering you to take action swiftly when needed. Explore the following alert groups to gain deeper insights into your monitoring and make informed decisions.
+We have created a set of alerts tailored to enhance your monitoring and alerting capabilities within your Prometheus environment. These alerts are designed to help you proactively detect issues. Below, we provide an overview of the various alert groups we've developed for you to use. Each group is carefully crafted to address specific aspects of your infrastructure and applications, empowering you to take action swiftly when needed. Explore the following alert groups to gain deeper insights into your monitoring and make informed decisions.
+
 
 ### Job & CronJob Alerts
 
