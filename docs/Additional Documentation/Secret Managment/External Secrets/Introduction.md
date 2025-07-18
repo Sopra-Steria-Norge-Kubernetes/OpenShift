@@ -5,9 +5,11 @@ Version: 1.0.0
 externally-exposed: true
 --- 
 
-# Introduction External Secrets
+# External Secrets Introduction
 
 External Secrets let you securely manage sensitive data such as API keys, passwords, and certificates by integrating your OpenShift tenant with a Key Management Service like Azure Key Vault. Secrets are fetched from the external provider and synced into OpenShift as native Secret objects, allowing applications to consume them without embedding sensitive data in configuration files. With `ClusterSecretStore` and Azure Key Vault, you can centrally manage secrets across multiple namespaces, reduce duplication, simplify access control, and support enterprise compliance with less administrative overhead.
+
+**Official Documentation:** [External Secrets Operator](https://external-secrets.io/latest/)
 
 Below is a diagram to illustrate how the external secrets and cluster secret store works:
 ![developer_external_secret.png](../../../img/Secret Managment/cluster-secret-store-v3.drawio.png)

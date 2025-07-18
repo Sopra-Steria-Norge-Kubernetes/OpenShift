@@ -1,4 +1,29 @@
-# Introduction Sealed Secrets
+# Sealed Sec## Key Benefits
+
+- **GitOps-com## Tooling and Workflow
+
+**Recommended**: Use provided helper script for Key Vault credentials:
+- `scripts/encrypt_client_credentials.sh`
+
+**Manual**: Follow step-by-step guide:
+- [**Manually Encrypting with Sealed Secrets**](encrypting-secret-with-sealed-secrets.md)
+
+## When to Use
+
+**Use Sealed Secrets if:**
+- No Azure Key Vault or supported KMS available
+- Prefer full control of secret content in Git
+- Want to manage secrets without external dependencies
+
+**Use [External Secrets](../External Secrets/Introduction.md) for:**
+- Shared credentials and automatic rotation
+- Large-scale secret reusestore encrypted secrets in Git repository
+- **Cluster-side decryption**: Only controller inside OpenShift cluster can decrypt
+- **No external dependency**: Doesn't require Key Vaults or cloud integrationsIntroduction
+
+GitOps-friendly way to manage Kubernetes secrets by encrypting sensitive data for safe storage in Git. The Sealed Secrets controller decrypts content inside the cluster into native Kubernetes Secret objects.
+
+**Official Documentation:** [Sealed Secrets](https://sealed-secrets.netlify.app/)duction Sealed Secrets
 
 Sealed Secrets provide a secure and GitOps-friendly way to manage Kubernetes secrets in OpenShift by encrypting sensitive data so that it can safely be stored in Git. Unlike External Secrets, which fetch data from external providers like Azure Key Vault at runtime, Sealed Secrets rely on pre-encrypted content that is decrypted inside the cluster by the Sealed Secrets controller.
 
@@ -14,24 +39,24 @@ The Sealed Secret controller runs inside the cluster and is the only component c
 
 ## How It Works
 
-1. You generate or obtain a Kubernetes secret (e.g. a Docker config, password, API key).
-2. The secret is encrypted using the public certificate from the Sealed Secrets controller.
-3. The encrypted SealedSecret resource is committed to Git.
-4. When applied to the cluster, the Sealed Secrets controller decrypts it and creates a standard Kubernetes Secret.
+1. Generate or obtain Kubernetes secret (Docker config, password, API key)
+2. Encrypt secret using public certificate from Sealed Secrets controller
+3. Commit encrypted SealedSecret resource to Git
+4. Controller decrypts and creates standard Kubernetes Secret when applied
 
 ## Encryption Scope
 
 When encrypting secrets, you must define the encryption scope, which determines how specific the decrypted Secret can be:
 
-- **Strict (default)**: The secret can only be decrypted in a specific namespace with a specific name.
-- **Namespace-wide**: The secret must be created in a specific namespace, but it can have any name.
-- **Cluster-wide**: Can be decrypted in any namespace and with any name. Use with caution.
+- **Strict (default)**: Only decrypted in specific namespace with specific name
+- **Namespace-wide**: Specific namespace, any name
+- **Cluster-wide**: Any namespace and name (use with caution)
 
 !!! info
-    This is specified when using `kubeseal` or the helper script provided in the tenant repository.
+    Specified when using `kubeseal` or helper script from tenant repository.
 
 !!! warning
-    Use `cluster-wide` scope with caution. This setting allows a sealed secret to be decrypted in any namespace, meaning that other users can potentially apply the secret in their own namespace and access its contents. This reduces namespace isolation and increases the risk of unintended secret exposure.
+    **Cluster-wide scope** allows decryption in any namespace, reducing isolation and increasing exposure risk.
 
 ## Tooling and Workflow
 
