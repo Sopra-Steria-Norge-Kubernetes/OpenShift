@@ -9,7 +9,7 @@ externally-exposed: true
 # Network communication on OpenShift
 
 ## Introduction
-ed Hat OpenShift Networking extends Kubernetes with advanced features to manage network traffic across single or hybrid clusters. One of the key features of OpenShift is its ability to facilitate network communication between different components of an application, whether they are running on the same node or across multiple nodes in a distributed environment. With OpenShift, developers can easily configure network settings, manage network traffic, and ensure secure communication between different parts of their application.
+Red Hat OpenShift Networking extends Kubernetes with advanced features to manage network traffic across single or hybrid clusters. One of the key features of OpenShift is its ability to facilitate network communication between different components of an application, whether they are running on the same node or across multiple nodes in a distributed environment. With OpenShift, developers can easily configure network settings, manage network traffic, and ensure secure communication between different parts of their application.
 
 
 ## Connect OpenShift applications cross namespaces

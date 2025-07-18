@@ -7,10 +7,11 @@ Externally Exposed: False
 
 # OpenShift GitOps Best Practices
 
-## Introduction
-This document outlines the best practices for using ArgoCD within a GitOps workflow, designed to help developers streamline and optimize their processes. It also covers various sync options available in ArgoCD and provides guidance on when and how to use them effectively.
+ArgoCD configuration and workflow optimization guide.
 
-## ArgoCD Configuration
+**Official Documentation:** [ArgoCD Documentation](https://argo-cd.readthedocs.io/)
+
+## Configuration
 
 !!! info
     The ArgoCD Application Controller is configured to auto-sync every **6 minutes**. 
