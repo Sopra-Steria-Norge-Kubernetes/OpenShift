@@ -6,24 +6,31 @@ externally-exposed: true
 --- 
 # Team Introduction
 
-## What is a team in regards to tenants?
+## What is a Team?
 
-Team overlay will let you group multiple tenants within one team and ease the administration of tenants that is managed by the same development team. 
-When team is created in openshift, a new namespace with the team name will be created, in this namespace all common secrets and service accounts will be created. 
+**Teams** are organizational units that enable centralized management of multiple related tenants. Teams provide shared resources and configurations that simplify administration for development teams managing multiple applications or microservices.
 
-Below is an illustration showcasing the correlation between teams and tenants:
+When a team is created in OpenShift, a dedicated namespace is established where all common secrets, service accounts, and shared resources are managed centrally.
 
-![developer_external_secret.png](../img/Developer%20Teams/team-tenant-corraltion.png)
+## Team-Tenant Relationship
 
-The following features are delivered by team overlay:
+Teams act as a **management layer** above tenants:
 
-- **Observability Dasboards** with Grafana for all team tenants
-  - Datasources for Grafana can be configured in Git. 
-- **Secret Management** for Tenants and GitOps repositories
-    - External secrets can be pulled into Tenants, managed by a ClusterSecretStore running in the team namespace. A ClusterSecretStore facilitates the option to define a cluster-wide secret store which all tenants that are a member of the team can utilize.
-- **GitOps credentials for ArgoCD in one place**.
-    - Credentials for source Git repositories for tenants can be configured in the team overlay through External Secrets or SealedSecrets. Every tenant that is a member of the team will have access to the same credentials. 
+Below is an illustration of teams.
+![Team-Tenant Correlation](../img/Developer%20Teams/team-tenant-corraltion.png)
 
+## Team Features
+
+### **Centralized Resource Management**
+- **Observability Dashboards**: Grafana instance with datasources for all team tenants
+- **Secret Management**: ClusterSecretStores accessible by all team tenants  
+- **GitOps Credentials**: Shared repository access credentials for ArgoCD
+
+### **Benefits for Development Teams**
+- **Reduced Duplication**: Share credentials and configurations across tenants
+- **Unified Monitoring**: Single Grafana instance for all team applications
+- **Simplified Administration**: Manage multiple tenants from one central location
+- **Consistent Policies**: Apply team-level policies to all member tenants
 
 
 
