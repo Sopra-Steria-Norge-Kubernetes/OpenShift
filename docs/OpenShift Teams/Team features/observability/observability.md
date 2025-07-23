@@ -100,7 +100,7 @@ When enabled, the monitoring stack will deploy 2 Prometheus replicas instead of 
 
 !!! info "Storage Information"
     The monitoring stack uses 10GB of persistent storage per Prometheus replica. This storage size cannot be increased by changing the configuration due to StatefulSet limitations with PVC resizing. Plan your retention period accordingly to fit within this storage limit.
-    
+
     If you are approaching the storage limit, reduce the retention period and contact Sopra Steria for manual storage expansion.
 
 #### Data Retention
@@ -130,6 +130,24 @@ When enabled, the monitoring stack components will be accessible via routes:
 
 ⚠️ **Security Warning**: These routes are publicly accessible without authentication when exposed for anyone who has network access to the OpenShift environment.
 
+#### Data Retention Policy
+- **Parameter**: `monitoringStack.monitoringStack_retain_data`
+- **Type**: Boolean
+- **Default**: `false`
+- **Description**: Controls whether monitoring data persists when the monitoring stack is deleted
+
+When `false`: All monitoring data is deleted when the stack is removed (ArgoCD sync option: `Delete=true`)
+When `true`: Monitoring data persists even if the stack is deleted
+
+#### Storage Configuration
+- **Parameter**: `monitoringStack.monitoringStack_persistent_storage`
+- **Type**: String
+- **Default**: `10Gi`
+- **Description**: Storage size per Prometheus replica
+
+!!! warning "Storage Limitations"
+    Due to StatefulSet limitations with PVC resizing, the storage size cannot be increased after deployment. Plan your storage needs carefully based on your retention period and expected metrics volume.
+
 #### Finding Your Monitoring URLs
 
 You can find the exact URLs using the OpenShift CLI:
@@ -152,9 +170,93 @@ oc get routes -n <team-namespace>
 
 Your monitoring stack will be automatically configured with proper labels and selectors to monitor resources in your team namespace.
 
+## Post-Deployment Operations
+
+### Verifying Your Monitoring Stack
+
+After deploying your configuration, verify the monitoring stack is running:
+
+```bash
+# Check monitoring stack pods
+oc get pods -n <team-namespace> | grep -E "(prometheus|grafana|thanos)"
+
+# Check monitoring stack services
+oc get svc -n <team-namespace> | grep -E "(prometheus|grafana|thanos)"
+
+# Check MonitoringStack resource
+oc get monitoringstack -n <team-namespace>
+
+# Check monitoring stack status
+oc describe monitoringstack <team-name>-monitoringstack -n <team-namespace>
+```
+
+### Accessing Your Monitoring Interfaces
+
+1. **Grafana Dashboard**: Primary interface for viewing metrics and creating dashboards
+   - URL: `https://<team-name>-grafana.<cluster-apps-domain>`
+   - Authentication: OpenShift credentials
+   - Access levels controlled by RBAC groups
+
+2. **Prometheus Interface** (if routes enabled): Raw metrics and query interface
+   - URL: `https://prometheus-<team-name>.<cluster-apps-domain>`
+   - **No authentication** - use with caution
+
+3. **Thanos Query Interface** (if routes enabled): Long-term storage queries
+   - URL: `https://thanos-query-<team-name>.<cluster-apps-domain>`
+   - **No authentication** - use with caution
+
+### Resource Usage Monitoring
+
+Monitor your monitoring stack's resource usage:
+
+```bash
+# Check Prometheus storage usage
+oc exec -it prometheus-<team-name>-0 -n <team-namespace> -- df -h /prometheus
+
+# Check memory and CPU usage
+oc top pods -n <team-namespace> | grep prometheus
+
+# Check PVC usage
+oc get pvc -n <team-namespace>
+```
+
+### Troubleshooting Common Issues
+
+1. **Grafana not accessible**: Check route exists and RBAC groups are configured
+2. **No metrics appearing**: Verify ServiceMonitor/PodMonitor resources have team labels
+3. **Storage full**: Reduce retention period or contact platform team for storage expansion
+4. **High resource usage**: Consider upgrading stack size or reducing scrape frequency
+
 ## Monitoring Your Applications
 
 To monitor your applications with the team monitoring stack, you need to create monitoring resources that tell Prometheus how to discover and scrape metrics from your applications.
+
+### Quick Start for Developers
+
+If your team admin has already enabled the monitoring stack, you can start monitoring your applications in 3 steps:
+
+1. **Ensure your application exposes metrics** on an HTTP endpoint (e.g., `/metrics`)
+2. **Create a ServiceMonitor or PodMonitor** resource with the team label
+3. **Verify metrics collection** in Grafana
+
+**Minimal ServiceMonitor example:**
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: my-app-monitor
+  namespace: <team-namespace>
+  labels:
+    soprasteria/team: "<team-name>"  # CRITICAL: Required for discovery
+spec:
+  selector:
+    matchLabels:
+      app: my-app  # Must match your service labels
+  endpoints:
+  - port: metrics    # Must match your service port name
+    path: /metrics   # Your metrics endpoint path
+    interval: 30s
+```
 
 ### ServiceMonitor vs PodMonitor
 
@@ -162,8 +264,8 @@ To monitor your applications with the team monitoring stack, you need to create 
 - **PodMonitor**: Monitors pods directly. Use this for more granular control, when monitoring DaemonSets/StatefulSets, or when you don't have services.
 
 For detailed configuration examples, see:
-- [ServiceMonitor Examples](observability/servicemonitor-examples.md) - Basic and authenticated service monitoring
-- [PodMonitor Examples](observability/podmonitor-examples.md) - Direct pod monitoring and StatefulSet monitoring
+- [ServiceMonitor Examples](servicemonitor-examples.md) - Basic and authenticated service monitoring
+- [PodMonitor Examples](podmonitor-examples.md) - Direct pod monitoring and StatefulSet monitoring
 
 ### Service Discovery
 
@@ -195,3 +297,6 @@ oc get pods -l app.kubernetes.io/part-of=observability -n <team-namespace>
 | `monitoringStack.monitoringStack_high_availability`            | Run 2 Prometheus replicas for better reliability                                    | true / false | Boolean                    | false |
 | `monitoringStack.monitoringStack_retention`            | How long to keep metrics data                                    | 7d / 30d / 24h | String                    | 7d |
 | `monitoringStack.monitoringStack_alertmanager`            | Enable alert notifications and routing                                    | true / false | Boolean                    | false |
+| `monitoringStack.monitoringStack_expose_route`            | Expose Prometheus and Thanos Query interfaces via routes                                    | true / false | Boolean                    | false |
+| `monitoringStack.monitoringStack_retain_data`            | Keep monitoring data when stack is deleted                                    | true / false | Boolean                    | false |
+| `monitoringStack.monitoringStack_persistent_storage`            | Storage size per Prometheus replica                                    | 10Gi / 20Gi | String                    | 10Gi |
