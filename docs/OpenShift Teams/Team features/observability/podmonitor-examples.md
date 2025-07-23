@@ -2,28 +2,31 @@
 
 PodMonitor resources allow Prometheus to directly scrape metrics from pods, bypassing Kubernetes services. This is useful for monitoring pods that don't have services or when you need more granular control.
 
-⚠️ **CRITICAL: Team Label Required for Discovery**
+!!! danger "CRITICAL: Team Label Required for Discovery"
+    **All PodMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
 
-**All PodMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
+    The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
 
-The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
-
-Note: The target Pods themselves do not require the team label - only the PodMonitor resources need it.
+!!! info "Target Pod Labels"
+    The target Pods themselves do not require the team label - only the PodMonitor resources need it.
 
 ## Prerequisites
 
 - Team monitoring stack must be enabled (`observability.monitoringStack.enable: true`)
 - Your application pods must expose metrics on an HTTP endpoint
-- **CRITICAL**: PodMonitors must have the team label: `soprasteria/team: "<team-name>"`
+
+!!! warning "Required Team Label"
+    PodMonitors must have the team label: `soprasteria/team: "<team-name>"`
 
 ### Application Metrics Requirements
 
-Your application must expose Prometheus-compatible metrics on an HTTP endpoint. Common requirements:
+!!! info "Metrics Endpoint Requirements"
+    Your application must expose Prometheus-compatible metrics on an HTTP endpoint:
 
-1. **Metrics Endpoint**: Usually `/metrics` (configurable in PodMonitor)
-2. **HTTP Port**: Accessible port that Prometheus can scrape
-3. **Metrics Format**: Prometheus text format or OpenMetrics format
-4. **Content-Type**: Should return `text/plain` or `application/openmetrics-text`
+    1. **Metrics Endpoint**: Usually `/metrics` (configurable in PodMonitor)
+    2. **HTTP Port**: Accessible port that Prometheus can scrape
+    3. **Metrics Format**: Prometheus text format or OpenMetrics format
+    4. **Content-Type**: Should return `text/plain` or `application/openmetrics-text`
 
 **Testing your metrics endpoint:**
 ```bash
@@ -33,6 +36,9 @@ oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
 # Test from another pod in the same namespace
 oc run test-pod --image=curlimages/curl -it --rm -- curl <pod-ip>:8080/metrics
 ```
+
+!!! tip "Testing Tip"
+    Always test your metrics endpoint before creating the PodMonitor to ensure your application is exposing metrics correctly.
 
 ## Example 1: Basic PodMonitor
 
@@ -154,26 +160,26 @@ spec:
 
 ## Troubleshooting
 
-### Common Issues
-
-1. **Missing team label**: Ensure the PodMonitor has `soprasteria/team: "<team-name>"` label
-2. **Port name mismatch**: The port name in PodMonitor must match the container port name
-3. **Pod selector**: Ensure the PodMonitor selector matches your pod labels
-4. **Metrics endpoint**: Verify your application exposes metrics on the specified path
+!!! warning "Common Issues"
+    1. **Missing team label**: Ensure the PodMonitor has `soprasteria/team: "<team-name>"` label
+    2. **Port name mismatch**: The port name in PodMonitor must match the container port name
+    3. **Pod selector**: Ensure the PodMonitor selector matches your pod labels
+    4. **Metrics endpoint**: Verify your application exposes metrics on the specified path
 
 ### Validation Commands
 
-```bash
-# Check PodMonitor exists
-oc get podmonitor -n <team-namespace>
+!!! example "Testing Commands"
+    ```bash
+    # Check PodMonitor exists
+    oc get podmonitor -n <team-namespace>
 
-# List pods that should be monitored
-oc get pods -l app=<app-label> -n <team-namespace>
+    # List pods that should be monitored
+    oc get pods -l app=<app-label> -n <team-namespace>
 
-# Test metrics endpoint directly from pod
-oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
+    # Test metrics endpoint directly from pod
+    oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
 
-# Check if Prometheus is scraping the targets
-oc port-forward svc/prometheus-operated -n <team-namespace> 9090:9090
-# Then visit http://localhost:9090/targets
-```
+    # Check if Prometheus is scraping the targets
+    oc port-forward svc/prometheus-operated -n <team-namespace> 9090:9090
+    # Then visit http://localhost:9090/targets
+    ```

@@ -2,28 +2,31 @@
 
 ServiceMonitor resources define how Prometheus discovers and scrapes metrics from Kubernetes services.
 
-⚠️ **CRITICAL: Team Label Required for Discovery**
+!!! danger "CRITICAL: Team Label Required for Discovery"
+    **All ServiceMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
 
-**All ServiceMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
+    The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
 
-The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
-
-Note: The target Services themselves do not require the team label - only the ServiceMonitor resources need it.
+!!! info "Target Service Labels"
+    The target Services themselves do not require the team label - only the ServiceMonitor resources need it.
 
 ## Prerequisites
 
 - Team monitoring stack must be enabled (`observability.monitoringStack.enable: true`)
 - Your application must expose metrics on an HTTP endpoint
-- **CRITICAL**: ServiceMonitors must have the team label: `soprasteria/team: "<team-name>"`
+
+!!! warning "Required Team Label"
+    ServiceMonitors must have the team label: `soprasteria/team: "<team-name>"`
 
 ### Application Metrics Requirements
 
-Your application must expose Prometheus-compatible metrics on an HTTP endpoint. Common requirements:
+!!! info "Metrics Endpoint Requirements"
+    Your application must expose Prometheus-compatible metrics on an HTTP endpoint:
 
-1. **Metrics Endpoint**: Usually `/metrics` (configurable in ServiceMonitor)
-2. **HTTP Port**: Accessible port that Prometheus can scrape
-3. **Metrics Format**: Prometheus text format or OpenMetrics format
-4. **Content-Type**: Should return `text/plain` or `application/openmetrics-text`
+    1. **Metrics Endpoint**: Usually `/metrics` (configurable in ServiceMonitor)
+    2. **HTTP Port**: Accessible port that Prometheus can scrape
+    3. **Metrics Format**: Prometheus text format or OpenMetrics format
+    4. **Content-Type**: Should return `text/plain` or `application/openmetrics-text`
 
 **Example metrics endpoint response:**
 ```
@@ -39,6 +42,9 @@ http_request_duration_seconds_bucket{le="+Inf"} 1030
 http_request_duration_seconds_sum 25.5
 http_request_duration_seconds_count 1030
 ```
+
+!!! tip "Testing Tip"
+    Always test your metrics endpoint before creating the ServiceMonitor to ensure your application is exposing metrics correctly.
 
 ## Example 1: Basic ServiceMonitor
 
@@ -125,22 +131,22 @@ data:
 
 ## Troubleshooting
 
-### Common Issues
-
-1. **Missing team label**: Ensure the ServiceMonitor has `soprasteria/team: "<team-name>"` label
-2. **Port name mismatch**: The port name in ServiceMonitor must match the service port name
-3. **Metrics endpoint**: Verify your application exposes metrics on the specified path
+!!! warning "Common Issues"
+    1. **Missing team label**: Ensure the ServiceMonitor has `soprasteria/team: "<team-name>"` label
+    2. **Port name mismatch**: The port name in ServiceMonitor must match the service port name
+    3. **Metrics endpoint**: Verify your application exposes metrics on the specified path
 
 ### Validation Commands
 
-```bash
-# Check ServiceMonitor exists
-oc get servicemonitor -n <team-namespace>
+!!! example "Testing Commands"
+    ```bash
+    # Check ServiceMonitor exists
+    oc get servicemonitor -n <team-namespace>
 
-# Test metrics endpoint directly
-oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
+    # Test metrics endpoint directly
+    oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
 
-# Check if Prometheus is scraping the target
-oc port-forward svc/prometheus-operated -n <team-namespace> 9090:9090
-# Then visit http://localhost:9090/targets
-```
+    # Check if Prometheus is scraping the target
+    oc port-forward svc/prometheus-operated -n <team-namespace> 9090:9090
+    # Then visit http://localhost:9090/targets
+    ```
