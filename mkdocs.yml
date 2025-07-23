@@ -20,7 +20,7 @@ nav:
       - Resource Management: OpenShift Teams/Team features/resource-management.md
       - RBAC: OpenShift Teams/Team features/rbac.md
       - Observability: 
-        - Overview: OpenShift Teams/Team features/observability.md
+        - Overview: OpenShift Teams/Team features/observability/observability.md
         - ServiceMonitor Examples: OpenShift Teams/Team features/observability/servicemonitor-examples.md
         - PodMonitor Examples: OpenShift Teams/Team features/observability/podmonitor-examples.md
       - Gitops:
