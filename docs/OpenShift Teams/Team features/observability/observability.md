@@ -25,27 +25,24 @@ rbac:
 - **View Access**: Users in the `team_monitoring_view` group will have read-only access to Grafana dashboards
 - **Default Access**: If `team_monitoring_view` is empty, all authenticated users will have view access
 
-### Accessing Your Grafana Instance
+### Accessing Monitoring Services
 
-Once enabled, your Grafana instance will be accessible via a route in your team namespace:
+Once your monitoring stack is deployed, you can access find the urls for your monitoring services by typing the following command:
 
-**URL Format**: `https://<team-name>-grafana.<cluster-apps-domain>`
+!!! example "Find Your Monitoring URLs"
+    ```bash
+    # List all routes in your team namespace
+    oc get routes -n <team-namespace>
+    ```
 
-**Examples**:
-- Team "team-alpha": `https://team-alpha-grafana.apps.ocp4.example.com`
-- Team "data-science": `https://data-science-grafana.apps.ocp4.example.com`
+    Your monitoring services will be available at these URLs:
 
-#### Finding Your Grafana URL
+    - **Grafana**: `https://<team-name>-grafana.<cluster-apps-domain>`
+    - **Prometheus** (if routes enabled): `https://prometheus-<team-name>.<cluster-apps-domain>`
+    - **Thanos Query** (if routes enabled): `https://thanos-query-<team-name>.<cluster-apps-domain>`
 
-You can find the exact URL using the OpenShift CLI:
-```bash
-oc get route <team-name>-grafana-route -n <team-namespace>
-```
+    Replace `<team-name>` with your actual team name and `<cluster-apps-domain>` with your cluster's application domain.
 
-Or through the OpenShift Console:
-1. Navigate to your team namespace
-2. Go to **Networking** → **Routes**
-3. Look for the route named `<team-name>-grafana-route`
 
 ## Team Monitoring Stack
 
@@ -128,7 +125,8 @@ When enabled, the monitoring stack components will be accessible via routes:
 **Prometheus**: `https://prometheus-<team-name>.<cluster-apps-domain>`
 **Thanos Query**: `https://thanos-query-<team-name>.<cluster-apps-domain>`
 
-⚠️ **Security Warning**: These routes are publicly accessible without authentication when exposed for anyone who has network access to the OpenShift environment.
+!!! warning "Security Warning"
+    These routes are publicly accessible without authentication when exposed for anyone who has network access to the OpenShift environment.
 
 #### Data Retention Policy
 - **Parameter**: `monitoringStack.monitoringStack_retain_data`
@@ -136,8 +134,8 @@ When enabled, the monitoring stack components will be accessible via routes:
 - **Default**: `false`
 - **Description**: Controls whether monitoring data persists when the monitoring stack is deleted
 
-When `false`: All monitoring data is deleted when the stack is removed (ArgoCD sync option: `Delete=true`)
-When `true`: Monitoring data persists even if the stack is deleted
+- When `false`: All monitoring data is deleted when the stack is removed (ArgoCD sync option: `Delete=true`)
+- When `true`: Monitoring data persists even if the stack is deleted
 
 #### Storage Configuration
 - **Parameter**: `monitoringStack.monitoringStack_persistent_storage`
@@ -147,14 +145,6 @@ When `true`: Monitoring data persists even if the stack is deleted
 
 !!! warning "Storage Limitations"
     Due to StatefulSet limitations with PVC resizing, the storage size cannot be increased after deployment. Plan your storage needs carefully based on your retention period and expected metrics volume.
-
-#### Finding Your Monitoring URLs
-
-You can find the exact URLs using the OpenShift CLI:
-```bash
-# List all routes in your team namespace
-oc get routes -n <team-namespace>
-```
 
 ### Getting Started
 
@@ -176,34 +166,20 @@ Your monitoring stack will be automatically configured with proper labels and se
 
 After deploying your configuration, verify the monitoring stack is running:
 
-```bash
-# Check monitoring stack pods
-oc get pods -n <team-namespace> | grep -E "(prometheus|grafana|thanos)"
+!!! example "Verification Commands"
+    ```bash
+    # Check monitoring stack pods
+    oc get pods -n <team-namespace> | grep -E "(prometheus|grafana|thanos)"
 
-# Check monitoring stack services
-oc get svc -n <team-namespace> | grep -E "(prometheus|grafana|thanos)"
+    # Check monitoring stack services
+    oc get svc -n <team-namespace> | grep -E "(prometheus|grafana|thanos)"
 
-# Check MonitoringStack resource
-oc get monitoringstack -n <team-namespace>
+    # Check MonitoringStack resource
+    oc get monitoringstack -n <team-namespace>
 
-# Check monitoring stack status
-oc describe monitoringstack <team-name>-monitoringstack -n <team-namespace>
-```
-
-### Accessing Your Monitoring Interfaces
-
-1. **Grafana Dashboard**: Primary interface for viewing metrics and creating dashboards
-   - URL: `https://<team-name>-grafana.<cluster-apps-domain>`
-   - Authentication: OpenShift credentials
-   - Access levels controlled by RBAC groups
-
-2. **Prometheus Interface** (if routes enabled): Raw metrics and query interface
-   - URL: `https://prometheus-<team-name>.<cluster-apps-domain>`
-   - **No authentication** - use with caution
-
-3. **Thanos Query Interface** (if routes enabled): Long-term storage queries
-   - URL: `https://thanos-query-<team-name>.<cluster-apps-domain>`
-   - **No authentication** - use with caution
+    # Check monitoring stack status
+    oc describe monitoringstack <team-name>-monitoringstack -n <team-namespace>
+    ```
 
 ### Resource Usage Monitoring
 
@@ -222,6 +198,7 @@ oc get pvc -n <team-namespace>
 
 ### Troubleshooting Common Issues
 
+**Common Problems and Solutions:**
 1. **Grafana not accessible**: Check route exists and RBAC groups are configured
 2. **No metrics appearing**: Verify ServiceMonitor/PodMonitor resources have team labels
 3. **Storage full**: Reduce retention period or contact platform team for storage expansion

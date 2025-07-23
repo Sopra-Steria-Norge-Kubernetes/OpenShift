@@ -7,38 +7,33 @@ PodMonitor resources allow Prometheus to directly scrape metrics from pods, bypa
 
     The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
 
-!!! info "Target Pod Labels"
-    The target Pods themselves do not require the team label - only the PodMonitor resources need it.
+**Note:** The target Pods themselves do not require the team label - only the PodMonitor resources need it.
 
 ## Prerequisites
 
 - Team monitoring stack must be enabled (`observability.monitoringStack.enable: true`)
 - Your application pods must expose metrics on an HTTP endpoint
-
-!!! warning "Required Team Label"
-    PodMonitors must have the team label: `soprasteria/team: "<team-name>"`
+- PodMonitors must have the team label: `soprasteria/team: "<team-name>"`
 
 ### Application Metrics Requirements
 
-!!! info "Metrics Endpoint Requirements"
-    Your application must expose Prometheus-compatible metrics on an HTTP endpoint:
+Your application must expose Prometheus-compatible metrics on an HTTP endpoint:
 
-    1. **Metrics Endpoint**: Usually `/metrics` (configurable in PodMonitor)
-    2. **HTTP Port**: Accessible port that Prometheus can scrape
-    3. **Metrics Format**: Prometheus text format or OpenMetrics format
-    4. **Content-Type**: Should return `text/plain` or `application/openmetrics-text`
+1. **Metrics Endpoint**: Usually `/metrics` (configurable in PodMonitor)
+2. **HTTP Port**: Accessible port that Prometheus can scrape
+3. **Metrics Format**: Prometheus text format or OpenMetrics format
+4. **Content-Type**: Should return `text/plain` or `application/openmetrics-text`
 
-**Testing your metrics endpoint:**
-```bash
-# Test from within your pod
-oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
+!!! example "Testing Your Metrics Endpoint"
+    ```bash
+    # Test from within your pod
+    oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
 
-# Test from another pod in the same namespace
-oc run test-pod --image=curlimages/curl -it --rm -- curl <pod-ip>:8080/metrics
-```
+    # Test from another pod in the same namespace
+    oc run test-pod --image=curlimages/curl -it --rm -- curl <pod-ip>:8080/metrics
+    ```
 
-!!! tip "Testing Tip"
-    Always test your metrics endpoint before creating the PodMonitor to ensure your application is exposing metrics correctly.
+Always test your metrics endpoint before creating the PodMonitor to ensure your application is exposing metrics correctly.
 
 ## Example 1: Basic PodMonitor
 
@@ -160,15 +155,13 @@ spec:
 
 ## Troubleshooting
 
-!!! warning "Common Issues"
-    1. **Missing team label**: Ensure the PodMonitor has `soprasteria/team: "<team-name>"` label
-    2. **Port name mismatch**: The port name in PodMonitor must match the container port name
-    3. **Pod selector**: Ensure the PodMonitor selector matches your pod labels
-    4. **Metrics endpoint**: Verify your application exposes metrics on the specified path
+**Common Issues:**
+1. **Missing team label**: Ensure the PodMonitor has `soprasteria/team: "<team-name>"` label
+2. **Port name mismatch**: The port name in PodMonitor must match the container port name
+3. **Pod selector**: Ensure the PodMonitor selector matches your pod labels
+4. **Metrics endpoint**: Verify your application exposes metrics on the specified path
 
-### Validation Commands
-
-!!! example "Testing Commands"
+!!! example "Validation Commands"
     ```bash
     # Check PodMonitor exists
     oc get podmonitor -n <team-namespace>
