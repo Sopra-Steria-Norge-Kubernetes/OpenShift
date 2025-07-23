@@ -2,9 +2,8 @@
 
 ServiceMonitor resources define how Prometheus discovers and scrapes metrics from Kubernetes services.
 
-⚠️ **CRITICAL: Team Label Required for Discovery**
-
-**All ServiceMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
+!!! danger "Team Label Required for Discovery"
+    All ServiceMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.
 
 The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
 

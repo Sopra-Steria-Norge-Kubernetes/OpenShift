@@ -2,9 +2,8 @@
 
 PodMonitor resources allow Prometheus to directly scrape metrics from pods, bypassing Kubernetes services. This is useful for monitoring pods that don't have services or when you need more granular control.
 
-⚠️ **CRITICAL: Team Label Required for Discovery**
-
-**All PodMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
+!!! danger "Team Label Required for Discovery"
+    All PodMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.
 
 The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
 
