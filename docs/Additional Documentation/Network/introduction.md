@@ -26,10 +26,11 @@ Monitor and understand network infrastructure within OpenShift environments usin
 ## Exposing Services to Internet
 
 **Requirements:**
-- Organization approval for internet exposure
-- Specific label for external access
-- Wildcard domain for exposed services
-- OpenShift tenant
+
+  - Organization approval for internet exposure
+  - Specific label for external access
+  - Wildcard domain for exposed services
+  - OpenShift tenant
 
 Apply the provided label to your ingress or route to enable external access.
 

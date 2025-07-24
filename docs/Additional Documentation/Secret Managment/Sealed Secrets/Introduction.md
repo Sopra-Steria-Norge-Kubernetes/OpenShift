@@ -1,35 +1,13 @@
-# Sealed Sec## Key Benefits
-
-- **GitOps-com## Tooling and Workflow
-
-**Recommended**: Use provided helper script for Key Vault credentials:
-- `scripts/encrypt_client_credentials.sh`
-
-**Manual**: Follow step-by-step guide:
-- [**Manually Encrypting with Sealed Secrets**](encrypting-secret-with-sealed-secrets.md)
-
-## When to Use
-
-**Use Sealed Secrets if:**
-- No Azure Key Vault or supported KMS available
-- Prefer full control of secret content in Git
-- Want to manage secrets without external dependencies
-
-**Use [External Secrets](../External Secrets/Introduction.md) for:**
-- Shared credentials and automatic rotation
-- Large-scale secret reusestore encrypted secrets in Git repository
-- **Cluster-side decryption**: Only controller inside OpenShift cluster can decrypt
-- **No external dependency**: Doesn't require Key Vaults or cloud integrationsIntroduction
-
-GitOps-friendly way to manage Kubernetes secrets by encrypting sensitive data for safe storage in Git. The Sealed Secrets controller decrypts content inside the cluster into native Kubernetes Secret objects.
-
-**Official Documentation:** [Sealed Secrets](https://sealed-secrets.netlify.app/)duction Sealed Secrets
+# Introduction Sealed Secrets
 
 Sealed Secrets provide a secure and GitOps-friendly way to manage Kubernetes secrets in OpenShift by encrypting sensitive data so that it can safely be stored in Git. Unlike External Secrets, which fetch data from external providers like Azure Key Vault at runtime, Sealed Secrets rely on pre-encrypted content that is decrypted inside the cluster by the Sealed Secrets controller.
 
 This method is useful when you don’t have access to a Key Management Service (KMS), or when you prefer to manage secret material directly within Git without integrating external backends.
 
 The Sealed Secret controller runs inside the cluster and is the only component capable of decrypting sealed content into native Kubernetes `Secret` objects, ensuring your sensitive data is protected, even in version control.
+
+
+**Official Documentation:** [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets/)
 
 ## Key Benefits
 
