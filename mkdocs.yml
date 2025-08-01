@@ -9,10 +9,10 @@ nav:
   - Container Platform as a Service: 
     - Introduction: About Container-Platform-as-a-Service/introduction.md
     - Service breakdown: About Container-Platform-as-a-Service/Service-breakdown.md
-    - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
-    - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
-    - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
-    - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
+    # - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
+    # - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
+    # - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
+    # - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
   - Developer Teams:
     - Team Introduction: OpenShift Teams/team-introduction.md
     - Team Features:
