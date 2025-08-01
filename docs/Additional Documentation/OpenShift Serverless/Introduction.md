@@ -1,5 +1,7 @@
 # OpenShift Serverless Introduction
 
+This page introduces OpenShift Serverless for running event-driven applications that scale automatically with demand.
+
 **Official Documentation:** [OpenShift Serverless](https://docs.openshift.com/container-platform/latest/serverless/about/about-serverless.html)
 
 ## What is OpenShift Serverless?

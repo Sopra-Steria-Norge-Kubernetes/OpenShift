@@ -9,7 +9,7 @@ externally-exposed: true
 
 Network traffic management and communication between OpenShift applications.
 
-**Official Documentation:** [OpenShift Networking](https://docs.openshift.com/container-platform/latest/networking/understanding-networking.html)
+**Official Documentation:** [OpenShift Networking](https://docs.redhat.com/en/documentation/openshift_container_platform/latest#Networking)
 
 ## Cross-Namespace Communication
 
@@ -17,11 +17,11 @@ Applications may need to communicate across namespaces. Use secure communication
 
 **Guide:** [Connect OpenShift Applications Cross Namespaces](connect-openshift-application-cross-namespaces.md)
 
-## Network Observability
+<!-- ## Network Observability
 
 Monitor and understand network infrastructure within OpenShift environments using the Network Observability Operator.
 
-**Guide:** [Using Network Observability](../Observability/using-network-observability.md)
+**Guide:** [Using Network Observability](../Observability/using-network-observability.md) -->
 
 ## Exposing Services to Internet
 

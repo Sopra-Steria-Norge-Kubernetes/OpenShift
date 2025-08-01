@@ -1,12 +1,15 @@
 # OpenShift Storage
 
-OpenShift Data Foundation (ODF) provides persistent storage with RWO and RWX capabilities through StorageClasses, PVs, and PVCs.
+This page covers how to provision and manage persistent storage in OpenShift using OpenShift Data Foundation (ODF).
+
+It includes how to choose the right StorageClass, create PersistentVolumeClaims (PVCs), and use snapshots for backup and restore.
 
 **Official Documentation:** [OpenShift Storage Overview](https://docs.openshift.com/container-platform/latest/storage/index.html)
 
 ## StorageClasses
+A StorageClass defines how storage is provisioned in OpenShift, enabling dynamic creation of persistent volumes with specific performance and access settings.
 
-Available storage classes:
+In a typical setup with ODF, the following StorageClasses are available:
 
 * **`ocs-storagecluster-ceph-rbd`** (default): RWO filesystem volumes and RWO/RWX block volumes
 * **`ocs-storagecluster-cephfs`**: RWO and RWX filesystem volumes for multi-pod access

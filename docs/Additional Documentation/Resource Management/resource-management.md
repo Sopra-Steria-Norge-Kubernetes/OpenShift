@@ -1,6 +1,6 @@
 # Resource Management
 
-Efficient allocation and utilization of CPU and memory resources in OpenShift.
+This page explains how to manage CPU and memory resources in OpenShift using requests, limits, quotas, and scaling strategies to ensure stable and efficient workloads.
 
 **Official Documentation:** [Managing Resources](https://docs.openshift.com/container-platform/latest/applications/quotas/quotas-setting-per-project.html) 
 

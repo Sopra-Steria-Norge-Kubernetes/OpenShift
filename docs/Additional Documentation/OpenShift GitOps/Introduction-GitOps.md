@@ -6,10 +6,13 @@ externally-exposed: false
 ---
 
 # Introduction to GitOps
+This page introduces how to use OpenShift GitOps with Argo CD to manage and deploy Kubernetes resources from Git. 
 
-OpenShift GitOps integrates ArgoCD with OpenShift for Git-based application deployment and management.
 
-**Official Documentation:** [OpenShift GitOps](https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html)
+**Official Documentation:** 
+
+- [OpenShift GitOps](https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html)
+- [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
 
 
 ## Benefits
@@ -17,6 +20,7 @@ OpenShift GitOps integrates ArgoCD with OpenShift for Git-based application depl
 GitOps uses Git repositories as the single source of truth. ArgoCD ensures cluster state matches repository definitions.
 
 Key benefits:
+
 - **Faster releases:** Automated deployments
 - **Improved reliability:** Consistent environments, reduced drift
 - **Enhanced security:** Auditable, compliant deployments

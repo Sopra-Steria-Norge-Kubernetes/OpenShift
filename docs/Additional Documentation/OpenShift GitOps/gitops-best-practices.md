@@ -7,7 +7,7 @@ Externally Exposed: False
 
 # OpenShift GitOps Best Practices
 
-ArgoCD configuration and workflow optimization guide.
+This page provides best practices for configuring Argo CD and optimizing GitOps workflows, including guidance on sync options and their recommended usage.
 
 **Official Documentation:** [ArgoCD Documentation](https://argo-cd.readthedocs.io/)
 
