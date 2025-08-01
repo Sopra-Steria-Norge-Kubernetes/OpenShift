@@ -83,6 +83,7 @@ nav:
         - Without tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-without-tenant-chart.md
     - Resource Management:
       - Resource Management: Additional Documentation/Resource Management/resource-management.md
+      - Team Resource Dashboards: Additional Documentation/Resource Management/team-resource-dashboards.md
     - Secret Managment:
       - Creating and managing secrets: Additional Documentation/Secret Managment/creating-and-managing-openshift-secrets.md
       - External Secrets:
