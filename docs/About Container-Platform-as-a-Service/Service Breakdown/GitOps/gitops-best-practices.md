@@ -20,10 +20,10 @@ This page provides best practices for configuring Argo CD and optimizing GitOps 
 
 For detailed instructions on configuring ArgoCD for your tenant, refer to:
 
-- [How to Configure Argo CD](../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
+- [How to Configure Argo CD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
 
 ## ArgoCD Workflow
-![Alt text](../../img/CI-CD/gitops-argocd.png)
+![Alt text](../../../img/CI-CD/gitops-argocd.png)
 
 The ArgoCD Workflow is explain below in simple steps:
 
@@ -57,7 +57,7 @@ ArgoCD provides several options for managing applications, making it easier to m
 These options will be explained in the section below.
 
 
-![argocd-sync](../../img/CI-CD/argocd-sync.png)
+![argocd-sync](../../../img/CI-CD/argocd-sync.png)
 
 #### General Sync Options
 

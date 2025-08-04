@@ -5,7 +5,7 @@
 
 To use multiple values files with the user-defined Argo CD application method, your file structure should look something like the following:
 
-![Basics Tab Configuration](../../img/Private%20Helm%20Registry/multiple-values-helm-app.png)
+![Basics Tab Configuration](../../../img/Private%20Helm%20Registry/multiple-values-helm-app.png)
 
 In your application code you need to specify the path to your common values file and environment specific values file. Below is an example:
 
@@ -74,4 +74,4 @@ helmCharts:
 
 ## Multiple Values Files - Private Helm Registry
 
-When using private helm registries, it is possible to utilize multiple values file with the user-defined application method. However, Kustomize does not currently support the use of private registries which limits the use case for auto-defined applicationsets. To see how you can utilize multiple values files with the user-defined method visit: [**Using a Private Helm Registry**](../../OpenShift%20Tenants/Tenant%20features/GitOps/Private%20Helm%20Registry/private-helm-reg-usage.md)
+When using private helm registries, it is possible to utilize multiple values file with the user-defined application method. However, Kustomize does not currently support the use of private registries which limits the use case for auto-defined applicationsets. To see how you can utilize multiple values files with the user-defined method visit: [**Using a Private Helm Registry**](../../../OpenShift%20Tenants/Tenant%20features/GitOps/Private%20Helm%20Registry/private-helm-reg-usage.md)
