@@ -8,12 +8,20 @@ nav:
   #- Get started: index.md
   - Home: 
     - Introduction: About Container-Platform-as-a-Service/introduction.md
-    - Service breakdown: 
+    - Service Breakdown: 
       - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
       - OpenShift Teams: About Container-Platform-as-a-Service/Service Breakdown/openshift-teams.md
       - OpenShift Tenants: About Container-Platform-as-a-Service/Service Breakdown/openshift-tenants.md
       - Secret Management:
-        - External Secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/external-secrets.md
+        - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
+        - External Secrets:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/Introduction.md
+          - Creating secret store: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/configuration-secretstore.md
+          - Creating external secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/creating-external-secrets.md
+          - Creating Cluster External Secret: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/cluster-external-secrets.md
+        - Sealed Secrets:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/Introduction.md
+          - Encrypt secrets with SealedSecrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
       - GitOps:
         - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
         - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
@@ -118,16 +126,16 @@ nav:
     - Resource Management:
       - Resource Management: Additional Documentation/Resource Management/resource-management.md
       - Team Resource Dashboards: Additional Documentation/Resource Management/team-resource-dashboards.md
-    - Secret Managment:
-      - Creating and managing secrets: Additional Documentation/Secret Managment/creating-and-managing-openshift-secrets.md
-      - External Secrets:
-        - Introduction: Additional Documentation/Secret Managment/External Secrets/Introduction.md
-        - Creating secret store: Additional Documentation/Secret Managment/External Secrets/configuration-secretstore.md
-        - Creating external secrets: Additional Documentation/Secret Managment/External Secrets/creating-external-secrets.md
-        - Creating Cluster External Secret: Additional Documentation/Secret Managment/External Secrets/cluster-external-secrets.md
-      - Sealed Secrets:
-        - Introduction: Additional Documentation/Secret Managment/Sealed Secrets/Introduction.md
-        - Encrypt secrets with SealedSecrets: Additional Documentation/Secret Managment/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
+    # - Secret Managment:
+    #   - Creating and managing secrets: Additional Documentation/Secret Managment/creating-and-managing-openshift-secrets.md
+    #   - External Secrets:
+    #     - Introduction: Additional Documentation/Secret Managment/External Secrets/Introduction.md
+    #     - Creating secret store: Additional Documentation/Secret Managment/External Secrets/configuration-secretstore.md
+    #     - Creating external secrets: Additional Documentation/Secret Managment/External Secrets/creating-external-secrets.md
+    #     - Creating Cluster External Secret: Additional Documentation/Secret Managment/External Secrets/cluster-external-secrets.md
+    #   - Sealed Secrets:
+    #     - Introduction: Additional Documentation/Secret Managment/Sealed Secrets/Introduction.md
+    #     - Encrypt secrets with SealedSecrets: Additional Documentation/Secret Managment/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
     # - Security:
     #   - Advanced Cluster Security (ACS): Additional Documentation/Security/advanced-cluster-security.md
     # - Storage:
