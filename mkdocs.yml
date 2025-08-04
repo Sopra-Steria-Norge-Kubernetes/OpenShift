@@ -20,11 +20,21 @@ nav:
         - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
         - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
-      - Network: About Container-Platform-as-a-Service/Service Breakdown/network.md
-      - Security: About Container-Platform-as-a-Service/Service Breakdown/security.md
+      - Network:
+        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Network/introduction.md
+        - Connect application cross namespaces: About Container-Platform-as-a-Service/Service Breakdown/Network/connect-openshift-application-cross-namespaces.md
+        - Exposing an OpenShift Service: About Container-Platform-as-a-Service/Service Breakdown/Network/exposing-an-openshift-service.md
+        - Add an external IP with MetalLB: About Container-Platform-as-a-Service/Service Breakdown/Network/External-IP-with-MetalLB.md
+        - How to use EgressIP: About Container-Platform-as-a-Service/Service Breakdown/Network/How-to-use-EgressIP.md
+        - Egress Firewall: About Container-Platform-as-a-Service/Service Breakdown/Network/egress-firewall.md
+      - Security:
+        - Advanced Cluster Security (ACS): About Container-Platform-as-a-Service/Service Breakdown/Security/advanced-cluster-security.md
       - RBAC: About Container-Platform-as-a-Service/Service Breakdown/rbac.md
-      - Storage: About Container-Platform-as-a-Service/Service Breakdown/storage.md
-      - Backup: About Container-Platform-as-a-Service/Service Breakdown/backup.md
+      - Storage:
+        - OpenShift Storage: About Container-Platform-as-a-Service/Service Breakdown/Storage/openshift-storage.md
+      - Backup:
+        - Backup Persistent Volumes using VolumeSnapshots: About Container-Platform-as-a-Service/Service Breakdown/Backup/backup-persistent-volumes-using-volumesnapshots.md
+        - Backup process for tenants using Velero: About Container-Platform-as-a-Service/Service Breakdown/Backup/backup-process-for-tenants-using-velero.md
     # - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
     # - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
     # - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
@@ -73,13 +83,13 @@ nav:
   - Additional Documentation:
     - Monitoring:
       - Slack integration with OpenShift alerts: Additional Documentation/Monitoring/slack-integration-with-openshift-alerts.md
-    - Network:
-      - Introduction: Additional Documentation/Network/introduction.md
-      - Connect application cross namespaces: Additional Documentation/Network/connect-openshift-application-cross-namespaces.md
-      - Exposing an OpenShift Service: Additional Documentation/Network/exposing-an-openshift-service.md
-      - Add an external IP with MetalLB: Additional Documentation/Network/External-IP-with-MetalLB.md
-      - How to use EgressIP: Additional Documentation/Network/How-to-use-EgressIP.md
-      - Egress Firewall: Additional Documentation/Network/egress-firewall.md
+    # - Network:
+    #   - Introduction: Additional Documentation/Network/introduction.md
+    #   - Connect application cross namespaces: Additional Documentation/Network/connect-openshift-application-cross-namespaces.md
+    #   - Exposing an OpenShift Service: Additional Documentation/Network/exposing-an-openshift-service.md
+    #   - Add an external IP with MetalLB: Additional Documentation/Network/External-IP-with-MetalLB.md
+    #   - How to use EgressIP: Additional Documentation/Network/How-to-use-EgressIP.md
+    #   - Egress Firewall: Additional Documentation/Network/egress-firewall.md
     - Observability:
       - Introduction: Additional Documentation/Observability/Introduction.md
       - Using OpenShift observability: Additional Documentation/Observability/using-openshift-observability.md
@@ -113,13 +123,13 @@ nav:
       - Sealed Secrets:
         - Introduction: Additional Documentation/Secret Managment/Sealed Secrets/Introduction.md
         - Encrypt secrets with SealedSecrets: Additional Documentation/Secret Managment/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
-    - Security:
-      - Advanced Cluster Security (ACS): Additional Documentation/Security/advanced-cluster-security.md
-    - Storage:
-      - OpenShift Storage: Additional Documentation/Storage/openshift-storage.md
-      - Backup:
-        - Backup Persistent Volumes using VolumeSnapshots: Additional Documentation/Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md
-        - Backup process for tenants using Velero: Additional Documentation/Storage/Backup/backup-process-for-tenants-using-velero.md
+    # - Security:
+    #   - Advanced Cluster Security (ACS): Additional Documentation/Security/advanced-cluster-security.md
+    # - Storage:
+    #   - OpenShift Storage: Additional Documentation/Storage/openshift-storage.md
+    #   - Backup:
+    #     - Backup Persistent Volumes using VolumeSnapshots: Additional Documentation/Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md
+    #     - Backup process for tenants using Velero: Additional Documentation/Storage/Backup/backup-process-for-tenants-using-velero.md
     - Tools:
       - Install Kubeseal: Additional Documentation/Tools/install-kubeseal.md
 
