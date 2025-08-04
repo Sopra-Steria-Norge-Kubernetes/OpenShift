@@ -1,4 +1,4 @@
-site_name: OpenShift
+site_name: Container Platform as a Service
 site_url: https://sopra-steria-norge-kubernetes.github.io/OpenShift/
 repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 repo_name: Sopra Steria - OpenShift
@@ -6,13 +6,13 @@ edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/d
 
 nav: 
   #- Get started: index.md
-  - Container Platform as a Service: 
+  - Home: 
     - Introduction: About Container-Platform-as-a-Service/introduction.md
     - Service breakdown: About Container-Platform-as-a-Service/Service-breakdown.md
-    - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
-    - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
-    - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
-    - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
+    # - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
+    # - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
+    # - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
+    # - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
   - Developer Teams:
     - Team Introduction: OpenShift Teams/team-introduction.md
     - Team Features:

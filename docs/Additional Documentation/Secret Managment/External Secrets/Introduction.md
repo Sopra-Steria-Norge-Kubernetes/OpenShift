@@ -5,9 +5,13 @@ Version: 1.0.0
 externally-exposed: true
 --- 
 
-# Introduction External Secrets
+# External Secrets Introduction
 
-External Secrets let you securely manage sensitive data such as API keys, passwords, and certificates by integrating your OpenShift tenant with a Key Management Service like Azure Key Vault. Secrets are fetched from the external provider and synced into OpenShift as native Secret objects, allowing applications to consume them without embedding sensitive data in configuration files. With `ClusterSecretStore` and Azure Key Vault, you can centrally manage secrets across multiple namespaces, reduce duplication, simplify access control, and support enterprise compliance with less administrative overhead.
+This page explains how to use External Secrets in OpenShift to securely sync secrets from Azure Key Vault and other providers into your cluster.
+It covers how to configure SecretStore and ClusterSecretStore resources for scalable and secure secret management across teams and tenants.
+
+
+**Official Documentation:** [External Secrets Operator](https://external-secrets.io/latest/)
 
 Below is a diagram to illustrate how the external secrets and cluster secret store works:
 ![developer_external_secret.png](../../../img/Secret Managment/cluster-secret-store-v3.drawio.png)
@@ -35,16 +39,16 @@ In OpenShift, External Secrets allow applications to use secrets stored in exter
 * **Automated Rotation:** Many supported providers offer automatic secret rotation, reducing the need for manual updates and improving security posture.
 
 ## How it works
-1. A `SecretStore` resource defines the connection to the external KMS (e.g. Azure Key Vault).
-2. A developer creates an ExternalSecret resource in OpenShift, referencing the `SecretStore`.
-3. The ExternalSecret fetches the desired secret from the external provider and creates a Kubernetes Secret within the namespace.
-4. The `ExternalSecret` resource itself can be stored in Git, enabling secure, version-controlled secret management as part of your GitOps pipeline.
+1. A `SecretStore` resource defines the connection to external KMS (e.g., Azure Key Vault)
+2. Developer creates an `ExternalSecret` resource referencing the `SecretStore`
+3. ExternalSecret fetches secrets and creates Kubernetes Secret objects
+4. Resources can be stored in Git for GitOps workflows
 
 !!! info
     You can choose between creating a <ins>SecretStore</ins> or a <ins>ClusterSecretStore</ins>:
 
-    * **ClusterSecretStore**: Available cluster-wide, can be used across multiple namespaces.
-    * **SecretStore**: Scoped to a single namespace, only available within that namespace.
+    * **ClusterSecretStore**: Available cluster-wide across multiple namespaces
+    * **SecretStore**: Scoped to a single namespace
 
 This documentation focuses on Azure Key Vault, but External Secrets supports many providers. See the [official documentation](https://external-secrets.io/latest/) for more details.
 

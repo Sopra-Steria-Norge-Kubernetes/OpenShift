@@ -6,6 +6,9 @@ This method is useful when you don’t have access to a Key Management Service (
 
 The Sealed Secret controller runs inside the cluster and is the only component capable of decrypting sealed content into native Kubernetes `Secret` objects, ensuring your sensitive data is protected, even in version control.
 
+
+**Official Documentation:** [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets/)
+
 ## Key Benefits
 
 - **GitOps-compatible** – Safe to store encrypted secrets in your Git repository alongside the rest of your manifests.
@@ -14,24 +17,24 @@ The Sealed Secret controller runs inside the cluster and is the only component c
 
 ## How It Works
 
-1. You generate or obtain a Kubernetes secret (e.g. a Docker config, password, API key).
-2. The secret is encrypted using the public certificate from the Sealed Secrets controller.
-3. The encrypted SealedSecret resource is committed to Git.
-4. When applied to the cluster, the Sealed Secrets controller decrypts it and creates a standard Kubernetes Secret.
+1. Generate or obtain Kubernetes secret (Docker config, password, API key)
+2. Encrypt secret using public certificate from Sealed Secrets controller
+3. Commit encrypted SealedSecret resource to Git
+4. Controller decrypts and creates standard Kubernetes Secret when applied
 
 ## Encryption Scope
 
 When encrypting secrets, you must define the encryption scope, which determines how specific the decrypted Secret can be:
 
-- **Strict (default)**: The secret can only be decrypted in a specific namespace with a specific name.
-- **Namespace-wide**: The secret must be created in a specific namespace, but it can have any name.
-- **Cluster-wide**: Can be decrypted in any namespace and with any name. Use with caution.
+- **Strict (default)**: Only decrypted in specific namespace with specific name
+- **Namespace-wide**: Specific namespace, any name
+- **Cluster-wide**: Any namespace and name (use with caution)
 
 !!! info
-    This is specified when using `kubeseal` or the helper script provided in the tenant repository.
+    Specified when using `kubeseal` or helper script from tenant repository.
 
 !!! warning
-    Use `cluster-wide` scope with caution. This setting allows a sealed secret to be decrypted in any namespace, meaning that other users can potentially apply the secret in their own namespace and access its contents. This reduces namespace isolation and increases the risk of unintended secret exposure.
+    **Cluster-wide scope** allows decryption in any namespace, reducing isolation and increasing exposure risk.
 
 ## Tooling and Workflow
 

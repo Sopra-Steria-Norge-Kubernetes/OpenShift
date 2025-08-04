@@ -2,7 +2,8 @@
 
 ## What is Backup?
 
-Backup in OpenShift refers to the practice of creating copies of your application’s data and configuration, ensuring that you can restore your system to a previous state in case of data loss, corruption, or disaster. Regularly scheduled backups are essential for disaster recovery and business continuity.
+Backup in OpenShift refers to the practice of creating copies of your application’s data and configuration, ensuring that you can restore your system to a previous state in case of data loss, corruption, or disaster.
+
 
 ## How to configure Backup
 
@@ -20,7 +21,7 @@ To configure backups for your OpenShift tenant using our Helm chart, include the
 ... 
 ```
 
-By setting these parameters, you can automate the process of taking regular backups, specifying the frequency, naming, and retention of each backup. This ensures that your data is consistently protected and can be restored as needed, aligning with best practices for disaster recovery and operational resilience.
+By setting these parameters, you can automate the process of taking regular backups, specifying the frequency, naming, and retention of each backup. This ensures that your data is consistently protected and can be restored as needed. 
 
 ## In-depth description of parameters
 

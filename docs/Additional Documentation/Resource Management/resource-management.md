@@ -1,66 +1,60 @@
----
-Author: Marcus Notø, Oskar Marthinussen
-Title: Resource Management
-Version: 1.0.0
-externally-exposed: true
---- 
+# Resource Management
 
-# Resource Management with OpenShift Tenants
+This page explains how to manage CPU and memory resources in OpenShift using requests, limits, quotas, and scaling strategies to ensure stable and efficient workloads.
 
-## Overview
+**Official Documentation:** [Managing Resources](https://docs.openshift.com/container-platform/latest/applications/quotas/quotas-setting-per-project.html) 
 
-OpenShift, built on Kubernetes, offers a robust platform for deploying and managing containerized applications. A fundamental aspect of this management is the efficient allocation and utilization of resources such as CPU and memory. Proper resource management ensures that applications run smoothly without overconsuming resources, which could affect other applications in the cluster. 
+## Resource Requests and Limits
 
-## Managing Resource Allocation in Deployments
-In OpenShift, each container within a pod can specify the amount of CPU and memory it requires (request) and the maximum amount it can consume (limit). 
+Each container can specify CPU and memory requirements:
 
-- **Resource Request**: The amount of CPU or memory that OpenShift reserves on the node for the given pod. The scheduler uses this value to determine on which node to place the pod.
-- **Resource Limit**: Defines the maximum amount of CPU or memory that a container is allowed to use. If a container exceeds its memory limit, it is terminated with an OOMKilled status. If a container surpasses its CPU limit, Kubernetes throttles the CPU usage, slowing down the process instead of terminating the container.
+- **Resource Request**: Amount OpenShift reserves on the node. Used by scheduler for pod placement
+- **Resource Limit**: Maximum amount a container can consume
+  - Memory limit exceeded → pod terminated (OOMKilled)
+  - CPU limit exceeded → process throttled (not terminated)
 
-Properly defining resource requests and limits helps maintain a balanced workload, preventing resource contention and ensuring fair allocation across applications.
+Properly defined requests and limits prevent resource contention and ensure fair allocation.
 
 ## Tenant Resource Quotas
 
-Each OpenShift tenant is assigned a ClusterResourceQuota, which defines the maximum amount of CPU and memory that can be requested across all namespaces belonging to that tenant. This ensures fair resource distribution and prevents any single tenant from consuming an excessive share of cluster resources.
+Each tenant has a ClusterResourceQuota defining maximum CPU and memory that can be requested across all tenant namespaces.
 
-### Request vs. Limit in ClusterResourceQuota
+### Request vs. Limit in Quotas
 
-The resource request quota is a hard cap, meaning the total sum of all requested CPU and memory across all pods in all namespaces within the tenant cannot exceed this limit. This prevents tenants from over-provisioning resources beyond their allocated quota.
+- **Request quota**: Hard cap on total requested resources across all pods in tenant
+- **Limits**: Should be set at pod level, not quota level, for flexibility
 
-The ClusterResourceQuota also supports defining limits, but it is generally recommended that developers set limits at the pod level rather than within the quota. While requests define the minimum reserved resources, limits control the maximum resources a pod can consume. Setting limits at the pod level ensures that individual workloads do not overconsume resources, while the ClusterResourceQuota primarily helps manage overall tenant resource usage across multiple namespaces. This approach allows for greater flexibility and prevents unintended resource exhaustion within a tenant’s quota.
+### Best Practices
 
-### Why Use Request-Based Quotas?
+- Set requests based on actual resource needs under normal conditions
+- Define limits at pod level to prevent overconsumption
+- Monitor and adjust quotas regularly
+- Requests don't restrict actual usage—pods can consume more if available
 
-Quotas based on requests ensure that tenants only reserve the resources they need, preventing inefficient overcommitment. However, requests do not restrict actual usage. Pods can consume more than their requests if additional capacity is available. This is why limits should be set at the pod level to prevent excessive resource consumption.
-
-To maintain efficient resource utilization across the cluster, requests should reflect actual resource needs under normal workload conditions, limits should be properly defined at the pod level, and quotas should be regularly monitored and adjusted as needed. By managing requests in ClusterResourceQuota and setting limits within pods, tenants can balance flexibility with stability, ensuring fair and efficient resource distribution in OpenShift.
-
-
-## Scaling Workloads in OpenShift
-
-In OpenShift, workloads often experience fluctuating demands, requiring scaling to maintain performance and optimize resource utilization. OpenShift provides automatic scaling mechanisms, such as Horizontal Pod Autoscaling (HPA) and Vertical Pod Autoscaling (VPA), which adjust workloads based on real-time resource consumption.
+## Scaling Workloads
 
 ### Horizontal Pod Autoscaling (HPA)
-
-HPA automatically adjusts the number of pod replicas based on observed CPU utilization or other select metrics. This ensures that applications can scale out during high demand and scale in during low demand, optimizing resource usage.
+Automatically adjusts number of pod replicas based on CPU utilization or other metrics.
 
 ### Vertical Pod Autoscaling (VPA)
-
-VPA automatically adjusts CPU and memory requests for pods based on their actual usage, aiming to optimize resource allocation without overprovisioning. Unlike static resource requests, VPA modifies these values dynamically and restarts pods when necessary to apply changes.
+Automatically adjusts CPU and memory requests based on actual usage. Restarts pods when necessary.
 
 ### HPA and VPA in OpenShift Tenants
 
-Automated scaling can be a useful practice for managing fluctuating workloads. By dynamically adjusting resources, applications can handle variable demand without requiring manual intervention. HPA ensures that workloads can scale horizontally, distributing load efficiently, while VPA helps right-size resource requests over time to reduce overprovisioning and improve utilization. These mechanisms can be beneficial for applications with unpredictable traffic patterns, batch processing jobs, or workloads that experience periodic spikes.
+**Not recommended** in environments with ClusterResourceQuotas due to:
 
-However, automated scaling may not be ideal in environments using ClusterResourceQuotas. Since quotas impose hard limits on resource requests across multiple namespaces, autoscalers can cause unintended issues:
+- **Quota Exhaustion**: VPA may increase requests beyond quota limits
+- **Unpredictable Scaling**: Difficult to plan quota allocation
+- **Service Disruptions**: VPA requires pod restarts
+- **Resource Starvation**: Uneven resource allocation
 
-- **Quota Exhaustion** – A pod scaled by VPA might increase its request so much that no other pods can start within the tenant due to reaching the quota limit.
-- **Unpredictable Scaling Conflicts** – HPA and VPA can cause resources to scale unpredictably, making it difficult to plan and allocate quotas efficiently.
-- **Service Disruptions** – VPA requires pod restarts when adjusting resource requests, which can cause unexpected downtime for stateful applications.
-- **Resource Starvation** – Autoscalers may allocate resources unevenly, leading to some workloads consuming more than intended while others struggle to get scheduled.
+**Recommendation**: Manually define and regularly review resource requests/limits for predictable resource usage.
 
 Because of these risks, we do not necessarily recommend using HPA or VPA in our environment, particularly where ClusterResourceQuotas are in place. Instead, resource requests and limits should be manually defined and regularly reviewed to ensure a predictable and balanced use of resources across tenants.
 
 ## Resource Monitoring and Optimization
 
-Defining resource requests and limits is not a one-time task. As workloads evolve, it is essential to continuously monitor resource consumption to ensure that allocations remain appropriate and do not lead to inefficiencies or instability. Monitoring tools should be used to track usage patterns, detect anomalies, and identify trends that could indicate the need for adjustments. If resource consumption deviates from expected behavior, requests and limits should be fine-tuned accordingly to prevent overprovisioning, resource starvation, or quota exhaustion. This is especially important in environments with ClusterResourceQuotas, where improper scaling can impact multiple workloads. By maintaining a proactive approach to resource management, OpenShift environments can remain stable, predictable, and efficient while meeting the needs of applications.
+- Track usage patterns and detect anomalies
+- Fine-tune requests/limits based on actual behavior
+- Prevent overprovisioning and quota exhaustion
+- Maintain stable, predictable, and efficient environments

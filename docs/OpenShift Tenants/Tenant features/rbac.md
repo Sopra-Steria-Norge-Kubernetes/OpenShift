@@ -2,7 +2,7 @@
 
 ## What is Role-Based Access Control (RBAC)?
 
-Role-Based Access Control (RBAC) in OpenShift is a method of regulating access to resources based on the roles of individual users within your organization. RBAC allows administrators to define what actions users can perform and on which resources, enhancing security and operational control.
+Role-Based Access Control (RBAC) in OpenShift is a method of regulating access to resources based on the roles of individual users within your organization.
 
 ## How to configure RBAC
 
@@ -18,7 +18,7 @@ To configure RBAC settings for your OpenShift tenant using a Helm chart, include
 
 ## In-depth description of parameters
 
-The `rbac` feature defines Role-Based Access Control (RBAC) settings for your OpenShift tenant.  It includes the following variables:
+The `rbac` feature includes the following variables:
 
 | <div style="width:160px">**Variable**</div>                   | **Description**                                                  | **Example**                    | **Type**  | **Defualt Value**
 |-------------------------------|------------------------------------------------------------------|--------------------------------|-----------|-------|

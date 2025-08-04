@@ -5,33 +5,34 @@ Version: 1.0.0
 externally-exposed: true  
 ---
 
+# Network Communication
 
-# Network communication on OpenShift
+Network traffic management and communication between OpenShift applications.
 
-## Introduction
-Red Hat OpenShift Networking is an ecosystem of features, plugins and advanced networking capabilities that extend Kubernetes networking with the advanced networking-related features that your cluster needs to manage its network traffic for one or multiple hybrid clusters. One of the key features of OpenShift is its ability to facilitate network communication between different components of an application, whether they are running on the same node or across multiple nodes in a distributed environment. With OpenShift, developers can easily configure network settings, manage network traffic, and ensure secure communication between different parts of their application.
+**Official Documentation:** [OpenShift Networking](https://docs.redhat.com/en/documentation/openshift_container_platform/latest#Networking)
 
-## Connect OpenShift applications cross namespaces
-OpenShift provides a powerful feature called namespaces, which allows different teams and applications to operate independently within the same OpenShift cluster. However, there may be situations where it is necessary to connect applications across different namespaces. For example, an application in one namespace may require access to a database or other service provided by an application running in a different namespace. In this case, developers can use the techniques mentioned in the user guide linked below to establish secure and reliable communication between the two applications.
+## Cross-Namespace Communication
 
-* This [User guide](/SolidCloud/SolidCloud-Products/Containers/Red-Hat-OpenShift/User-Guides/5%2DNetwork-communication-on-OpenShift/5.1%2DConnect-OpenShift-applications-cross-namespaces) guide provides a guide for how to connect your OpenShift Application cross namespaces.
+Applications may need to communicate across namespaces. Use secure communication techniques to connect applications in different namespaces.
 
-## Network observability
-The Network Observability Operator is a critical component for developers looking to understand and monitor their network infrastructure within Kubernetes and OpenShift environments. This operator provides insights into network flows and helps maintain network visibility.
+**Guide:** [Connect OpenShift Applications Cross Namespaces](connect-openshift-application-cross-namespaces.md)
 
-* This [User guide](../Observability/using-network-observability.md) will summarize how you can configure and use the network observability operator on your tenant.
+<!-- ## Network Observability
 
-## Exposing services on the internet.
+Monitor and understand network infrastructure within OpenShift environments using the Network Observability Operator.
 
-Requirements:
+**Guide:** [Using Network Observability](../Observability/using-network-observability.md) -->
 
-* Your organization must allow developers to expose services on the internet.
-* The label used to expose services on the internet for your organization.
-* The wildcard domain used to expose services on the internet.
-* An openshift tenant.
+## Exposing Services to Internet
 
-As a developer on Container as a service you are allowed to expose your applications on the internet, if your organization permits it. You will be provided a label that you can use for your ingress/route to define that it should be available on the internet.
+**Requirements:**
 
+  - Organization approval for internet exposure
+  - Specific label for external access
+  - Wildcard domain for exposed services
+  - OpenShift tenant
+
+Apply the provided label to your ingress or route to enable external access.
 
 ```yaml title="Example"
 kind: Ingress
