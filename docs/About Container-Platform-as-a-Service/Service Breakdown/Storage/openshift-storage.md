@@ -63,24 +63,24 @@ Create storage by defining a PVC and binding it to your application. The PV is a
 Create point-in-time snapshots of PVCs and restore to new PVCs.
 
 1. Navigate to Storage -> PersistentVolumeClaims in the OpenShift console.
-![image.png](../../img/Storage/storage1.png)
+![image.png](../../../img/Storage/storage1.png)
 
 2. Click the three dots to the right of the pvc you want to snapshot.
-![image.png](../../img/Storage/storage2.png)
+![image.png](../../../img/Storage/storage2.png)
 
 3. Proceed with default settings, and click "Create"
-![image.png](../../img/Storage/storage3.png)
+![image.png](../../../img/Storage/storage3.png)
 
 4. Navigate to Storage -> VolumeSnapshots to find your recently created snapshot.
-![image.png](../../img/Storage/storage4.png)
+![image.png](../../../img/Storage/storage4.png)
 
 5. To restore a PVC from the snapshot click the three dots next to the right of the VolumeSnapshot.
-![image.png](../../img/Storage/storage5.png)
+![image.png](../../../img/Storage/storage5.png)
 
 6. Proceed with default settings to create a new pvc.
-![image.png](../../img/Storage/storage6.png)
+![image.png](../../../img/Storage/storage6.png)
 
 7. Find your restored snapshot under Storage -> PersistentVolumeClaims.
-![image.png](../../img/Storage/storage7.png)
+![image.png](../../../img/Storage/storage7.png)
 
 

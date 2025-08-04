@@ -22,6 +22,7 @@ nav:
         - Sealed Secrets:
           - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/Introduction.md
           - Encrypt secrets with SealedSecrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
+          - Install Kubeseal: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/install-kubeseal.md
       - GitOps:
         - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
         - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
@@ -143,8 +144,8 @@ nav:
     #   - Backup:
     #     - Backup Persistent Volumes using VolumeSnapshots: Additional Documentation/Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md
     #     - Backup process for tenants using Velero: Additional Documentation/Storage/Backup/backup-process-for-tenants-using-velero.md
-    - Tools:
-      - Install Kubeseal: Additional Documentation/Tools/install-kubeseal.md
+    # - Tools:
+    #   - Install Kubeseal: Additional Documentation/Tools/install-kubeseal.md
 
 
 markdown_extensions:

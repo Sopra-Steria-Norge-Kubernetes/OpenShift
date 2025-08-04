@@ -12,7 +12,7 @@ This guide explains how to create a `SealedSecret` by encrypting an OpenShift Se
 ## Pre-requisites
 Before you begin, make sure you have:
 
-* `Kubeseal` installed on your local machine. Follow this guide: [Install Kubeseal](../../../../Additional%20Documentation/Tools/install-kubeseal.md)
+* `Kubeseal` installed on your local machine. Follow this guide: [Install Kubeseal](./install-kubeseal.md)
 * The public certificate for your OpenShift cluster, available in the tenant repository under `/certificates`
 
 ## 1. Encode Your Secret

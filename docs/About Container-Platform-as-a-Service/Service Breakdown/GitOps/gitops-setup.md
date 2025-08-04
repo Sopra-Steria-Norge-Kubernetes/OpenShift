@@ -58,7 +58,7 @@ values: |
 - Setting the `enable_user_defined_apps`to true gives you the option to use the **User-defined ArgoCD applications** method for creating applications. 
 
 !!! Info
-    More information on how to connect ArgoCD to your repository can be found [here](../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md#connecting-to-a-git-repository).
+    More information on how to connect ArgoCD to your repository can be found [here](../../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md#connecting-to-a-git-repository).
 
 ## Getting started
 With your tenant configuration successfully completed, the next crucial step is establishing the structure in your main Git repository. 
