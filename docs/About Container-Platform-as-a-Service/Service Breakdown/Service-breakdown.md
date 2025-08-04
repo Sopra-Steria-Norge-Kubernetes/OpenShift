@@ -18,7 +18,7 @@ CPaaS is delivered through a layered service model and can be tailored to meet d
 
 The diagram below illustrates how the service is composed:
 
-![Container Platform Service Layers](../img/About Container-Platform-as-a-Service/service_overview.png)
+![Container Platform Service Layers](../../img/About Container-Platform-as-a-Service/service_overview.png)
 
 CPaaS is built on **three service layers**:
 
