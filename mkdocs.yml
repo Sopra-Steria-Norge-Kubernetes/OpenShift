@@ -12,6 +12,19 @@ nav:
       - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
       - OpenShift Teams: About Container-Platform-as-a-Service/Service Breakdown/openshift-teams.md
       - OpenShift Tenants: About Container-Platform-as-a-Service/Service Breakdown/openshift-tenants.md
+      - Secret Management:
+        - External Secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/external-secrets.md
+      - GitOps:
+        - ArgoCD: About Container-Platform-as-a-Service/Service Breakdown/GitOps/argocd.md
+      - Observability:
+        - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
+        - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
+        - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
+      - Network: About Container-Platform-as-a-Service/Service Breakdown/network.md
+      - Security: About Container-Platform-as-a-Service/Service Breakdown/security.md
+      - RBAC: About Container-Platform-as-a-Service/Service Breakdown/rbac.md
+      - Storage: About Container-Platform-as-a-Service/Service Breakdown/storage.md
+      - Backup: About Container-Platform-as-a-Service/Service Breakdown/backup.md
     # - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
     # - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
     # - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
