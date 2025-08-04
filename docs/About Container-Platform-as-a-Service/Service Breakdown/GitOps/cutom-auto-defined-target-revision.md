@@ -61,12 +61,12 @@ The changes will also be visible in ArgoCD as the application cards now have an 
 <div class="grid cards" markdown>
 
 <figure markdown="span">
-  ![here](../../img/CI-CD/targetRevision1.png){ width="400" }
+  ![here](../../../img/CI-CD/targetRevision1.png){ width="400" }
   <figcaption><i>custom_auto_defined_targetRevision: true</i></figcaption>
 </figure>
 
 <figure markdown="span">
-  ![here](../../img/CI-CD/targetRevision2.png){ width="400" }
+  ![here](../../../img/CI-CD/targetRevision2.png){ width="400" }
   <figcaption><i>custom_auto_defined_targetRevision: false</i></figcaption>
 </figure>
 
