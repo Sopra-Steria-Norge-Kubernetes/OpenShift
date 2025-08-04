@@ -33,7 +33,7 @@ nav:
     - OpenShift Teams: Quick Start/teams-quick-start.md
     - OpenShift Tenants: Quick Start/tenants-quick-start.md
   - OpenShift Teams:
-    - Team Introduction: OpenShift Teams/team-introduction.md
+    # - Team Introduction: OpenShift Teams/team-introduction.md
     - Team Features:
       - Team: OpenShift Teams/Team features/team.md
       - Resource Management: OpenShift Teams/Team features/resource-management.md
@@ -45,9 +45,9 @@ nav:
         - GitOps - Authentication: OpenShift Teams/Team features/gitops/gitops-authentication.md
       - Secret Management: OpenShift Teams/Team features/secret-management.md
   - OpenShift Tenants: 
-    - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
-    - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
-    - OpenShift Tenant Template: OpenShift Tenants/OpenShift-tenant-template.md
+    # - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
+    # - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
+    # - OpenShift Tenant Template: OpenShift Tenants/OpenShift-tenant-template.md
     - Tenant features:
       - Namespace: OpenShift Tenants/Tenant features/namespace.md
       - Environment: OpenShift Tenants/Tenant features/environments.md
