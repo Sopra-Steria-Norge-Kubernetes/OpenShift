@@ -15,7 +15,11 @@ nav:
       - Secret Management:
         - External Secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/external-secrets.md
       - GitOps:
-        - ArgoCD: About Container-Platform-as-a-Service/Service Breakdown/GitOps/argocd.md
+        - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
+        - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
+        - OpenShift GitOps Best Practices: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-best-practices.md
+        - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
+        - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
       - Observability:
         - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
         - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
@@ -97,12 +101,12 @@ nav:
       #- Using network observability: Observability/using-network-observability.md
       - Configure monitoring for a tenant: Additional Documentation/Observability/configuring-monitoring-for-a-tenant.md
       - Configure Grafana and Thanos: Additional Documentation/Observability/configure-grafana-and-thanos-query.md
-    - OpenShift GitOps:
-      - Introduction to GitOps on OpenShift: Additional Documentation/OpenShift GitOps/Introduction-GitOps.md
-      - GitOps Setup: Additional Documentation/OpenShift GitOps/gitops-setup.md
-      - OpenShift GitOps Best Practices: Additional Documentation/OpenShift GitOps/gitops-best-practices.md
-      - Custom auto-defined targetRevision: Additional Documentation/OpenShift GitOps/cutom-auto-defined-target-revision.md
-      - Multiple Values Files: Additional Documentation/OpenShift GitOps/multiple-values-files.md
+    # - OpenShift GitOps:
+    #   - Introduction to GitOps on OpenShift: Additional Documentation/OpenShift GitOps/Introduction-GitOps.md
+    #   - GitOps Setup: Additional Documentation/OpenShift GitOps/gitops-setup.md
+    #   - OpenShift GitOps Best Practices: Additional Documentation/OpenShift GitOps/gitops-best-practices.md
+    #   - Custom auto-defined targetRevision: Additional Documentation/OpenShift GitOps/cutom-auto-defined-target-revision.md
+    #   - Multiple Values Files: Additional Documentation/OpenShift GitOps/multiple-values-files.md
     - OpenShift Pipelines:
       - OpenShift Pipelines with Tekton: Additional Documentation/OpenShift Pipelines/OpenShift-pipelines.md
     - OpenShift Serverless:
