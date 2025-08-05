@@ -162,8 +162,8 @@ To monitor your applications with the team monitoring stack, you need to create 
 - **PodMonitor**: Monitors pods directly. Use this for more granular control, when monitoring DaemonSets/StatefulSets, or when you don't have services.
 
 For detailed configuration examples, see:
-- [ServiceMonitor Examples](observability/servicemonitor-examples.md) - Basic and authenticated service monitoring
-- [PodMonitor Examples](observability/podmonitor-examples.md) - Direct pod monitoring and StatefulSet monitoring
+- [ServiceMonitor Examples](./servicemonitor-examples.md) - Basic and authenticated service monitoring
+- [PodMonitor Examples](./podmonitor-examples.md) - Direct pod monitoring and StatefulSet monitoring
 
 ### Service Discovery
 
