@@ -30,9 +30,13 @@ nav:
         - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
         - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
       - Observability:
-        - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
-        - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
-        - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
+        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/introduction.md
+        - Using OpenShift Observability: About Container-Platform-as-a-Service/Service Breakdown/Observability/using-openshift-observability.md
+        - Configure Monitoring for a Tenant: About Container-Platform-as-a-Service/Service Breakdown/Observability/configuring-monitoring-for-a-tenant.md
+        - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/configure-grafana-and-thanos-query.md
+        # - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
+        # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
+        # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
       - Network:
         - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Network/introduction.md
         - Connect application cross namespaces: About Container-Platform-as-a-Service/Service Breakdown/Network/connect-openshift-application-cross-namespaces.md
@@ -104,12 +108,12 @@ nav:
     #   - Add an external IP with MetalLB: Additional Documentation/Network/External-IP-with-MetalLB.md
     #   - How to use EgressIP: Additional Documentation/Network/How-to-use-EgressIP.md
     #   - Egress Firewall: Additional Documentation/Network/egress-firewall.md
-    - Observability:
-      - Introduction: Additional Documentation/Observability/Introduction.md
-      - Using OpenShift observability: Additional Documentation/Observability/using-openshift-observability.md
-      #- Using network observability: Observability/using-network-observability.md
-      - Configure monitoring for a tenant: Additional Documentation/Observability/configuring-monitoring-for-a-tenant.md
-      - Configure Grafana and Thanos: Additional Documentation/Observability/configure-grafana-and-thanos-query.md
+    # - Observability:
+    #   - Introduction: Additional Documentation/Observability/Introduction.md
+    #   - Using OpenShift observability: Additional Documentation/Observability/using-openshift-observability.md
+    #   #- Using network observability: Observability/using-network-observability.md
+    #   - Configure monitoring for a tenant: Additional Documentation/Observability/configuring-monitoring-for-a-tenant.md
+    #   - Configure Grafana and Thanos: Additional Documentation/Observability/configure-grafana-and-thanos-query.md
     # - OpenShift GitOps:
     #   - Introduction to GitOps on OpenShift: Additional Documentation/OpenShift GitOps/Introduction-GitOps.md
     #   - GitOps Setup: Additional Documentation/OpenShift GitOps/gitops-setup.md
