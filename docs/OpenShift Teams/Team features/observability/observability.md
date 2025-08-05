@@ -2,7 +2,7 @@
 
 With observability you can enable a team grafana instance that uses the openshift credentials for login. This grafana instance will automatically have datasources from all tenants managed by the team unless specifically disabled in the tenant definitions values yaml.
 
-The grafana instance must have an admin group. it does not require editor group. but can be specified if multiple access levels is wanted.
+The grafana instance must have an admin group and is defined in the [RBAC](./rbac.md) section with the `team_monitoring_edit` field. If multiple access levels is wanted it is possible to define a Viewer group with the `team_monitoring_view` field, but this is not required.
 
 You can also enable a dedicated monitoring stack with Prometheus for your team namespace. datasource for this will be automatically configured in the grafana instance.
 
