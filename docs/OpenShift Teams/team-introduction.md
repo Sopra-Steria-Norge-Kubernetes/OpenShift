@@ -33,9 +33,6 @@ Below is an illustration of teams.
 - **Consistent Policies**: Apply team-level policies to all member tenants
 
 
-
-#
-
 <!-- Moved to each feature under `<Team Features>` -->
 
 <!-- # Features

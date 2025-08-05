@@ -1,4 +1,4 @@
-# OpenShift tenants
+# OpenShift Tenants
 
 To facilitate granular access control and efficient distribution of platform resources among different development teams, the Provider has built a tenant concept. Each tenant is a set of resources that a team can choose to use.
 
@@ -16,7 +16,7 @@ Other components that development teams have access to through the tenant concep
 
 * Git repositories can be used to define the resources to be built in the tenant, to ensure version control of everything that is built in the tenant.
 
-![TenantOverview](../img/About Container-Platform-as-a-Service/TenantOverview.png)
+![TenantOverview](../../img/About Container-Platform-as-a-Service/TenantOverview.png)
 
 ## Key Features
 
@@ -29,5 +29,4 @@ Other components that development teams have access to through the tenant concep
 
 ## Getting Started
 
-- **For Team**: [OpenShift Teams](../OpenShift Teams/team-introduction.md)
-- **For Tenants**: [OpenShift Tenants](../OpenShift Tenants/Introduction-to-openshift-tenants.md)
+**Quick Start**: [OpenShift Tenants](../../Quick Start/tenants-quick-start.md)
