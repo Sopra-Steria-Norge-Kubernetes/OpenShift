@@ -80,14 +80,14 @@ Configure monitoring for your specific applications:
 This documentation is organized into the following sections:
 
 ### Core Observability Features
-- **[Using OpenShift Observability](using-openshift-observability.md)**: Native OpenShift monitoring capabilities
-- **[Configure Grafana and Thanos Query](configure-grafana-and-thanos-query.md)**: Setting up advanced visualization and querying
+- **[Using OpenShift Observability](./using-openshift-observability.md)**: Native OpenShift monitoring capabilities
+- **[Configure Grafana and Thanos Query](./Grafana/configure-grafana-and-thanos-query.md)**: Setting up advanced visualization and querying
 
 ### Network Security
 - **[Team Network Policies](team-network-policies.md)**: Understanding network security in team namespaces
 
 ### Application Monitoring
-- **[Configuring Monitoring for a Tenant](configuring-monitoring-for-a-tenant.md)**: Custom alerts and monitoring rules for your applications
+- **[Configuring Monitoring for a Tenant](./Monitoring%20and%20Logging/configuring-monitoring-for-a-tenant.md)**: Custom alerts and monitoring rules for your applications
 
 ### Network Monitoring
 - **[Using Network Observability](using-network-observability.md)**: Network traffic analysis and monitoring
@@ -132,6 +132,6 @@ If you encounter issues with observability features:
 Begin your observability journey by:
 1. Exploring the [built-in OpenShift observability features](using-openshift-observability.md)
 2. Setting up [team monitoring capabilities](../OpenShift%20Teams/Team%20features/observability.md)
-3. Configuring [application-specific monitoring](configuring-monitoring-for-a-tenant.md)
+3. Configuring [application-specific monitoring](./Monitoring%20and%20Logging/configuring-monitoring-for-a-tenant.md)
 
 Remember that effective observability is an iterative process. Start with basic monitoring and gradually add more sophisticated features as your applications and understanding grow.
