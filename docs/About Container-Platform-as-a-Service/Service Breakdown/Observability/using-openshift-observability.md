@@ -23,4 +23,4 @@ In the OpenShift console, developers can access an observability hub for their a
 2. Select "Developer View", and navigate to "Observe"
 3. You should see performance metrics from your application, as seen below.
 
-![2.png](../../img/Observability/observe.png)
+![2.png](../../../img/Observability/observe.png)

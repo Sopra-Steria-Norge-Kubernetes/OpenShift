@@ -15,7 +15,7 @@ nav:
       - Secret Management:
         - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
         - External Secrets:
-          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/Introduction.md
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/Introduction.md
           - Creating secret store: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/configuration-secretstore.md
           - Creating external secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/creating-external-secrets.md
           - Creating Cluster External Secret: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/cluster-external-secrets.md
@@ -30,10 +30,12 @@ nav:
         - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
         - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
       - Observability:
-        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/introduction.md
+        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/Introduction.md
         - Using OpenShift Observability: About Container-Platform-as-a-Service/Service Breakdown/Observability/using-openshift-observability.md
         - Configure Monitoring for a Tenant: About Container-Platform-as-a-Service/Service Breakdown/Observability/configuring-monitoring-for-a-tenant.md
         - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/configure-grafana-and-thanos-query.md
+        - Monitoring & Logging:
+          - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Monitoring and Logging/slack-integration-with-openshift-alerts.md
         # - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
         # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
@@ -99,8 +101,8 @@ nav:
     - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
     - Team: OpenShift Tenants/Tenant features/team.md
   - Additional Documentation:
-    - Monitoring:
-      - Slack integration with OpenShift alerts: Additional Documentation/Monitoring/slack-integration-with-openshift-alerts.md
+    # - Monitoring:
+    #   - Slack integration with OpenShift alerts: Additional Documentation/Monitoring/slack-integration-with-openshift-alerts.md
     # - Network:
     #   - Introduction: Additional Documentation/Network/introduction.md
     #   - Connect application cross namespaces: Additional Documentation/Network/connect-openshift-application-cross-namespaces.md
