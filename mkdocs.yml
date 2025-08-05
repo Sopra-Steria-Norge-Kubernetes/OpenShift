@@ -36,6 +36,8 @@ nav:
         - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/configure-grafana-and-thanos-query.md
         - Monitoring & Logging:
           - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Monitoring and Logging/slack-integration-with-openshift-alerts.md
+        - Resource Management:
+          - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Observability/Resource Management/team-resource-dashboards.md
         # - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
         # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
@@ -132,7 +134,7 @@ nav:
         - Without tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-without-tenant-chart.md
     - Resource Management:
       - Resource Management: Additional Documentation/Resource Management/resource-management.md
-      - Team Resource Dashboards: Additional Documentation/Resource Management/team-resource-dashboards.md
+      # - Team Resource Dashboards: Additional Documentation/Resource Management/team-resource-dashboards.md
     # - Secret Managment:
     #   - Creating and managing secrets: Additional Documentation/Secret Managment/creating-and-managing-openshift-secrets.md
     #   - External Secrets:
