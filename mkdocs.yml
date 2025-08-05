@@ -38,7 +38,6 @@ nav:
           - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Monitoring and Logging/slack-integration-with-openshift-alerts.md
         - Resource Management:
           - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Observability/Resource Management/team-resource-dashboards.md
-        # - Monitoring & Logging: About Container-Platform-as-a-Service/Service Breakdown/Observability/monitoring-and-logging.md
         # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
       - Network:
