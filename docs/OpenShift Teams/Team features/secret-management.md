@@ -2,7 +2,7 @@
 
 The secret management feature in the team chart is used to create global `ClusterSecretStores` within the team namespace. These stores can be utilized by all tenants assigned to the team.
 
-You can read more in depth about this feature by following this link: [Secret Managment with External Secrets](../../Additional%20Documentation/Secret%20Managment/External%20Secrets/Introduction.md)
+You can read more in depth about this feature by following this link: [Secret Managment with External Secrets](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/External%20Secrets/Introduction.md)
 
 
 
@@ -39,9 +39,9 @@ To create a `ClusterSecretStore` using the team chart, configure the following p
 
 To allow OpenShift to authenticate with Azure Key Vault, the credentials from the App Registration must be encrypted before being stored in the Git repository. This is done using `SealedSecrets`, which ensures that only the `SealedSecrets controller` running in the OpenShift cluster can decrypt the values.
 
-You can encrypt the credentials using the `scripts/encrypt_client_credentials.sh` script in your tenant repository, or follow [this guide](../../Additional%20Documentation/Secret%20Managment/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md) to perform the encryption manually.
+You can encrypt the credentials using the `scripts/encrypt_client_credentials.sh` script in your tenant repository, or follow [this guide](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md) to perform the encryption manually.
 
-Additional details on `SealedSecrets` can be found [here](../../Additional%20Documentation/Secret%20Managment/Sealed%20Secrets/Introduction.md).
+Additional details on `SealedSecrets` can be found [here](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/Introduction.md).
 
 ## In-depth Description of parameters
 
