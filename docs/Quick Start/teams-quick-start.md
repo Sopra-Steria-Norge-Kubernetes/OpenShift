@@ -191,7 +191,7 @@ values: |
           username: poseidon-team
           password: poseidon-team-pat-token
 ```
-
+More configuration options can be found in the [team configuration reference](<insert link to team configuration reference>).
 ## Step 3: Configure Group Sync Secret
 
 Create the group sync secret in your team repository. This secret must be stored in the Azure Key Vault configured in Step 2.
@@ -306,15 +306,6 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
 !!! info "Multiple Applications"
     Teams can manage multiple applications by creating separate tenant configuration files. Each application gets its own namespaces and can have different resource requirements.
 
-### Tenant Configuration Reference
-
-| Field | Description |
-|-------|-------------|
-| `namespace.name` | Base name for the tenant namespaces |
-| `environments` | List of deployment environments (dev, test, prod) |
-| `externalURLs` | External services your application needs to access |
-| `argocd.main_git_repository` | GitOps configuration for automated deployments |
-
 ## Step 5: Structure Your Deployment Repository
 
 Your deployment repository should follow this structure:
@@ -398,15 +389,5 @@ spec:
 1. **Commit your configurations** to the `infra-ocp4-tenants` repository
 2. **Verify deployment** - Check that namespaces and applications are created
 3. **Set up monitoring** - Configure alerts and dashboards
-4. **Review security** - Ensure proper RBAC and network policies
-
-## Troubleshooting
-
-If you encounter issues:
-
-1. **Verify secrets** are properly configured in Key Vault
-2. **Check permissions** for access tokens and service principals
-3. **Validate URLs** are accessible from the cluster
-4. **Review ArgoCD logs** for deployment errors
 
 For additional support, contact the platform team or refer to the detailed documentation.
