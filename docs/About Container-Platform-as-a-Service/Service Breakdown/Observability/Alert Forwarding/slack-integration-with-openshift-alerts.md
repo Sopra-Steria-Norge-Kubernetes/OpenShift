@@ -72,7 +72,7 @@ kubeseal --cert /path/to/pub.cert --scope cluster-wide -f secret.yaml -o yaml > 
 
 Replace `/path/to/pub.cert` with the path to your public certificate. `secret.yaml` is the path to the Secret YAML file you created in the first step. The sealed secret will be outputted to `sealed_secret.yaml`.
 
-**Read more about encrypting a secret with kubeseal from this** [guide](../../Secret%20Managment/encrypting-secret-with-kubeseal.md)
+**Read more about encrypting a secret with kubeseal from this** [guide](../../Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md)
 
 ## Helm Chart Configuration for Slack Alerts
 

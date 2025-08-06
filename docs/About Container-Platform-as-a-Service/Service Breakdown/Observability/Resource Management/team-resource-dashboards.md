@@ -15,7 +15,7 @@ These dashboards serve as both a resource management and FinOps overview, helpin
 
 ### Pre-requisites
 
-- [Setting up Grafana for teams](../../../../OpenShift%20Teams/Team%20features/observability.md)
+- [Setting up Grafana for teams](../../../../OpenShift%20Teams/Team%20features/observability/observability.md)
 
 ## Dashboards
 
