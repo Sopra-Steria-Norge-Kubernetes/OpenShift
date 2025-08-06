@@ -1,21 +1,18 @@
 # Quick Start Guide - OpenShift Teams
 
-This guide will walk you through setting up a new developer team in our OpenShift environment, from initial prerequisites to deploying your first application.
+This guide should provide the bare minimum steps to create a new developer team, create the first tenant and deploy the first application.
 
 !!! note "Example Names"
-    Throughout this guide, we use "team-poseidon" as the team name and "poseidon-web-app" as the application/tenant name. These are examples - you should replace them with your actual team and application names.
+    Throughout this guide, we use "team-poseidon" as the team name and "poseidon-web-app" and "poseidon-backend-app" as the application/tenant name. These are examples - you should replace them with your actual team and application names.
 
 ## Prerequisites
 
-Before you can enable a team and tenant for a running application, you must have the following components in place:
-
 ### Required Components
 
-1. Infra definitions configured by Sopra Steria technician. contact your Sopra Steria contact to get the infra definitions configured.
 2. **Team Namespace Repository** - For Grafana configuration, secrets, and other team-specific resources
 3. **Application Deployment Repository** - Contains your application manifests and deployment configurations
 4. **Azure Key Vault** - Azure Key Vault or equivalent secret storage solution
-5. **Personal Access Token (PAT)** - For accessing Key Vault and repositories
+5. **Access tokens** - For accessing Key Vault and repositories
 
 ### Key Vault Requirements
 
@@ -25,8 +22,8 @@ Your Key Vault must contain the following secrets:
 - **Repository Secret** - For accessing private repositories
 - **Pull Secret** - For Container Registry access (if not using public registries)
 
-## Step 1: Location of team/tenant definitions files
-In your github/ado organization there should be a repository named 'infra-ocp4-tenants' 
+## Step 1: Team and Tenant Definitions structure
+As a part of the onboarding process there will be established a repository named `infra-ocp4-tenants` in your GitHub/Azure DevOps organization.
 it should contain a directory structure like this:
 
 ```plaintext
@@ -37,7 +34,7 @@ infra-ocp4-tenants/
 │       ├── team-hera.yaml
 │       ├── team-zeus.yaml
 │       └── team-apollo.yaml
-└── applications-definitions/
+└── application-definitions/
     ├── wave-1/
     │   ├── poseidon-web-app-tenant.yaml
     │   └── hera-web-app-tenant.yaml
@@ -46,36 +43,36 @@ infra-ocp4-tenants/
         └── apollo-web-app-tenant.yaml
 ```
 The "wave" directories for teams and tenants determine the rollout sequence for updates to the respective Helm charts. Teams and tenants in `wave-1` receive changes first, followed by those in `wave-2`, and so on. This staged approach allows for controlled, incremental deployments and easier troubleshooting during upgrades.
-## Step 1: Configure Your Team
+## Step 2: Configure Your Team
 
 ### Location of Team Configuration
-Should be placed in the `values.yaml` file of team-definitions/wave-x/ directory. the filename should be named after the team you want to create, for instance `team-poseidon.yaml`.
+Should be placed in the file team-definitions/wave-1/ directory. the filename should be named after the team you want to create, for instance `team-poseidon.yaml`.
 
 ### Basic team configuration with azure keyvault
 ```yaml
 teamname: team-poseidon  # Replace with your actual team name
 values: |
   team:
-    name: team-poseidon  # Replace with your actual team name
+    name: team-poseidon  # Replace with your actual team name, this will also be the name for team namespace.
 
   rbac:
-    secret_name: team-poseidon-group-sync-secret  # Replace with your groupsync secret name
+    secret_name: team-poseidon-group-sync-secret  # Secret will be configured later
     team_edit: "AzureAD-Team-Poseidon-Developers"  # Replace with your write group
     team_view: "AzureAD-Team-Poseidon-Viewers"     # Replace with your read group
   
   secret_management:
     external_secrets:
       cluster_secret_stores: 
-      - name: team-poseidon-secrets  # This name can be anything, but must be referenced in gitops authentication or group sync
-        tenant_id: 12345678-1234-1234-1234-123456789012  # Replace with your tenant ID
-        keyvault_url: https://team-poseidon-kv.vault.azure.net/  # Replace with your Key Vault URL
-        client_id: abcd1234-5678-90ab-cdef-123456789012   # Replace with your client ID
-        client_secret: poseidon-kv-client-secret           # Replace with your client secret name in Key Vault
-      - name: team-poseidon-app-secrets  # This name can be anything, but must be referenced in application deployments
-        tenant_id: 12345678-1234-1234-1234-123456789012  # Replace with your tenant ID
-        keyvault_url: https://team-poseidon-app-kv.vault.azure.net/  # Replace with your Key Vault URL
-        client_id: abcd1234-5678-90ab-cdef-123456789012   # Replace with your client ID
-        client_secret: poseidon-app-kv-client-secret           # Replace with your client secret name in Key Vault
+      - name: team-poseidon-secrets                                 # This name can be anything, name is just a reference
+        tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
+        keyvault_url: https://team-poseidon-kv.vault.azure.net/     # Replace with your Key Vault URL
+        client_id: abcd1234-5678-90ab-cdef-123456789012             # Replace with your client ID
+        client_secret: 8f2b7c1e-4d2a-4e5f-bc3e-9a1d2f3e4b5c         # Example Azure-style client secret
+      - name: team-poseidon-app-secrets                             # This name can be anything, name is just a reference
+        tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
+        keyvault_url: https://team-poseidon-app-kv.vault.azure.net/ # Replace with your Key Vault URL
+        client_id: abcd1234-5678-90ab-cdef-123456789012             # Replace with your client ID
+        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Replace with your client secret name in Key Vault
 
 
 ```
@@ -157,34 +154,33 @@ values: |
     name: team-poseidon  # Replace with your actual team name
 
   rbac:
-    secret_name: poseidon-groupsync-secret  # Replace with your groupsync secret name
-    team_edit: "AzureAD-Team-Poseidon-Developers"  # Replace with your write group
-    team_view: "AzureAD-Team-Poseidon-Viewers"     # Replace with your read group
+    secret_name: poseidon-groupsync-secret              
+    team_edit: "AzureAD-Team-Poseidon-Developers"       
+    team_view: "AzureAD-Team-Poseidon-Viewers"          
   
   secret_management:
     external_secrets:
       cluster_secret_stores: 
-      - name: team-poseidon-secrets  # This name can be anything, but must be referenced in application deployments
-        tenant_id: 12345678-1234-1234-1234-123456789012  # Replace with your tenant ID
-        keyvault_url: https://team-poseidon-kv.vault.azure.net/  # Replace with your Key Vault URL
-        client_id: abcd1234-5678-90ab-cdef-123456789012   # Replace with your client ID
-        client_secret: poseidon-kv-client-secret           # Replace with your client secret name in Key Vault
+      - name: team-poseidon-secrets
+        tenant_id: 12345678-1234-1234-1234-123456789012
+        keyvault_url: https://team-poseidon-kv.vault.azure.net/
+        client_id: abcd1234-5678-90ab-cdef-123456789012
+        client_secret: poseidon-kv-client-secret
 
   gitops:
     argocd:
-    enable_auto_defined_apps: true # This should default to false in the chart
-    team_repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/openshift-config  # Replace with your team repo URL
-    path: "applications"  # Replace with your config folder path
+    enable_auto_defined_apps: true
+    team_repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/openshift-config
     authentication:
       external_secrets:
-        secretstore: team-poseidon-secrets # References cluster_secret_stores configured above
-        pat: # If your repo requires PAT for access (Azure DevOps Git is one example)
-        - repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/team-config  # Replace with your deployment repo URL
-          username: poseidon-team # Replace with your PAT username
-          password: poseidon-team-pat-token # Replace with your PAT secret name in Key Vault
+        secretstore: team-poseidon-secrets
+        pat:
+        - repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/team-config
+          username: poseidon-team
+          password: poseidon-team-pat-token
 ```
 
-## Step 2: Configure group sync
+## Step 2: Configure group sync secret
 Must be added to team repository, this secret should be stored in the azure keyvault configured in the previous step. and should have access to the groups configured in the team-definitions file under rbac:.
 
 === "Group Sync Secret"
@@ -194,7 +190,7 @@ Must be added to team repository, this secret should be stored in the azure keyv
     kind: ExternalSecret
     metadata:
       name: team-poseidon-group-sync-secret
-      namespace: team-poseidon
+      namespace: team-poseidon # Replace with your team namespace
     spec:
       refreshInterval: 10m
       secretStoreRef:
@@ -220,9 +216,9 @@ Must be added to team repository, this secret should be stored in the azure keyv
 ## Step 3: Set Up Your Tenant
 
 ### Location of Tenant Configuration
-Should be placed in the `values.yaml` file of applications-definitions/wave-x/ directory file is often named after the tenant you want to create. for instance `poseidon-web-app-tenant.yaml`.
+Should be placed in the file application-definitions/wave-1/ directory. the filename should be named after the team you want to create, for instance `poseidon-web-app.yaml`.
 
-=== "Basic Configuration"
+=== "Poseidon Web Application Tenant Configuration"
 
     ```yaml
     appname: poseidon-web-app  # Replace with your application name
@@ -256,7 +252,7 @@ Should be placed in the `values.yaml` file of applications-definitions/wave-x/ d
           basepath: applicationsets  # Replace with your base path if different
     ```
 
-=== "Second Application Example"
+=== "Poseidon Backend Application Tenant Configuration"
 
     ```yaml
     appname: poseidon-backend-app  # Replace with your backend application name
@@ -312,12 +308,14 @@ Should be placed in the `values.yaml` file of applications-definitions/wave-x/ d
     │   │   │   ├── kustomization.yaml     # Base kustomization configuration
     │   │   │   ├── deployment.yaml        # Web app deployment manifest
     │   │   │   ├── service.yaml           # Web app service manifest
-    │   │   │   └── servicemonitor.yaml    # ServiceMonitor for Prometheus
+    │   │   │   ├── servicemonitor.yaml    # ServiceMonitor for Prometheus
+    │   │   │   └── route.yaml             # OpenShift Route for web app
     │   │   └── poseidon-backend-app/      # Backend application base
     │   │       ├── kustomization.yaml     # Base kustomization configuration
     │   │       ├── deployment.yaml        # Backend app deployment manifest
     │   │       ├── service.yaml           # Backend app service manifest
-    │   │       └── servicemonitor.yaml    # ServiceMonitor for Prometheus
+    │   │       ├── servicemonitor.yaml    # ServiceMonitor for Prometheus
+    │   │       └── route.yaml             # OpenShift Route for backend app
     │   ├── dev/                           # Development environment
     │   │   ├── poseidon-web-app/          # Web app dev configuration
     │   │   │   └── kustomization.yaml     # Dev environment-specific patches
@@ -329,13 +327,36 @@ Should be placed in the `values.yaml` file of applications-definitions/wave-x/ d
     │       └── poseidon-backend-app/      # Backend app test configuration
     │           └── kustomization.yaml     # Test environment-specific patches
     ```
-    
+
 ### Repository Structure Explanation
 
 - **applicationsets/base/[app-name]/**: Contains base configuration specific to each application
 - **applicationsets/dev/[app-name]/, test/[app-name]/, etc.**: Environment-specific configurations and patches for each application
 - **kustomization.yaml**: Kustomize configuration files for managing variants per application and environment
+### OpenShift Route Overview
 
+OpenShift Routes expose your application services to external traffic by creating DNS entries and managing TLS termination. Each application typically includes a `route.yaml` manifest in its deployment configuration:
+
+```yaml
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: poseidon-web-app
+spec:
+    to:
+        kind: Service
+        name: poseidon-web-app
+    port:
+        targetPort: http
+    tls:
+        termination: edge
+```
+
+- **name**: The route name, usually matches your application
+- **to.name**: The service to expose
+- **tls.termination**: Controls TLS handling (`edge`, `passthrough`, or `reencrypt`)
+
+Routes allow users to access your applications via a public URL, which OpenShift automatically generates based on your cluster's domain. You can customize the hostname and TLS settings as needed for your environment.
 This structure allows each application to have its own base configuration while still maintaining environment-specific customizations.
 
 ## Step 4: Secret Management Configuration
