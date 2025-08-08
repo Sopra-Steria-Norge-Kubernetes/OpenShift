@@ -15,7 +15,7 @@ nav:
       - Secret Management:
         - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
         - External Secrets:
-          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/Introduction.md
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management//External Secrets/Introduction.md
           - Creating secret store: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/configuration-secretstore.md
           - Creating external secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/creating-external-secrets.md
           - Creating Cluster External Secret: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/cluster-external-secrets.md
@@ -27,6 +27,7 @@ nav:
         - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
         - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
         - OpenShift GitOps Best Practices: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-best-practices.md
+        - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
         - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
         - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
       - Observability:
@@ -88,7 +89,7 @@ nav:
     - Role Based Access Control: OpenShift Tenants/Tenant features/rbac.md
     - GitOps: 
       - Argo CD: OpenShift Tenants/Tenant features/GitOps/argocd.md
-      - Auto-merging existing tenants: OpenShift Tenants/Tenant features/GitOps/auto-merge-for-existing-tenants.md
+      # - Auto-merging existing tenants: OpenShift Tenants/Tenant features/GitOps/auto-merge-for-existing-tenants.md
       - Authentication Methods for ArgoCD: 
         - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-personal-access-token.md
         - Authenticate with GitHub App: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-github-app.md
