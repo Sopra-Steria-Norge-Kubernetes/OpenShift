@@ -13,7 +13,7 @@ The table below contains which changes in a team values file that would trigger 
 !!! Note
     - When deleting an existing team or creating a brand new team from scratch, it will trigger for manual approval
 
-    - If the team values file contains fields that does not exist in the helm chart or a required field is not specified, this will also trigger for manual approval
+    - If the team values file contains fields that does not exist in the helm chart or a required field is not specified, it will trigger for manual approval
 
 | **Category**      | **Field**                                   | **Allowed Actions**                     | **Restrictions**               |
 |-------------------|---------------------------------------------|-----------------------------------------|--------------------------------|
@@ -28,7 +28,7 @@ The table below contains which changes in a tenant values file that would trigge
 !!! Note
     - When deleting an existing tenant or creating a brand new tenant from scratch, it will trigger for manual approval
 
-    - If the tenant values file contains fields that does not exist in the helm chart or a required field is not specified, this will also trigger for manual approval
+    - If the tenant values file contains fields that does not exist in the helm chart or a required field is not specified, it will trigger for manual approval
 
 | **Category**      | **Field**                                   | **Allowed Actions**                     | **Restrictions**               |
 |-------------------|---------------------------------------------|-----------------------------------------|--------------------------------|
