@@ -132,6 +132,6 @@ If you encounter issues with observability features:
 Begin your observability journey by:
 1. Exploring the [built-in OpenShift observability features](./using-openshift-observability.md)
 2. Setting up [team monitoring capabilities](../../../OpenShift%20Teams/Team%20features/observability/observability.md)
-3. Configuring [application-specific monitoring](./Monitoring%20and%20Logging/configuring-monitoring-for-a-tenant.md)
+3. Configuring [application-specific monitoring](../../../OpenShift%20Tenants/Tenant%20features/configuring-monitoring-for-a-tenant.md)
 
 Remember that effective observability is an iterative process. Start with basic monitoring and gradually add more sophisticated features as your applications and understanding grow.

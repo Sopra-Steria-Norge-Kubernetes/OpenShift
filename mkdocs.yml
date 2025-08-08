@@ -33,14 +33,14 @@ nav:
       - Observability:
         - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/Introduction.md
         - Using OpenShift Observability: About Container-Platform-as-a-Service/Service Breakdown/Observability/using-openshift-observability.md
-        - Monitoring & Logging:
-          - Configure Monitoring for a Tenant: About Container-Platform-as-a-Service/Service Breakdown/Observability/Monitoring and Logging/configuring-monitoring-for-a-tenant.md
-        - Grafana:
-          - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/Grafana/configure-grafana-and-thanos-query.md
-        - Alert Forwarding:
-          - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Alert Forwarding/slack-integration-with-openshift-alerts.md
-        - Resource Management:
-          - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Observability/Resource Management/team-resource-dashboards.md
+        # - Monitoring & Logging:
+        #   - Configure Monitoring for a Tenant: About Container-Platform-as-a-Service/Service Breakdown/Observability/Monitoring and Logging/configuring-monitoring-for-a-tenant.md
+        # - Grafana:
+        - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/Grafana/configure-grafana-and-thanos-query.md
+        # - Alert Forwarding:
+        - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Alert Forwarding/slack-integration-with-openshift-alerts.md
+        # - Resource Management:
+        - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Observability/Resource Management/team-resource-dashboards.md
         # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
       - Network:
@@ -87,6 +87,7 @@ nav:
     - Environment: OpenShift Tenants/Tenant features/environments.md
     - Network Policy: OpenShift Tenants/Tenant features/networkpolicy.md
     - Role Based Access Control: OpenShift Tenants/Tenant features/rbac.md
+    - Monitoring: OpenShift Tenants/Tenant features/configuring-monitoring-for-a-tenant.md
     - GitOps: 
       - Argo CD: OpenShift Tenants/Tenant features/GitOps/argocd.md
       # - Auto-merging existing tenants: OpenShift Tenants/Tenant features/GitOps/auto-merge-for-existing-tenants.md
