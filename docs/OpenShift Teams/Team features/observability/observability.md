@@ -77,7 +77,7 @@ observability:
 Choose the appropriate size based on your monitoring needs:
 
 | Size | CPU | Memory | Recommended For |
-|------|-----|---------|-----------------|
+|------|-----|--------|-----------------|
 | `small` | 300m | 300Mi | Development, small workloads |
 | `medium` | 500m | 500Mi | Production, moderate workloads |
 | `large` | 1000m | 1Gi | High-traffic production |
@@ -85,6 +85,8 @@ Choose the appropriate size based on your monitoring needs:
 - **Parameter**: `monitoringStack.monitoringStack_size`
 - **Options**: `small`, `medium`, `large`
 - **Default**: `small`
+
+For full resource breakdown (Prometheus, Grafana, Thanos sidecar, Alertmanager, HA variants), see the dedicated sizing page: [Monitoring Stack Sizing](./monitoring-stack-sizing.md).
 
 #### High Availability
 - **Parameter**: `monitoringStack.monitoringStack_high_availability`
@@ -113,6 +115,88 @@ When enabled, the monitoring stack will deploy 2 Prometheus replicas instead of 
 
 #### Alertmanager
 - **Parameter**: `monitoringStack.monitoringStack_alertmanager`
+- **Type**: Boolean
+- **Default**: `false`
+- **Description**: Enables alert notifications and routing
+
+#### Expose Routes
+- **Parameter**: `monitoringStack.monitoringStack_expose_route`
+- **Type**: Boolean
+- **Default**: `false`
+- **Description**: Exposes Prometheus and Thanos Query interfaces via routes
+
+When enabled, the monitoring stack components will be accessible via routes:
+
+**Prometheus**: `https://prometheus-<team-name>.<cluster-apps-domain>`
+**Thanos Query**: `https://thanos-query-<team-name>.<cluster-apps-domain>`
+
+⚠️ **Security Warning**: These routes are publicly accessible without authentication when exposed for anyone who has network access to the OpenShift environment.
+
+#### Finding Your Monitoring URLs
+
+You can find the exact URLs using the OpenShift CLI:
+```bash
+# List all routes in your team namespace
+oc get routes -n <team-namespace>
+```
+
+### Getting Started
+
+1. **Choose your stack size** based on your workload
+2. **Set retention period** appropriate for your needs
+3. **Enable high availability** for production environments
+4. **Enable alertmanager** if you need notifications
+5. **Deploy your configuration** and access Grafana through your team's route
+6. **Access your services**:
+   - **Grafana**: `https://<team-name>-grafana.<cluster-apps-domain>`
+   - **Prometheus** (if route enabled): `https://prometheus-<team-name>.<cluster-apps-domain>`
+   - **Thanos Query** (if route enabled): `https://thanos-query-<team-name>.<cluster-apps-domain>`
+
+Your monitoring stack will be automatically configured with proper labels and selectors to monitor resources in your team namespace.
+
+## Monitoring Your Applications
+
+To monitor your applications with the team monitoring stack, you need to create monitoring resources that tell Prometheus how to discover and scrape metrics from your applications.
+
+### ServiceMonitor vs PodMonitor
+
+- **ServiceMonitor**: Monitors applications through Kubernetes services. Use this when you have services in front of your pods and want load balancing across replicas.
+- **PodMonitor**: Monitors pods directly. Use this for more granular control, when monitoring DaemonSets/StatefulSets, or when you don't have services.
+
+For detailed configuration examples, see:
+- [ServiceMonitor Examples](./servicemonitor-examples.md) - Basic and authenticated service monitoring
+- [PodMonitor Examples](./podmonitor-examples.md) - Direct pod monitoring and StatefulSet monitoring
+
+### Service Discovery
+
+All deployed observability services can be found in your team namespace:
+
+```bash
+# List all services
+oc get svc -n <team-namespace>
+
+# List all routes (external access)
+oc get routes -n <team-namespace>
+
+# Check specific observability pods
+oc get pods -l app.kubernetes.io/part-of=observability -n <team-namespace>
+```
+
+## In-depth description of parameters
+
+| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
+|----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
+| **Grafana Configuration**              |                                                                                                                     |                                            |                           |
+| `grafana_instance`            | Enable grafana instance in team namespace                               | true / false  | Boolean                    | false |
+| **RBAC Configuration**              |                                                                                                                     |                                            |                           |
+| `rbac.team_monitoring_edit`            | AD Group for Grafana admin access                               | my-admin-group  | String                    | "" |
+| `rbac.team_monitoring_view`            | AD Group for Grafana view access                                    | my-view-group | String                    | "" |
+| **Monitoring Stack Configuration**              |                                                                                                                     |                                            |                           |
+| `monitoringStack.enable`            | Enable Prometheus monitoring stack for team namespace                               | true / false  | Boolean                    | false |
+| `monitoringStack.monitoringStack_size`            | Size of the monitoring stack resources                               | small / medium / large  | String                    | small |
+| `monitoringStack.monitoringStack_high_availability`            | Run 2 Prometheus replicas for better reliability                                    | true / false | Boolean                    | false |
+| `monitoringStack.monitoringStack_retention`            | How long to keep metrics data                                    | 7d / 30d / 24h | String                    | 7d |
+| `monitoringStack.monitoringStack_alertmanager`            | Enable alert notifications and routing                                    | true / false | Boolean                    | false |
 - **Type**: Boolean
 - **Default**: `false`
 - **Description**: Enables alert notifications and routing

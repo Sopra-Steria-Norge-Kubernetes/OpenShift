@@ -84,6 +84,16 @@ values: |
 
 
 ```
+#### Sealing Azure Key Vault Credentials
+
+!!! warning "Do NOT commit raw client credentials"
+  Never commit the Azure AD application client_id or client_secret in plain text (including in the team values YAML). Always store them as a Sealed Secret (or equivalent secure mechanism) and only reference the resulting Kubernetes Secret.
+
+!!! info "Purpose"
+  These credentials are used by the External Secrets Operator (via ClusterSecretStore / SecretStore) to authenticate to Azure Key Vault.
+
+[Sealed Secrets documentation](../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md)
+
 
 ### GitOps Authentication Options
 
