@@ -1,8 +1,8 @@
 # Monitoring Stack Sizing
 
-This page details the estimated resource reservations for the team monitoring stack components (Prometheus, Grafana, Thanos sidecar, Alertmanager) across supported sizes and deployment modes (with / without HA, with / without Alertmanager).
+This page details the estimated resource reservations for the team monitoring stack components (Prometheus, Grafana, Thanos sidecar, Alertmanager) across supported sizes and deployment modes (with / without HA, with / without Alertmanager). In most cases small stacksize should suffice, if you are unsure, use the small.
 
-> These numbers reflect container **requests** (not limits). Always verify against your deployed resources, as platform overrides or chart updates may change defaults.
+> These numbers reflect container **requests** (not limits).
 
 ## Component Baseline (Per Size)
 
@@ -13,7 +13,7 @@ This page details the estimated resource reservations for the team monitoring st
 | Thanos Sidecar | 50m / 50Mi | 100m / 100Mi | 150m / 150Mi |
 | Alertmanager (per replica) | 50m / 100Mi | 100m / 150Mi | 150m / 200Mi |
 
-> Alertmanager is assumed to run with 2 replicas (HA) whenever enabled. All totals that include Alertmanager already account for both replicas.
+> Alertmanager run with 2 replicas (HA) whenever enabled. All totals that include Alertmanager already account for both replicas.
 
 ## Aggregated Totals
 
