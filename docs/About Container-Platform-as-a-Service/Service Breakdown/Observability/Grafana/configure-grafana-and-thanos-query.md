@@ -64,18 +64,18 @@ oc extract secret/grafana-instance-admin-credentials --to=-
 1. Inside Grafana choose **Dashboards**
 2. Click on **New** and then **Add a new panel**
 3. In the Query window, select Mixed as the data source.
-![grafana1.png](../../../img/Observability/grafana1.png)
+![grafana1.png](../../../../img/Observability/grafana1.png)
 4. In query A selecet the first data sources you will like to query
-![grafana2.png](../../../img/Observability/grafana3.png)
+![grafana2.png](../../../../img/Observability/grafana3.png)
 5. Write a query and clik on **Run queries**. A simple query to start with could be:
 ```query
 pod:container_cpu_usage:sum{}
 ```
 6. To query another datasource click on **+ Query** and repeat steps 4. and 5.
-![grafana3.png](../../../img/Observability/grafana3.png)
+![grafana3.png](../../../../img/Observability/grafana3.png)
 7. To apply these queries to your new dashboard click on **Apply** in the top right corner.
 8. The end results should look similar to this, if you have any pods running that are consuming CPU.
-![grafana4.png](../../../img/Observability/grafana4.png)
+![grafana4.png](../../../../img/Observability/grafana4.png)
 
 
 ## create_datasource.sh

@@ -125,7 +125,7 @@ Before you start configuring alerts for your project, please familiarize yoursel
 2. Apply the alerting rule to the cluster. This should be done using GitOps to ensure tracability and transparency of configuration, as well as securing an automated setup if the tenant would have to be rebuilt at some point.
 
 3. Verify that the alerting rules have been created by navigating to Observe --> Alerts for your project in the Developer view of the OpenShift console, as seen below.
-![1.png](../../img/Observability/configure-monitoring-for-tenant1.png)
+![1.png](../../../../img/Observability/configure-monitoring-for-tenant1.png)
 
 ## Sending notifications to external systems
 
