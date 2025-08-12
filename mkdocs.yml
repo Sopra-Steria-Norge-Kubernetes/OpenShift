@@ -56,6 +56,8 @@ nav:
         - Egress Firewall: About Container-Platform-as-a-Service/Service Breakdown/Network/egress-firewall.md
       - Security:
         - Advanced Cluster Security (ACS): About Container-Platform-as-a-Service/Service Breakdown/Security/advanced-cluster-security.md
+      - Resource Management:
+        - Resource Management: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/resource-management.md
       - Role Based Access Control: 
         - RBAC: About Container-Platform-as-a-Service/Service Breakdown/RBAC/rbac.md
       - Storage:
@@ -109,8 +111,6 @@ nav:
       - Quick Guide:
         - With tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-with-tenant-chart.md
         - Without tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-without-tenant-chart.md
-    - Resource Management:
-      - Resource Management: Additional Documentation/Resource Management/resource-management.md
 
 
 markdown_extensions:
