@@ -19,8 +19,12 @@ CaaS provides two primary methods for deploying an synchronising infrastructures
      2. OpenShift Tenant variable: `argocd.enable_user_defined_apps`
 
 ## Pre-requisites
-Before you can utilise the GitOps capabilties on OpenShift you need to setup your OpenShift Tenant correctly. In this repository, we will use a simple example tenant to enable the desired capabilties for both methods. the tenant definition is shown below. 
-### Setting up a Tenant
+Before you can utilise the GitOps capabilties on OpenShift you need to setup your OpenShift Tenant and/or team correctly. Below are links to both tenant and team quick start guides:
+
+- [**Team Quickstart**](../../../Quick%20Start/teams-quick-start.md)
+- [**Tenant Quickstart**](../../../Quick%20Start/tenants-quick-start.md)
+
+<!-- ### Setting up a Tenant
 Before we can start we must first define a Tenant and send it to our OCP administrators. Below is a minimal definition for setting up a tenant with two environments, `dev` and `test`, and enabling both GitOps methods above:
 ```yaml
 appname: poseidon1
@@ -55,7 +59,7 @@ values: |
 
 - Setting the variable `enable_auto_defined_apps` to true gives you the option to use the **Auto-defined ArgoCD applications** method for creating applications. 
 
-- Setting the `enable_user_defined_apps`to true gives you the option to use the **User-defined ArgoCD applications** method for creating applications. 
+- Setting the `enable_user_defined_apps`to true gives you the option to use the **User-defined ArgoCD applications** method for creating applications.  -->
 
 !!! Info
     More information on how to connect ArgoCD to your repository can be found [here](../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-introduction.md).
