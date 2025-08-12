@@ -145,9 +145,9 @@ Fill out the argo-specific section by copying the following fields in the Sealed
 
     `argocd.main_git_repository.repourl` --> `git@github.com:TeamPoseidon/poseidon1_fake_main_repo.git`
 
-**Important:**
+<!-- **Important:**
 
-* `argocd.main_git_repository.repourl` --> `git@github.com:TeamPoseidon/poseidon1_fake_main_repo.git`
+* `argocd.main_git_repository.repourl` -> `git@github.com:TeamPoseidon/poseidon1_fake_main_repo.git`
 
 Remember to also add the required variable `argocd.main_git_repository.basepath` to the tenant definition.
 
@@ -171,4 +171,4 @@ argocd:
         enable_ssh_key: true
         private_key: <Change here>
 ...
-```
+``` -->

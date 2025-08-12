@@ -41,5 +41,5 @@ In the table below, there is a more detailed description of each variable in the
 
 To learn more about our backup procedures and how the restore process works, please refer to the following resources.
 
-- [Backup Persistent Volumes using VolumeSnapshots](../../Additional%20Documentation/Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md)
-- [Backup process for tenants using Velero](../../Additional%20Documentation/Storage/Backup/backup-process-for-tenants-using-velero.md)
+- [Backup Persistent Volumes using VolumeSnapshots](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Backup/backup-persistent-volumes-using-volumesnapshots.md)
+- [Backup process for tenants using Velero](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Backup/backup-process-for-tenants-using-velero.md)

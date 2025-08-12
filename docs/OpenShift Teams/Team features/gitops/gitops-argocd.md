@@ -55,7 +55,7 @@ As in the tenant concept you also have the ability to enable the user-defined me
 
 More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
 
-* [OpenShift GitOps - Introduction](../../../Additional%20Documentation/OpenShift%20GitOps/Introduction-GitOps.md) 
+* [OpenShift GitOps - Introduction](../../../About%20Container-Platform-as-a-Service/Service%20Breakdown/GitOps/Introduction-GitOps.md) 
 
 | <div style="width:140px">**Variable**</div>            | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|

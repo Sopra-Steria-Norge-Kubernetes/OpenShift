@@ -115,7 +115,7 @@ Fill out the argo-specific section by copying the following fields in the Sealed
 * `username` --> `encrypted_username`
 * `password`--> `encrypted_password`
 
-Remember to also add the required variables `argocd.main_git_repository.repourl` and `argocd.main_git_repository.basepath` to the tenant definition.
+<!-- Remember to also add the required variables `argocd.main_git_repository.repourl` and `argocd.main_git_repository.basepath` to the tenant definition.
 
 This should result in a argo-specific section looking like this:
 ```yaml hl_lines="6 7 8 9"
@@ -137,4 +137,4 @@ argocd:
         enable_ssh_key: false
         private_key:
 ...
-```
+``` -->

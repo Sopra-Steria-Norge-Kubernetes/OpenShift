@@ -28,7 +28,7 @@ Key benefits:
 
 ## Workflow
 
-1. Define tenant with desired GitOps method → submit to OCP Admin ([Tenant Quick Start](../../../OpenShift%20Tenants/Orderopenshift-tenant-quick-start-guide.md))
+1. Define tenant with desired GitOps method → submit to OCP Admin ([Tenant Quick Start](..//../../Quick%20Start/tenants-quick-start.md))
 2. Choose `user-defined` and/or `auto-defined` application creation methods ([GitOps Setup](gitops-setup.md#gitops-methods))
 3. Define Kubernetes resources in tenant's main Git repository ([Getting Started](gitops-setup.md#getting-started))
 4. ArgoCD syncs resources from repository to cluster
