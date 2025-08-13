@@ -2,8 +2,8 @@
 
 ## Prerequsites
 
-- Completed the steps in: [**Azure Configuration**](private-helm-registry-azure.md)
-- Completed the steps in: [**OpenShift Tenant Configuration**](private-helm-registry-openshift-tenant.md)
+- Completed the steps in: [**Azure Configuration**](./private-helm-registry-azure.md)
+- Completed the steps in: [**OpenShift Tenant Configuration**](../../../../OpenShift%20Tenants/Tenant%20features/GitOps/private-helm-registry-openshift-tenant.md)
 
 ## Different methodes using a Private Helm Registry with Argo CD
 
