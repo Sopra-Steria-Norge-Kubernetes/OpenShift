@@ -88,12 +88,12 @@ values: |
       - name: team-poseidon-secrets                                 # This name can be anything, name is just a reference
         tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
         keyvault_url: https://team-poseidon-kv.vault.azure.net/     # Replace with your Key Vault URL
-        client_id: abcd1234-5678-90ab-cdef-123456789012             # Replace with your client ID
-        client_secret: 8f2b7c1e-4d2a-4e5f-bc3e-9a1d2f3e4b5c         # Example Azure-style client secret
+        client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus             # Replace with your client ID
+        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef         # Example Azure-style client secret
       - name: team-poseidon-app-secrets                             # This name can be anything, name is just a reference
         tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
         keyvault_url: https://team-poseidon-app-kv.vault.azure.net/ # Replace with your Key Vault URL
-        client_id: abcd1234-5678-90ab-cdef-123456789012             # Replace with your client ID
+        client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus             # Replace with your client ID
         client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef          # Replace with your client secret name in Key Vault
 
 
@@ -188,8 +188,8 @@ values: |
       - name: team-poseidon-secrets
         tenant_id: 12345678-1234-1234-1234-123456789012
         keyvault_url: https://team-poseidon-kv.vault.azure.net/
-        client_id: abcd1234-5678-90ab-cdef-123456789012
-        client_secret: poseidon-kv-client-secret
+        client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus
+        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef
 
   gitops:
     argocd:
