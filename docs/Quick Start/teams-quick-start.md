@@ -53,7 +53,8 @@ infra-ocp4-tenants/
 
 ### Sealing Azure Key Vault Credentials
 
-Encrypt your Azure Key Vault authentication credentials with kubeseal.
+To retrieve secrets stored in azure keyvault we must create a authentication secret for the keyvault. this must be done with sealed secret. The sealed secret will be sealed using a public certificate stored in the `infra-ocp4-tenants` repository. 
+
 [Sealed Secrets documentation](../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md).
 
 These credentials are used by the External Secrets Operator (via ClusterSecretStore / SecretStore) to authenticate to Azure Key Vault.
