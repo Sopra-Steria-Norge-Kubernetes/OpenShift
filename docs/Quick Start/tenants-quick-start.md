@@ -53,7 +53,6 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
     ```yaml
     appname: zeus
     values: |
-
       namespace:
         name: zeus
         description: "zeus"
@@ -119,59 +118,112 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
 !!! info "Multiple Applications"
     You can create multiple tenants by creating separate tenant configuration files. Each application gets its own namespaces and can have different resource requirements.
 
-## Step 3: RBAC Configuration
+## Step 3: GitOps Configuration
 
-### RBAC Setup
+Choose an authentication method for Argo CD to access your repositories.
 
-For tenants, RBAC is configured directly in the tenant:
+=== "PAT (Personal Access Token)"
+
+    ```yaml
+    gitops:
+      argocd:
+        enable_auto_defined_apps: true
+        team_repo_url: https://dev.azure.com/yourorg/tenant/_git/openshift-config
+        path: "applications"
+      authentication:
+        external_secrets:
+          secretstore: zeus-secrets
+          pat:
+          - repo_url: https://dev.azure.com/yourorg/tenant/_git/deployments
+            username: svc-zeus
+            password: zeus-pat-token
+    ```
+
+=== "GitHub App"
+
+    ```yaml
+    gitops:
+      argocd:
+        enable_auto_defined_apps: true
+        team_repo_url: https://github.com/yourorg/tenant-config
+        path: "applications"
+      authentication:
+        external_secrets:
+          secretstore: zeus-secrets
+          github_app:
+          - id: 374237872
+            installation_id: 8947359869
+            private_key: zeus-github-app-key
+            repo_url: https://github.com/yourorg/tenant-deployments
+    ```
+
+=== "SSH Key"
+
+    ```yaml
+    gitops:
+      argocd:
+        enable_auto_defined_apps: true
+        team_repo_url: git@github.com:yourorg/tenant-config.git
+        path: "applications"
+      authentication:
+        external_secrets:
+          secretstore: zeus-secrets
+          ssh_key:
+          - private_key: zeus-ssh-private-key
+            repo_url: git@github.com:yourorg/tenant-deployments.git
+    ```
+
+=== "Helm Repository"
+
+    ```yaml
+    gitops:
+      argocd:
+        enable_auto_defined_apps: true
+        team_repo_url: https://github.com/yourorg/tenant-config
+        path: "applications"
+      authentication:
+        external_secrets:
+          secretstore: zeus-secrets
+          helm_registry:
+          - username: zeus-acr-user
+            password: zeus-acr-token
+            registry_url: zeusteam.azurecr.io
+    ```
+
+## Step 4: RBAC Configuration
+
+Configure access groups directly in your tenant and provide credentials via secrets (or External Secrets).
 
 ```yaml
-# RBAC configuration for tenants will be added here
-# This section will show how to configure access control
-# without relying on team-based groups
+# Example ExternalSecret for Group Sync credentials (optional)
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: zeus-group-sync-secret
+  namespace: zeus
+spec:
+  refreshInterval: 10m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: zeus-secrets
+  target:
+    name: zeus-group-sync-secret
+    creationPolicy: Owner
+    template:
+      type: Opaque
+  data:
+    - secretKey: AZURE_CLIENT_ID
+      remoteRef:
+        key: zeus-groupsync-client-id
+    - secretKey: AZURE_CLIENT_SECRET
+      remoteRef:
+        key: zeus-groupsync-client-secret
+    - secretKey: AZURE_TENANT_ID
+      remoteRef:
+        key: zeus-groupsync-tenant-id
 ```
 
-## Step 4: Secret Management
-
-### Secret Management
-
-Configure secret management for your tenant:
-
-=== "Azure Key Vault"
-
-    ```yaml
-    # Azure Key Vault configuration for tenants will be added here
-    # This will show how to configure external secrets without team backing
-    ```
-
-=== "Kubernetes Secrets"
-
-    ```yaml
-    # Kubernetes secrets configuration for tenants will be added here
-    # This will show direct secret management approaches
-    ```
-
-## Step 5: GitOps Configuration
-
-### GitOps Setup
-
-Configure GitOps for your tenant:
-
-=== "Basic GitOps"
-
-    ```yaml
-    # Basic GitOps configuration for tenants will be added here
-    # This will include repository authentication and ArgoCD setup
-    ```
-
-=== "Advanced GitOps"
-
-    ```yaml
-    # Advanced GitOps configuration will be added here
-    # This will include multi-repository and complex deployment scenarios
-    ```
-
-## Step 6: Structure Your Deployment Repository
+## Step 5: Structure Your Deployment Repository
 
 Your deployment repository should follow this structure:
 
@@ -263,7 +315,7 @@ spec:
     termination: edge
 ```
 
-## Step 7: Using Secrets in Applications
+## Step 6: Using Secrets in Applications
 
 Reference secrets from your tenant configuration:
 
@@ -272,31 +324,18 @@ Reference secrets from your tenant configuration:
 # This will show how to reference and use secrets without team-based secret stores
 ```
 
-## Step 8: Advanced Configuration
+## Step 7: Advanced Configuration
 
 ### Resource Quotas
-
-Configure resource limits for your tenant:
-
-```yaml
-# Resource quota configuration for tenants will be added here
-```
-
-### Network Policies
-
-Control network access for tenants:
+Each tenant must have a clusterquota defined with a request. this is how much compute you expect your applications to use. If you define like the example below, your applications cant combined exceed this amount.
 
 ```yaml
-# Network policy configuration for tenants will be added here
+  requests:
+    memory: 1Gi
+    cpu: 1
 ```
-
-### Backup Configuration
-
-Enable automated backups for tenants:
-
-```yaml
-# Backup configuration for tenants will be added here
-```
+### External Traffic
+Based on the specific loadbalancer configuration outside of Openshift the steps to get traffic from internett into your application might differ. You will allways be able to contact the `Openshift Route` from the same vlan as the openshift environment, so for testing this might suffice
 
 ## Step 9: Deployment Process
 
@@ -305,55 +344,5 @@ Enable automated backups for tenants:
 3. **Commit application manifests** to your deployment repository
 4. **Verify deployment** - Check that namespaces and applications are created
 5. **Test connectivity** - Ensure external URLs are accessible
-6. **Set up monitoring** - Verify metrics and alerts are working
-
-## Monitoring and Observability
-
-### Tenant Monitoring
-
-Configure monitoring for your tenant:
-
-```yaml
-# Monitoring configuration for tenants will be added here
-# This will include Prometheus, Grafana, and alerting setup
-```
-
-### Prometheus Metrics
-
-Your tenant automatically gets:
-
-- **Resource usage metrics** (CPU, memory, storage)
-- **Application metrics** (if you configure ServiceMonitor)
-- **Network metrics** 
-- **Pod and deployment health metrics**
-
-### Grafana Dashboards
-
-Access Grafana through your team's monitoring stack to view:
-
-- Resource utilization dashboards
-- Application performance metrics
-- Infrastructure health status
-- Custom dashboards for your applications
-
-### Alerts
-
-Configure alerts for your tenant:
-
-```yaml
-monitoring:
-  deploymentsAlertsEnabled: true
-  podAlertsEnabled: true
-  storageAlertsEnabled: true
-  resourceQuotaAlertsEnabled: true
-```
-
-## Next Steps
-
-1. **Set up CI/CD pipelines** for automated testing and deployment
-2. **Configure custom monitoring** and alerting for your applications
-3. **Implement backup strategies** for persistent data
-4. **Review security practices** and network policies
-5. **Scale resources** based on application needs
 
 For additional support, contact the platform team or refer to the detailed documentation sections.
