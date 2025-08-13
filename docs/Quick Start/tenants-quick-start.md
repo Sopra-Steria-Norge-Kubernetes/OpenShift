@@ -56,8 +56,7 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
       namespace:
         name: zeus
         description: "zeus"
-        displayName: "zeus"
-        
+        displayName: "zeus"        
         requests:
           enable: true
           memory: 1Gi
@@ -76,17 +75,11 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
             - hello.net
 
       rbac:
-        secret_name: "zeus-groupsync-secret"
+        secret_name: "zeus-groupsync-secret" # This might allready have been defined globally.
         ad_group_write_access: "EXAMPLE_OpenShift_Zeus_Write"
         ad_group_read_access: "EXAMPLE_OpenShift_Zeus_Read"
 
       argocd:
-        enable_user_defined_apps_legacy: false
-        enable_user_defined_apps: false
-        enable_auto_defined_apps: true
-        syncPolicy:
-          selfHeal: true
-          prune: true
         main_git_repository:
           repourl: "https://git.example.com/example-org/zeus-deployments.git"
           basepath: applicationsets
@@ -113,6 +106,7 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
             tenant_id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
             keyvault_url: "https://kv-zeus.invalid.vault.azure.net/"
             client_id: "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
+            client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Replace with your client secret name in Key Vault
     ```
 
 !!! info "Multiple Applications"
