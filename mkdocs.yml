@@ -47,8 +47,6 @@ nav:
         - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/Grafana/configure-grafana-and-thanos-query.md
         # - Alert Forwarding:
         - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Alert Forwarding/slack-integration-with-openshift-alerts.md
-        # - Resource Management:
-        - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Observability/Resource Management/team-resource-dashboards.md
         # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
       - Network:
@@ -62,6 +60,7 @@ nav:
         - Advanced Cluster Security (ACS): About Container-Platform-as-a-Service/Service Breakdown/Security/advanced-cluster-security.md
       - Resource Management:
         - Resource Management: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/resource-management.md
+        - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/team-resource-dashboards.md
       - Role Based Access Control: 
         - RBAC: About Container-Platform-as-a-Service/Service Breakdown/RBAC/rbac.md
       - Storage:
