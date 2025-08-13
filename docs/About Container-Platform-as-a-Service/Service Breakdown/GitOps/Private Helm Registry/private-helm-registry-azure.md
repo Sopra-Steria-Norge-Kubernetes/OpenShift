@@ -57,4 +57,4 @@ Note down the ACR Login Server and the ACR Name.
 
 Note down the Application ID (client ID) and the Application Secret (Client Secret).
 
-The next step is to configure a sealed Secret for your OpenShift Tenant for integration with Argo CD. See the [OpenShift Tenant configuration for Private Helm Registry](private-helm-registry-openshift-tenant.md)
+The next step is to configure a sealed Secret for your OpenShift Tenant for integration with Argo CD. See the [OpenShift Tenant configuration for Private Helm Registry](../../../../OpenShift%20Tenants/Tenant%20features/GitOps/private-helm-registry-openshift-tenant.md)

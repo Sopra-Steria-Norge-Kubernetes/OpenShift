@@ -31,6 +31,10 @@ nav:
           - Authenticate with Personal Access Token (PAT): About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-personal-access-token.md
           - Authenticate with GitHub App: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-github-app.md
           - Authenticate with SSH: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-ssh.md
+        - Private Helm Registry:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/introduction.md
+          - Azure Configuration: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/private-helm-registry-azure.md
+          - Using a Private Helm Registry: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/private-helm-reg-usage.md
         - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
         - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
         - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
@@ -43,8 +47,6 @@ nav:
         - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/Grafana/configure-grafana-and-thanos-query.md
         # - Alert Forwarding:
         - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/Alert Forwarding/slack-integration-with-openshift-alerts.md
-        # - Resource Management:
-        - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Observability/Resource Management/team-resource-dashboards.md
         # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
         # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
       - Network:
@@ -58,6 +60,7 @@ nav:
         - Advanced Cluster Security (ACS): About Container-Platform-as-a-Service/Service Breakdown/Security/advanced-cluster-security.md
       - Resource Management:
         - Resource Management: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/resource-management.md
+        - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/team-resource-dashboards.md
       - Role Based Access Control: 
         - RBAC: About Container-Platform-as-a-Service/Service Breakdown/RBAC/rbac.md
       - Storage:
@@ -95,11 +98,7 @@ nav:
       - GitOps & ArgoCD Introduction: OpenShift Tenants/Tenant features/GitOps/gitops-introduction.md
       - GitOps - Argo CD: OpenShift Tenants/Tenant features/GitOps/gitops-argocd.md
       - GitOps - Authentication: OpenShift Tenants/Tenant features/GitOps/gitops-authentication.md
-      - Private Helm Registry:
-        - Introduction: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/introduction.md
-        - Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
-        - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
-        - Using a Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-reg-usage.md
+      - GitOps - Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/private-helm-registry-openshift-tenant.md
     - Backup: OpenShift Tenants/Tenant features/backup.md
     - Secret Managment: OpenShift Tenants/Tenant features/secret-management.md
     - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
