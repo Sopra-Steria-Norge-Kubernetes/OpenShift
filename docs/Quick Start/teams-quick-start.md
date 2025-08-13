@@ -51,9 +51,23 @@ infra-ocp4-tenants/
 
 ## Step 2: Configure Your Team
 
+### Sealing Azure Key Vault Credentials
+
+Encrypt your Azure Key Vault authentication credentials with kubeseal.
+[Sealed Secrets documentation](../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md).
+
+These credentials are used by the External Secrets Operator (via ClusterSecretStore / SecretStore) to authenticate to Azure Key Vault.
+
+!!! warning "Do NOT commit raw client credentials"
+    Never commit the Azure AD application `client_id` or `client_secret` in plain text (including in the team values YAML). Always store them as a Sealed Secret (or equivalent secure mechanism) and only reference the resulting Kubernetes Secret.
+
 ### Team Configuration Location
 
+
+
 Create your team configuration file in `team-definitions/wave-1/team-poseidon.yaml`.
+
+
 
 ### Basic Team Configuration
 
@@ -80,20 +94,10 @@ values: |
         tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
         keyvault_url: https://team-poseidon-app-kv.vault.azure.net/ # Replace with your Key Vault URL
         client_id: abcd1234-5678-90ab-cdef-123456789012             # Replace with your client ID
-        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Replace with your client secret name in Key Vault
+        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef          # Replace with your client secret name in Key Vault
 
 
 ```
-#### Sealing Azure Key Vault Credentials
-
-!!! warning "Do NOT commit raw client credentials"
-  Never commit the Azure AD application client_id or client_secret in plain text (including in the team values YAML). Always store them as a Sealed Secret (or equivalent secure mechanism) and only reference the resulting Kubernetes Secret.
-
-!!! info "Purpose"
-  These credentials are used by the External Secrets Operator (via ClusterSecretStore / SecretStore) to authenticate to Azure Key Vault.
-
-[Sealed Secrets documentation](../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md)
-
 
 ### GitOps Authentication Options
 
@@ -147,7 +151,6 @@ Choose the authentication method that matches your Git provider:
           secretstore: team-poseidon-secrets
           ssh_key:
           - private_key: poseidon-ssh-private-key
-            type: git
             repo_url: git@github.com:yourorg/poseidon-app-deployments.git  # Replace with your deployment repo URL
     ```
 

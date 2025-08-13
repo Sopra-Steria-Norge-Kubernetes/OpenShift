@@ -33,18 +33,21 @@ Legend:
 ## Calculation Formulas
 
 Let:
+
 - P = Prometheus per replica
 - G = Grafana
 - T = Thanos sidecar
 - A = Alertmanager per replica (always ×2 when enabled)
 
 Then:
+
 - Base (no Alertmanager) = P + G + T
 - Base + Alertmanager = P + G + T + (2 × A)
 - HA (no Alertmanager) = (2 × P) + G + T
 - HA + Alertmanager = (2 × P) + G + T + (2 × A)
 
 Example (small, HA + Alertmanager):
+
 - CPU: (2 × 300m) + 100m + 50m + (2 × 50m) = 850m
 - Memory: (2 × 300Mi) + 150Mi + 50Mi + (2 × 100Mi) = 1000Mi
 

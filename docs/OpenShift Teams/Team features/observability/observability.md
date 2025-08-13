@@ -9,7 +9,7 @@ With Observability you can:
 - Scrape application metrics using ServiceMonitor/PodMonitor
 - Optionally expose routes for Prometheus and Thanos Query for easy access
 
-## Minimal configuration (Grafana + Prometheus, small, no HA)
+## Minimal configuration
 See full examples here: [Observability Examples](./examples.md)
 
 ## Parameters

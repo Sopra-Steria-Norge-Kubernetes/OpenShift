@@ -2,6 +2,7 @@
 
 This guide provides the minimum steps to create a tenant and deploy your first application without requiring a pre-configured team.
 Key differences from the team-based approach include:
+
 - **No team-based RBAC**: Access groups are configured directly in the tenant YAML files
 - **No team-based secret management**: Secrets are managed directly in the tenant configuration
 - **No team-based GitOps**: Each tenant has its own GitOps configuration
@@ -50,11 +51,69 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
 === "Basic Tenant"
 
     ```yaml
-    appname: poseidon-web-app  # Replace with your application name
+    appname: zeus
     values: |
-      # Tenant configuration will be added here
-      # This section will contain the specific configuration
-      # for tenants that don't require team backing
+
+      namespace:
+        name: zeus
+        description: "zeus"
+        displayName: "zeus"
+        
+        requests:
+          enable: true
+          memory: 1Gi
+          cpu: 1
+        
+      monitoring:
+        storageAlertsEnabled: false
+      environments:
+        - name: dev
+          externalURLs:
+            - testurl.com
+            - login.microsoftonline.com
+        - name: test
+          externalURLs:
+            - woop.com
+            - hello.net
+
+      rbac:
+        secret_name: "zeus-groupsync-secret"
+        ad_group_write_access: "EXAMPLE_OpenShift_Zeus_Write"
+        ad_group_read_access: "EXAMPLE_OpenShift_Zeus_Read"
+
+      argocd:
+        enable_user_defined_apps_legacy: false
+        enable_user_defined_apps: false
+        enable_auto_defined_apps: true
+        syncPolicy:
+          selfHeal: true
+          prune: true
+        main_git_repository:
+          repourl: "https://git.example.com/example-org/zeus-deployments.git"
+          basepath: applicationsets
+
+      gitops:
+        authentication:
+          external_secrets:
+            secretstore: zeus-secrets
+            github_app:
+            - repo_url: "https://git.example.com/example-org/zeus-deployments"
+              id: "123456"
+              installation_id: "987654321"
+              private_key: "github-app-zeus-private-key"
+            helm_registry:
+            - registry_url: "registry.example.com"
+              username: "svc-zeus-gitops"
+              password: "kv-zeus-acr-token"
+
+      secret_management:
+        external_secrets:
+          cluster_secret_stores:
+          - name: zeus-secrets
+            environment: dev
+            tenant_id: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+            keyvault_url: "https://kv-zeus.invalid.vault.azure.net/"
+            client_id: "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
     ```
 
 !!! info "Multiple Applications"
