@@ -53,7 +53,7 @@ infra-ocp4-tenants/
 
 ### Sealing Azure Key Vault Credentials
 
-To retrieve secrets stored in azure keyvault we must create a authentication secret for the keyvault. this must be done with sealed secret. The sealed secret will be sealed using a public certificate stored in the `infra-ocp4-tenants` repository. 
+To retrieve secrets stored in Azure KeyVault we must create a authentication secret for the keyvault. this must be done with sealed secret. The sealed secret will be sealed using a public certificate stored in the `infra-ocp4-tenants` repository. 
 
 [Sealed Secrets documentation](../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md).
 
@@ -64,11 +64,7 @@ These credentials are used by the External Secrets Operator (via ClusterSecretSt
 
 ### Team Configuration Location
 
-
-
 Create your team configuration file in `team-definitions/wave-1/team-poseidon.yaml`.
-
-
 
 ### Basic Team Configuration
 
@@ -90,14 +86,12 @@ values: |
         tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
         keyvault_url: https://team-poseidon-kv.vault.azure.net/     # Replace with your Key Vault URL
         client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus             # Replace with your client ID
-        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef         # Example Azure-style client secret
+        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Example Azure-style client secret
       - name: team-poseidon-app-secrets                             # This name can be anything, name is just a reference
         tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
         keyvault_url: https://team-poseidon-app-kv.vault.azure.net/ # Replace with your Key Vault URL
         client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus             # Replace with your client ID
-        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef          # Replace with your client secret name in Key Vault
-
-
+        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Replace with your client secret name in Key Vault
 ```
 
 ### GitOps Authentication Options
