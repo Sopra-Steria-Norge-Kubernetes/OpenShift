@@ -44,7 +44,6 @@ environments:
   - name: dev
     custom_auto_defined_targetRevision: false
 argocd:
-  enable_user_defined_apps_legacy: true
   enable_user_defined_apps: false
   enable_auto_defined_apps: true
 ...
