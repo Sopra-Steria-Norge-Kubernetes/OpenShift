@@ -28,7 +28,7 @@ By setting these parameters, you can enable and customize the integration to sen
 
 For more information about configuring the Slack alert integration, read the following guide: 
 
-- [Slack Alert Integration with OpenShift Alerts](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Observability/Alert%20Forwarding/slack-integration-with-openshift-alerts.md)
+- [Slack Alert Integration with OpenShift Alerts](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Observability/slack-integration-with-openshift-alerts.md)
 
 
 ## In-depth description of parameters

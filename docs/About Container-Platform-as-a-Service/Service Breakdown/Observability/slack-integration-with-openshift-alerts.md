@@ -6,7 +6,7 @@ This user guide describes how to set up a Slack integration for OpenShift alerts
 ### alertmanagerConfig for Slack
 
 This diagram represents a monitoring setup for an OpenShift environment using Prometheus and Slack for notifications.
-![alertmanagerConfig](../../../../img/Monitoring/alertmanagerConfig-design.png)
+![alertmanagerConfig](../../../img/Monitoring/alertmanagerConfig-design.png)
 
 
 ## Prerequisites
@@ -72,7 +72,7 @@ kubeseal --cert /path/to/pub.cert --scope cluster-wide -f secret.yaml -o yaml > 
 
 Replace `/path/to/pub.cert` with the path to your public certificate. `secret.yaml` is the path to the Secret YAML file you created in the first step. The sealed secret will be outputted to `sealed_secret.yaml`.
 
-**Read more about encrypting a secret with kubeseal from this** [guide](../../Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md)
+**Read more about encrypting a secret with kubeseal from this** [guide](../Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md)
 
 ## Helm Chart Configuration for Slack Alerts
 
@@ -149,9 +149,9 @@ spec:
 <div class="grid" markdown>
 
 **Alert is firing**
-![slack-alert-firing](../../../../img/Monitoring/slack-alert-firing.png){ .card }
+![slack-alert-firing](../../../img/Monitoring/slack-alert-firing.png){ .card }
 
 **Alert is resolved**
-![slack-alert-resovled](../../../../img/Monitoring/slack-alert-resolved.png){ .card }
+![slack-alert-resovled](../../../img/Monitoring/slack-alert-resolved.png){ .card }
 
 </div>
