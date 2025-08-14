@@ -81,16 +81,16 @@ This documentation is organized into the following sections:
 
 ### Core Observability Features
 - **[Using OpenShift Observability](./using-openshift-observability.md)**: Native OpenShift monitoring capabilities
-- **[Configure Grafana and Thanos Query](./Grafana/configure-grafana-and-thanos-query.md)**: Setting up advanced visualization and querying
+- **[Configure Grafana and Thanos Query](./configure-grafana-and-thanos-query.md)**: Setting up advanced visualization and querying
 
 ### Network Security
-- **[Team Network Policies](team-network-policies.md)**: Understanding network security in team namespaces
+- **[Team Network Policies](./team-network-policies.md)**: Understanding network security in team namespaces
 
 ### Application Monitoring
-- **[Configuring Monitoring for a Tenant](./Monitoring%20and%20Logging/configuring-monitoring-for-a-tenant.md)**: Custom alerts and monitoring rules for your applications
+- **[Configuring Monitoring for a Tenant](./configuring-monitoring-for-a-tenant.md)**: Custom alerts and monitoring rules for your applications
 
 ### Network Monitoring
-- **[Using Network Observability](using-network-observability.md)**: Network traffic analysis and monitoring
+- **[Using Network Observability](./using-network-observability.md)**: Network traffic analysis and monitoring
 
 ## Best Practices
 

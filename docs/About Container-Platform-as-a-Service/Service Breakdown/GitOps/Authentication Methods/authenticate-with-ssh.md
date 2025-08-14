@@ -29,7 +29,23 @@ Log in to your GitHub profile that has access to the repository you want access 
 2. Click on the **New SSH key** button on the top right corner
 3. Add the newly created public key starting with `ssh-rsa ...` and give it an informative name.
 
-### Create a secret for SSH
+## Using Your SSH Key for Authentication
+
+There are two options availible for authentication for SSH keys in both teams and tenants. One by using **External Secrets** utilizing a ClusterSecretStore or using **Sealed Secrets**.
+
+### External Secrets - Option A
+
+!!! warning
+    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Key Vault provider.
+
+When using the External Secrets option you input the non sensitive values in plain-text. for the sensitive values you refrence the name of the secret stored in your Azure key Vault connected with your ClusterSecretStore.
+
+* `url` --> `repo_url`
+* `sshPrivateKey`--> `private_key` --> Name of secret stored in Azure Key Vault
+
+### Sealed Secrets - Option B
+
+#### Create a secret for SSH
 
 Create a secret for your Github SSH. 
 Fill out the yaml below.
@@ -95,7 +111,7 @@ Fill out the yaml below.
     ```
 
 
-### Encrypt the Secret with Kubeseal
+#### Encrypt the Secret with Kubeseal
 
 To seal the secret with `kubeseal`, you can use the following command:
 
@@ -131,13 +147,13 @@ spec:
 
 ```
 
-### Fill out the argo-specific section in your tenant definition
+#### Fill out the argo-specific section in your team or tenant definition
 
-Fill out the argo-specific section by copying the following fields in the Sealed secret to the tenant variable `argocd.main_git_repository` inside your tenant definition:
+Fill out the argo-specific section by copying the following fields in the Sealed secret to the `gitops.authentication.sealed_secrets.ssh_key` feature inside your team or tenant definition:
 
-* `url` --> `encrypted_url`
-* `type` --> `encrypted_type`
-* `sshPrivateKey` --> `ssh_key.private_key`
+* `url` --> `repo_url`
+* `type` --> `type`
+* `sshPrivateKey` --> `private_key`
 
 
 !!! Note
@@ -145,30 +161,11 @@ Fill out the argo-specific section by copying the following fields in the Sealed
 
     `argocd.main_git_repository.repourl` --> `git@github.com:TeamPoseidon/poseidon1_fake_main_repo.git`
 
-<!-- **Important:**
 
-* `argocd.main_git_repository.repourl` -> `git@github.com:TeamPoseidon/poseidon1_fake_main_repo.git`
+### Useful Links
 
-Remember to also add the required variable `argocd.main_git_repository.basepath` to the tenant definition.
+See [Install Kubeseal](../../Secret%20Management/Sealed%20Secrets/install-kubeseal.md) for instructions on how to install Kubeseal
 
-This should result in a argo-specific section looking like this:
-```yaml hl_lines="4 4 6 7 16 17"
-...
-argocd: 
-    main_git_repository:
-      repourl: <Change here>
-      basepath:
-      encrypted_url: <Change here>
-      encrypted_type: <Change here>
-      encrypted_username: 
-      encrypted_password: 
-      github_app: 
-        enable_app: false
-        id: 
-        installation_id: 
-        private_key:
-      ssh_key:
-        enable_ssh_key: true
-        private_key: <Change here>
-...
-``` -->
+See [GitOps - Authentication (Team)](../../../../OpenShift%20Teams/Team%20features/gitops/gitops-authentication.md) for the feature template for teams
+
+See [GitOps - Authentication (Tenant)](../../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-authentication.md) for the feature template for tenants

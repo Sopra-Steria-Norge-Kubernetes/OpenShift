@@ -25,7 +25,25 @@ Follow the steps below to create a GitHub App suited for ArgoCD:
 
    ![Github App Dashboard](../../../../img/Openshift%20Tenants/PAT_github-app-dashboard.png)
 
-### Create a secret for Github App
+## Using Your GitHub App for Authentication
+
+There are two options availible for authentication for GitHub App in both teams and tenants. One by using **External Secrets** utilizing a ClusterSecretStore or using **Sealed Secrets**.
+
+### External Secrets - Option A
+
+!!! warning
+    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Key Vault provider.
+
+When using the External Secrets option you input the non sensitive values in plain-text. for the sensitive values you refrence the name of the secret stored in your Azure key Vault connected with your ClusterSecretStore.
+
+* `url` --> `repo_url` 
+* `githubAppId` --> `id`
+* `githubAppInstallationID` --> `installation_id`
+* `githubAppPrivateKey` --> `private_key` --> Name of secret stored in Azure Key Vault
+
+### Sealed Secrets - Option B
+
+#### Create a secret for Github App
 
 Create a secret for your Github App.
 Fill out the yaml below.
@@ -93,7 +111,7 @@ Fill out the yaml below.
     ```
 
 
-### Encrypt the Secret with Kubeseal
+#### Encrypt the Secret with Kubeseal
 
 To seal the secret with `kubeseal`, you can use the following command:
 
@@ -131,39 +149,20 @@ spec:
 
 ```
 
-### Fill out the argo-specific section in your tenant definition
-Fill out the argo-specific section by copying the following fields in the Sealed secret to the tenant variable `argocd.main_git_repository` inside your tenant definition:
-<!-- 
-   * `true` -> `github_app.enable_app`
-   * `type` -> `encrypted_type`
-   * `url` -> `encrypted_url`
-   * `githubAppId` -> `github_app.id`
-   * `githubAppInstallationID` -> `github_app.installation_id`
-   * `githubAppPrivateKey` -> `github_app.private_key`
+#### Fill out the argo-specific section in your team or tenant definition
+Fill out the argo-specific section by copying the following fields in the Sealed secret to the `gitops.authentication.sealed_secrets.github_app` feature inside your team or tenant definition:
 
-Remember to also add the required variables `argocd.main_git_repository.repourl` and `argocd.main_git_repository.basepath` to the tenant definition.
-
-This should result in a argo-specific section looking like this:
-```yaml hl_lines="6 7 11 12 13 14"
-...
-argocd: 
-    main_git_repository:
-      repourl: 
-      basepath:
-      encrypted_url: <Change here>
-      encrypted_type: <Change here>
-      encrypted_username:
-      encrypted_password: 
-      github_app: 
-        enable_app: true
-        id: <Change here>
-        installation_id: <Change here>
-        private_key: <Change here>
-      ssh_key:
-        enable_ssh_key: false
-        private_key:
-...
-``` -->
+* `url` -> `repo_url`
+* `type` -> `type`
+* `githubAppId` -> `id`
+* `githubAppInstallationID` -> `installation_id`
+* `githubAppPrivateKey` -> `private_key`
 
 
+### Useful Links
 
+See [Install Kubeseal](../../Secret%20Management/Sealed%20Secrets/install-kubeseal.md) for instructions on how to install Kubeseal
+
+See [GitOps - Authentication (Team)](../../../../OpenShift%20Teams/Team%20features/gitops/gitops-authentication.md) for the feature template for teams
+
+See [GitOps - Authentication (Tenant)](../../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-authentication.md) for the feature template for tenants
