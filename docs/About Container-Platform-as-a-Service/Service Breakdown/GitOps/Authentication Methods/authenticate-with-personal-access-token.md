@@ -3,7 +3,7 @@
 For the authentication methods, you must add the GitHub repository URL and the basepath for your applications:
 
 - `argocd.main_git_repository.repourl`: Plaintext HTTPS Git URL for repository where your applications are stored 
--  `argocd.main_git_repository.basepath`: Basepath is where argoCD will look to find your application definions. ArgoCD will look in your git repository for path: `$basepath/$environment/applications/`
+- `argocd.main_git_repository.basepath`: Basepath is where argoCD will look to find your application definions. ArgoCD will look in your git repository for path: `$basepath/$environment/applications/`
 
 ## Authenticate with Personal Access Token (PAT)
 
@@ -26,9 +26,26 @@ Fill out the required fields and choose a sensible Expiration, select the correc
 
 And then press **"Generate token"**. You now have a PAT to use for the next steps.
 
-### Create a secret for PAT
+## Using Your PAT for Authentication
 
-Create a secret for your git repository.
+There are two options availible for authentication for PAT tokens in both teams and tenants. One by using **External Secrets** utilizing a ClusterSecretStore or using **Sealed Secrets**.
+
+### External Secrets - Option A
+
+!!! warning
+    To use external secrets for defining authentication methodes, you need to have set up a ClusterSecretStore in your team to pull down the credentials from your Key Vault provider.
+
+When using the External Secrets option you input the non sensitive values in plain-text. for the sensitive values you refrence the name of the secret stored in your Azure key Vault connected with your ClusterSecretStore.
+
+* `url` --> `repo_url`
+* `username` --> `username`
+* `password`--> `password` --> Name of secret stored in Azure Key Vault
+
+### Sealed Secrets - Option B
+
+#### Create a secret for PAT
+
+When using the External Secrets option you need to first create a secret for your git repository.
 Fill out the yaml below. 
 
 === "Secret"
@@ -70,7 +87,7 @@ Fill out the yaml below.
 !!! Note
     For the git url use the HTTPS url of the git repository.
 
-### Encrypt the Secret with Kubeseal
+#### Encrypt the Secret with Kubeseal
 
 To seal the secret with `kubeseal`, you can use the following command:
 
@@ -106,35 +123,18 @@ spec:
     type: Opaque
 ```
 
-### Fill out the argo-specific section in your tenant definition
+#### Fill out the argo-specific section in your team or tenant definition
 
-Fill out the argo-specific section by copying the following fields in the Sealed secret to the tenant variable `argocd.main_git_repository` inside your tenant definition:
+Fill out the argo-specific section by copying the following fields in the Sealed secret to the `gitops.authentication.sealed_secrets.pat` feature inside your team or tenant definition:
 
-* `url` --> `encrypted_url`
-* `type` --> `encrypted_type`
-* `username` --> `encrypted_username`
-* `password`--> `encrypted_password`
+* `url` --> `repo_url`
+* `type` --> `type`
+* `username` --> `username`
+* `password`--> `password`
 
-<!-- Remember to also add the required variables `argocd.main_git_repository.repourl` and `argocd.main_git_repository.basepath` to the tenant definition.
 
-This should result in a argo-specific section looking like this:
-```yaml hl_lines="6 7 8 9"
-...
-argocd: 
-    main_git_repository:
-      repourl: 
-      basepath:
-      encrypted_url: <Change here>
-      encrypted_type: <Change here>
-      encrypted_username: <Change here>
-      encrypted_password: <Change here>
-      github_app: 
-        enable_app: false
-        id: 
-        installation_id: 
-        private_key: 
-      ssh_key:
-        enable_ssh_key: false
-        private_key:
-...
-``` -->
+### Useful Links
+
+See [GitOps - Authentication (Team)](../../../../OpenShift%20Teams/Team%20features/gitops/gitops-authentication.md) for the feature template for teams
+
+See [GitOps - Authentication (Tenant)](../../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-authentication.md) for the feature template for tenants
