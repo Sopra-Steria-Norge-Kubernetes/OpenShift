@@ -161,6 +161,8 @@ Fill out the argo-specific section by copying the following fields in the Sealed
 
 ### Useful Links
 
+See [Install Kubeseal](../../Secret%20Management/Sealed%20Secrets/install-kubeseal.md) for instructions on how to install Kubeseal
+
 See [GitOps - Authentication (Team)](../../../../OpenShift%20Teams/Team%20features/gitops/gitops-authentication.md) for the feature template for teams
 
 See [GitOps - Authentication (Tenant)](../../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-authentication.md) for the feature template for tenants
