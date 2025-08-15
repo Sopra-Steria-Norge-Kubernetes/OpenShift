@@ -13,14 +13,14 @@ Sopra Steria’s Container Platform as a Service (CPaaS) is a managed Kubernetes
 CPaaS is delivered through a layered service model and can be tailored to meet different needs for compliance, control, and developer enablement.
 
 
-## 🧱 What the Platform Consists Of
+## What the Platform Consists Of
 
 
 The diagram below illustrates how the service is composed:
 
 ![Container Platform Service Layers](../../img/About Container-Platform-as-a-Service/service_overview.png)
 
-CPaaS is built on **three service layers**:
+The service is built in **three layers**, which can be tailored to match each customer’s specific requirements.
 
 ### 1. **Infrastructure Layer**
 - Delivered from **Sopra Steria’s SolidCloud**, p**ublic cloud (Azure, AWS, GCP)**, or a **sovereign cloud setup** in Sopra Steria’s data center, optionally extended or isolated to the customer’s own data center
@@ -44,11 +44,11 @@ These add-ons provide full developer environments and operational support:
 - Private container registry
 - Advanced security policies and observability
 
-## 📦 Service Variants
+## Service Variants
 
 Based on your organization’s needs, you choose one or more of the following **service variants**:
 
-### 🛡️ **Dedicated Container Platform**
+### **Dedicated Container Platform**
 A fully isolated platform environment designed for customers with **strict security**, **compliance**, or **data residency** requirements.
 
 - Runs on **dedicated infrastructure**, operated by Sopra Steria or hosted on-premises
@@ -58,7 +58,7 @@ A fully isolated platform environment designed for customers with **strict secur
 
 ---
 
-### ⚙️ **Cluster as a Service (CaaS)**
+###  **Cluster as a Service (CaaS)**
 A **dedicated OpenShift cluster** delivered with the full foundation service layer.
 
 - Hosted on Sopra Steria SolidCloud or public cloud
@@ -76,7 +76,7 @@ A **dedicated OpenShift cluster** delivered with built-in developer environments
 - Delivered on SolidCloud or public cloud
 
 ---
-## 🔄 How It Fits Together
+##  How It Fits Together
 
 All customers receive **dedicated OpenShift clusters**. The main differences between the service variants lie in:
 
@@ -95,7 +95,7 @@ All customers receive **dedicated OpenShift clusters**. The main differences bet
 > 🔁 = Available optionally per cluster  
 > ❌ = Not included
 
-## 🧭 Which Setup Is Right for You?
+## Which Setup Is Right for You?
 
 Choosing the right setup depends on your organization’s compliance needs, internal platform maturity, and how much of the operational responsibility you want to take on.
 

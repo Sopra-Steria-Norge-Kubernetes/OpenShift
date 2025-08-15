@@ -1,8 +1,9 @@
 # OpenShift Teams 
 
 ## What is a Team?
+To simplify the organisation and create a landing zone for developer teams we have created **OpenShift Teams**.
 
-**Teams** are organizational units that enable centralized management of multiple related tenants. Teams provide shared resources and configurations that simplify administration for development teams managing multiple applications or microservices.
+**Teams** are organizational units that enable centralized management of multiple related runtime environments - **OpenShft Tenants** Teams provide shared resources and configurations that simplify administration for development teams managing multiple applications or microservices.
 
 When a team is created in OpenShift, a dedicated namespace is established where all common secrets, service accounts, and shared resources are managed centrally.
 

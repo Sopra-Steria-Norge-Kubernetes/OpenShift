@@ -10,8 +10,7 @@ nav:
     - Introduction: About Container-Platform-as-a-Service/introduction.md
     - Service Breakdown: 
       - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
-      - OpenShift Teams: About Container-Platform-as-a-Service/Service Breakdown/openshift-teams.md
-      - OpenShift Tenants: About Container-Platform-as-a-Service/Service Breakdown/openshift-tenants.md
+      - Core Concepts: About Container-Platform-as-a-Service/Service Breakdown/core-concepts.md
       - Secret Management:
         - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
         - External Secrets:

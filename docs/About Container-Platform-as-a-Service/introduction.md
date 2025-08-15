@@ -45,16 +45,17 @@ CPaaS is available on multiple infrastructure backends:
 
 ## Service Levels & Support
 
-* 99.95% uptime SLA, supported by fault‑tolerant OpenShift control and runtime nodes
-* Monitoring via Prometheus/Grafana and a dedicated Remote Operations Centre
-* 24x7 support aligned with ITIL/ISO20000 incident and change management processes
+* Enterprise-grade SLA designed and customised to meet each customer’s operational and business needs
+* High availability delivered through fault-tolerant OpenShift control and runtime nodes
+* Proactive monitoring with Prometheus/Grafana and a dedicated Remote Operations Centre
+* 24x7 support aligned with ITIL/ISO20000-compliant incident and change management processes
 
 ## Who Is It For?
 
 Sopra Steria Container management services is ideal for:
 
 * Enterprises adopting container platforms for modern applications
-* Public sector organizations with compliance and sovereignty needs
+* Organizations with compliance and sovereignty needs
 * Teams seeking built-in DevSecOps and GitOps workflows without managing infrastructure
 
 ⸻
