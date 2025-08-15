@@ -11,17 +11,6 @@ nav:
     - Service Breakdown: 
       - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
       - Core Concepts: About Container-Platform-as-a-Service/Service Breakdown/core-concepts.md
-      - Secret Management:
-        - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
-        - External Secrets:
-          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management//External Secrets/Introduction.md
-          - Creating secret store: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/configuration-secretstore.md
-          - Creating external secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/creating-external-secrets.md
-          - Creating Cluster External Secret: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/cluster-external-secrets.md
-        - Sealed Secrets:
-          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/Introduction.md
-          - Encrypt secrets with SealedSecrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
-          - Install Kubeseal: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/install-kubeseal.md
       - GitOps:
         - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
         - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
@@ -37,6 +26,18 @@ nav:
         - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
         - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
         - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
+      - Secret Management:
+        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Introduction.md
+        # - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
+        - External Secrets:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/Introduction.md
+          - Creating secret store: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/configuration-secretstore.md
+          - Creating external secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/creating-external-secrets.md
+          - Creating Cluster External Secret: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/cluster-external-secrets.md
+        - Sealed Secrets:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/Introduction.md
+          - Encrypt secrets with SealedSecrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
+          - Install Kubeseal: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/install-kubeseal.md
       - Observability:
         - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/Introduction.md
         - Using OpenShift Observability: About Container-Platform-as-a-Service/Service Breakdown/Observability/using-openshift-observability.md
