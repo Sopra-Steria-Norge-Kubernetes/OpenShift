@@ -1,8 +1,7 @@
 
 # Observability Documentation
-
+<!-- TODO REMOVE fluff. Don't need to tell what obseravility is. explain rather what we deliver. What we deliver on a cluster level and how it is connected to team and tenants. -->
 ## Introduction
-
 This documentation provides comprehensive guidance for developers on using observability features within the OpenShift Container Platform managed by Sopra Steria. Observability is crucial for maintaining healthy applications and understanding system behavior in production environments.
 
 ## What is Observability?
