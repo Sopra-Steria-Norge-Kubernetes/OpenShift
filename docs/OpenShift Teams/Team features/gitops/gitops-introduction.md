@@ -2,7 +2,7 @@
 
 The `gitops` feature contains two main sections: `argocd` & `authentication`. The `authentication` section i used to define the authentication credential utilized by Argo CD. The `argocd` section is used to define the repository Argo CD will connect to and the path where Argo CD will search for applications & applicationsets 
 
-You can read more in depth about this feature by following this link: [ArgoCD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
+You can read more in depth about this feature by following this link: [ArgoCD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-introduction.md)
 
 On this page we will go through a simple example to get started with the gitops feature in addition to showing all possible fields and give an in depth description of each of the fields
 
@@ -72,6 +72,8 @@ gitops:
       helm_registry:
       - username: <ACR username encrypted with sealedsecret>
         password: <ACR access token encrypted with sealedsecret>
+        enableOCI: ""
+        type: ""
         registry_url: <ACR login server url encrypted with sealedsecret>
       github_app: 
       - id: <The app id for your GitHub App encrypted with sealedsecrets>

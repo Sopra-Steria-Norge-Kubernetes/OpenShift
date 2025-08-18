@@ -2,7 +2,8 @@
 
 ## What is Backup?
 
-Backup in OpenShift refers to the practice of creating copies of your application’s data and configuration, ensuring that you can restore your system to a previous state in case of data loss, corruption, or disaster. Regularly scheduled backups are essential for disaster recovery and business continuity.
+Backup in OpenShift refers to the practice of creating copies of your application’s data and configuration, ensuring that you can restore your system to a previous state in case of data loss, corruption, or disaster.
+
 
 ## How to configure Backup
 
@@ -20,7 +21,7 @@ To configure backups for your OpenShift tenant using our Helm chart, include the
 ... 
 ```
 
-By setting these parameters, you can automate the process of taking regular backups, specifying the frequency, naming, and retention of each backup. This ensures that your data is consistently protected and can be restored as needed, aligning with best practices for disaster recovery and operational resilience.
+By setting these parameters, you can automate the process of taking regular backups, specifying the frequency, naming, and retention of each backup. This ensures that your data is consistently protected and can be restored as needed. 
 
 ## In-depth description of parameters
 
@@ -40,5 +41,5 @@ In the table below, there is a more detailed description of each variable in the
 
 To learn more about our backup procedures and how the restore process works, please refer to the following resources.
 
-- [Backup Persistent Volumes using VolumeSnapshots](../../Additional%20Documentation/Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md)
-- [Backup process for tenants using Velero](../../Additional%20Documentation/Storage/Backup/backup-process-for-tenants-using-velero.md)
+- [Backup Persistent Volumes using VolumeSnapshots](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Backup/backup-persistent-volumes-using-volumesnapshots.md)
+- [Backup process for tenants using Velero](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Backup/backup-process-for-tenants-using-velero.md)

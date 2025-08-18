@@ -6,7 +6,7 @@ OpenShift tenants support configuring one or more `ClusterSecretStore` and `Secr
 * A **SecretStore** is scoped to a specific namespace or environment.
 
 Both types of stores integrate with external Key Management Services (KMS), such as Azure Key Vault, to fetch and manage secrets within OpenShift.
-You can read more about how External Secrets work in [this section](../../Additional%20Documentation/Secret%20Managment/External%20Secrets/Introduction.md).
+You can read more about how External Secrets work in [this section](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/External%20Secrets/Introduction.md).
 
 In addition to reading secrets, tenants can now use `ClusterSecretStore` to automatically create common secrets through predefined templates. This includes: 
 
@@ -63,9 +63,9 @@ A `ClusterSecretStore` defines a connection to an Azure Key Vault and enables sh
 
 To allow OpenShift to authenticate with Azure Key Vault, the credentiwwwwwwals from the App Registration must be encrypted before being stored in the Git repository. This is done using `SealedSecrets`, which ensures that only the `SealedSecrets controller` running in the OpenShift cluster can decrypt the values.
 
-You can encrypt the credentials using the `scripts/encrypt_client_credentials.sh` script in your tenant repository, or follow [this guide](../../Additional%20Documentation/Secret%20Managment/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md) to perform the encryption manually.
+You can encrypt the credentials using the `scripts/encrypt_client_credentials.sh` script in your tenant repository, or follow [this guide](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md) to perform the encryption manually.
 
-Additional details on `SealedSecrets` can be found [here](../../Additional%20Documentation/Secret%20Managment/Sealed%20Secrets/Introduction.md).
+Additional details on `SealedSecrets` can be found [here](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/Introduction.md).
 
 ## Setting up SecretStore
 A `SecretStore` defines a connection to an Azure Key Vault that is scoped to a single namespace in OpenShift. This is useful when secrets should only be accessible within a specific environment rather than shared across multiple namespaces.

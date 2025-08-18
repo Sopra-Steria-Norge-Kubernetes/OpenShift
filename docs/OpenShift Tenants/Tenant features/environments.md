@@ -22,8 +22,6 @@ To configure an environment within a namespace, include the following YAML confi
 ...
 ```
 
-By configuring these parameters, you can define multiple environments within a namespace, each tailored to the specific requirements of different stages in your development and deployment lifecycle.
-
 ## In-depth description of parameters
 
 In the table below, you can find a more detailed description of each variable in the `environment` feature:
@@ -43,4 +41,4 @@ In the table below, you can find a more detailed description of each variable in
 `custom_auto_defined_targetRevision` allows setting the targetRevision at the application level for different environments in OpenShift.
 Read more about this feature here: 
   
-  - [Custom auto-defined targetRevision](../../Additional%20Documentation/OpenShift%20GitOps/cutom-auto-defined-target-revision.md)
+  - [Custom auto-defined targetRevision](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/GitOps/cutom-auto-defined-target-revision.md)

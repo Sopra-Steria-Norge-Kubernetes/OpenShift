@@ -1,4 +1,4 @@
-site_name: OpenShift
+site_name: Container Platform as a Service
 site_url: https://sopra-steria-norge-kubernetes.github.io/OpenShift/
 repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 repo_name: Sopra Steria - OpenShift
@@ -6,73 +6,102 @@ edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/d
 
 nav: 
   #- Get started: index.md
-  - Container Platform as a Service: 
+  - Home: 
     - Introduction: About Container-Platform-as-a-Service/introduction.md
-    - Service breakdown: About Container-Platform-as-a-Service/Service-breakdown.md
-    - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
-    - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
-    - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
-    - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
-  - Developer Teams:
-    - Team Introduction: OpenShift Teams/team-introduction.md
-    - Team Features:
-      - Team: OpenShift Teams/Team features/team.md
-      - Resource Management: OpenShift Teams/Team features/resource-management.md
-      - RBAC: OpenShift Teams/Team features/rbac.md
-      - Observability: OpenShift Teams/Team features/observability.md
-      - Gitops:
-        - GitOps Introduction: OpenShift Teams/Team features/gitops/gitops-introduction.md
-        - GitOps - Argo CD: OpenShift Teams/Team features/gitops/gitops-argocd.md
-        - GitOps - Authentication: OpenShift Teams/Team features/gitops/gitops-authentication.md
-      - Secret Management: OpenShift Teams/Team features/secret-management.md
-  - OpenShift Tenants: 
-    - Introduction: OpenShift Tenants/Introduction-to-openshift-tenants.md
-    - Quick start: OpenShift Tenants/Orderopenshift-tenant-quick-start-guide.md
-    - OpenShift Tenant Template: OpenShift Tenants/OpenShift-tenant-template.md
-    - Tenant features:
-      - Namespace: OpenShift Tenants/Tenant features/namespace.md
-      - Environment: OpenShift Tenants/Tenant features/environments.md
-      - Network Policy: OpenShift Tenants/Tenant features/networkpolicy.md
-      - Role Based Access Control: OpenShift Tenants/Tenant features/rbac.md
-      - GitOps: 
-        - Argo CD: OpenShift Tenants/Tenant features/GitOps/argocd.md
-        - Auto-merging existing tenants: OpenShift Tenants/Tenant features/GitOps/auto-merge-for-existing-tenants.md
-        - Authentication Methods for ArgoCD: 
-          - Authenticate with Personal Access Token (PAT): OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-personal-access-token.md
-          - Authenticate with GitHub App: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-github-app.md
-          - Authenticate with SSH: OpenShift Tenants/Tenant features/GitOps/Authentication Methods for ArgoCD/authenticate-with-ssh.md
+    - Service Breakdown: 
+      - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
+      - Core Concepts: About Container-Platform-as-a-Service/Service Breakdown/core-concepts.md
+      - Secret Management:
+        - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
+        - External Secrets:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management//External Secrets/Introduction.md
+          - Creating secret store: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/configuration-secretstore.md
+          - Creating external secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/creating-external-secrets.md
+          - Creating Cluster External Secret: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/External Secrets/cluster-external-secrets.md
+        - Sealed Secrets:
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/Introduction.md
+          - Encrypt secrets with SealedSecrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
+          - Install Kubeseal: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Sealed Secrets/install-kubeseal.md
+      - GitOps:
+        - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
+        - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
+        - OpenShift GitOps Best Practices: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-best-practices.md
+        - GitOps - Authentication Methods:
+          - Authenticate with Personal Access Token (PAT): About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-personal-access-token.md
+          - Authenticate with GitHub App: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-github-app.md
+          - Authenticate with SSH: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-ssh.md
         - Private Helm Registry:
-          - Introduction: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/introduction.md
-          - Azure Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-azure.md
-          - Openshift Tenant Configuration: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-registry-openshift-tenant.md
-          - Using a Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/Private Helm Registry/private-helm-reg-usage.md
-      - Backup: OpenShift Tenants/Tenant features/backup.md
-      - Secret Managment: OpenShift Tenants/Tenant features/secret-management.md
-      - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
-      - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
-      - Team: OpenShift Tenants/Tenant features/team.md
+          - Introduction: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/introduction.md
+          - Azure Configuration: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/private-helm-registry-azure.md
+          - Using a Private Helm Registry: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/private-helm-reg-usage.md
+        - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
+        - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
+        - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
+      - Observability:
+        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Observability/Introduction.md
+        - Using OpenShift Observability: About Container-Platform-as-a-Service/Service Breakdown/Observability/using-openshift-observability.md
+        # - Monitoring & Logging:
+        #   - Configure Monitoring for a Tenant: About Container-Platform-as-a-Service/Service Breakdown/Observability/configuring-monitoring-for-a-tenant.md
+        - Configure Grafana and Thanos: About Container-Platform-as-a-Service/Service Breakdown/Observability/configure-grafana-and-thanos-query.md
+        - Slack integration with OpenShift alerts: About Container-Platform-as-a-Service/Service Breakdown/Observability/slack-integration-with-openshift-alerts.md
+        # - Grafana: About Container-Platform-as-a-Service/Service Breakdown/Observability/grafana.md
+        # - Alert Forwarding: About Container-Platform-as-a-Service/Service Breakdown/Observability/alert-forwarding.md
+      - Network:
+        - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Network/introduction.md
+        - Connect application cross namespaces: About Container-Platform-as-a-Service/Service Breakdown/Network/connect-openshift-application-cross-namespaces.md
+        - Exposing an OpenShift Service: About Container-Platform-as-a-Service/Service Breakdown/Network/exposing-an-openshift-service.md
+        - Add an external IP with MetalLB: About Container-Platform-as-a-Service/Service Breakdown/Network/External-IP-with-MetalLB.md
+        - How to use EgressIP: About Container-Platform-as-a-Service/Service Breakdown/Network/How-to-use-EgressIP.md
+        - Egress Firewall: About Container-Platform-as-a-Service/Service Breakdown/Network/egress-firewall.md
+      - Security:
+        - Advanced Cluster Security (ACS): About Container-Platform-as-a-Service/Service Breakdown/Security/advanced-cluster-security.md
+      - Resource Management:
+        - Resource Management: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/resource-management.md
+        - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/team-resource-dashboards.md
+      - Role Based Access Control: 
+        - RBAC: About Container-Platform-as-a-Service/Service Breakdown/RBAC/rbac.md
+      - Storage:
+        - OpenShift Storage: About Container-Platform-as-a-Service/Service Breakdown/Storage/openshift-storage.md
+      - Backup:
+        - Backup Persistent Volumes using VolumeSnapshots: About Container-Platform-as-a-Service/Service Breakdown/Backup/backup-persistent-volumes-using-volumesnapshots.md
+        - Backup process for tenants using Velero: About Container-Platform-as-a-Service/Service Breakdown/Backup/backup-process-for-tenants-using-velero.md
+    # - Roles and responsibilities: About Container-Platform-as-a-Service/roles-and-responsibilities.md
+    # - OpenShift tenants: About Container-Platform-as-a-Service/openshift-tenants.md
+    # - Managing tenant configuration: About Container-Platform-as-a-Service/managing-tenant-configuration.md
+    # - Developing Container Platform as a Service: About Container-Platform-as-a-Service/developing-container-platforma-as-a-service.md
+  - Quick Start:
+    - OpenShift Teams: Quick Start/teams-quick-start.md
+    - OpenShift Tenants: Quick Start/tenants-quick-start.md
+  - OpenShift Teams Features:
+    - Team: OpenShift Teams/Team features/team.md
+    - Resource Management: OpenShift Teams/Team features/resource-management.md
+    - RBAC: OpenShift Teams/Team features/rbac.md
+    - Observability: 
+      - Introduction: OpenShift Teams/Team features/observability/observability.md
+      - Examples: OpenShift Teams/Team features/observability/examples.md
+      - Stack Sizing: OpenShift Teams/Team features/observability/monitoring-stack-sizing.md
+    - Gitops:
+      - GitOps Introduction: OpenShift Teams/Team features/gitops/gitops-introduction.md
+      - GitOps - Argo CD: OpenShift Teams/Team features/gitops/gitops-argocd.md
+      - GitOps - Authentication: OpenShift Teams/Team features/gitops/gitops-authentication.md
+    - Secret Management: OpenShift Teams/Team features/secret-management.md
+  - OpenShift Tenants Features: 
+    - Namespace: OpenShift Tenants/Tenant features/namespace.md
+    - Environment: OpenShift Tenants/Tenant features/environments.md
+    - Network Policy: OpenShift Tenants/Tenant features/networkpolicy.md
+    - Role Based Access Control: OpenShift Tenants/Tenant features/rbac.md
+    - Monitoring: OpenShift Tenants/Tenant features/configuring-monitoring-for-a-tenant.md
+    - GitOps: 
+      - GitOps & ArgoCD Introduction: OpenShift Tenants/Tenant features/GitOps/gitops-introduction.md
+      - GitOps - Argo CD: OpenShift Tenants/Tenant features/GitOps/gitops-argocd.md
+      - GitOps - Authentication: OpenShift Tenants/Tenant features/GitOps/gitops-authentication.md
+      - GitOps - Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/private-helm-registry-openshift-tenant.md
+    - Backup: OpenShift Tenants/Tenant features/backup.md
+    - Secret Managment: OpenShift Tenants/Tenant features/secret-management.md
+    - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
+    - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
+    - Team: OpenShift Tenants/Tenant features/team.md
   - Additional Documentation:
-    - Monitoring:
-      - Slack integration with OpenShift alerts: Additional Documentation/Monitoring/slack-integration-with-openshift-alerts.md
-    - Network:
-      - Introduction: Additional Documentation/Network/introduction.md
-      - Connect application cross namespaces: Additional Documentation/Network/connect-openshift-application-cross-namespaces.md
-      - Exposing an OpenShift Service: Additional Documentation/Network/exposing-an-openshift-service.md
-      - Add an external IP with MetalLB: Additional Documentation/Network/External-IP-with-MetalLB.md
-      - How to use EgressIP: Additional Documentation/Network/How-to-use-EgressIP.md
-      - Egress Firewall: Additional Documentation/Network/egress-firewall.md
-    - Observability:
-      - Introduction: Additional Documentation/Observability/Introduction.md
-      - Using OpenShift observability: Additional Documentation/Observability/using-openshift-observability.md
-      #- Using network observability: Observability/using-network-observability.md
-      - Configure monitoring for a tenant: Additional Documentation/Observability/configuring-monitoring-for-a-tenant.md
-      - Configure Grafana and Thanos: Additional Documentation/Observability/configure-grafana-and-thanos-query.md
-    - OpenShift GitOps:
-      - Introduction to GitOps on OpenShift: Additional Documentation/OpenShift GitOps/Introduction-GitOps.md
-      - GitOps Setup: Additional Documentation/OpenShift GitOps/gitops-setup.md
-      - OpenShift GitOps Best Practices: Additional Documentation/OpenShift GitOps/gitops-best-practices.md
-      - Custom auto-defined targetRevision: Additional Documentation/OpenShift GitOps/cutom-auto-defined-target-revision.md
-      - Multiple Values Files: Additional Documentation/OpenShift GitOps/multiple-values-files.md
     - OpenShift Pipelines:
       - OpenShift Pipelines with Tekton: Additional Documentation/OpenShift Pipelines/OpenShift-pipelines.md
     - OpenShift Serverless:
@@ -81,28 +110,6 @@ nav:
       - Quick Guide:
         - With tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-with-tenant-chart.md
         - Without tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-without-tenant-chart.md
-    - Resource Management:
-      - Resource Management: Additional Documentation/Resource Management/resource-management.md
-      - Team Resource Dashboards: Additional Documentation/Resource Management/team-resource-dashboards.md
-    - Secret Managment:
-      - Creating and managing secrets: Additional Documentation/Secret Managment/creating-and-managing-openshift-secrets.md
-      - External Secrets:
-        - Introduction: Additional Documentation/Secret Managment/External Secrets/Introduction.md
-        - Creating secret store: Additional Documentation/Secret Managment/External Secrets/configuration-secretstore.md
-        - Creating external secrets: Additional Documentation/Secret Managment/External Secrets/creating-external-secrets.md
-        - Creating Cluster External Secret: Additional Documentation/Secret Managment/External Secrets/cluster-external-secrets.md
-      - Sealed Secrets:
-        - Introduction: Additional Documentation/Secret Managment/Sealed Secrets/Introduction.md
-        - Encrypt secrets with SealedSecrets: Additional Documentation/Secret Managment/Sealed Secrets/encrypting-secret-with-sealed-secrets.md
-    - Security:
-      - Advanced Cluster Security (ACS): Additional Documentation/Security/advanced-cluster-security.md
-    - Storage:
-      - OpenShift Storage: Additional Documentation/Storage/openshift-storage.md
-      - Backup:
-        - Backup Persistent Volumes using VolumeSnapshots: Additional Documentation/Storage/Backup/backup-persistent-volumes-using-volumesnapshots.md
-        - Backup process for tenants using Velero: Additional Documentation/Storage/Backup/backup-process-for-tenants-using-velero.md
-    - Tools:
-      - Install Kubeseal: Additional Documentation/Tools/install-kubeseal.md
 
 
 markdown_extensions:

@@ -66,6 +66,8 @@ gitops:
       helm_registry:
       - username: <ACR username encrypted with sealedsecret>
         password: <ACR access token encrypted with sealedsecret>
+        enableOCI: ""
+        type: ""
         registry_url: <ACR login server url encrypted with sealedsecret>
       github_app: 
       - id: <The app id for your GitHub App encrypted with sealedsecrets>

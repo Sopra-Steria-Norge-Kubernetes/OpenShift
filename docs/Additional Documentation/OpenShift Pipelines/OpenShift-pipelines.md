@@ -52,7 +52,7 @@ This is a overview and description of the different repositories used in the CI/
 ## In-depth overview
 This section of the documentation aims to describe the CI/CD process in detail, and will provide the reader with a in-depth overview over the workflow. It will ble divided into two main sections; Continuous Integration (*Tekton pipeline part*) and Continuous Delivery.
 
-![](../img/CI-CD/CI_CD%20-%20Tekton.png)
+![](../../img/CI-CD/CI_CD%20-%20Tekton.png)
 
 
 ### Continuous Integration with Tekton Pipelines
