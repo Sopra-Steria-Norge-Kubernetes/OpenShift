@@ -1,18 +1,11 @@
-
 # Observability Documentation
 
 ## Introduction
 
-This documentation provides comprehensive guidance for developers on using observability features within the OpenShift Container Platform managed by Sopra Steria. Observability is crucial for maintaining healthy applications and understanding system behavior in production environments.
-
-## What is Observability?
-
-Observability encompasses the ability to measure, monitor, and understand the internal state of your applications and infrastructure through external outputs. In the context of OpenShift, this includes:
-
-- **Metrics**: Quantitative data about your applications and infrastructure
-- **Logs**: Detailed records of events and operations
-- **Traces**: Request flow through distributed systems
-- **Alerts**: Automated notifications when issues occur
+We deliver observability as follows:
+- Cluster-level: OpenShift Monitoring (Prometheus/Thanos/Alertmanager).
+- Team-level: Team Grafana (OpenShift OAuth, RBAC) and an optional team Prometheus stack (with/without Alertmanager) scoped to team/tenant namespaces.
+- Tenant-level: Application metrics via ServiceMonitor/PodMonitor, optional AlertmanagerConfig routing, and dashboards consumed in team Grafana.
 
 ## Available Observability Features
 
