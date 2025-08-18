@@ -37,7 +37,7 @@ infra-ocp4-tenants/
 │       ├── team-hera.yaml
 │       ├── team-zeus.yaml
 │       └── team-apollo.yaml
-└── application-definitions/
+└── tenant-definitions/
     ├── wave-1/
     │   ├── poseidon-web-app-tenant.yaml
     │   └── hera-web-app-tenant.yaml
@@ -53,7 +53,7 @@ infra-ocp4-tenants/
 
 ### Sealing Azure Key Vault Credentials
 
-To retrieve secrets stored in Azure KeyVault we must create a authentication secret for the keyvault. this must be done with sealed secret. The sealed secret will be sealed using a public certificate stored in the `infra-ocp4-tenants` repository. 
+To retrieve secrets stored in Azure KeyVault we must create a authentication secret for the keyvault. This must be done with sealed secret. The sealed secret will be sealed using a public certificate stored in the `infra-ocp4-tenants` repository. 
 
 [Sealed Secrets documentation](../About%20Container-Platform-as-a-Service/Service%20Breakdown/Secret%20Management/Sealed%20Secrets/encrypting-secret-with-sealed-secrets.md).
 
@@ -98,23 +98,6 @@ values: |
 
 Choose the authentication method that matches your Git provider:
 
-=== "PAT (Personal Access Token)"
-
-    ```yaml
-    gitops:
-      argocd:
-        enable_auto_defined_apps: true
-        team_repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/openshift-config
-        path: "applications"
-      authentication:
-        external_secrets:
-          secretstore: team-poseidon-secrets
-          pat:
-          - repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/team-config
-            username: poseidon-team
-            password: poseidon-team-pat-token
-    ```
-
 === "GitHub App"
 
     ```yaml
@@ -132,6 +115,24 @@ Choose the authentication method that matches your Git provider:
             private_key: poseidon-github-app-key
             repo_url: https://github.com/yourorg/poseidon-app-deployments
     ```
+    
+=== "PAT (Personal Access Token)"
+
+    ```yaml
+    gitops:
+      argocd:
+        enable_auto_defined_apps: true
+        team_repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/openshift-config
+        path: "applications"
+      authentication:
+        external_secrets:
+          secretstore: team-poseidon-secrets
+          pat:
+          - repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/team-config
+            username: poseidon-team
+            password: poseidon-team-pat-token
+    ```
+
     
 === "SSH Key"
 

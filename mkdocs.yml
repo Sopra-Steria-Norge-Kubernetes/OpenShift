@@ -12,10 +12,12 @@ nav:
       - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
       - Core Concepts: About Container-Platform-as-a-Service/Service Breakdown/core-concepts.md
       - GitOps:
-        - Introduction to GitOps on OpenShift: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
-        - GitOps Setup: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
-        - OpenShift GitOps Best Practices: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-best-practices.md
-        - GitOps - Authentication Methods:
+        - Introduction to GitOps: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
+        - GitOps Setup: 
+          - GitOps Methods: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
+          - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
+          - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
+        - Authentication Methods:
           - Authenticate with Personal Access Token (PAT): About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-personal-access-token.md
           - Authenticate with GitHub App: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-github-app.md
           - Authenticate with SSH: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Authentication Methods/authenticate-with-ssh.md
@@ -23,9 +25,7 @@ nav:
           - Introduction: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/introduction.md
           - Azure Configuration: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/private-helm-registry-azure.md
           - Using a Private Helm Registry: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Private Helm Registry/private-helm-reg-usage.md
-        - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
-        - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
-        - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
+          - Multiple Values Files: About Container-Platform-as-a-Service/Service Breakdown/GitOps/multiple-values-files.md
       - Secret Management:
         - Introduction: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/Introduction.md
         # - Creating and managing secrets: About Container-Platform-as-a-Service/Service Breakdown/Secret Management/creating-and-managing-openshift-secrets.md
@@ -111,6 +111,7 @@ nav:
       - Quick Guide:
         - With tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-with-tenant-chart.md
         - Without tenant configuration: Additional Documentation/OpenShift Serverless/quick-start-guide-without-tenant-chart.md
+    - Sync Options in ArgoCD: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-best-practices.md
 
 
 markdown_extensions:
