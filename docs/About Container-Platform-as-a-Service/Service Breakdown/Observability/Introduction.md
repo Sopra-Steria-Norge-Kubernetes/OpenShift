@@ -1,21 +1,5 @@
 # Observability Documentation
 
-## Introduction
-
-We deliver observability as follows:
-- Cluster-level: OpenShift Monitoring (Prometheus/Thanos/Alertmanager).
-- Team-level: Team Grafana (OpenShift OAuth, RBAC) and an optional team Prometheus stack (with/without Alertmanager) scoped to team/tenant namespaces.
-- Tenant-level: Application metrics via ServiceMonitor/PodMonitor, optional AlertmanagerConfig routing, and dashboards consumed in team Grafana.
-
-## What is Observability?
-
-Observability encompasses the ability to measure, monitor, and understand the internal state of your applications and infrastructure through external outputs. In the context of OpenShift, this includes:
-
-- **Metrics**: Quantitative data about your applications and infrastructure
-- **Logs**: Detailed records of events and operations
-- **Traces**: Request flow through distributed systems
-- **Alerts**: Automated notifications when issues occur
-
 ## Available Observability Features
 
 ### 1. Built-in OpenShift Observability
@@ -40,7 +24,6 @@ Access powerful visualization capabilities:
 - Role-based access control (configurable)
 - Integration with team monitoring stacks
 
-
 ### 4. Network Security
 Team namespaces are secured using network policies:
 - Default deny-all network policies (enabled by default)
@@ -49,33 +32,12 @@ Team namespaces are secured using network policies:
 - Team-to-team communication configurable
 - Prometheus federation with OpenShift monitoring enabled
 
-### 5. Network Observability
-Monitor and analyze network traffic:
-- Flow-based network monitoring
-- Traffic topology visualization
-- Network performance metrics
-- Security and compliance insights
-
-### 6. Application Monitoring
+### 5. Application Monitoring
 Configure monitoring for your specific applications:
 - Custom Prometheus alerts
 - Service level indicators (SLIs)
 - Performance tracking
 - Health checks and uptime monitoring
-
-## Getting Started
-
-### Prerequisites
-- An OpenShift tenant created by Sopra Steria
-- Appropriate RBAC permissions for your team
-- Basic understanding of Kubernetes/OpenShift concepts
-
-### Quick Start Guide
-1. **Access Built-in Observability**: Start with the OpenShift console's observe section
-2. **Configure Team Features**: Set up team monitoring stack and Grafana if needed
-3. **Create Custom Dashboards**: Build visualizations specific to your applications
-4. **Set Up Alerts**: Configure notifications for important events
-5. **Monitor Network Traffic**: Use network observability for traffic analysis
 
 ## Documentation Structure
 
@@ -91,9 +53,6 @@ This documentation is organized into the following sections:
 ### Application Monitoring
 - **[Configuring Monitoring for a Tenant](./configuring-monitoring-for-a-tenant.md)**: Custom alerts and monitoring rules for your applications
 
-### Network Monitoring
-- **[Using Network Observability](./using-network-observability.md)**: Network traffic analysis and monitoring
-
 ## Best Practices
 
 ### For Development Teams
@@ -101,7 +60,6 @@ This documentation is organized into the following sections:
 - Use team monitoring stacks for production environments
 - Configure appropriate retention periods based on your needs
 - **Grafana Security**: Configure RBAC and authentication for Grafana instances
-- **Prometheus Security**: Prometheus/Thanos routes are publicly accessible when exposed
 
 ### For Production Environments
 - Enable high availability for critical monitoring components
@@ -109,9 +67,8 @@ This documentation is organized into the following sections:
 - Regular backup and disaster recovery for observability data
 - Monitor resource usage of observability components
 - **Configure Grafana Authentication**: Set up proper RBAC for Grafana instances
-- **Secure Prometheus Access**: Prometheus/Thanos routes lack built-in authentication
 
-### Security Considerations
+## Security Considerations
 - **Network Security**: Team namespaces use default deny-all network policies
 - **Grafana RBAC**: Configure authentication and role-based access for Grafana
 - **Prometheus/Thanos Routes**: Monitoring stack routes are publicly accessible when enabled
