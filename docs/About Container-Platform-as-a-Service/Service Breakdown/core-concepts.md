@@ -12,8 +12,8 @@ version: 0.1.0
 OpenShift Container Platform as a Service consists of three key concepts to deliver a standardise environment to developers:
 
 - **Clusters**: A Kubernetes/OpenShift cluster to run containers which is ordered from Sopra Steria as a managed service. 
-- **Teams**: A logical “landing zone” within a cluster that provides shared resources and centralized management to multiple runtime Environemnts - **OpenShift Tenants** 
-- **Tenants**: Isolated runtime environments dedicated to a single application or microservice (or a small set of related ones), with their own resources, configurations, and access controls.
+- **OpenShift Teams**: A logical “landing zone” within a cluster that provides shared resources and centralized management to multiple runtime Environemnts called **_OpenShift Tenants_** 
+- **OpenShift Tenants**: Isolated runtime environments dedicated to a single application or microservices, with their own resources, configurations, and access controls.
 
 
 Understanding the relationship between these concepts is essential for making full use of Sopra Steria’s framework and accelerating your time to market.  
@@ -21,7 +21,7 @@ Understanding the relationship between these concepts is essential for making fu
 
 ## What are OpenShift Teams?
 
-**Teams** are a management layer that sits above tenants, providing shared resources and centralized administration for a teams microservices. It is used to manage multiple OpenShift Tenants and their namespaces and projects. 
+**OpenShift Teams** are a management layer that sits above OpenShift Tenants, providing shared resources and centralized administration for a teams microservices. It is used to manage multiple OpenShift Tenants and their namespaces and projects. 
 
 ### Features and Benefits
 
@@ -37,7 +37,7 @@ Understanding the relationship between these concepts is essential for making fu
 
 ## What are OpenShift Tenants?
 
-**Tenants** are isolated runtime environments dedicated to single applications or microservices (or a small set of related ones). Each tenant provides its own resource quota shared among the containers running within its runtime environments, ensuring resource isolation and management.
+**OpenShift Tenants** are isolated runtime environments dedicated to single applications or microservices. Each tenant provides its own resource quota shared among the containers running within its runtime environments, ensuring resource isolation and management.
 
 ![TenantOverview](../../img/About Container-Platform-as-a-Service/TenantOverview.png)
 
