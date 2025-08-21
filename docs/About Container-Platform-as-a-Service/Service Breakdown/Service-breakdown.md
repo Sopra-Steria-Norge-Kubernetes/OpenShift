@@ -13,10 +13,9 @@ Sopra Steria’s Container Platform as a Service (CPaaS) is a managed Kubernetes
 CPaaS is delivered through a layered service model and can be tailored to meet different needs for compliance, control, and developer enablement.
 
 
-## What the Platform Consists Of
+## Platform Overview
+The diagram below illustrates how the service is composed
 
-
-The diagram below illustrates how the service is composed:
 
 ![Container Platform Service Layers](../../img/About Container-Platform-as-a-Service/service_overview.png)
 
@@ -27,6 +26,7 @@ The service is built in **three layers**, which can be tailored to match each cu
 - Provides core services such as compute, storage, networking, and security
 
 ### 2. **Foundation Services** (included in all clusters)
+
 - Cluster lifecycle management (deployments, patching, upgrades)
 - Networking (API exposure and ingress)
 - Authentication and RBAC (OIDC integration)
@@ -37,6 +37,7 @@ The service is built in **three layers**, which can be tailored to match each cu
 
 ### 3. **Optional Developer Services**
 These add-ons provide full developer environments and operational support:
+
 - GitOps and CI/CD pipelines
 - Secret management and RBAC policies
 - Backup and restore
@@ -44,12 +45,13 @@ These add-ons provide full developer environments and operational support:
 - Private container registry
 - Advanced security policies and observability
 
+
 ## Service Variants
 
 Based on your organization’s needs, you choose one or more of the following **service variants**:
 
 ### **Dedicated Container Platform**
-A fully isolated platform environment designed for customers with **strict security**, **compliance**, or **data residency** requirements.
+A fully isolated platform environment designed for customers with **strict security**, **compliance** and **data residency** requirements.
 
 - Runs on **dedicated infrastructure**, operated by Sopra Steria or hosted on-premises
 - Ideal for **sovereign cloud** or **regulated environments**
@@ -68,12 +70,14 @@ A **dedicated OpenShift cluster** delivered with the full foundation service lay
 
 ---
 
-### 🚀 **Cluster as a Service Premium**
+### **Cluster as a Service Premium**
 A **dedicated OpenShift cluster** delivered with built-in developer environments.
 
 - Includes GitOps, RBAC, observability, secrets management, and runtime environments
 - Ideal for teams who want **Sopra Steria to manage platform enablement**
 - Delivered on SolidCloud or public cloud
+
+Read more about the features included - [Core Concepts](../Service%20Breakdown/core-concepts.md)
 
 ---
 ##  How It Fits Together
@@ -97,10 +101,10 @@ All customers receive **dedicated OpenShift clusters**. The main differences bet
 
 ## Which Setup Is Right for You?
 
-Choosing the right setup depends on your organization’s compliance needs, internal platform maturity, and how much of the operational responsibility you want to take on.
+Choosing the right setup depends on your organization’s compliance needs, internal platform maturity and how much of the operational responsibility you want to take on.
 
 | If you are...                                                                                   | Recommended Setup                              |
 |--------------------------------------------------------------------------------------------------|------------------------------------------------|
 | A public sector or regulated organization requiring strict control, data residency, or isolation | **Dedicated Container Platform** + one or more managed clusters |
 | A customer with a strong, internal **platform team** that understands OpenShift/Kubernetes, and has a mature **DevOps culture** | **Cluster as a Service**                        |
-| A team with limited DevOps capacity that needs Sopra Steria to handle the platform setup, pipelines, tenants, and security guardrails | **Cluster as a Service Premium**                |
+| A team with limited DevOps capacity that needs Sopra Steria to handle the platform setup, pipelines, tenants and security guardrails | **Cluster as a Service Premium**                |

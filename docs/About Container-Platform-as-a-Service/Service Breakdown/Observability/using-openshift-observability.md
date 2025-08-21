@@ -4,7 +4,7 @@ Title: Using OpenShift Observability
 Version: 1.0.0
 externally-exposed: true
 --- 
-
+<!-- TODO REMOVE?? does this give any value? if yes add it to another page -->
 # Using OpenShift Observability
 
 ## Prerequisites

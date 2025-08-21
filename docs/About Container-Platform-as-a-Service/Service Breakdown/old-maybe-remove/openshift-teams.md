@@ -12,7 +12,7 @@ When a team is created in OpenShift, a dedicated namespace is established where 
 Teams act as a **management layer** above tenants:
 
 Below is an illustration of teams.
-![Team-Tenant Correlation](../../img/Developer%20Teams/team-tenant-corraltion.png)
+![Team-Tenant Correlation](../../../img/Developer%20Teams/team-tenant-corraltion.png)
 
 ## Team Features
 
@@ -29,4 +29,4 @@ Below is an illustration of teams.
 
 ## Getting Started
 
-**Quick Start**: [OpenShift Teams](../../Quick Start/teams-quick-start.md)
+**Quick Start**: [OpenShift Teams](../../../Quick Start/teams-quick-start.md)
