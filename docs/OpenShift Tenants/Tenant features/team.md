@@ -8,7 +8,7 @@ externally-exposed: true
 
 ## What is a team?
 
-A `team` is a common definition for tenants that belongs to the same "team", configuration here is heavily dependent on configuration done on the team level wich you can find more info about on the  [team-definitions](../../About Container-Platform-as-a-Service/Service Breakdown/openshift-teams.md) page.
+A `team` is a common definition for tenants that belongs to the same "team", configuration here is heavily dependent on configuration done on the team level wich you can find more info about on the  [team-definitions](../../About%20Container-Platform-as-a-Service/Service%20Breakdown/old-maybe-remove/openshift-teams.md) page.
 
 ## How to configure team
 

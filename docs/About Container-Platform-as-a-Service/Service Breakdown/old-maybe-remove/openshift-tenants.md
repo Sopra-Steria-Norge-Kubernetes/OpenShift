@@ -20,8 +20,8 @@ OpenShift tenants provide isolated runtime environments for applications and mic
 
 * **GitOps Integration**: Git repositories can be used to define and version control the resources deployed within the tenant, streamlining deployment workflows and ensuring consistency.
 
-![TenantOverview](../../img/About Container-Platform-as-a-Service/TenantOverview.png)
+![TenantOverview](../../../img/About Container-Platform-as-a-Service/TenantOverview.png)
 
 ## Getting Started
 
-**Quick Start**: [OpenShift Tenants](../../Quick Start/tenants-quick-start.md)
+**Quick Start**: [OpenShift Tenants](../../../Quick Start/tenants-quick-start.md)

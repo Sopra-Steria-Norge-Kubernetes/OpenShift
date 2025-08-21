@@ -22,6 +22,7 @@ For detailed instructions on configuring ArgoCD for your tenant, refer to:
 
 - [How to Configure Argo CD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-introduction.md)
 
+
 ## ArgoCD Workflow
 ![Alt text](../../../img/CI-CD/gitops-argocd.png)
 
@@ -37,7 +38,6 @@ The ArgoCD Workflow is explain below in simple steps:
     4. If the issue persists, click `SYNC`. This will reconcile the current cluster state with the desired state as defined in Git.
 
 3. Wait for the synchronization process to complete.
-
 
 ## Options in ArgoCD
 
