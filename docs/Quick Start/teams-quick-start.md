@@ -68,31 +68,50 @@ Create your team configuration file in `team-definitions/wave-1/team-poseidon.ya
 
 ### Basic Team Configuration
 
-```yaml
-teamname: team-poseidon  # Replace with your actual team name
-values: |
-  team:
-    name: team-poseidon  # This will also be the team namespace name
+=== "Basic Team Configuration Template"
 
-  rbac:
-    secret_name: team-poseidon-group-sync-secret  # Secret configured in Step 3
-    team_edit: "AzureAD-Team-Poseidon-Developers"  # Replace with your write group
-    team_view: "AzureAD-Team-Poseidon-Viewers"     # Replace with your read group
-  
-  secret_management:
-    external_secrets:
-      cluster_secret_stores: 
-      - name: team-poseidon-secrets                                 # This name can be anything, name is just a reference
-        tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
-        keyvault_url: https://team-poseidon-kv.vault.azure.net/     # Replace with your Key Vault URL
-        client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus             # Replace with your client ID
-        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Example Azure-style client secret
-      - name: team-poseidon-app-secrets                             # This name can be anything, name is just a reference
-        tenant_id: 12345678-1234-1234-1234-123456789012             # Replace with your tenant ID
-        keyvault_url: https://team-poseidon-app-kv.vault.azure.net/ # Replace with your Key Vault URL
-        client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus             # Replace with your client ID
-        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Replace with your client secret name in Key Vault
-```
+    ```yaml
+    teamname: team-poseidon
+    values: |
+      team:
+        name: <team name>
+
+      rbac:
+        secret_name: <Azure AD group sync secret name>
+        team_edit: <Azure AD group for team edit role>
+        team_view: <Azure AD group for team view role>
+      
+      secret_management:
+        external_secrets:
+          cluster_secret_store: 
+          - name: <cluster_secret_store_name>
+            tenant_id: <azure_tenant_id> 
+            keyvault_url: <keyvault_url> 
+            client_id: <encrypted_client_id>          # Encrypted with SealedSecret 
+            client_secret: <encrypted_client_secret>  # Encrypted with SealedSecret
+    ```
+=== "Basic Team Example"
+
+    ```yaml
+    teamname: team-poseidon  # Replace with your actual team name
+    values: |
+      team:
+        name: team-poseidon  # This will also be the team namespace name
+
+      rbac:
+        secret_name: team-poseidon-group-sync-secret  # Secret configured in Step 3
+        team_edit: "AzureAD-Team-Poseidon-Developers"  # Replace with your write group
+        team_view: "AzureAD-Team-Poseidon-Viewers"     # Replace with your read group
+      
+      secret_management:
+        external_secrets:
+          cluster_secret_stores: 
+          - name: team-poseidon-secrets
+            tenant_id: 12345678-1234-1234-1234-123456789012
+            keyvault_url: https://team-poseidon-kv.vault.azure.net/
+            client_id: ~XxYvTgHjKlMnPqRsT12345GUYGKc353abc435
+            client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef          
+    ```
 
 ### GitOps Authentication Options
 
@@ -166,41 +185,81 @@ Choose the authentication method that matches your Git provider:
             password: poseidon-acr-token    # Replace with your ACR token secret name in Key Vault
             registry_url: poseidonteam.azurecr.io  # Replace with your ACR URL
     ```
-### Example full team configuration
-```yaml
-teamname: team-poseidon
-values: |
-  team:
-    name: team-poseidon
-
-  rbac:
-    secret_name: team-poseidon-group-sync-secret
-    team_edit: "AzureAD-Team-Poseidon-Developers"
-    team_view: "AzureAD-Team-Poseidon-Viewers"
   
-  secret_management:
-    external_secrets:
-      cluster_secret_stores: 
-      - name: team-poseidon-secrets
-        tenant_id: 12345678-1234-1234-1234-123456789012
-        keyvault_url: https://team-poseidon-kv.vault.azure.net/
-        client_id: 23p9uey32po4h32bljhsdhfskavfdsskfaus
-        client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef
+### Example full team configuration
+=== "Configuration Template"
 
-  gitops:
-    argocd:
-      enable_auto_defined_apps: true
-      team_repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/openshift-config
-      path: "applications"
-    authentication:
-      external_secrets:
-        secretstore: team-poseidon-secrets
-        pat:
-        - repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/team-config
-          username: poseidon-team
-          password: poseidon-team-pat-token
-```
-More configuration options can be found in the [team configuration reference](<insert link to team configuration reference>).
+    ```yaml
+    teamname: team-poseidon
+    values: |
+      team:
+        name: <team name>
+
+      rbac:
+        secret_name: <Azure AD group sync secret name>
+        team_edit: <Azure AD group for team edit role>
+        team_view: <Azure AD group for team view role>
+      
+      secret_management:
+        external_secrets:
+          cluster_secret_store: 
+          - name: <cluster_secret_store_name>
+            tenant_id: <azure_tenant_id> 
+            keyvault_url: <keyvault_url> 
+            client_id: <encrypted_client_id>          # Encrypted with SealedSecret 
+            client_secret: <encrypted_client_secret>  # Encrypted with SealedSecret
+
+      gitops:
+        argocd:
+          enable_auto_defined_apps: true
+          team_repo_url: <your repo url to team repository>
+          path: <path in repository>
+        authentication:
+          external_secrets:
+            secretstore: <refrence to your ClusterSecretStore>
+            pat:
+            - repo_url: <repository url for authentication>
+              username: <name of Azure Keyvault Secret>
+              password: <name of Azure Keyvault Secret>
+    ```
+=== "Example"
+
+    ```yaml
+    teamname: team-poseidon
+    values: |
+      team:
+        name: team-poseidon
+
+      rbac:
+        secret_name: team-poseidon-group-sync-secret
+        team_edit: "AzureAD-Team-Poseidon-Developers"
+        team_view: "AzureAD-Team-Poseidon-Viewers"
+      
+      secret_management:
+        external_secrets:
+          cluster_secret_stores: 
+          - name: team-poseidon-secrets
+            tenant_id: 12345678-1234-1234-1234-123456789012
+            keyvault_url: https://team-poseidon-kv.vault.azure.net/
+            client_id: ~XxYvTgHjKlMnPqRsT12345GUYGKc353abc435
+            client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef
+
+      gitops:
+        argocd:
+          enable_auto_defined_apps: true
+          team_repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/openshift-config
+          path: "applications"
+        authentication:
+          external_secrets:
+            secretstore: team-poseidon-secrets
+            pat:
+            - repo_url: https://dev.azure.com/yourorg/poseidon-team/_git/team-config
+              username: poseidon-team
+              password: poseidon-team-pat-token
+    ```
+
+More configuration options can be found in under the **OpenShift Teams Features** folder.
+
 ## Step 3: Configure Group Sync Secret
 
 Create the group sync secret in your team repository. This secret must be stored in the Azure Key Vault configured in Step 2.

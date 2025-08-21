@@ -48,7 +48,68 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
 
 ### Tenant Examples
 
-=== "Basic Tenant"
+=== "Basic Tenant Template"
+
+    ```yaml
+    appname: <tenant name>
+    values: |
+      namespace:
+        name: <tenant name>
+        description: <tenant description>
+        displayName: <tenant display name>        
+        requests:
+          enable: true
+          memory: 1Gi
+          cpu: 1
+        
+      monitoring:
+        storageAlertsEnabled: false
+      environments:
+        - name: <environment name>
+          externalURLs:
+            - <url>
+            - <url>
+        - name: <environment name>
+          externalURLs:
+            - <url>
+            - <url>
+
+      rbac:
+        secret_name: <Azure AD group sync secret name> # This might allready have been defined globally.
+        ad_group_write_access: <Azure AD group for write access>
+        ad_group_read_access: <Azure AD group for read access>
+
+      argocd:
+        main_git_repository:
+          repourl: <repository url>
+          basepath: <path in repository>
+
+      gitops:
+        authentication:
+          external_secrets:
+            secretstore: <refrence to your ClusterSecretStore>
+            github_app:
+            - repo_url: <repository url for authentication>
+              id: <GitHub App ID>
+              installation_id: <GitHub App Installation ID>
+              private_key: <name of Azure Keyvault Secret>
+            helm_registry:
+            - registry_url: <registry url for authentication>
+              username: <name of Azure Keyvault Secret>
+              password: <name of Azure Keyvault Secret>
+
+      secret_management:
+        external_secrets:
+          cluster_secret_store: 
+          - name: <cluster_secret_store_name>
+            environment: <namespace> 
+            tenant_id: <azure_tenant_id> 
+            keyvault_url: <keyvault_url> 
+            client_id: <encrypted_client_id>          # Encrypted with SealedSecret 
+            client_secret: <encrypted_client_secret>  # Encrypted with SealedSecret
+    ```
+
+=== "Basic Tenant Example"
 
     ```yaml
     appname: zeus
@@ -108,6 +169,8 @@ Create your tenant configuration file in `application-definitions/wave-1/poseido
             client_id: "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
             client_secret: ~ZxYvTgHjKlMnPqRsT1234567890abcdef           # Replace with your client secret name in Key Vault
     ```
+
+More configuration options can be found in under the **OpenShift Tenants Features** folder.
 
 !!! info "Multiple Applications"
     You can create multiple tenants by creating separate tenant configuration files. Each application gets its own namespaces and can have different resource requirements.
