@@ -1,6 +1,6 @@
 # Quay
 
-Quay is a secure and scalable container registry for storing, building, and distributing container images. It integrates seamlessly with CI/CD pipelines and supports automated builds, vulnerability scanning, and fine-grained access control.
+Quay is a secure and scalable container registry for storing, 
 
 This guide walks you through the essentials of using Quay.
 
@@ -18,30 +18,26 @@ At a high level, Quay is organized into:
 - **Teams** – Collections of users with assigned permissions.
     
 
-There are several ways to configure Quay to suit your needs. We see two main options you can move forward with:
+There are several ways to configure Quay to suit your need: 
 
-1. Organize Quay so that each team or project has its own organization, with a single team inside that organization.
+1. Every organization is created as a team with a single team inside that organization.
 
 2. Use one organization and create several teams within it.
 
-There is no right or wrong to doing this, but it’s important to have a consistent setup.
 
 
 ## Organization per Team/Project
 
 ### Pros
 
-* **Clear isolation**: Each team/project has its own namespace, making permissions and resources easier to manage.
-* **Simplified auditing**: Easier to track which users have access to which repositories.
+* **Full isolation between teams**: Each team or project has its own organization. Other teams cannot see each other unless explicit access is given.
 * **Reduced risk of accidental access**: Teams cannot interfere with other teams’ repositories.
 
 ### Cons
 
 * **More overhead**: Managing multiple organizations can be administratively heavier.
-* **Complexity in cross-team collaboration**: Sharing images between projects may require additional configuration.
-* **Increased maintenance**: Updates, quotas, and settings must be repeated per organization.
+* **Increased maintenance**: If changes is applied to an organization 
 
----
 
 ## One Organization, Several Teams
 
@@ -49,39 +45,11 @@ There is no right or wrong to doing this, but it’s important to have a consist
 
 * **Simplified management**: Only one organization to maintain
 * **Easier collaboration**: Teams within the same organization can share repositories and resources more easily.
-* **Reduced duplication**: Common repositories or images can be centrally managed.
-* **Scalability**: Adding new teams doesn’t require creating a new organization.
 
 ### Cons
 
 * **Potential for permission errors**: Misconfigured team permissions could allow access to repositories unintentionally.
-* **Less isolation**: Teams share the same organization namespace, which may increase the risk of accidental changes.
-
-
-
-## Tailoring your Quay Registry
-
-### Getting Started
-
-### 1. Log in to Quay
-
-- Navigate to your Quay instance.
-    
-- Log in with your credentials.
-    
-
-After login, you’ll land on the **dashboard**.
-
-The Quay web interface gives you access to:
-
-- **Repositories** – Your own and shared ones.
-    
-- **Organizations** – Repository groups.
-    
-- **User Settings** – Manage tokens, linked accounts, and notifications.
-    
-- **Security** – Vulnerability reports for your images.
-    
+* **Less isolation**: Teams share the same organization namespace. You will be able to see each others team name, but will not be able to see content of that team and repository unless acssess is given.
 
 ---
 
