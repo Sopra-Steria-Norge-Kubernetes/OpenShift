@@ -1,3 +1,5 @@
+# Quay
+
 Quay is a secure and scalable container registry for storing, building, and distributing container images. It integrates seamlessly with CI/CD pipelines and supports automated builds, vulnerability scanning, and fine-grained access control.
 
 This guide walks you through the essentials of using Quay.
@@ -6,7 +8,7 @@ This guide walks you through the essentials of using Quay.
 
 ## Quay Structure
 
-![[../img/quay/quaystructure.png]]
+![](../img/quay/quaystructure.png)
 
 At a high level, Quay is organized into:
 
