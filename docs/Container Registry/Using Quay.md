@@ -1,5 +1,7 @@
 # Using Quay
 
+This guide will walk you through creating organizations, teams, and repositories.
+
 ## Creating Organizations & Teams
 
 ### 1. Create an Organization
