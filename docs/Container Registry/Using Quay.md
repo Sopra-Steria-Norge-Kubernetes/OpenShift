@@ -30,10 +30,15 @@ This guide will walk you through creating organizations, teams, and repositories
 
    * **Manually** – Assign team members by email or username. The user must have logged in at least once to exist in Quay.
    * **Via Azure** – Add members by connecting an Azure group using its Object ID. This method is slightly longer and requires:
-        ![alt text](../img/quay/switchui.png)
+
      1. Switching to the new UI.
+
+        ![alt text](../img/quay/switchui.png)
+
      2. Navigating to your organization.
+
         ![alt text](../img/quay/newuiorg.png)
+        
      3. Selecting your team.
         ![alt text](../img/quay/newuiteamview.png)
 
