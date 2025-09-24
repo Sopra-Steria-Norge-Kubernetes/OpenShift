@@ -16,23 +16,38 @@ This guide will walk you through creating organizations, teams, and repositories
 ### 2. Create Teams
 
 1. Inside your organization, go to **Teams**.
-    
-2. Click **Create Team**. ![alt text](../img/quay/createteam1.png)
-    ![alt text](../img/quay/createteam2.png)
+
+2. Click **Create Team**.
+   ![alt text](../img/quay/createteam1.png)
+   ![alt text](../img/quay/createteam2.png)
+
 3. Name your team (e.g., `devs`, `ci-cd`, `admins`).
 
-4. When assigning users this can be done in 2 ways. ![[../../Pasted image 20250922103317.png]]
-	You could add them manually by assigning team members by email or username. Like you see in the lower right corner. The only prerequsite is that the user you want to add, has to have logged in once, so the user is created. 
-    
-4. Set their role:
-    
-    - **Admin** – Full control (settings, repositories, teams).
-        
-    - **Write** – Can push images.
-        
-    - **Read** – Can only pull images.
-        
+4. Add the necessary team members.
+   ![alt text](../img/quay/addteammembers.png)
 
+   You can add members in two ways:
+
+   * **Manually** – Assign team members by email or username. The user must have logged in at least once to exist in Quay.
+   * **Via Azure** – Add members by connecting an Azure group using its Object ID. This method is slightly longer and requires:
+
+     1. Switching to the new UI.
+        ![alt text](../img/quay/switchui.png)
+     2. Navigating to your organization.
+        ![alt text](../img/quay/newuiorg.png)
+     3. Selecting your team.
+        ![alt text](../img/quay/newuiteamview.png)
+
+     4. Clicking **Enable Team Sync** and entering the Object ID from Entra ID.
+
+Once users in the Entra ID group log into Quay, they will only be able to see the organization and team they belong to.
+
+5. Set roles for team members:
+
+   * **Admin** – Full control over settings, repositories, and teams.
+   * **Write** – Can push images.
+   * **Read** – Can only pull images.
+        
 ### Best Practices
 
 - Apply **least-privilege access** with teams (e.g., give developers read access).
