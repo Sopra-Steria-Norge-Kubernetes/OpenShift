@@ -8,7 +8,7 @@ For more details, see the [official Quay documentation](https://docs.redhat.com/
 ## Quay Structure
 There are severral components in quay
 
-![](../img/quay/quaystructure.png)
+![](../../img/quay/quaystructure.png)
 
 * **Repositories** – Locations where container images are stored.
 * **Organizations** – Groups of repositories that make management easier.

@@ -7,9 +7,9 @@ This guide will walk you through creating organizations, teams, and repositories
 ### 1. Create an Organization
 
 1. In the top navigation, click **New Organizations**.
-    ![](../img/quay/createorg1.png)
+    ![](../../img/quay/createorg1.png)
 2. Enter a name and description.
-    ![](../img/quay/createorg2.png)
+    ![](../../img/quay/createorg2.png)
 4. Click **Create**.
     
 
@@ -18,13 +18,13 @@ This guide will walk you through creating organizations, teams, and repositories
 1. Inside your organization, go to **Teams**.
 
 2. Click **Create Team**.
-   ![alt text](../img/quay/createteam1.png)
-   ![alt text](../img/quay/createteam2.png)
+   ![](../../img/quay/createteam1.png)
+   ![](../../img/quay/createteam2.png)
 
 3. Name your team (e.g., `devs`, `ci-cd`, `admins`).
 
 4. Add the necessary team members.
-   ![alt text](../img/quay/addteammembers.png)
+   ![](../../img/quay/addteammembers.png)
 
    You can add members in two ways:
 
@@ -33,14 +33,14 @@ This guide will walk you through creating organizations, teams, and repositories
 
      1. Switching to the new UI.
 
-        ![alt text](../img/quay/switchui.png)
+        ![](../../img/quay/switchui.png)
 
      2. Navigating to your organization.
 
-        ![alt text](../img/quay/newuiorg.png)
+        ![](../../img/quay/newuiorg.png)
 
      3. Selecting your team.
-        ![alt text](../img/quay/newuiteamview.png)
+        ![](../../img/quay/newuiteamview.png)
 
      4. Clicking **Enable Team Sync** and entering the Object ID from Entra ID.
 
@@ -62,7 +62,7 @@ Once users in the Entra ID group log into Quay, they will only be able to see th
 ### 1. Create a Repository
 
 1. From the organization, create **New Repository**
-![](../img/quay/orgoverview.png)
+![](../../img/quay/orgoverview.png)
     
 2. Enter a name and set visibility:
     
