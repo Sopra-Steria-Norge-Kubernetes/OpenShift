@@ -2,6 +2,8 @@
 
 ## What is quay?
 Quay is a secure and scalable container registry for storing and managing container images. 
+For more details, see the [official Quay documentation](https://docs.redhat.com/en/documentation/red_hat_quay/3.15/html/use_red_hat_quay/index).
+
 
 ## Quay Structure
 There are severral components in quay
@@ -14,12 +16,20 @@ There are severral components in quay
 * **Robot Accounts** – Automated accounts used for CI/CD pipelines or other automated processes
 
 
-There are mainly 2 ways to configure Quay to suit your needs: 
 
-##### 1. Every organization is created as a team with a single team inside that organization.
+## Structuring Quay for Your Organization
+ 
+There are two primary approaches to structuring Quay, depending on the desired balance between isolation and collaboration:
 
-The advantage of this approach is full isolation between teams: each team or project has its own organization, and other teams cannot see each other unless access is given. Since this setup is the most enclosed it reduces the risk of accidental access, since teams cannot se each other. 
 
-##### 2. Have only one organization and create several teams within it.
+##### 1. One Organization per Team
+ 
+Each team or project is assigned its own dedicated organization, typically with a single team inside it. This model provides complete isolation of repositories and organizations. Teams cannot see each other’s repositories, teams, or organizations.
+ 
+2. One Central Organization with Multiple Teams
+ 
+A single organization is created, and multiple teams are defined within it. In this model, all teams are visible within the organization, but each team can have repositories that are completely isolated from other teams. Additionally, shared repositories can be defined to enable collaboration across
 
-Having a single organization simplifies management, since there is only one organization to maintain. It also makes collaboration easier, as teams within the same organization can share repositories and resources easier.
+
+
+If you want to configure Quay with organizations and teams, check out our [Managing Quay](./Managing%20Quay.md) guide.
