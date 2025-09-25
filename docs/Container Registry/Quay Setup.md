@@ -1,4 +1,4 @@
-# Using Quay
+# Managing Quay
 
 This guide will walk you through creating organizations, teams, and repositories.
 
@@ -38,7 +38,7 @@ This guide will walk you through creating organizations, teams, and repositories
      2. Navigating to your organization.
 
         ![alt text](../img/quay/newuiorg.png)
-        
+
      3. Selecting your team.
         ![alt text](../img/quay/newuiteamview.png)
 
