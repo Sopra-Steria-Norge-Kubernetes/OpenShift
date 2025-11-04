@@ -6,6 +6,9 @@ Title: How to use EgressIP
 
 ## Routine
 
+!!! info
+    To obtain an **EgressIP**, you need to place an order through Sopra Steria, who will manage the approval and configuration process.
+
 When using EgressIP there are some infrastructure changes needed, and these changes needs to be ordered by sending a request/change to Sopra Steria.
 
 After the changes are in effect a EgressIP can be created. The EgressIP object looks something like this:
