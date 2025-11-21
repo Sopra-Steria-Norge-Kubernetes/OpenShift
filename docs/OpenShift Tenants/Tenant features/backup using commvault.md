@@ -2,8 +2,10 @@
 
 ## What is Commvault?
 
-Commvault is an enterprise-grade backup and recovery solution that enables organizations to protect, manage, and recover workloads across cloud, on-premises, and hybrid environments. It provides external backup capabilities for OpenShift clusters and workloads, ensuring data resiliency and disaster recovery readiness.
+Commvault is a backup and recovery solution that enables organizations to protect, manage, and recover workloads across cloud, on-premises, and hybrid environments. It provides external backup capabilities for OpenShift clusters and workloads, ensuring data resiliency and disaster recovery readiness.
 
+## What is backup?
+Backup in OpenShift refers to the practice of creating copies of your application’s data and configuration, ensuring that you can restore your system to a previous state in case of data loss, corruption, or disaster.
 
 ## How to configure Commvault Backup
 
@@ -50,13 +52,14 @@ oc label pvc <pvc-name> -n <namespace> commvault_volume_backup_daily=true
 Replace `daily` with `weekly` or `monthly` depending on your backup schedule requirements.
 
 #### Example
+> **Note:**  
+>  If you opt for labeling individual PVCs, it is important to label them using GitOps. If the resource is deleted, the labels will not automatically reappear.
+
+Labeling can be done manually using this command; however, it's recommended to add the label in your GitOps repository so the label is managed as code and will be reapplied if the resource is recreated.
 
 ```bash
 oc label pvc my-database-pvc -n my-app commvault_volume_backup_daily=true
 ```
-
-> **Note:**  
->  If you opt for labeling individual PVCs, it is important to label them using GitOps. If the resource is deleted, the labels will not automatically reappear.
 
 ## In-depth description of Commvault parameters
 
@@ -74,36 +77,11 @@ Once the cluster and labels are configured, backups are performed automatically 
 
 ### Perform a Restore
 
-To restore data from a Commvault backup:
+To restore data from a Commvault backup, contact the OpenShift administrator and specify which tenant or individual PVC you want restored. 
 
-1. Open the **Commvault Command Center**
-2. Select the appropriate **Restore Point**
-3. Choose the resource type to restore (e.g., Namespace, PVC, Pod, ConfigMap, Secret)
-4. Review the restore scope and click **Start Restore**
-5. Monitor the restore operation until completion
-6. Verify that all resources have been restored successfully in OpenShift
-
-## Verification and Validation
-
-After completing a restore operation, validate the outcome to ensure data consistency and application functionality:
-
-- Confirm that all restored resources are present in OpenShift using `oc get` commands
-- Verify that your applications start and operate normally
-- Review Commvault logs and alerts in the Command Center for any warnings or errors
-- Notify the backup team once validation is complete
-
-## Troubleshooting
-
-| **Issue** | **Solution** |
-|---|---|
-| Backup jobs not appearing in Commvault | Verify that tenant configuration is correctly applied and that backup policies are created in the Command Center |
-| PVC not being backed up | Check resource labeling matches the configured backup policy labels (e.g., `commvault_volume_backup_daily=true`) |
-| Restore operation failed | Verify the restore point is valid and contains the required resources; check Commvault logs for error details |
-| Missing backups | Ensure firewall rules allow Commvault VSA to reach OpenShift API; confirm backup policies are scheduled and active |
 
 ## Further reading
 
 To learn more about backup procedures and related configurations, please refer to the following resources:
 
-- [Backup](./backup.md)
 - [Commvault Documentation](https://documentation.commvault.com/)
