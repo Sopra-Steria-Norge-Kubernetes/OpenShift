@@ -48,7 +48,7 @@ If you need an overview of the backups taken for a specific namespace, you can f
 
 **To learn more about how to order a backup for a namespace, please refer to this guide:**
 
-- [Hot to configure a backup scheduele for your tenant](../../../OpenShift%20Tenants/Tenant%20features/backup.md)
+- [Hot to configure a backup scheduele for your tenant](../../../OpenShift%20Tenants/Tenant%20features/Backup/backup.md)
 
 
 ### User Resources
