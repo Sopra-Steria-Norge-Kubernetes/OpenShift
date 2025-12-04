@@ -97,7 +97,9 @@ nav:
       - GitOps - Argo CD: OpenShift Tenants/Tenant features/GitOps/gitops-argocd.md
       - GitOps - Authentication: OpenShift Tenants/Tenant features/GitOps/gitops-authentication.md
       - GitOps - Private Helm Registry: OpenShift Tenants/Tenant features/GitOps/private-helm-registry-openshift-tenant.md
-    - Backup: OpenShift Tenants/Tenant features/backup.md
+    - Backup:
+      - Backup: OpenShift Tenants/Tenant features/Backup/backup.md
+      - Backup using commvault: OpenShift Tenants/Tenant features/Backup/backup-using-commvault.md
     - Secret Managment: OpenShift Tenants/Tenant features/secret-management.md
     - Image Pull Secret: OpenShift Tenants/Tenant features/image-pull-secret.md
     - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
