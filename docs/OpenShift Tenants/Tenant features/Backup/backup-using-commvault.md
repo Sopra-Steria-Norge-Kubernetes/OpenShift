@@ -42,17 +42,6 @@ If you want to back up only specific Persistent Volume Claims (PVCs) instead of 
 
 To assign a PVC to a specific backup policy, add the appropriate label to your PVC manifest:
 
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-database-pvc
-  namespace: poseidon-test
-  labels:
-    commvault_daily: "true"
-spec:
-```
-
 Replace `daily` with `weekly` or `monthly` depending on your backup schedule requirements.
 
 #### Example
@@ -68,9 +57,6 @@ metadata:
     commvault_weekly: "true"
 spec:
 ```
-
-> **Note:**  
-> It is important to add labels through GitOps so they are managed as code. If the resource is deleted and recreated, the labels will be automatically reapplied.
 
 ## In-depth description of Commvault labels
 
