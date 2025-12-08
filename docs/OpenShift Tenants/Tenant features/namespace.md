@@ -16,8 +16,6 @@ The `namespace` feature contains information about Tenant namespaces and Tenant 
     displayName: <Display name of the tenant>
     use_egress_firewall: <Use egress firewall to limit egress traffic from tenant namespaces>
     enable_global_egress_IPs: <Use egress firewall IPs defined in a global values file>
-    enable_tooling: <Creates a tooling namespace>
-    deploy_grafana: <Deploy Grafana instance in tooling namespace>
     storage:
       enable_custom_storageclass: <Enable option to have custom storageclasses>
     limits:
@@ -75,8 +73,6 @@ In the table below, you can find a more detailed description of each variable in
 | `displayName`                | Displayname given to each openshift namespace/project                                 | "poseidon1-application1"                   | String     | "" |
 | `use_egress_firewall`         | To use egress firewall to limit egress traffic from tenant namespaces.                | true                                       | Boolean    | true |
 | `enable_global_egress_IPs`    | Use egress firewall IPs defined in a global values file                              | false                                       | Boolean    | false |
-| `enable_tooling`              | Creates a tooling namespace which is needed for certain applications such as Grafana | true                                       | Boolean    | true |
-| `deploy_grafana`              | Deploys a grafana instance in the tooling namespace                                      | true                                       | Boolean    | true |
 | `storage.enable_custom_storageclass`              | Option for custom storageclasses                                      | true                                       | Boolean    | false |
 | `limits.memory`               | Combined memory limit for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.    | 1Gi                                        | String/Int | 1Gi |
 | `limits.cpu`                 | Combined cpu limit for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                                         | 1                                          | String/Int | 1 |
