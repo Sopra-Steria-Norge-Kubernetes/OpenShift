@@ -1,0 +1,48 @@
+.md-grid {
+    max-width: 90%; 
+  }
+
+
+  :root > * {
+    --md-typeset-a-color: #F07D00;
+    --md-footer-fg-color: black;
+    --md-footer-fg-color--light: hsla(0, 0%, 100%, 0.7);
+    --md-footer-fg-color--lighter: hsla(0, 0%, 100%, 0.3);
+    --md-footer-bg-color: white;
+    --md-footer-bg-color--dark: rgb(207, 2, 43);
+  }
+
+
+  .md-typeset code, .md-typeset table:not([class]) td>:first-child {
+    color: black;
+    background-color: rgb(239, 239, 239);
+  }
+
+
+  .md-typeset pre>code {
+    background-color: rgb(245, 245, 245);
+  }
+
+  .md-content {
+    padding: 30px
+  }
+
+  .md-content a:link {
+    text-decoration: underline;
+  }
+
+  .md-typeset .tabbed-labels a:link {
+    text-decoration:none;
+  }
+
+  .md-header .md-search__form {
+    background-color: #fbfbfb;
+    border-style: solid;
+    border-color: rgb(142, 142, 142);
+    border-radius: 10px;
+  }
+
+ .md-header {
+  height: 75px;
+  padding: 11px;
+ }
