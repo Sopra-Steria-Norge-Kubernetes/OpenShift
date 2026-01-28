@@ -10,7 +10,7 @@ Commvault backup can be configured for your OpenShift tenant using one of two me
 
 ### Option 1: Configure via Helm Values (Tenant-wide)
 
-To enable Commvault backup schedules for your entire tenant, include the following YAML configuration in your Helm values file:
+To enable Commvault backup schedules for your entire tenant, include the following YAML configuration in your tenant file:
 
 ```yaml
 ...
@@ -60,11 +60,11 @@ spec:
 
 ## In-depth description of Commvault labels
 
-| <div style="width:155px">**Variable**</div> | **Description** | **Example** | **Type** | **Default Value** |
+| <div style="width:155px">**Variable**</div> | **Schedule** | **Retention** | **Type** | **Default Value** |
 |---|---|---|---|---|
-| `daily` | Enable daily backup schedule for the tenant | true | Boolean | false |
-| `weekly` | Enable weekly backup schedule for the tenant | true | Boolean | false |
-| `monthly` | Enable monthly backup schedule for the tenant | false | Boolean | false |
+| `daily` | Daily | 1 week | Boolean | false |
+| `weekly` | Weekly | 1 month | Boolean | false |
+| `monthly` | Monthly | 6 months | Boolean | false |
 
 ## Backup Operations
 
