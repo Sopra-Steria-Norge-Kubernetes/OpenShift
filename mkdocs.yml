@@ -105,6 +105,9 @@ nav:
     - Slack Alert Integration: OpenShift Tenants/Tenant features/slack-alert-integration.md
     - Team: OpenShift Tenants/Tenant features/team.md
   - Additional Documentation:
+    - Container Registry:
+      - Quay: Additional Documentation/Container Registry/Quay.md
+      - Managing Quay: Additional Documentation/Container Registry/Managing Quay.md
     - OpenShift Pipelines:
       - OpenShift Pipelines with Tekton: Additional Documentation/OpenShift Pipelines/OpenShift-pipelines.md
     - OpenShift Serverless:
