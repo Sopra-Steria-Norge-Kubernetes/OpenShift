@@ -39,7 +39,7 @@ argocd:
     additionalRepos: []
     # Example:
     # additionalRepos:
-    #   - "https://charts.konghq.com"
+    #   - "https://charts.test.com"
 
   main_git_repository:
     repourl: "" 
@@ -69,7 +69,7 @@ More information about how to set up a Git Repository for ArgoCD on OpenShift ca
 | `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
 | sourceRepoACL              |                                                                                                                     |                                            |                           |
 | `enabled`            | Enables source repository access control for the AppProject. When enabled, only `main_git_repository` and `additionalRepos` are allowed. When disabled, all repos are allowed (legacy behavior)                               | True / False | Boolean                    | false |
-| `additionalRepos`            | List of additional repository URLs allowed as sources in the AppProject (only used when `enabled` is true)                                        | ["https://charts.konghq.com"] | List                    | [] |
+| `additionalRepos`            | List of additional repository URLs allowed as sources in the AppProject (only used when `enabled` is true)                                        | ["https://charts.test.com"] | List                    | [] |
 | Default              |                                                                                                                     |                                            |                           |
 | `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
 | `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    | "" |
