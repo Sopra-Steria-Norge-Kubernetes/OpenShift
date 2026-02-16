@@ -31,6 +31,24 @@ rbac:
   team_monitoring_view: ""  # Optional
 ```
 
+## Defining external prometheus datasaources
+
+```yaml
+observability:
+  grafana_instance: true
+  externalIPs_grafana:
+    - 0.0.0.0/0              ## Prometheus datasource IP
+  externalURLs_grafana:
+    - my_datasource.com     ## Prometheus datasource URL
+  monitoringStack:
+    enable: true
+    monitoringStack_size: small
+    monitoringStack_retention: 7d
+    monitoringStack_high_availability: false
+    monitoringStack_alertmanager: false
+    monitoringStack_expose_route: false
+```
+
 ## With Alertmanager and routes exposed {#am-with-routes}
 
 ```yaml
