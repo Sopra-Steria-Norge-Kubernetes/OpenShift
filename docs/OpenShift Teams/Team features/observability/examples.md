@@ -37,9 +37,11 @@ rbac:
 observability:
   grafana_instance: true
   externalIPs_grafana:
-    - 0.0.0.0/0              ## Prometheus datasource IP
+    - ip: 0.0.0.0/0.     ## Datasource IP
+      port: 9090         ## Datasource Port
   externalURLs_grafana:
-    - my_datasource.com     ## Prometheus datasource URL
+    - url: my_datasource.com     ## Datasource URL
+      port: 5432                 ## Datasource Port
   monitoringStack:
     enable: true
     monitoringStack_size: small
