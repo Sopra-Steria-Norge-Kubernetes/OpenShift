@@ -1,6 +1,6 @@
 # Managing Quay
 
-This guide covers how to create organizations, teams, and repositories in Quay.
+This guide covers how to create and manage organizations, teams, repositories, and robot accounts in Quay.
 
 ## Creating Organizations & Teams
 
@@ -51,11 +51,17 @@ Once someone in the Entra ID group logs into Quay, they will only see the organi
 
 #### Team Roles
 
-Assign each member one of the following roles:
+Each team has a role that defines what its members can do:
 
-- **Admin** – Full control over settings, repositories, and teams.
-- **Write** – Can push and pull images.
-- **Read** – Can only pull images.
+- **Admin** – Full administrative access to the organization, including the ability to create teams, add members, and set permissions.
+- **Member** – Inherits all permissions set for the team.
+- **Creator** – All member permissions, plus the ability to create new repositories.
+
+To set a team's role:
+
+1. On the Red Hat Quay landing page, click the name of your organization.
+2. In the navigation pane, click **Teams and Membership**.
+3. Select the **TEAM ROLE** drop-down menu, and choose the role you want to assign.
 
 ### Best Practices
 
@@ -74,8 +80,44 @@ Assign each member one of the following roles:
 
 3. Click **Create Repository**.
 
+### 2. Add Teams or Members to a Repository
+
+You manage repository access and permissions from the **Teams and membership** page of your organization.
+
+1. Open your organization and go to **Teams and membership**.
+2. Click the kebab menu next to a team, and choose one of the following:
+    - **Manage Team Members** – View all members, robot accounts, and pending invitations. Click **Add new member** to add someone to the team.
+    - **Set repository permissions** – Set the team's access to a repository.
+    - **Delete** – Remove the team.
+
+When setting repository permissions, choose one of the following levels:
+
+- **None** – No access to the repository.
+- **Read** – Can view and pull from the repository.
+- **Write** – Can pull from and push to the repository.
+- **Admin** – Full access to pull and push, plus administrative tasks for the repository.
+
 ### Best Practices
 
 - **Keep repositories private.** Unless the images are meant for public use, private repositories are the safer default.
 
+## Robot Accounts
 
+Robot accounts are non-human credentials used to push and pull images from automated systems such as CI/CD pipelines. Each robot account belongs to an organization and can be given its own repository permissions.
+
+### Create a Robot Account
+
+1. In the top navigation, click **Organizations** and select your organization.
+2. Open the **Robot accounts** tab and click **Create robot account**.
+3. Enter a name, for example `robot1`. The full name combines your organization or username with the robot name, for example `quayadmin+robot1`.
+4. (Optional) Add the robot to a team or repository, and adjust its permissions.
+5. On the **Review and finish** page, review the details and click **Review and finish**.
+
+### Retrieve Credentials from a Robot Account
+
+When you need the robot's credentials, for example to authenticate a CI/CD pipeline or to log in from your local machine, click the robot account's name to view its credentials. You can retrieve them in the format you need:
+
+- **Robot Account** – View the robot's token. Use **Regenerate token now** to issue a new one.
+- **Kubernetes Secret** – Download the credentials as a Kubernetes pull secret (YAML).
+- **Podman** – Copy a full `podman login` command with the credentials.
+- **Docker Configuration** – Copy a full `docker login` command with the credentials.
