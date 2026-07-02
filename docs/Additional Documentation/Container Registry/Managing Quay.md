@@ -1,76 +1,81 @@
 # Managing Quay
 
-This guide will walk you through creating organizations, teams, and repositories.
+This guide covers how to create organizations, teams, and repositories in Quay.
 
 ## Creating Organizations & Teams
 
 ### 1. Create an Organization
 
-1. In the top navigation, click **New Organizations**.
+1. In the top navigation, click **New Organization**.
     ![](../../img/quay/createorg1.png)
 2. Enter a name and description.
     ![](../../img/quay/createorg2.png)
-4. Click **Create**.
-    
+3. Click **Create**.
 
-### 2. Create Teams
+### 2. Create a Team
 
-1. Inside your organization, go to **Teams**.
+1. Open your organization and go to **Teams and memberships**.
 
 2. Click **Create Team**.
    ![](../../img/quay/createteam1.png)
    ![](../../img/quay/createteam2.png)
 
-3. Name your team (e.g., `devs`, `ci-cd`, `admins`).
+3. Give the team a name, for example `developer-team-1`, `ci-cd`, or `admins`.
 
-4. Add the necessary team members.
-   ![](../../img/quay/addteammembers.png)
+4. Review the details and click **Finish**.
 
-   You can add members in two ways:
+### Adding Team Members
 
-   * **Manually** – Assign team members by email or username. The user must have logged in at least once to exist in Quay.
-   * **Via Azure** – Add members by connecting an Azure group using its Object ID. This method is slightly longer and requires:
+There are two ways to add members to a team:
 
-     1. Switching to the new UI.
+- **Manually** – Add members by email or username. The user must have logged in to Quay at least once before they can be added.
+- **Via Azure** – Connect an Entra ID (Azure) group using its Object ID, and members are synced automatically.
 
-        ![](../../img/quay/switchui.png)
+#### Add members manually
 
-     2. Navigating to your organization.
+1. Open your team from the organization's **Teams and memberships** page.
+2. Add each member by their email or username.
+3. Set a role for each member (see [Team Roles](#team-roles) below).
 
-        ![](../../img/quay/newuiorg.png)
+#### Add members through Azure
 
-     3. Selecting your team.
-        ![](../../img/quay/newuiteamview.png)
+1. Open your team from the organization's **Teams and memberships** page.
+    ![](../../img/quay/newuiorg.png)
 
-     4. Clicking **Enable Team Sync** and entering the Object ID from Entra ID.
+2. Select the team you want to sync.
+    ![](../../img/quay/newuiteamview.png)
 
-Once users in the Entra ID group log into Quay, they will only be able to see the organization and team they belong to.
+3. Click **Enable Team Sync** and enter the Object ID of the group from Entra ID.
 
-5. Set roles for team members:
+Once someone in the Entra ID group logs into Quay, they will only see the organization and team they belong to.
 
-   * **Admin** – Full control over settings, repositories, and teams.
-   * **Write** – Can push images.
-   * **Read** – Can only pull images.
-        
+#### Team Roles
+
+Assign each member one of the following roles:
+
+- **Admin** – Full control over settings, repositories, and teams.
+- **Write** – Can push and pull images.
+- **Read** – Can only pull images.
+
 ### Best Practices
 
-- Apply **least-privilege access** with teams (e.g., give developers read access).
-
+- Follow the principle of **least privilege**. For example, give developers read access unless they need more.
 
 ## Working with Repositories
 
 ### 1. Create a Repository
 
-1. From the organization, create **New Repository**
-![](../../img/quay/orgoverview.png)
-    
-2. Enter a name and set visibility:
-    
-    - **Public** – Anyone can pull images.
-        
-    - **Private** – Restricted to authorized users/teams.
-        
+1. From the organization, click **New Repository**.
+    ![](../../img/quay/orgoverview.png)
+
+2. Enter a name and set the visibility:
+    - **Public** – Anyone can pull the images.
+    - **Private** – Only authorized users and teams can access it.
+
 3. Click **Create Repository**.
 
-### Best Practice
-**Keep Repositories Private** – Unless images are meant for public use, prefer private repositories for security
+### Best Practices
+
+- **Keep repositories private.** Unless the images are meant for public use, private repositories are the safer default.
+
+
