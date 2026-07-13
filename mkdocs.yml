@@ -4,16 +4,16 @@ repo_url: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
 repo_name: Sopra Steria - OpenShift
 edit_uri: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/
 
-nav: 
+nav:
   #- Get started: index.md
-  - Home: 
+  - Home:
     - Introduction: About Container-Platform-as-a-Service/introduction.md
-    - Service Breakdown: 
+    - Service Breakdown:
       - CPaaS: About Container-Platform-as-a-Service/Service Breakdown/Service-breakdown.md
       - Core Concepts: About Container-Platform-as-a-Service/Service Breakdown/core-concepts.md
       - GitOps:
         - Introduction to GitOps: About Container-Platform-as-a-Service/Service Breakdown/GitOps/Introduction-GitOps.md
-        - GitOps Setup: 
+        - GitOps Setup:
           - GitOps Methods: About Container-Platform-as-a-Service/Service Breakdown/GitOps/gitops-setup.md
           - Custom auto-defined targetRevision: About Container-Platform-as-a-Service/Service Breakdown/GitOps/cutom-auto-defined-target-revision.md
           - Auto-merging for Teams & Tenants: About Container-Platform-as-a-Service/Service Breakdown/GitOps/auto-merging.md
@@ -59,7 +59,7 @@ nav:
       - Resource Management:
         - Resource Management: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/resource-management.md
         - Team Resource Dashboards: About Container-Platform-as-a-Service/Service Breakdown/Resource Management/team-resource-dashboards.md
-      - Role Based Access Control: 
+      - Role Based Access Control:
         - RBAC: About Container-Platform-as-a-Service/Service Breakdown/RBAC/rbac.md
       - Storage:
         - OpenShift Storage: About Container-Platform-as-a-Service/Service Breakdown/Storage/openshift-storage.md
@@ -77,7 +77,7 @@ nav:
     - Team: OpenShift Teams/Team features/team.md
     - Resource Management: OpenShift Teams/Team features/resource-management.md
     - RBAC: OpenShift Teams/Team features/rbac.md
-    - Observability: 
+    - Observability:
       - Introduction: OpenShift Teams/Team features/observability/observability.md
       - Examples: OpenShift Teams/Team features/observability/examples.md
       - Stack Sizing: OpenShift Teams/Team features/observability/monitoring-stack-sizing.md
@@ -86,13 +86,13 @@ nav:
       - GitOps - Argo CD: OpenShift Teams/Team features/gitops/gitops-argocd.md
       - GitOps - Authentication: OpenShift Teams/Team features/gitops/gitops-authentication.md
     - Secret Management: OpenShift Teams/Team features/secret-management.md
-  - OpenShift Tenants Features: 
+  - OpenShift Tenants Features:
     - Namespace: OpenShift Tenants/Tenant features/namespace.md
     - Environment: OpenShift Tenants/Tenant features/environments.md
     - Network Policy: OpenShift Tenants/Tenant features/networkpolicy.md
     - Role Based Access Control: OpenShift Tenants/Tenant features/rbac.md
     - Monitoring: OpenShift Tenants/Tenant features/configuring-monitoring-for-a-tenant.md
-    - GitOps: 
+    - GitOps:
       - GitOps & ArgoCD Introduction: OpenShift Tenants/Tenant features/GitOps/gitops-introduction.md
       - GitOps - Argo CD: OpenShift Tenants/Tenant features/GitOps/gitops-argocd.md
       - GitOps - Authentication: OpenShift Tenants/Tenant features/GitOps/gitops-authentication.md
@@ -170,15 +170,14 @@ theme:
     code: Roboto Mono
     text: Tahoma Mono
 
-  palette: 
+  palette:
     primary: white
 
 extra_css:
   - stylesheets/extra.css
 
-copyright: Copyright &copy; 2024 - Team Poseidon
+copyright: Copyright &copy; 2026 - Team Poseidon
 extra:
   social:
-    - icon: fontawesome/brands/github 
+    - icon: fontawesome/brands/github
       link: https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift.git
-
