@@ -9,14 +9,26 @@ It includes how to choose the right StorageClass, create PersistentVolumeClaims 
 ## StorageClasses
 A StorageClass defines how storage is provisioned in OpenShift, enabling dynamic creation of persistent volumes with specific performance and access settings.
 
-In a typical setup with ODF, the following StorageClasses are available:
+Most storage is backed by Ceph (via OpenShift Data Foundation) on SSD media. The key difference between the Ceph-backed StorageClasses is **how the data is replicated**:
 
-* **`ocs-storagecluster-ceph-rbd`** (default): RWO filesystem volumes and RWO/RWX block volumes
-* **`ocs-storagecluster-cephfs`**: RWO and RWX filesystem volumes for multi-pod access
-* **`ocs-storagecluster-ceph-rgw`**: Object Bucket Claims (OBCs) with Ceph
-* **`openshift-storage.noobaa.io`**: Object Bucket Claims (OBCs) with NooBaa
+- Replication across multiple datacenters protects data even if an entire site becomes unavailable, at the cost of some extra write latency.
+- Replication within a single datacenter (or no replication at all) is faster and cheaper, but offers little or no protection if that datacenter or its underlying disks fail.
 
-**Recommendation:** Use filesystem storage classes for most workloads. Store object data outside the cluster when possible.
+Customers should pick a StorageClass based on how critical and how reproducible their data is, balancing resilience against performance/cost.
+
+### Available StorageClasses
+
+| StorageClass | Access Modes | Backend | Replication / Resiliency | Performance | Typical Use Case |
+|---|---|---|---|---|---|
+| **`ceph-storagecluster-ceph-rbd`** (default) | RWO | Ceph RBD (block) | Replicated across 3 datacenters | High (SSD) | Default choice for most workloads — databases and application data that need high availability |
+| **`ceph-rbd-2-site`** | RWO | Ceph RBD (block) | Replicated across 2 datacenters | High (SSD) | Workloads that need cross-site resilience without the overhead of full 3-site replication |
+| **`ocs-storagecluster-ceph-fs`** | RWO/RWX | CephFS (shared filesystem) | Replicated across the Ceph storage cluster | High (SSD) | Shared/multi-pod access to the same volume (e.g. shared config or upload directories) |
+| **`ocs-storagecluster-ceph-non-resilient-rdb`** | RWO | Ceph RBD (block) | No cross-site replication — data lives in a single datacenter only | High (SSD) | Ephemeral, replaceable, or non-critical data that doesn't need full resiliency (e.g. caches, scratch space, easily reproducible data) |
+| **`nfs-hdd-rwx`** | RWX | External NFS (Isilon) | Handled by the external Isilon appliance | Lower (HDD) | Bulk/archival shared file storage where high performance isn't required |
+
+In addition to the above, Object Bucket Claims (OBCs) are available via `ocs-storagecluster-ceph-rgw` and `openshift-storage.noobaa.io` for object storage use cases.
+
+**Recommendation:** Use `ceph-storagecluster-ceph-rbd` for most workloads unless a specific access mode (RWX), resiliency, or cost/performance trade-off calls for one of the other classes.
 
 
 ## Persistent Volumes
@@ -36,7 +48,7 @@ Create storage by defining a PVC and binding it to your application. The PV is a
       resources:
         requests:
           storage: 10Gi
-      storageClassName: ocs-storagecluster-ceph-rbd
+      storageClassName: ceph-storagecluster-ceph-rbd
     ```
 
 2. **Bind to Pod:**
