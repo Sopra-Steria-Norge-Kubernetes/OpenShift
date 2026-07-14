@@ -13,14 +13,6 @@ To configure RBAC settings for your OpenShift tenant using a Helm chart, include
   rbac:
     ad_group_write_access: <Azure AD group with write access>
     ad_group_read_access: <Azure AD group with read access>
-
-    keycloak:
-      enabled: false
-      url: ""
-      realm: "" # Global variable - per customer/team
-      # If the service account/user is in another realm.  Change this.
-      # Default: `master`
-      loginRealm: "master"
 ...
 ```
 
@@ -37,7 +29,7 @@ Uses the same parameter for groups (`ad_`).
     ad_group_read_access: <Azure AD group with read access>
 
     keycloak:
-      enabled: false
+      enabled: true
       url: ""
       realm: "" # Global variable - per customer/team
       # If the service account/user is in another realm.  Change this.
