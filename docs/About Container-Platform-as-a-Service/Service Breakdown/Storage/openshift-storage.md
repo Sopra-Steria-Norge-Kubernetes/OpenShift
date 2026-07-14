@@ -20,7 +20,7 @@ Customers should pick a StorageClass based on how critical and how reproducible 
 
 | StorageClass | Access Modes | Backend | Replication / Resiliency | Performance | Typical Use Case |
 |---|---|---|---|---|---|
-| **`ceph-storagecluster-ceph-rbd`** | RWO | Ceph RBD (block) | Replicated across 3 datacenters | High (SSD) | Default choice for most workloads — databases and application data that need high availability |
+| **`ocs-storagecluster-ceph-rbd`** | RWO | Ceph RBD (block) | Replicated across 3 datacenters | High (SSD) | Default choice for most workloads — databases and application data that need high availability |
 | **`ceph-rbd-2-site`** (default) | RWO | Ceph RBD (block) | Replicated across 2 datacenters | High (SSD) | Workloads that need cross-site resilience without the overhead of full 3-site replication |
 | **`ocs-storagecluster-ceph-fs`** | RWO/RWX | CephFS (shared filesystem) | Replicated across the Ceph storage cluster | High (SSD) | Shared/multi-pod access to the same volume (e.g. shared config or upload directories) |
 | **`ocs-storagecluster-ceph-non-resilient-rdb`** | RWO | Ceph RBD (block) | No cross-site replication — data lives in a single datacenter only | High (SSD) | Ephemeral, replaceable, or non-critical data that doesn't need full resiliency (e.g. caches, scratch space, easily reproducible data) |
@@ -48,7 +48,7 @@ Create storage by defining a PVC and binding it to your application. The PV is a
       resources:
         requests:
           storage: 10Gi
-      storageClassName: ceph-storagecluster-ceph-rbd
+      storageClassName: ocs-storagecluster-ceph-rbd
     ```
 
 2. **Bind to Pod:**
