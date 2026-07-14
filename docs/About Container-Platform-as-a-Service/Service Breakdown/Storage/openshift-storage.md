@@ -9,9 +9,7 @@ It includes how to choose the right StorageClass, create PersistentVolumeClaims 
 ## StorageClasses
 A StorageClass defines how storage is provisioned in OpenShift, enabling dynamic creation of persistent volumes with specific performance and access settings.
 
-Most storage is backed by Ceph (via OpenShift Data Foundation) on SSD media. The key difference between the Ceph-backed StorageClasses is **how the data is replicated**:
-
-- Replication across multiple datacenters protects data even if an entire site becomes unavailable, at the cost of some extra write latency.
+- Replication across multiple datacenters protects data even if an entire site becomes unavailable.
 - Replication within a single datacenter (or no replication at all) is faster and cheaper, but offers little or no protection if that datacenter or its underlying disks fail.
 
 Customers should pick a StorageClass based on how critical and how reproducible their data is, balancing resilience against performance/cost.
@@ -25,8 +23,6 @@ Customers should pick a StorageClass based on how critical and how reproducible 
 | **`ocs-storagecluster-ceph-fs`** | RWO/RWX | CephFS (shared filesystem) | Replicated across the Ceph storage cluster | High (SSD) | Shared/multi-pod access to the same volume (e.g. shared config or upload directories) |
 | **`ocs-storagecluster-ceph-non-resilient-rdb`** | RWO | Ceph RBD (block) | No cross-site replication — data lives in a single datacenter only | High (SSD) | Ephemeral, replaceable, or non-critical data that doesn't need full resiliency (e.g. caches, scratch space, easily reproducible data) |
 | **`nfs-hdd-rwx`** | RWX | External NFS (Isilon) | Handled by the external Isilon appliance | Lower (HDD) | Bulk/archival shared file storage where high performance isn't required |
-
-In addition to the above, Object Bucket Claims (OBCs) are available via `ocs-storagecluster-ceph-rgw` and `openshift-storage.noobaa.io` for object storage use cases.
 
 **Recommendation:** Use `ceph-storagecluster-ceph-rbd` for most workloads unless a specific access mode (RWX), resiliency, or cost/performance trade-off calls for one of the other classes.
 
