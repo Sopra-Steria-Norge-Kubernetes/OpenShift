@@ -38,6 +38,29 @@ Uses the same parameter for groups (`ad_`).
 ...
 ```
 
+### LDAP (Active Directory)
+
+An alternative to Azure is provided by using `ldap.enabled: true`. It uses the
+same group parameters (`ad_group_*`) — for LDAP these are the group **CN**s, and
+the chart resolves each to its full directory DN using `groups_base_dn`.
+
+```yaml
+...
+  rbac:
+    ad_group_write_access: <group CN with write access>
+    ad_group_read_access: <group CN with read access>
+
+    ldap:
+      enabled: true
+      url: ldaps://<your-ldap-server>
+      base_dn: <directory search base, e.g. dc=example,dc=com>
+      groups_base_dn: <OU that contains the access groups, e.g. OU=Access,OU=Groups,DC=example,DC=com>
+...
+```
+
+Nested group membership is resolved recursively on the Active Directory side, so
+members of nested sub-groups are included automatically.
+
 ## In-depth description of parameters
 
 The `rbac` feature includes the following variables:
@@ -50,6 +73,11 @@ The `rbac` feature includes the following variables:
 | `keycloak.url`                              | FQDN to Keycloak instance                           | "https://keycloak.example.com" | String   | ""                |
 | `keycloak.realm`                            | Realm where groups reside                           | "customer"                     | String   | ""                |
 | `keycloak.loginRealm`                       | Alternative realm used for login                    | "master"                       | String   | `master`          |
+| `ldap.enabled`                              | Use LDAP/Active Directory group sync                | "true"                         | Boolean  | `false`           |
+| `ldap.url`                                  | LDAP server URL (use `ldaps://` for TLS)            | "ldaps://dc01.example.com"     | String   | ""                |
+| `ldap.base_dn`                              | Search base shared by the user and group queries    | "dc=example,dc=com"            | String   | ""                |
+| `ldap.groups_base_dn`                       | OU containing the access groups; also used to build each group's DN (`CN=<group>,<groups_base_dn>`) | "OU=Access,OU=Groups,DC=example,DC=com" | String | value of `base_dn` |
+| `ldap.users_base_dn`                        | Optional override for the user search base          | "OU=Users,DC=example,DC=com"   | String   | value of `base_dn` |
 
 
 ## Further reading
