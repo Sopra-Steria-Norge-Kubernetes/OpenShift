@@ -2,6 +2,8 @@
 
 ServiceMonitor resources define how Prometheus discovers and scrapes metrics from Kubernetes services.
 
+These examples target the Cluster Observability Operator MonitoringStack API.
+
 ⚠️ **CRITICAL: Team Label Required for Discovery**
 
 **All ServiceMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
@@ -45,7 +47,7 @@ http_request_duration_seconds_count 1030
 This example monitors a simple web application exposing metrics on `/metrics`:
 
 ```yaml
-apiVersion: monitoring.coreos.com/v1
+apiVersion: monitoring.rhobs/v1
 kind: ServiceMonitor
 metadata:
   name: my-app-servicemonitor
@@ -86,7 +88,7 @@ spec:
 For applications requiring authentication to access metrics:
 
 ```yaml
-apiVersion: monitoring.coreos.com/v1
+apiVersion: monitoring.rhobs/v1
 kind: ServiceMonitor
 metadata:
   name: authenticated-app-monitor
