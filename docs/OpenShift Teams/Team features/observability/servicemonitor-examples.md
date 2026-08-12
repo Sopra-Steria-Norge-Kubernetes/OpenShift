@@ -4,19 +4,18 @@ ServiceMonitor resources define how Prometheus discovers and scrapes metrics fro
 
 These examples target the Cluster Observability Operator MonitoringStack API.
 
-⚠️ **CRITICAL: Team Label Required for Discovery**
 
-**All ServiceMonitor resources MUST include the team label `soprasteria/team: "<your-team-name>"` or they will be completely ignored by the team Prometheus stack and no metrics will be collected.**
+**All ServiceMonitor resources MUST include the team label `soprasteria/team: "<team-name>"` or they will be ignored by the team Prometheus stack.**
 
-The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This is a security feature that ensures teams can only monitor resources within their own namespace.
+The team monitoring stack uses a `resourceSelector` that only discovers monitoring resources with this specific label. This ensures teams can only monitor resources in their own scope.
 
-Note: The target Services themselves do not require the team label - only the ServiceMonitor resources need it.
+Note: Target Services do not require the team label. ServiceMonitor resources do.
 
 ## Prerequisites
 
 - Team monitoring stack must be enabled (`observability.monitoringStack.enable: true`)
 - Your application must expose metrics on an HTTP endpoint
-- **CRITICAL**: ServiceMonitors must have the team label: `soprasteria/team: "<team-name>"`
+- ServiceMonitors must have the team label: `soprasteria/team: "<team-name>"`
 
 ### Application Metrics Requirements
 
@@ -44,16 +43,20 @@ http_request_duration_seconds_count 1030
 
 ## Example 1: Basic ServiceMonitor
 
-This example monitors a simple web application exposing metrics on `/metrics`:
+This example monitors a simple web application exposing metrics on `/metrics`.
+The label chain is:
+
+- `ServiceMonitor.spec.selector.matchLabels.app` -> matches `Service.metadata.labels.app`
+- `Service.spec.selector.app` -> selects Pods with the same `app` label
 
 ```yaml
 apiVersion: monitoring.rhobs/v1
 kind: ServiceMonitor
 metadata:
   name: my-app-servicemonitor
-  namespace: team-example
+  namespace: <application namespace>
   labels:
-    soprasteria/team: "team-example"  # Required for team monitoring stack
+    soprasteria/team: "<team-name>"  # Required for team monitoring stack
 spec:
   selector:
     matchLabels:
@@ -70,12 +73,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-web-app-service
-  namespace: team-example
+  namespace: <application namespace>
   labels:
-    app: my-web-app  # This label is used by ServiceMonitor selector
+    app: my-web-app  # Matched by ServiceMonitor spec.selector.matchLabels
 spec:
   selector:
-    app: my-web-app
+    app: my-web-app  # Selects Pods with label app=my-web-app
   ports:
   - name: metrics  # This name is referenced in ServiceMonitor
     port: 8080
@@ -83,66 +86,27 @@ spec:
     protocol: TCP
 ```
 
-## Example 2: ServiceMonitor with Authentication
-
-For applications requiring authentication to access metrics:
-
-```yaml
-apiVersion: monitoring.rhobs/v1
-kind: ServiceMonitor
-metadata:
-  name: authenticated-app-monitor
-  namespace: team-example
-  labels:
-    soprasteria/team: "team-example"
-spec:
-  selector:
-    matchLabels:
-      app: secure-app
-  endpoints:
-  - port: metrics
-    path: /metrics
-    interval: 30s
-    basicAuth:
-      username:
-        name: metrics-auth-secret
-        key: username
-      password:
-        name: metrics-auth-secret
-        key: password
-```
-
-**Required Secret:**
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: metrics-auth-secret
-  namespace: team-example
-type: Opaque
-data:
-  username: <base64-encoded-username>
-  password: <base64-encoded-password>
-```
-
 ## Troubleshooting
 
 ### Common Issues
 
-1. **Missing team label**: Ensure the ServiceMonitor has `soprasteria/team: "<team-name>"` label
-2. **Port name mismatch**: The port name in ServiceMonitor must match the service port name
-3. **Metrics endpoint**: Verify your application exposes metrics on the specified path
+1. **Missing team label**: Ensure the ServiceMonitor has `soprasteria/team: "<team-name>"`
+2. **Label mismatch**: Ensure ServiceMonitor `matchLabels` matches Service `metadata.labels`
+3. **Port name mismatch**: Ensure ServiceMonitor endpoint port matches Service port name
+4. **Metrics endpoint**: Verify your application exposes metrics on the specified path
 
 ### Validation Commands
 
 ```bash
 # Check ServiceMonitor exists
-oc get servicemonitor -n <team-namespace>
+oc get servicemonitors.monitoring.rhobs -n <application namespace>
+
+# Verify ServiceMonitor selector labels
+oc get servicemonitors.monitoring.rhobs my-app-servicemonitor -n <application namespace> -o yaml
+
+# Verify Service labels
+oc get svc my-web-app-service -n <application namespace> -o yaml
 
 # Test metrics endpoint directly
-oc exec -it <pod-name> -n <team-namespace> -- curl localhost:8080/metrics
-
-# Check if Prometheus is scraping the target
-oc port-forward svc/prometheus-operated -n <team-namespace> 9090:9090
-# Then visit http://localhost:9090/targets
+oc exec -it <pod-name> -n <application namespace> -- curl localhost:8080/metrics
 ```
