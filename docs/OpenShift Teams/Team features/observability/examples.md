@@ -18,6 +18,7 @@ This page shows working configurations for common observability setups. See the 
 ```yaml
 observability:
   grafana_instance: true
+  grafana_version: latest
   monitoringStack:
     enable: true
     monitoringStack_size: small

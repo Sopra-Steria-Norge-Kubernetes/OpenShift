@@ -18,6 +18,7 @@ See full examples here: [Observability Examples](./examples.md)
 | Parameter | Type | Default | Description | Link |
 |---|---|---|---|---|
 | observability.grafana_instance | Boolean | false | Enable Grafana with OpenShift auth | [Details](#param-observability-grafana_instance) |
+| observability.grafana_version | String | latest | Grafana version to deploy | [Details](#param-observability-grafana_version) |
 
 ### RBAC
 | Parameter | Type | Default | Description | Link |
@@ -42,6 +43,9 @@ See full examples here: [Observability Examples](./examples.md)
 Enables a team Grafana instance using OpenShift OAuth. Automatically wires datasources for team-managed tenants.
 - Requires RBAC groups (see below).
 - Route format: `https://<team-name>-grafana.<cluster-apps-domain>`
+
+#### observability.grafana_version {#param-observability-grafana_version}
+Sets the Grafana version to deploy. Defaults to `latest`; set a specific version to pin the deployment to that version. See the [Grafana releases](https://github.com/grafana/grafana/releases) page for available versions.
 
 ### RBAC
 #### rbac.team_monitoring_edit {#param-rbac-team_monitoring_edit}
