@@ -3,21 +3,23 @@
 # OpenShift
 User documentation for OpenShift delivery by Sopra Steria.
 
-## mkdocs
-Use the folloxing about page for how to use mkdocs: [How to use mkdocs](https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/about/how-to-use-mkdocs.md)
+## Documentation development
+See [How to use Zensical](https://github.com/Sopra-Steria-Norge-Kubernetes/OpenShift/blob/main/docs/about/how-to-use-zensical.md) for guidance on writing and publishing documentation.
 
 ### Using `uv`
 
-Easiest way to get started developing the docs locally, is by using [uv](https://docs.astral.sh/uv/):
+The easiest way to develop the documentation locally is with [uv](https://docs.astral.sh/uv/):
 
 ```shell
 brew install uv
 ```
 
-Setup mkdocs:
+Set up Zensical and start the local preview:
 
 ```shell
 uv venv
-uv pip install -U mkdocs-material mkdocs-glightbox
-uv run mkdocs serve
+uv pip install zensical==0.0.57
+uv run zensical serve
 ```
+
+The preview is available at <http://127.0.0.1:8000/>.
