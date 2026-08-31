@@ -70,7 +70,7 @@ This section of the documentation aims to describe the CI/CD process in detail, 
 - The `TriggerEventListener` responds to the event by initiating the `TriggerTemplate`.
 - The `TriggerTemplate` defines a series of steps and resources that make up a `pipelineRun`.
 - The `pipelineRun` is an instance of a `pipelineRef`, which references the predefined pipeline in the Public-2S-pipeline-repo.
-- The pipeline then perform the task `fetch-repository`, `build` and `update-image-tag`, which is described in the numbered section here: [[#Design overview]]
+- The pipeline then perform the task `fetch-repository`, `build` and `update-image-tag`, which is described in the [Design overview](#design-overview).
 
 **3. Image Creation:**
 
