@@ -1,23 +1,23 @@
 # Resource Management Feature
 
-Resource managment is used to set the cpu and memory request quotas for the team namespace. The request quotas set in this section determined the resources that will be reserved in the cluster for the team namespace.
+Resource management sets the CPU and memory request quota for the team namespace. The quota limits the combined requests of all workloads in that namespace; it does not reserve capacity for monitoring components.
 
 ```yaml
-resource_management: <Defualt resources allowed in the team namespaces for running Grafana, External Secret and GitOps>
-  requests:
-    cpu: <Default value is set to 200m>
-    memory: <Default value is set to "500Mi">
+resource_management:
+  quota:
+    requests:
+      cpu: "4"     # Default: 4 CPU
+      memory: 8Gi   # Default: 8Gi
   storage:
-    enable_custom_storageclass: false 
+    enable_custom_storageclass: false
 ```
+
+Teams can override the quota when they need more request capacity. The quota is shared by monitoring and other workloads in the namespace. It does not cap actual memory use when containers have no memory limit.
 
 ## In-depth description of parameters
 
-| <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
-|----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
-| Resource Management              |                                                                                                                     |                                            |                           |
-`resources.requests`              |                                                                                                                     |                                            |                           |
-| `cpu`            | 	Combined cpu requests for all tenant namespaces. Fractional values are allowed. A Container that requests 500m CPU is guaranteed half as much CPU as a Container that requests 1 CPU. You can use the suffix m to mean milli. For example 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. A precision finer than 1m is not allowed.                               | 1  | String/Int                    | 200m |
-| `memory`            | Combined memory requests for all tenant namespaces. The memory resource is measured in bytes. Memory can be expressed as a plain or fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.                                        | 1Gi | String/Int                    | 500Mi |
-Storage              |                                                                                                                     |                                            |                           |
-| `enable_custom_storageClass`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | false |
+| Parameter | Description | Example | Type | Default |
+|---|---|---|---|---|
+| `resource_management.quota.requests.cpu` | Maximum combined CPU requests for the team namespace. Use Kubernetes CPU quantities such as `500m` or `2`. | `"5"` | String | `"4"` |
+| `resource_management.quota.requests.memory` | Maximum combined memory requests for the team namespace. Use Kubernetes memory quantities such as `512Mi` or `8Gi`. | `10Gi` | String | `8Gi` |
+| `resource_management.storage.enable_custom_storageclass` | Allow the team namespace to use the additional storage classes listed in the chart. | `true` | Boolean | `false` |

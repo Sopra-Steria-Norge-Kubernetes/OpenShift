@@ -3,9 +3,10 @@
 This page shows working configurations for common observability setups. See the parameter reference in the main page for details.
 
 ## Table of contents
-- [Minimal (Grafana + Prometheus, small, no HA)](#minimal)
+- [Minimal (Grafana + Prometheus, no HA)](#minimal)
 - [With Alertmanager and routes exposed](#am-with-routes)
-- [HA Prometheus (medium) with Alertmanager](#ha-medium-am)
+- [HA Prometheus with Alertmanager](#ha-am)
+- [Custom component resources](#custom-resources)
 - [Grafana only (no Prometheus stack)](#grafana-only)
 - [Prometheus only (no Grafana)](#prometheus-only)
 - [Enable Alertmanager](#enable-alertmanager)
@@ -13,7 +14,7 @@ This page shows working configurations for common observability setups. See the 
 - [Severity-based routing (different channels)](#severity-routing)
 - [Inhibition rules (mute lower severities if critical exists)](#inhibition-rules)
 
-## Minimal (Grafana + Prometheus, small, no HA) {#minimal}
+## Minimal (Grafana + Prometheus, no HA) {#minimal}
 
 ```yaml
 observability:
@@ -21,7 +22,6 @@ observability:
   grafana_version: latest
   monitoringStack:
     enable: true
-    monitoringStack_size: small
     monitoringStack_retention: 7d
     monitoringStack_high_availability: false
     monitoringStack_alertmanager: false
@@ -45,7 +45,6 @@ observability:
       port: 5432                 ## Datasource Port
   monitoringStack:
     enable: true
-    monitoringStack_size: small
     monitoringStack_retention: 7d
     monitoringStack_high_availability: false
     monitoringStack_alertmanager: false
@@ -59,7 +58,6 @@ observability:
   grafana_instance: true
   monitoringStack:
     enable: true
-    monitoringStack_size: small
     monitoringStack_retention: 7d
     monitoringStack_high_availability: false
     monitoringStack_alertmanager: true
@@ -72,19 +70,42 @@ rbac:
 
 Note: When routes are exposed, anyone with network access to OpenShift can reach Prometheus/Thanos endpoints.
 
-## HA Prometheus (medium) with Alertmanager {#ha-medium-am}
+## HA Prometheus with Alertmanager {#ha-am}
 
 ```yaml
 observability:
   grafana_instance: true
   monitoringStack:
     enable: true
-    monitoringStack_size: medium
     monitoringStack_retention: 7d
     monitoringStack_high_availability: true   # 2× Prometheus
     monitoringStack_alertmanager: true
     monitoringStack_expose_route: false
 ```
+
+## Custom component resources {#custom-resources}
+
+Set requests and limits independently for each component. This example increases the Thanos sidecar request while leaving its limit unset. Components not listed keep their chart defaults.
+
+```yaml
+resource_management:
+  quota:
+    requests:
+      cpu: "5"
+      memory: 10Gi
+
+observability:
+  monitoringStack:
+    enable: true
+    resources:
+      thanosSidecar:
+        requests:
+          cpu: 150m
+          memory: 320Mi
+        limits: null
+```
+
+The namespace quota applies to the combined requests of monitoring and other workloads in the team namespace. Increase it if the namespace needs more request capacity.
 
 ## Grafana only (no Prometheus stack) {#grafana-only}
 
@@ -105,7 +126,6 @@ observability:
   grafana_instance: false
   monitoringStack:
     enable: true
-    monitoringStack_size: small
     monitoringStack_retention: 7d
 ```
 
@@ -117,7 +137,6 @@ observability:
   grafana_instance: true
   monitoringStack:
     enable: true
-    monitoringStack_size: small
     monitoringStack_retention: 7d
     monitoringStack_high_availability: false
     monitoringStack_alertmanager: true
