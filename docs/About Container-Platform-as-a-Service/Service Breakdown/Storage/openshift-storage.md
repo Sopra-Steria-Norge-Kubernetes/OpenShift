@@ -25,7 +25,7 @@ Customers should pick a StorageClass based on how critical and how reproducible 
 
 **Recommendation:** Use `ceph-storagecluster-ceph-rbd` for most workloads unless a specific access mode (RWX), resiliency, or cost/performance trade-off calls for one of the other classes.
 
-### Differences for Hosted Control Plane 
+### Changes on Hosted Control Plane 
 
 With hosted control plane clusters the `ocs-storagecluster-ceph-fs` storageClass is only RWO, **not** RWO/RWX. As a replacement the `nfs-hdd-rwx` storageClass can be used instead for workloads previously using RWX with `ocs-storagecluster-ceph-fs`
 
