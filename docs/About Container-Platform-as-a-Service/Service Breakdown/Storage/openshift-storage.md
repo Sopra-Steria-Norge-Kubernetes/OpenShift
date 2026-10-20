@@ -28,7 +28,7 @@ Customers should pick a StorageClass based on how critical and how reproducible 
 
 **Note:** 
 1. On clusters running on VMware the `ocs-storagecluster-ceph-fs` storageClass is RWO/RWX, **not** just RWO.
-2. The `nfs-hdd-rwx` is a storageClass can be used instead for workloads previously using RWX with `ocs-storagecluster-ceph-fs`. This storageClass is not included by default and has to be explicitly ordered.
+2. On Hosted Control Planes the `nfs-hdd-rwx` is a storageClass for workloads previously using RWX with `ocs-storagecluster-ceph-fs`. This storageClass is not included by default and must be explicitly ordered.
 
 ## Persistent Volumes
 
