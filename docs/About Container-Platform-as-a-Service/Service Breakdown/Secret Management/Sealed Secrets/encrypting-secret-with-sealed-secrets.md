@@ -60,6 +60,12 @@ Construct a standard Secret manifest using your base64-encoded values. For examp
 
 To generate a SealedSecret, run the following command:
 
+```shell
+kubeseal --controller-namespace sealed-secrets -oyaml < test-secret_input.yaml > test-secret_output.yaml
+```
+
+Otherwise, if you have the certificate locally:
+
 ```
 kubeseal --cert /path/to/pub.crt --scope namespace-wide -o yaml < secret.yaml
 ```
