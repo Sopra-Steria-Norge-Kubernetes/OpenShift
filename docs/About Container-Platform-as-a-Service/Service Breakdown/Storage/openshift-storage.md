@@ -18,14 +18,17 @@ Customers should pick a StorageClass based on how critical and how reproducible 
 
 | StorageClass | Access Modes | Backend | Replication / Resiliency | Performance | Typical Use Case |
 |---|---|---|---|---|---|
-| **`ocs-storagecluster-ceph-rbd`** | RWO | Ceph RBD (block) | Replicated across 3 datacenters | High (SSD) | Default choice for most workloads — databases and application data that need high availability |
-| **`ceph-rbd-2-site`** (default) | RWO | Ceph RBD (block) | Replicated across 2 datacenters | High (SSD) | Workloads that need cross-site resilience without the overhead of full 3-site replication |
-| **`ocs-storagecluster-ceph-fs`** | RWO/RWX | CephFS (shared filesystem) | Replicated across the Ceph storage cluster | High (SSD) | Shared/multi-pod access to the same volume (e.g. shared config or upload directories) |
+| **`ocs-storagecluster-ceph-rbd`** | RWO/RWX | Ceph RBD (block & Filesystem) (Filesystem is only RWO) | Replicated across 3 datacenters | High (SSD) | Default choice for most workloads — databases and application data that need high availability |
+| **`ceph-rbd-2-site`** (default) | RWO/RWX | Ceph RBD (block & Filesystem) (Filesystem is only RWO)| Replicated across 2 datacenters | High (SSD) | Workloads that need cross-site resilience without the overhead of full 3-site replication |
+| **`ocs-storagecluster-ceph-fs`** | RWO | CephFS (shared filesystem) | Replicated across the Ceph storage cluster | High (SSD) | Shared/multi-pod access to the same volume (e.g. shared config or upload directories) |
 | **`ocs-storagecluster-ceph-non-resilient-rdb`** | RWO | Ceph RBD (block) | No cross-site replication — data lives in a single datacenter only | High (SSD) | Ephemeral, replaceable, or non-critical data that doesn't need full resiliency (e.g. caches, scratch space, easily reproducible data) |
 | **`nfs-hdd-rwx`** | RWX | External NFS (Isilon) | Handled by the external Isilon appliance | Lower (HDD) | Bulk/archival shared file storage where high performance isn't required |
 
 **Recommendation:** Use `ceph-storagecluster-ceph-rbd` for most workloads unless a specific access mode (RWX), resiliency, or cost/performance trade-off calls for one of the other classes.
 
+**Note:** 
+1. On clusters running on VMware the `ocs-storagecluster-ceph-fs` storageClass is RWO/RWX, **not** just RWO.
+2. On Hosted Control Planes the `nfs-hdd-rwx` is a storageClass for workloads previously using RWX with `ocs-storagecluster-ceph-fs`. This storageClass is not included by default and must be explicitly ordered.
 
 ## Persistent Volumes
 
