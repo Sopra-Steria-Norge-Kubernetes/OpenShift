@@ -67,14 +67,14 @@ The table below shows who is responsible for performing backups, selecting which
 
 ### Process
 
-User environments can be restored on demand, but to restore data from the Persistent Volumes in these environments, we must first disable ArgoCD’s self-healing feature that automatically tries to recreate deleted objects and resources. 
+User environments can be restored on demand, but to restore data from the Persistent Volumes in these environments, we must first disable Argo CD’s self-healing feature that automatically tries to recreate deleted objects and resources.
 
 This step is crucial because, for the restoration process to be successful, the environment must be cleared of all existing data. Once the environment is empty, we can proceed with restoring the data, ensuring that all resources are accurately restored. 
 
 
 ![image.png](../../../img/Storage/backup2.png)
 
-After the restore, ArgoCD’s self-healing can be re-enabled to maintain the desired state of the environment.
+After the restore, Argo CD’s self-healing can be re-enabled to maintain the desired state of the environment.
 
 ### Submitting a Restore Request
 
@@ -86,12 +86,12 @@ Environments can be restored on demand. Please contact Sopra Steria through your
 - Which day you want to restore a backup from
 
 
-#### Disable ArgoCD Self-Healing
+#### Disable Argo CD Self-Healing
 
 !!! Info
     This is not necessary in a DR-situation as we will apply GitOps after restore is complete. 
 
-Disable self-healing in ArgoCD to prevent it from recreating resources from GitOps. This can be done by setting selfHeal to false in the tenant order. 
+Disable self-healing in Argo CD to prevent it from recreating resources from GitOps. This can be done by setting selfHeal to false in the tenant order.
 
 It’s important to ensure this setting is applied to the specific tenants or environments for which you have requested backups, as this will allow for a smooth and successful restoration process without interference from automated processes.
 
@@ -107,4 +107,4 @@ It’s important to ensure this setting is applied to the specific tenants or en
 
 Before starting the restoration, ensure that the change to disable self-healing has been approved through a pull request. Submit this request to Sopra Steria for review, so they can confirm that the change is appropriate and won’t interfere with other processes. 
 
-Once it’s approved, Sopra Steria can proceed with the restoration without iinterference from ArgoCD.
+Once it’s approved, Sopra Steria can proceed with the restoration without iinterference from Argo CD.

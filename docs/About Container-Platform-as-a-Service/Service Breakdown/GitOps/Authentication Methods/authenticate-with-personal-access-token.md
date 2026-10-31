@@ -1,15 +1,15 @@
-# Authentication Methods for ArgoCD with GitHub
+# Authentication Methods for Argo CD with GitHub
 
 For the authentication methods, you must add the GitHub repository URL and the basepath for your applications:
 
 - `argocd.main_git_repository.repourl`: Plaintext HTTPS Git URL for repository where your applications are stored 
-- `argocd.main_git_repository.basepath`: Basepath is where argoCD will look to find your application definions. ArgoCD will look in your git repository for path: `$basepath/$environment/applications/`
+- `argocd.main_git_repository.basepath`: Basepath is where Argo CD will look to find your application definions. Argo CD will look in your git repository for path: `$basepath/$environment/applications/`
 
 ## Authenticate with Personal Access Token (PAT)
 
 ### Create a PAT
 
-PAT's are a token that's personal for you, and is a way to access your github account. This guide help you create a PAT with a minimum access for the intended purpose.
+PAT's are a token that's personal for you, and is a way to access your GitHub account. This guide help you create a PAT with a minimum access for the intended purpose.
 
 Go to your profile settings, and then choose Developer settings:
 ![Settings](../../../../img/Openshift%20Tenants/PAT-Settings.png)

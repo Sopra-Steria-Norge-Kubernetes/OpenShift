@@ -11,12 +11,12 @@ This page introduces how to use OpenShift GitOps with Argo CD to manage and depl
 **Official Documentation:** 
 
 - [OpenShift GitOps](https://docs.openshift.com/container-platform/latest/cicd/gitops/understanding-openshift-gitops.html)
-- [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
+- [Argo CD](https://argo-cd.readthedocs.io/en/stable/)
 
 
 ## Benefits of GitOps
 
-GitOps uses Git repositories as the single source of truth. ArgoCD ensures cluster state matches repository definitions.
+GitOps uses Git repositories as the single source of truth. Argo CD ensures cluster state matches repository definitions.
 
 Key benefits:
 
@@ -30,11 +30,11 @@ To setup GitOps for you OpenShift Tenant follow the [Getting Started guide](gito
 1. Define tenant with desired GitOps method → submit to OCP Admin ([Tenant Quick Start](..//../../Quick%20Start/tenants-quick-start.md))
 2. Choose `user-defined` and/or `auto-defined` application creation methods ([GitOps Setup](gitops-setup.md#gitops-methods))
 3. Define Kubernetes resources in tenant's main Git repository ([Getting Started](gitops-setup.md#getting-started))
-4. ArgoCD syncs resources from repository to cluster
+4. Argo CD syncs resources from repository to cluster
 
 ![GitOps Workflow](../../../img/CI-CD/GitOps.png)
 
 
 
 ## Best Practices
-For additional info see [GitOps Best Practices](gitops-best-practices.md) for ArgoCD implementation guidelines and more information.
+For additional info see [GitOps Best Practices](gitops-best-practices.md) for Argo CD implementation guidelines and more information.

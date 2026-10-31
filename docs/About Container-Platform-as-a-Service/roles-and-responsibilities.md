@@ -63,9 +63,9 @@ Below is a summary of the responsibilities of the different roles:
 | Expose applications on ingress and other applications on the OCP | | ✔️ | |
 | Network Policy Management |  | ✔️ | Defining and implementing network policies controlling pod communication. |
 | **Desired state configuration** | -- | -- | -- |
-| Deploy and manage desired state configuration tools such as ArgoCD | ✔️ | |  ArgoCD practices the "GitOps" paradigm, where a Git repository serves as the source of truth for defining the desired state of applications and infrastructure.|
+| Deploy and manage desired state configuration tools such as Argo CD | ✔️ | |  Argo CD practices the "GitOps" paradigm, where a Git repository serves as the source of truth for defining the desired state of applications and infrastructure.|
 | Deploy and manage developer Tenants based on customers orders| ✔️ | | Tenants are not native OpenShift concepts but act as wrappers around multiple OpenShift resources, offering a standardized development workflow, scalable resource access, and appropriate limits and access controls for each team.|
-|Connecting the Customer GIT repository in a tenant towards the GitOps tool ArgoCD managed by Sopra Steria | | ✔️ |ArgoCD continuously monitors and compares the actual state of the Kubernetes cluster (as deployed resources) with the desired state defined in the Git repository |
+|Connecting the Customer Git repository in a tenant towards the GitOps tool Argo CD managed by Sopra Steria | | ✔️ |Argo CD continuously monitors and compares the actual state of the Kubernetes cluster (as deployed resources) with the desired state defined in the Git repository |
 | Deploy applications from GIT Repository managed in the developers Tenant | | ✔️ | |
 | Application Connectivity |  | ✔️ | Ensuring proper communication configurations for applications. |
 | Custom Network Policies |  | ✔️ | Defining specific network policies as per application requirements. |
@@ -127,4 +127,3 @@ Below is a summary of the responsibilities of the different roles:
 | Handle security vulnerabilities in developer applications | |  ✔️| |
 
 * Responsibilities that are not ready now must be implemented before total production.
-

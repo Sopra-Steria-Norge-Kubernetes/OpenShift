@@ -392,7 +392,7 @@ Each tenant must have a clusterquota defined with a request. this is how much co
     cpu: 1
 ```
 ### External Traffic
-Based on the specific loadbalancer configuration outside of Openshift the steps to get traffic from internett into your application might differ. You will allways be able to contact the `Openshift Route` from the same vlan as the openshift environment, so for testing this might suffice
+Based on the specific loadbalancer configuration outside of OpenShift the steps to get traffic from internett into your application might differ. You will allways be able to contact the `OpenShift Route` from the same vlan as the OpenShift environment, so for testing this might suffice
 
 ## Step 9: Deployment Process
 

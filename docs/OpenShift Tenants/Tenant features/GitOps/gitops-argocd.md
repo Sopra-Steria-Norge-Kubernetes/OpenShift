@@ -2,7 +2,7 @@
 
 On this page you can find information related to the `argocd` feature in the tenant concept. This page contains an example of how to implement the Argo CD applications & Applicationsets
 
-### How to Configure ArgoCD Applicationset
+### How to Configure Argo CD Applicationset
 
 Below we will go through an example on how to implemet the `argocd` feature in the tenant chart. The example utilizes the default values for `SyncPolicies`.
 
@@ -50,26 +50,26 @@ argocd:
 
 You can choose to enable the user-defined method or the auto-defined method (You can also choose both).
 
-1. **User-defined method:** Create ArgoCD applications in your repository under the path `<path>/<all argocd apps here will be generated>`.
+1. **User-defined method:** Create Argo CD applications in your repository under the path `<path>/<all argocd apps here will be generated>`.
     - To enable this choice, you must set the field `argocd.enable_user_defined_apps` to true.
 
-2. **Auto-defined method:** Use an ArgoCD applicationSet to create your applications automatically under the path `<path>/<all folders here will be generated>`.
+2. **Auto-defined method:** Use an Argo CD applicationSet to create your applications automatically under the path `<path>/<all folders here will be generated>`.
     
     - To enable this choice you have to set the  `argocd.enable_auto_defined_apps field` to true. This will create an ApplicationSet for the tenant namespace and will configure new applications when you add new folders in your tenant folder.
 
-More information about how to set up a Git Repository for ArgoCD on OpenShift can be found here:
+More information about how to set up a Git Repository for Argo CD on OpenShift can be found here:
 
 * [OpenShift GitOps - Introduction](../../../About%20Container-Platform-as-a-Service/Service%20Breakdown/GitOps/Introduction-GitOps.md) 
 
 | <div style="width:140px">**Variable**</div>         | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
 |----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------|---------------------------|------------|
 | SyncPolicy              |                                                                                                                     |                                            |                           |
-| `allowEmpty`            | Allows ArgoCD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
+| `allowEmpty`            | Allows Argo CD to sync an ApplicationSet even if it results in an empty application                               | True / False | Boolean                    | true |
 | `selfHeal`            | Automatically repair out-of-sync resources to match the desired state in Git                                        | True / False | Boolean                    | true |
 | `prune`           | Remove resources that are not present in the Git repository during sync                                                | True / False                                 | Boolean                    | true |
 | sourceRepoACL              |                                                                                                                     |                                            |                           |
 | `enabled`            | Enables source repository access control for the AppProject. When enabled, only `main_git_repository` and `additionalRepos` are allowed. When disabled, all repos are allowed (legacy behavior)                               | True / False | Boolean                    | false |
 | `additionalRepos`            | List of additional repository URLs allowed as sources in the AppProject (only used when `enabled` is true)                                        | ["https://charts.test.com"] | List                    | [] |
 | Default              |                                                                                                                     |                                            |                           |
-| `repourl`            | The URL of the git repository which ArgoCD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
-| `basepath`           | The basepath of the git repository where ArgoCD manifests are stored                                                | poseidon1/                                 | String                    | "" |
+| `repourl`            | The URL of the git repository which Argo CD will use as its "source of truth"                                        | https://github.com/customer-repo/openshift | String                    | "" |
+| `basepath`           | The basepath of the git repository where Argo CD manifests are stored                                                | poseidon1/                                 | String                    | "" |

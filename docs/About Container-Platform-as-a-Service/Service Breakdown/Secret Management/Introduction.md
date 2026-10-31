@@ -56,8 +56,8 @@ echo -n 'mysecret' | base64
 4. **Key Vault Credentials Secrets**  
    Used for integrating with Azure KeyVault, holding the necessary access credentials.
 
-5. **ArgoCD Repository secret**
-   ArgoCD Repository secrets store the credentials needed to access the source repository for an ArgoCD project
+5. **Argo CD Repository secret**
+   Argo CD Repository secrets store the credentials needed to access the source repository for an Argo CD project
 
 #### Sample Secret Definitions
 
@@ -93,7 +93,7 @@ A generic OpenShift secret uses the type opaque. Here, you define as many key-va
 
 To pull images from a container registry, the namespace needs an `imagePullSecret`. This secret must be defined with the type `kubernetes.io/dockerconfigjson`. The key should be named `.dockerconfigjson`, and the value should follow this format: 
 
-```
+```json
 {"auths":{"<repoURL>":{"username":"<ClientID>","password":"<ClientSecret>"}}}
 ```
 
@@ -184,8 +184,8 @@ KeyVault-credentials is a regular generic secret, but to standardize we use a de
     type: Opaque
     ```
 
-###### Repository credentials (ArgoCD repository)
-To use a private repository as source repository for an ArgoCD application, it requires repository credentials. It is a generic secret, but for ArgoCD to notice it as a repository secret, it requires a specific label:
+###### Repository credentials (Argo CD repository)
+To use a private repository as source repository for an Argo CD application, it requires repository credentials. It is a generic secret, but for Argo CD to notice it as a repository secret, it requires a specific label:
 
 === "Secret"
     ```yaml

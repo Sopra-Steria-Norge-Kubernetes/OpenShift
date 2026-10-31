@@ -24,7 +24,7 @@ Below is an illustration of teams.
 ### **Centralized Resource Management**
 - **Observability Dashboards**: Grafana instance with datasources for all team tenants
 - **Secret Management**: ClusterSecretStores accessible by all team tenants  
-- **GitOps Credentials**: Shared repository access credentials for ArgoCD
+- **GitOps Credentials**: Shared repository access credentials for Argo CD
 
 ### **Benefits for Development Teams**
 - **Reduced Duplication**: Share credentials and configurations across tenants
@@ -110,7 +110,7 @@ gitops:
 
 The gitops feature is used to define the login credentials for Argo CD to use aswell as the repository Argo CD will use for the Argo CD applicationsets and applications.
 
-You can read more in depth about this feature by following this link: [ArgoCD](../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
+You can read more in depth about this feature by following this link: [Argo CD](../OpenShift%20Tenants/Tenant%20features/GitOps/argocd.md)
 
 ```yaml
 secret_management:

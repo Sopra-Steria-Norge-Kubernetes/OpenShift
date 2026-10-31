@@ -86,7 +86,7 @@ spec:
 
 ### Auto-Defined Method
 
-We will cover an options that can be used to deploy Private Helm charts with ArgoCD ApplicationSets when choosing the auto-defined method. In our example we will be referencing the Helm chart directly from its Chart.yaml.
+We will cover an options that can be used to deploy Private Helm charts with Argo CD ApplicationSets when choosing the auto-defined method. In our example we will be referencing the Helm chart directly from its Chart.yaml.
 
 #### Example
 

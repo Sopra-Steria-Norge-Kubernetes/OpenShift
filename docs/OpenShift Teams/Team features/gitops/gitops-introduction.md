@@ -2,7 +2,7 @@
 
 The `gitops` feature contains two main sections: `argocd` & `authentication`. The `authentication` section i used to define the authentication credential utilized by Argo CD. The `argocd` section is used to define the repository Argo CD will connect to and the path where Argo CD will search for applications & applicationsets 
 
-You can read more in depth about this feature by following this link: [ArgoCD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-introduction.md)
+You can read more in depth about this feature by following this link: [Argo CD](../../../OpenShift%20Tenants/Tenant%20features/GitOps/gitops-introduction.md)
 
 On this page we will go through a simple example to get started with the gitops feature in addition to showing all possible fields and give an in depth description of each of the fields
 
@@ -15,7 +15,7 @@ To get started with using the team concept´s GitOps feature you need to have yo
 
     How to set up a ClusterSecretStore: [Secret Managment](../secret-management.md)
 
-Below is a simple example of how you can configuration ArgoCD Applicationset with GitHub App Credentials using external secrets:
+Below is a simple example of how you can configuration Argo CD Applicationset with GitHub App Credentials using external secrets:
 
 ```yaml
 gitops:
