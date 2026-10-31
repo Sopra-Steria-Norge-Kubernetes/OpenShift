@@ -11,7 +11,7 @@ Below we will go through an example on how to implemet the `gitops.authenticatio
 
     How to set up a ClusterSecretStore: [Secret Managment](../secret-management.md)
 
-Below is an example creating an external secret as an authentication method for Argo CD with a GitHub APP:
+Below is an example creating an external secret as an authentication method for Argo CD with a GitHub App:
 
 ```yaml
 gitops:
@@ -25,7 +25,7 @@ gitops:
         repo_url: https://github.com/customer-repo/openshift
 ```
 
-Below is an example using kubeseal to create a sealedsecret as an authentication method for Argo CD with a GitHub APP:
+Below is an example using kubeseal to create a sealedsecret as an authentication method for Argo CD with a GitHub App:
 
 ```yaml
 gitops:
@@ -91,7 +91,7 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 
 - **helm_registry**: variables needed to connect with a remote helm registry
 - **PAT**: variables needed to connect with a GitHub PAT token
-- **GitHub app**: variables need to configure the GitHub app
+- **GitHub App**: variables need to configure the GitHub App
 - **SSH**: variables need to configure through SSH
 
 | <div style="width:140px">**Variable**</div>            | **Description**                                                                                                     | **Example**                                | **Type**                  | **Default Value**  |
@@ -102,7 +102,7 @@ The `argocd` feature can connect to a Git repository through a Personal Access T
 | `password`                 | ACR password - Azure Key Vault secret name or encrypted with sealedsecrets                                              | See description below                      | String / Kubeseal Encrypted String | "" |
 | `registry_url`             | The url of the helm registry - Clear text or sealedsecret depending on the method                  |               ""                 | String / Kubeseal Encrypted String                  | "" |
 | GitHub App           |                                                                                                                     |                                            |       list[] 
-| `id`                 | The app id for your Github App - Clear text or sealedsecret depending on the method                                                      | See description below                      | String / Kubeseal Encrypted String | "" |
+| `id`                 | The app id for your GitHub App - Clear text or sealedsecret depending on the method                                                      | See description below                      | String / Kubeseal Encrypted String | "" |
 | `installation_id`    | The installation id for your GitHub App - Clear text or sealedsecret depending on the method                                              | See description below                      | String / Kubeseal Encrypted String | "" |
 | `private_key`        | Private key for your GitHub App - Azure Key Vault secret name or encrypted with sealedsecrets                                                        | See description below                      | String / Kubeseal Encrypted String | "" |
 | `repo_url`         | The url of the git repository - Clear text or sealedsecret depending on the method                  |               ""                 | String / Kubeseal Encrypted String                  | "" |

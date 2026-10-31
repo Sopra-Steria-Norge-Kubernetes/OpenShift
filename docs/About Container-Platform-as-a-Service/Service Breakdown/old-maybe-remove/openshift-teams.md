@@ -19,7 +19,7 @@ Below is an illustration of teams.
 ### **Centralized Resource Management**
 - **Observability Dashboards**: Grafana instance with datasources for all team tenants
 - **Secret Management**: ClusterSecretStores accessible by all team tenants  
-- **GitOps Credentials**: Shared repository access credentials for ArgoCD
+- **GitOps Credentials**: Shared repository access credentials for Argo CD
 
 ### **Benefits for Development Teams**
 - **Reduced Duplication**: Share credentials and configurations across tenants

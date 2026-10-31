@@ -14,7 +14,7 @@ externally-exposed: true
 ## Introduction
 Prometheus alerts help ensure the health and reliability of your systems by allowing you to define rules and respond quickly to issues. By understanding the alerting workflow and using Alertmanager for notifications, you can build an effective alerting setup in OpenShift.
 
-This user guide will provide you with further insights and detailed instructions on managing and creating alerts in Openshift.
+This user guide will provide you with further insights and detailed instructions on managing and creating alerts in OpenShift.
 
 ## Overview of Alerts
 We have created a set of alerts tailored to enhance your monitoring and alerting capabilities within your Prometheus environment. These alerts are designed to help you proactively detect issues. Below, we provide an overview of the various alert groups we've developed for you to use. Each group is carefully crafted to address specific aspects of your infrastructure and applications, empowering you to take action swiftly when needed. Explore the following alert groups to gain deeper insights into your monitoring and make informed decisions.

@@ -53,8 +53,8 @@ Read more about this feature in the Environment section here:
 
 - [How to configure an Environment](../../../OpenShift%20Tenants/Tenant%20features/environments.md)
 
-### ArgoCD
-The changes will also be visible in ArgoCD as the application cards now have an update targetRevision which shows either the `<folder-name>-<environment>` or `HEAD`.
+### Argo CD
+The changes will also be visible in Argo CD as the application cards now have an update targetRevision which shows either the `<folder-name>-<environment>` or `HEAD`.
 
 
 <div class="grid cards" markdown>

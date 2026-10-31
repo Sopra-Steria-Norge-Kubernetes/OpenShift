@@ -1,19 +1,19 @@
-# Authentication Methods for ArgoCD with GitHub
+# Authentication Methods for Argo CD with GitHub
 
 For the authentication methods, you must add the GitHub repository URL and the basepath for your applications:
 
 - `argocd.main_git_repository.repourl`: Plaintext HTTPS Git URL for repository where your applications are stored 
--  `argocd.main_git_repository.basepath`: Basepath is where argoCD will look to find your application definions. ArgoCD will look in your git repository for path: `$basepath/$environment/applications/`
+-  `argocd.main_git_repository.basepath`: Basepath is where Argo CD will look to find your application definions. Argo CD will look in your git repository for path: `$basepath/$environment/applications/`
 
 ## Authenticate with a GitHub App
 
 
-### Create a GitHub App for ArgoCD
-Follow the steps below to create a GitHub App suited for ArgoCD:
+### Create a GitHub App for Argo CD
+Follow the steps below to create a GitHub App suited for Argo CD:
 
-1. Follow the steps in the [Github documentation](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/registering-a-github-app/registering-a-github-app) to register a GitHub App.
+1. Follow the steps in the [GitHub documentation](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/registering-a-github-app/registering-a-github-app) to register a GitHub App.
 
-2. For connecting to ArgoCD, ensure that your application has at least `Read-only` permissions to the `Contents` and `metadata` of the repository.  This is the minimum requirement. See  [ArgoCD documentation](https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/#github-app-credential) for further explanation.
+2. For connecting to Argo CD, ensure that your application has at least `Read-only` permissions to the `Contents` and `metadata` of the repository.  This is the minimum requirement. See  [Argo CD documentation](https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/#github-app-credential) for further explanation.
 
 3. Generate a Private key inside the GitHub App. This will later be mapped and encrypted to the tenant variable `github_app.private_key`
 
@@ -23,7 +23,7 @@ Follow the steps below to create a GitHub App suited for ArgoCD:
 
 6. Click on app settings and extract the App ID, which will later be mapped to the tenant variable `github_app.id`
 
-   ![Github App Dashboard](../../../../img/Openshift%20Tenants/PAT_github-app-dashboard.png)
+   ![GitHub App Dashboard](../../../../img/Openshift%20Tenants/PAT_github-app-dashboard.png)
 
 ## Using Your GitHub App for Authentication
 
@@ -43,9 +43,9 @@ When using the External Secrets option you input the non sensitive values in pla
 
 ### Sealed Secrets - Option B
 
-#### Create a secret for Github App
+#### Create a secret for GitHub App
 
-Create a secret for your Github App.
+Create a secret for your GitHub App.
 Fill out the yaml below.
 
 

@@ -9,7 +9,7 @@ externally-exposed: true
 # Kubeseal
 
 ## Introduction
-This user guide provides detailed instructions and templates for setting up encrypted variables for the ArgoCD feature within the OpenShift Tenant framework. It is divided into Two main sections:
+This user guide provides detailed instructions and templates for setting up encrypted variables for the Argo CD feature within the OpenShift Tenant framework. It is divided into Two main sections:
 
 1. **Installation of Kubeseal**: This section guides you through installing Kubeseal, a tool essential for encrypting the variables.
 

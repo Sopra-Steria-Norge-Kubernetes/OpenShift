@@ -27,7 +27,7 @@ Understanding the relationship between these concepts is essential for making fu
 
 - **Observability Dashboards**: Grafana instance with datasources for all team tenants, enabling unified monitoring across all team applications.
 - **Secret Management**: ClusterSecretStores accessible by all team tenants, reducing duplication by sharing credentials and configurations.
-- **GitOps Credentials**: Shared repository access credentials for ArgoCD, simplifying administration by managing multiple tenants from one central location.
+- **GitOps Credentials**: Shared repository access credentials for Argo CD, simplifying administration by managing multiple tenants from one central location.
 - **Consistent Policies**: Apply team-level policies to all member tenants, ensuring uniform governance and streamlined management.
 
 ### Getting Started with OpenShift Team 
@@ -51,7 +51,7 @@ Understanding the relationship between these concepts is essential for making fu
 - **Network Traffic Rules**: Manage ingress and egress traffic via defined lists of allowed URLs and IP sets, controlling access to and from tenant applications for enhanced security.
 - **Secret Management**: Integrate with Azure KeyVault for secure dynamic retrieval of application secrets; alternatively, use Bitnami Sealed Secrets for version-controlled secret management, centralizing and securing sensitive information.
 - **Grafana Dashboards**: Optionally provision dedicated Grafana instances for customized monitoring and observability, supporting tenant-specific insights.
-- **GitOps Integration**: Use Git repositories to define and version-control tenant resources, enabling streamlined continuous deployment with ArgoCD and facilitating rapid releases.
+- **GitOps Integration**: Use Git repositories to define and version-control tenant resources, enabling streamlined continuous deployment with Argo CD and facilitating rapid releases.
 
 ###  Getting Started with OpenShift Tenant
 

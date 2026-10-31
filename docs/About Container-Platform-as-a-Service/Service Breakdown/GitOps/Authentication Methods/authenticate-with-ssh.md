@@ -1,9 +1,9 @@
-# Authentication Methods for ArgoCD with GitHub
+# Authentication Methods for Argo CD with GitHub
 
 For the authentication methods, you must add the GitHub repository URL and the basepath for your applications:
 
 - `argocd.main_git_repository.repourl`: SSH Git URL for repository where your applications are stored 
--  `argocd.main_git_repository.basepath`: Basepath is where argoCD will look to find your application definions. ArgoCD will look in your git repository for path: `$basepath/$environment/applications/`
+-  `argocd.main_git_repository.basepath`: Basepath is where Argo CD will look to find your application definions. Argo CD will look in your git repository for path: `$basepath/$environment/applications/`
 
 ## Authenticate with SSH
 
@@ -47,7 +47,7 @@ When using the External Secrets option you input the non sensitive values in pla
 
 #### Create a secret for SSH
 
-Create a secret for your Github SSH. 
+Create a secret for your GitHub SSH.
 Fill out the yaml below.
 
 !!! Warning 
